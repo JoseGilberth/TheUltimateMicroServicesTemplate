@@ -1,0 +1,47 @@
+spring:
+  profiles: ## SIRVEN PARA SEPARAR LAS DIREFENTES CONFIGURACIONES DEL SISTEMA
+    active: '@activatedProperties@' ## NOMBRE DEL PERFIL
+  banner:
+    location: classpath:/banners/banner-dev.txt
+  main:
+    allow-bean-definition-overriding: true ## SOBRE ESCRIBE BEAN (OBJETOS) REPETIDOS ENTRE PROYECTO
+  jackson: # JACKSON - ES USADA POR SPRING WEB, ES UNA LIBRERIA DE TRANSFORMACIÓN DE OBJETOS
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: America/Mexico_City
+    joda-date-time-format: yyyy-MM-dd HH:MM:SS
+    locale: es_MX
+    
+
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+        
+zipkin: 
+  ui:
+    basepath: /micro-zipkin/zipkin
+    
+# EUREKA
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8600/discovery-server/eureka
+
+# LOGGER
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: TRACE
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE # IMPRIME LOS DATOS ENTRANTES A HIBERNATE
+
+

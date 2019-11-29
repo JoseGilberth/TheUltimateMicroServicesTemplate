@@ -1,0 +1,55 @@
+netstat -ao | find "8605" 
+Taskkill /PID  15552 /F
+
+-- EUREKA
+http://localhost:8600/discovery-server/
+
+--- ACTUATOR
+http://localhost:8601/stegeriluminacion/actuator 
+http://localhost:8602/micro-auth/actuator 
+http://localhost:8603/micro-correos/actuator 
+http://localhost:8604/micro-usuarios/actuator 
+http://localhost:8605/micro-administracion/actuator 
+http://localhost:8606/micro-publico/actuator 
+http://localhost:8607/micro-catalogos/actuator 
+
+http://localhost:8601/stegeriluminacion/uaa/actuator
+http://localhost:8601/stegeriluminacion/micro-auth/actuator
+http://localhost:8601/stegeriluminacion/micro-correos/actuator
+http://localhost:8601/stegeriluminacion/micro-usuarios/actuator
+http://localhost:8601/stegeriluminacion/micro-administracion/actuator
+http://localhost:8601/stegeriluminacion/micro-publico/actuator
+http://localhost:8601/stegeriluminacion/micro-catalogos/actuator 
+
+
+-- SWAGGER 
+http://localhost:8601/stegeriluminacion/swagger-ui.html
+
+-- ZIPKIN
+http://localhost:8609/micro-zipkin/zipkin/
+
+-- HYSTRIX
+http://localhost:8601/stegeriluminacion/hystrix
+http://localhost:8601/stegeriluminacion/actuator/hystrix.stream
+
+http://localhost:8602/micro-auth/hystrix 
+http://localhost:8602/micro-auth/actuator/hystrix.stream
+
+http://localhost:8603/micro-correos/hystrix
+http://localhost:8603/micro-correos/actuator/hystrix.stream
+
+http://localhost:8604/micro-usuarios/hystrix
+http://localhost:8604/micro-usuarios/actuator/hystrix.stream
+
+http://localhost:8605/micro-administracion/hystrix
+http://localhost:8605/micro-administracion/actuator/hystrix.stream
+
+http://localhost:8606/micro-publico/hystrix
+http://localhost:8606/micro-publico/actuator/hystrix.stream
+
+http://localhost:8607/micro-catalogos/hystrix
+http://localhost:8607/micro-catalogos/actuator/hystrix.stream
+
+-- SPRING BOOT ADMIN
+http://localhost:8600/discovery-server/admin
+

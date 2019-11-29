@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: micro-administracion
+  jmx:
+    default-domain: micro-administracion
+  datasource:
+    initialization-mode: always  
+
+server:
+  port: 8605  servlet:    context-path: /micro-administracion # El Context Path debe ser igual al nombre del War generado, al momento de subirse a un servidor servidor    session:      cookie:        name: cookie-micro-administracion # This is to prevent cookie clash with other service as they run on the same host and context path

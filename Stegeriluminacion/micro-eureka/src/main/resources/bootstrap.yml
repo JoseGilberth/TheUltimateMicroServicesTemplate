@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: eureka
+  jmx:
+    default-domain: eureka
+  
+server:
+  port: 8600
+  servlet:
+    context-path: /discovery-server # El Context Path debe ser igual al nombre del War generado, al momento de subirse a un servidor
+    session:
+      cookie:
+        name: Cookie-micro-eureka # This is to prevent cookie clash with other service as they run on the same host and context path
+
+ 

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- PADRE -->
+	<parent>
+		<groupId>mx.com.pasionprogramada</groupId>
+		<artifactId>Stegeriluminacion</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<!-- INFORMACION -->
+	<artifactId>dto</artifactId>
+	<name>dto</name>
+	<url>http://maven.apache.org</url>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies> 
+		<!-- ________ OTROS MODULOS ________ -->
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>modelo</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
+
+	<!-- BUILD -->
+	<!-- https://stackoverflow.com/questions/41740349/maven-multi-module-dependency-package-not-found -->
+	<build>
+		<finalName>dto</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>repackage</id>
+						<configuration>
+							<classifier>task</classifier>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

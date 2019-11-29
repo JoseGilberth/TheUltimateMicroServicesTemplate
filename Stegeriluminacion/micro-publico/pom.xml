@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>mx.com.pasionprogramada</groupId>
+		<artifactId>Stegeriluminacion</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>micro-publico</artifactId>
+	<name>micro-publico</name>
+	<url>http://maven.apache.org</url>
+	<packaging>war</packaging>
+
+	<properties>
+		<start-class>micro.publico.MicroPublicoApplication</start-class>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<finalName>micro-publico</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!--========================================= SPRING ============================================= -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency> 
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>2.1.6</version>
+		</dependency>
+		<!-- ________ HYSTRIX DASHBOARD________ -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+		</dependency> 
+		<!-- ________ THYMELEAF ________ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- ________ SEGURIDAD ________ -->
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.3.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.oauth.boot</groupId>
+			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+		</dependency>
+		<!-- ________ JPA ________ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- ________ OTROS MODULOS ________ --> 
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>modelo</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>modelo-auth</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>excepciones</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>dao-auth</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>dao</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>interfaces</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
+
+	<!-- PERFILES -->
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<activatedProperties>dev</activatedProperties>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<activatedProperties>prod</activatedProperties>
+			</properties>
+		</profile>
+		<profile>
+			<id>gilberto</id>
+			<properties>
+				<activatedProperties>gilberto</activatedProperties>
+			</properties>
+		</profile>
+		<profile>
+			<id>jesus</id>
+			<properties>
+				<activatedProperties>jesus</activatedProperties>
+			</properties>
+		</profile>
+	</profiles>
+
+
+
+</project>

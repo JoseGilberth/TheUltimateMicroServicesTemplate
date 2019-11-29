@@ -1,0 +1,145 @@
+spring:
+  profiles: ## SIRVEN PARA SEPARAR LAS DIREFENTES CONFIGURACIONES DEL SISTEMA
+    active: '@activatedProperties@' ## NOMBRE DEL PERFIL
+  banner:
+    location: classpath:/banners/banner-gilberto.txt 
+  main:
+    allow-bean-definition-overriding: true ## SOBRE ESCRIBE BEAN (OBJETOS) REPETIDOS ENTRE PROYECTO
+  jackson: # JACKSON - ES USADA POR SPRING WEB, ES UNA LIBRERIA DE TRANSFORMACIÓN DE OBJETOS 
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: America/Mexico_City
+    joda-date-time-format: yyyy-MM-dd HH:MM:SS
+    locale: es_MX 
+  datasource: # CONFIGURACIONES DE CONEXION
+    url: jdbc:mysql://localhost/stegeriluminacion?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=America/Mexico_City
+    username: root
+    password: 
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:  ## DIRECTIVA Y CONFIGURACIONES DEL FRAMEWORK JPA
+    show-sql : true # Muestra o pinta lo que hace pda los queryes
+    database: mysql # lenguaje de los querys es mysql
+    hibernate:  
+      ddl-auto: update # quieres actualizar la tabla cada vezx que se conecte
+    properties:
+      hibernate:
+        format_sql: true # le da formato a los query
+        dialect: org.hibernate.dialect.MySQL57Dialect
+    database-platform: org.hibernate.dialect.MySQL57Dialect 
+  # ZIPKIN
+  zipkin:
+    base-url: http://localhost:8609/micro-zipkin/
+    enabled: true
+    discovery-client-enabled: true
+  # SLEUTH
+  sleuth: 
+    feign:
+      enabled: true
+    http:
+      enabled: true
+    zuul:
+      enabled: true   
+    enabled: true
+    sampler:
+      probability: 1
+  # BOOT ADMIN  
+  boot:
+    admin:  
+      client: 
+        enabled: true
+        url: http://localhost:8600/discovery-server/admin  
+        instance:
+          service-base-url: http://localhost:8604  
+      
+      
+# CORREO    
+correo:   
+  registro: http://localhost:8601/stegeriluminacion/micro-usuarios/usuarios/publico/registro/activar/
+  stegeriluminacion: pruebita201910@gmail.com
+  soporte:  pruebita201910@gmail.com
+  
+ 
+# EUREKA
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8600/discovery-server/eureka
+
+# METRICAS CON PROMETHEUS Y GRAFANA
+management:
+  server:
+    port: 8604
+  endpoint:
+    metrics: 
+      enabled: true
+    shutdown:
+      enabled: true
+    health:
+      show-details: always 
+    prometheus:
+      enabled: true
+  endpoints:
+    web: 
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true 
+         
+# SWAGGER
+swagger:
+  config:
+    resource-id: stegerilumination_resource
+    base-package: micro.usuarios
+    variables:  
+      resource-owner-password-credentials-grant: http://localhost:8601/stegeriluminacion/uaa/oauth/token
+      client-id: stegerilumination
+      client-secret: 123
+      app-name: Micro-Usuarios
+      scope-separator: ","
+      oauth-builder: spring_oauth  
+      secured-paths: /document/findByCardApplicationId.* , /document/findByCurp.*
+
+# SECURITY
+security:
+  unprotected-paths: /usuarios/admin/heartbit, 
+    /usuarios/publico/cuenta/heartbit/**, 
+    /usuarios/publico/registro/heartbit/**,
+    /usuarios/publico/heartbit/**,
+    /usuarios/publico/registro/**,
+    /usuarios/publico/cuenta/cambiar/password/** ,
+     /actuator/**
+  jwt:
+    resource-id: stegerilumination_resource
+  oauth2:
+    resource:
+      user-info-uri:  http://localhost:8602/micro-auth/usuario 
+      preferTokenInfo: true
+
+# IDIOMA 
+languaje:
+  config:
+    validation:
+      base-name: languaje/ValidationMessages
+    header: Accept-Language
+    base-name: languaje/messages
+    encoding: ISO-8859-1
+    locales: en , es
+
+# LOGGER
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: TRACE
+      hibernate: 
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE # IMPRIME LOS DATOS ENTRANTES A HIBERNATE 
+      
+           
