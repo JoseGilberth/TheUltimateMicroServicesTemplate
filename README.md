@@ -60,11 +60,13 @@ Cabe mencionar que el proyecto es una leve **implementación de una tienda en li
 
 ## Como compilar el proyecto
  - paso 1 :  Descarga el proyecto con Git
-   - ``` 
-   git clone https://github.com/JoseGilberth/TheUltimateMicroServicesTemplate ```
+   - 
+   ``` 
+    git clone https://github.com/JoseGilberth/TheUltimateMicroServicesTemplate ```
  - paso 2 :  Ve a la carpeta de descarga y dentro de la carpeta \Stegeriluminacion , ejecuta lo siguiente
-   - ``` 
- mvn clean install ```
+   - 
+   ``` 
+    mvn clean install ```
  - paso 3 :  Listo , eso es todo , puedes importar desde STS.
 
 ## Puertos usados en microservicios
