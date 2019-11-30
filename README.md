@@ -93,15 +93,15 @@ autorización y al micro servicio de eureka
 - http://localhost:8607/micro-catalogos/actuator -- Micro servicio de catalogos
  
 | Micro servicio | Puerto |
-| ------------- | ------------- | ------------- |
-| micro-eureka | 8600  | ds |
-| stegeriluminacion | 8601  | ds |
-| micro-auth | 8602  |  ds |
-| micro-correos  | 8603  |  ds |
-| micro-usuarios | 8604  |  ds |
-| micro-administracion  | 8605  | ds |
-| micro-publico | 8606  | ds |
-| micro-catalogos| 8607  |  ds |
+| ------------- | ------------- |
+| micro-eureka  |   8600  |
+| stegeriluminacion  |  8601  |
+| micro-auth | 8602  |  
+| micro-correos  |  8603  |  
+| micro-usuarios | 8604  |  
+| micro-administracion  |  8605  |
+| micro-publico |  8606  |
+| micro-catalogos| 8607  |  
 
 ## Caracteristicas especiales de esta plantilla
 
@@ -164,8 +164,10 @@ keytool -genkey -alias stegerilumination -keyalg RSA -keypass gilberto -storepas
  ```
 keytool -export -alias stegerilumination -keystore "path/stegerilumination.jks" -file "path/stegerilumination-public-key.pem" -storepass G1lb3rt0. -keypass gilberto 
  ```
+  ```
 keytool -export -alias stegerilumination -keystore "path/stegerilumination.jks" -file "path stegerilumination-public-key.cer" -storepass G1lb3rt0. -keypass gilberto 
  ```
+```
 keytool -list -alias stegerilumination -rfc -keystore "path/stegerilumination.jks" -storepass G1lb3rt0. -keypass gilberto
  ```
 - IMPORT JKS A CERTIFICADOS DE CONFIANZA
@@ -173,13 +175,15 @@ keytool -list -alias stegerilumination -rfc -keystore "path/stegerilumination.jk
 keytool -import -alias stegerilumination -v -trustcacerts -file "path stegerilumination-public-key.cer" -keystore cacerts.jks -keypass gilberto -storepass G1lb3rt0.
  ```
 
-Asi obtendremos un token con firma RSA.
+Los comandos anteriores nos sirvieron para eliminar , crear y dar de alta un certificados jks,pem,cer etc.. 
+
+para que asi obtengamos al final un token con firma RSA.
 
 <div align="center">
     <img src="images/Archivos de Seguridad2.png" width="400px"</img> 
 </div>
 
-### Configuración a nivel base de datos ###
+#### Configuración a nivel base de datos ####
 
 Tanto la configuración de clientes como los token son guardados a nivel base de datos y no a nivel memoria interna
 
@@ -200,7 +204,7 @@ Tanto la configuración de clientes como los token son guardados a nivel base de
 	}
 ```
 
-### Expiración de token a nivel usuario ###
+#### Expiración de token a nivel usuario ####
 
 Con esta forma de generación de token, podremos hacer que cada usuario tenga una expiración de token diferente, ademas de usar **Throttling** en los usuarios publicos, con el uso de **Throttling** podemos tambien definir el limite de peticiones por Tiempo en cada usuario , mas abajo se muestra la configuración.
 
@@ -235,6 +239,62 @@ Esta configuración nos permite tambien agregar información adicional a nuestro
 <div align="center">
     <img src="images/Archivos de Seguridad3.png" width="400px"</img> 
 </div>
+
+
+#### Throttling ####
+
+Para la configuración de throttling, se agrego dentro del microservicio de gateway, esta configuración, nos permitira mantener el control de cada uno de los token logeados, la configuración en si esta montada sobre "PreFilter"
+
+```
+	@Autowired
+	private TokenStore tokenStore;
+
+	@Autowired
+	private UsuarioPublicoDao usuarioPublicoDao;
+
+	public boolean apply(RequestContext context, HttpServletRequest request, HttpServletResponse response) {
+		String tokenJWT = request.getHeader("authorization");
+		UsuarioPublico usuarioPublico = null;
+		if (tokenJWT != null) {
+			if (tokenJWT.contains("Bearer")) {
+				tokenJWT = tokenJWT.replace("Bearer ", "");
+				OAuth2AccessToken token = tokenStore.readAccessToken(tokenJWT);
+				OAuth2Authentication auth = tokenStore.readAuthentication(token);
+				String principal = auth.getPrincipal().toString();
+				usuarioPublico = checkIfUserExist(principal);
+				if (usuarioPublico == null) {
+					usuarioPublico = usuarioPublicoDao.buscarPorUsuario(principal);
+				};
+			} else if (tokenJWT.contains("Basic")) {
+				log.info("PreFilter - ZuulFilter Basic: " + tokenJWT);
+			}
+		}
+		if (usuarioPublico != null) {
+			CustomRateLimiter rateLimiter = getRateLimiter(gson.toJson(usuarioPublico), usuarioPublico);
+			log.info("limiter getTimePeriod: " + rateLimiter.getTimePeriod());
+			log.info("limiter getMaxPermits: " + rateLimiter.getMaxPermits());
+			log.info("limiter availablePermits: " + rateLimiter.getSemaphore().availablePermits());
+			boolean allowRequest = rateLimiter.tryAcquire();
+			if (!allowRequest) {
+				return true;
+			}
+		}
+		return false;
+	}
+```
+
+Bueno esta parte espero mejorarla realmente, ya que es un poco chafa , primero hay que tener en cuenta dos cosas , al menos en esta configuración de plantilla tenemos dos tipos de "authorization" , la primera que es cuando un usuario solicita un token y la siguiente cuando el mismo token es enviado al gateway para posteriormente ser validado por los "Recursos" del microservicio del que se requiere.
+
+Authorization Basic <Base64>
+Authorization Bearer <Token>
+
+Bueno dicho lo anterior lo que se hace es un simple filtro , si el token contiene Basic o Bearer ,
+y dependiendo de cual tenga pues procesara el token en caso de ser bearer y dejara pasar la peticion en caso de se basic.
+
+Cuando la peticion contenga bearer entonces decodifica el token , y busca al usuario a travez de el, si encuentra al usuario lo serializo en un json y lo guardo como si fuera una llave, para despues aplicar Throttling a ese usuario y contabilizar sus request que le quedan a ese token , de momento el Throttling no esta bajo base de datos por lo que si llegaras a reiniciar el servidor de gateway entonces reiniciarias los conteos del Throttling.
+ 
+#### Throttling ####
+
 
 
 ## Urls de monitoreo
