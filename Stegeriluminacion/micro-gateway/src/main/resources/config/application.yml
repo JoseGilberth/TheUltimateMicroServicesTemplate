@@ -46,9 +46,9 @@ spring:
     admin:  
       client: 
         enabled: true
-        url: http://localhost:8600/discovery-server/admin  
+        url: http://localhost:8600/discovery-server/admin
         instance:
-          service-base-url: http://localhost:8601  
+          service-base-url: http://localhost:8601
        
 # CONFIGURACION PARA TODOS LOS ENDPOINTS
 management: 

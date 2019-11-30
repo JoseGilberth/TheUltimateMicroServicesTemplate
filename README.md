@@ -26,7 +26,12 @@ mvn clean install
 Para compilarlo y haga una descarga de todas las librerias del mismo.
 
 Cabe mencionar que el proyecto es una leve **implementación de una tienda en linea** , pero pueden eliminarse elementos que no necesite.
-   
+ 
+Todos los microservicios a excepcion de eureka y zipkin , apuntan al microservicio de 
+autorización y al micro servicio de eureka
+
+
+ 
 ## Librerias implementadas
  - Spring-boot
    - spring-boot-starter-parent - 2.1.0.RELEASE 
@@ -59,85 +64,88 @@ Cabe mencionar que el proyecto es una leve **implementación de una tienda en li
    - zipkin-autoconfigure-storage-mysql
 
 ## Como compilar el proyecto
- - paso 1 :  Descarga el proyecto con Git
-   - 
-   ``` 
-    git clone https://github.com/JoseGilberth/TheUltimateMicroServicesTemplate ```
- - paso 2 :  Ve a la carpeta de descarga y dentro de la carpeta \Stegeriluminacion , ejecuta lo siguiente
-   - 
-   ``` 
-    mvn clean install ```
- - paso 3 :  Listo , eso es todo , puedes importar desde STS.
+  - paso 1:  Descarga el proyecto con Git
+  ``` 
+    git clone https://github.com/JoseGilberth/TheUltimateMicroServicesTemplate 
+  ```
+  - paso 2:  Ve a la carpeta de descarga y dentro de la carpeta \Stegeriluminacion , ejecuta lo siguiente
+  ``` 
+    mvn clean install 
+  ```
+ - paso 3: Crea una base de datos en MYSQL , llamada "stegeriluminacion" , con codificación UTF-8 y utf8_general_ci
+ 
+ - paso 4: Por default si inicias el proyecto tomara el perfil "dev" el cual ya tiene configurado un usuario y un password "root" - "<sin contraseña>" asi que iniciara la creacion de las tablas en la base de datos
+
 
 ## Puertos usados en microservicios
 
-http://localhost:8601/stegeriluminacion/actuator -- Gateway
-http://localhost:8602/micro-auth/actuator  -- Micro servicio de autenticación
-http://localhost:8603/micro-correos/actuator -- Micro servicio de correos
-http://localhost:8604/micro-usuarios/actuator -- Micro servicio de usuarios
-http://localhost:8605/micro-administracion/actuator -- Micro servicio de administracion
-http://localhost:8606/micro-publico/actuator -- Micro servicio publico
-http://localhost:8607/micro-catalogos/actuator -- Micro servicio de catalogos
+- http://localhost:8601/stegeriluminacion/actuator -- Gateway
+- http://localhost:8602/micro-auth/actuator  -- Micro servicio de autenticación
+- http://localhost:8603/micro-correos/actuator -- Micro servicio de correos
+- http://localhost:8604/micro-usuarios/actuator -- Micro servicio de usuarios
+- http://localhost:8605/micro-administracion/actuator -- Micro servicio de administracion
+- http://localhost:8606/micro-publico/actuator -- Micro servicio publico
+- http://localhost:8607/micro-catalogos/actuator -- Micro servicio de catalogos
 
   
 ## Urls de monitoreo
 Las siguientes url de monitoreo serviran para acceder a algunas caracteristicas implementadas dentro de la plantilla , esto y una vez ejecutandose todos los microservicios (deben estar corriendo al menos , El microservicio micro-Auth , Micro-Gateway , Micro-Eureka  los demas son opcionales)
 
 
--- EUREKA
-http://localhost:8600/discovery-server/
+- EUREKA
+  - http://localhost:8600/discovery-server/
 
---- ACTUATOR
-http://localhost:8601/stegeriluminacion/actuator 
-http://localhost:8602/micro-auth/actuator 
-http://localhost:8603/micro-correos/actuator 
-http://localhost:8604/micro-usuarios/actuator 
-http://localhost:8605/micro-administracion/actuator 
-http://localhost:8606/micro-publico/actuator 
-http://localhost:8607/micro-catalogos/actuator 
+- ACTUATOR
+  - http://localhost:8601/stegeriluminacion/actuator 
+  - http://localhost:8602/micro-auth/actuator 
+  - http://localhost:8603/micro-correos/actuator 
+  - http://localhost:8604/micro-usuarios/actuator 
+  - http://localhost:8605/micro-administracion/actuator 
+  - http://localhost:8606/micro-publico/actuator 
+  - http://localhost:8607/micro-catalogos/actuator 
 
-http://localhost:8601/stegeriluminacion/uaa/actuator
-http://localhost:8601/stegeriluminacion/micro-auth/actuator
-http://localhost:8601/stegeriluminacion/micro-correos/actuator
-http://localhost:8601/stegeriluminacion/micro-usuarios/actuator
-http://localhost:8601/stegeriluminacion/micro-administracion/actuator
-http://localhost:8601/stegeriluminacion/micro-publico/actuator
-http://localhost:8601/stegeriluminacion/micro-catalogos/actuator 
+  - http://localhost:8601/stegeriluminacion/uaa/actuator
+  - http://localhost:8601/stegeriluminacion/micro-auth/actuator
+  - http://localhost:8601/stegeriluminacion/micro-correos/actuator
+  - http://localhost:8601/stegeriluminacion/micro-usuarios/actuator
+  - http://localhost:8601/stegeriluminacion/micro-administracion/actuator
+  - http://localhost:8601/stegeriluminacion/micro-publico/actuator
+  - http://localhost:8601/stegeriluminacion/micro-catalogos/actuator 
 
 
--- SWAGGER 
-http://localhost:8601/stegeriluminacion/swagger-ui.html
+- SWAGGER 
+  - http://localhost:8601/stegeriluminacion/swagger-ui.html
 
--- ZIPKIN
-http://localhost:8609/micro-zipkin/zipkin/
+- ZIPKIN
+  - http://localhost:8609/micro-zipkin/zipkin/
 
--- HYSTRIX
-http://localhost:8601/stegeriluminacion/hystrix
-http://localhost:8601/stegeriluminacion/actuator/hystrix.stream
+- HYSTRIX
+  - http://localhost:8601/stegeriluminacion/hystrix
+  - http://localhost:8601/stegeriluminacion/actuator/hystrix.stream
 
-http://localhost:8602/micro-auth/hystrix 
-http://localhost:8602/micro-auth/actuator/hystrix.stream
+  - http://localhost:8602/micro-auth/hystrix 
+  - http://localhost:8602/micro-auth/actuator/hystrix.stream
 
-http://localhost:8603/micro-correos/hystrix
-http://localhost:8603/micro-correos/actuator/hystrix.stream
+  - http://localhost:8603/micro-correos/hystrix
+  - http://localhost:8603/micro-correos/actuator/hystrix.stream
 
-http://localhost:8604/micro-usuarios/hystrix
-http://localhost:8604/micro-usuarios/actuator/hystrix.stream
+  - http://localhost:8604/micro-usuarios/hystrix
+  - http://localhost:8604/micro-usuarios/actuator/hystrix.stream
 
-http://localhost:8605/micro-administracion/hystrix
-http://localhost:8605/micro-administracion/actuator/hystrix.stream
+  - http://localhost:8605/micro-administracion/hystrix
+  - http://localhost:8605/micro-administracion/actuator/hystrix.stream
 
-http://localhost:8606/micro-publico/hystrix
-http://localhost:8606/micro-publico/actuator/hystrix.stream
+  - http://localhost:8606/micro-publico/hystrix
+  - http://localhost:8606/micro-publico/actuator/hystrix.stream
 
-http://localhost:8607/micro-catalogos/hystrix
-http://localhost:8607/micro-catalogos/actuator/hystrix.stream
+  - http://localhost:8607/micro-catalogos/hystrix
+  - http://localhost:8607/micro-catalogos/actuator/hystrix.stream
 
--- SPRING BOOT ADMIN
-http://localhost:8600/discovery-server/admin
+- SPRING BOOT ADMIN
+  - http://localhost:8600/discovery-server/admin
 
  
-TODOS LOS APORTES SON BIENVENIDOS !!!
+## TODOS LOS APORTES SON BIENVENIDOS !!!
 
 
 

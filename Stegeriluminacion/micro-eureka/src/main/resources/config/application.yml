@@ -26,8 +26,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL57Dialect
     database-platform: org.hibernate.dialect.MySQL57Dialect 
     
-    
-    
+
 eureka:
   datacenter: Main
   environment: prod
