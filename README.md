@@ -13,7 +13,12 @@ Espero esta plantilla ayude a muchos programadores que se encuentren en una situ
 
 - Apoyar a la comunidad de java de habla hispana a entender los microservicios
 - Crear una implementación grande y solida con toda la comunidad.
--  Que esta plantilla sea una base para multiples proyectos de microservicios
+- Que esta plantilla sea una base para multiples proyectos de microservicios
+
+## Retos y mejoras
+
+**Integrar Multiresources dentro de un microservicio para poder usar multiples cliente id**
+
 
 ## Estructura del proyecto
 
@@ -29,7 +34,6 @@ Cabe mencionar que el proyecto es una leve **implementación de una tienda en li
  
 Todos los microservicios a excepcion de eureka y zipkin , apuntan al microservicio de 
 autorización y al micro servicio de eureka
-
 
  
 ## Librerias implementadas
@@ -79,6 +83,7 @@ autorización y al micro servicio de eureka
 
 ## Puertos usados en microservicios
 
+- http://localhost:8600/discovery-server/actuator -- Eureka
 - http://localhost:8601/stegeriluminacion/actuator -- Gateway
 - http://localhost:8602/micro-auth/actuator  -- Micro servicio de autenticación
 - http://localhost:8603/micro-correos/actuator -- Micro servicio de correos
@@ -86,8 +91,152 @@ autorización y al micro servicio de eureka
 - http://localhost:8605/micro-administracion/actuator -- Micro servicio de administracion
 - http://localhost:8606/micro-publico/actuator -- Micro servicio publico
 - http://localhost:8607/micro-catalogos/actuator -- Micro servicio de catalogos
+ 
+| Micro servicio | Puerto |
+| ------------- | ------------- | ------------- |
+| micro-eureka | 8600  | ds |
+| stegeriluminacion | 8601  | ds |
+| micro-auth | 8602  |  ds |
+| micro-correos  | 8603  |  ds |
+| micro-usuarios | 8604  |  ds |
+| micro-administracion  | 8605  | ds |
+| micro-publico | 8606  | ds |
+| micro-catalogos| 8607  |  ds |
 
+## Caracteristicas especiales de esta plantilla
+
+### Seguridad ###
+
+Dentro del microservicio "Auth" , en la clase **AuthorizationServerConfig** dentro del paquete package micro.auth._config.security; se agrego un certificado para que la generación de token sea más segura, asi que se modifico el Bean "accessTokenConverter()" 
+
+```
+	@Bean
+	public JwtAccessTokenConverter accessTokenConverter() {
+
+		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+		try {
+
+			org.springframework.core.io.Resource resource = new ClassPathResource("/auth/stegerilumination.jks");
+			char[] storepass = "G1lb3rt0.".toCharArray();
+			char[] keypass = "gilberto".toCharArray();
+			String alias = "stegerilumination";
+
+			KeyStore store = KeyStore.getInstance("jks");
+			store.load(resource.getInputStream(), storepass);
+			RSAPrivateCrtKey key = (RSAPrivateCrtKey) store.getKey(alias, keypass);
+			RSAPublicKeySpec spec = new RSAPublicKeySpec(key.getModulus(), key.getPublicExponent());
+			PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(spec);
+			converter.setKeyPair(new KeyPair(publicKey, key));
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		String publicKey = null;
+		try {
+			publicKey = IOUtils.toString(new ClassPathResource("/auth/public.txt").getInputStream());
+		} catch (final IOException ex) {
+			ex.printStackTrace();
+		}
+		converter.setVerifierKey(publicKey);
+		return converter;
+	}
+  ```
+
+Los archivos que se usaron para la seguridad del token se encuentran en recursos dentro de la carpeta de recursos.
+
+<div align="center">
+    <img src="images/Archivos de Seguridad.png" width="400px"</img> 
+</div>
   
+- ELIMINA JKS DE CERTIFICADOS SI YA EXISTEN 
+ ```
+keytool -delete -alias stegerilumination -keystore "path/stegerilumination.jks" -storepass G1lb3rt0. -keypass gilberto 
+ ```
+ ```
+keytool -delete -alias stegerilumination -v -trustcacerts -keystore cacerts.jks -storepass G1lb3rt0. -keypass gilberto
+ ```
+- GENERAR JKS 
+ ```
+keytool -genkey -alias stegerilumination -keyalg RSA -keypass gilberto -storepass G1lb3rt0. -keystore "Path/stegerilumination.jks"
+ ```
+- PUBLIC - PEM , CER , TEXT 
+ ```
+keytool -export -alias stegerilumination -keystore "path/stegerilumination.jks" -file "path/stegerilumination-public-key.pem" -storepass G1lb3rt0. -keypass gilberto 
+ ```
+keytool -export -alias stegerilumination -keystore "path/stegerilumination.jks" -file "path stegerilumination-public-key.cer" -storepass G1lb3rt0. -keypass gilberto 
+ ```
+keytool -list -alias stegerilumination -rfc -keystore "path/stegerilumination.jks" -storepass G1lb3rt0. -keypass gilberto
+ ```
+- IMPORT JKS A CERTIFICADOS DE CONFIANZA
+ ```
+keytool -import -alias stegerilumination -v -trustcacerts -file "path stegerilumination-public-key.cer" -keystore cacerts.jks -keypass gilberto -storepass G1lb3rt0.
+ ```
+
+Asi obtendremos un token con firma RSA.
+
+<div align="center">
+    <img src="images/Archivos de Seguridad2.png" width="400px"</img> 
+</div>
+
+### Configuración a nivel base de datos ###
+
+Tanto la configuración de clientes como los token son guardados a nivel base de datos y no a nivel memoria interna
+
+```
+	@Resource(name = "cliente")
+	private ClientDetailsService clientes;
+ 
+	@Override
+	public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
+		configurer.withClientDetails(clientes);
+	}
+```
+
+```
+	@Bean
+	public TokenStore tokenStore() {
+		return new JdbcTokenStore(this.dataSource);
+	}
+```
+
+### Expiración de token a nivel usuario ###
+
+Con esta forma de generación de token, podremos hacer que cada usuario tenga una expiración de token diferente, ademas de usar **Throttling** en los usuarios publicos, con el uso de **Throttling** podemos tambien definir el limite de peticiones por Tiempo en cada usuario , mas abajo se muestra la configuración.
+
+```
+	@Autowired
+	public UsuarioPublicoDao usuarioPublicoDao;
+
+	// ADDITIONAL INFO
+	public static final String LIMIT = "limit";
+
+	@Override
+	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+
+		String usuario = authentication.getPrincipal().toString();
+		UsuarioPublico usuarioPublico = usuarioPublicoDao.buscarPorUsuario(usuario);
+		DefaultOAuth2AccessToken defaultOAuth2AccessToken = ((DefaultOAuth2AccessToken) accessToken);
+
+		if (usuarioPublico != null) {
+			int tokenTIme = usuarioPublico.getTokenExpiration() == null ? defaultOAuth2AccessToken.getExpiresIn() : usuarioPublico.getTokenExpiration();
+			Calendar now = Calendar.getInstance();
+			now.add(Times.converTimeUnitToCalendar(usuarioPublico.getTimeUnit()), tokenTIme);
+			defaultOAuth2AccessToken.setExpiration(now.getTime());
+			final Map<String, Object> additionalInfo = new HashMap<>();
+			additionalInfo.put(LIMIT, usuarioPublico.getLimitRequest());
+			defaultOAuth2AccessToken.setAdditionalInformation(additionalInfo);
+		}
+		return accessToken;
+	}
+```
+Esta configuración nos permite tambien agregar información adicional a nuestro token, que de hecho solo se aplica el Throttling a usuarios publicos
+
+<div align="center">
+    <img src="images/Archivos de Seguridad3.png" width="400px"</img> 
+</div>
+
+
 ## Urls de monitoreo
 Las siguientes url de monitoreo serviran para acceder a algunas caracteristicas implementadas dentro de la plantilla , esto y una vez ejecutandose todos los microservicios (deben estar corriendo al menos , El microservicio micro-Auth , Micro-Gateway , Micro-Eureka  los demas son opcionales)
 

@@ -56,7 +56,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
-		logger.info("ClientDetailsServiceConfigurer");
 		configurer.withClientDetails(clientes);
 	}
 
@@ -66,9 +65,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		enhancerChain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
 		enhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
 
-		endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore)
-				.accessTokenConverter(accessTokenConverter).tokenEnhancer(enhancerChain)
-				.exceptionTranslator(loggingExceptionTranslator());
+		endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore).accessTokenConverter(accessTokenConverter).tokenEnhancer(enhancerChain)
+		.exceptionTranslator(loggingExceptionTranslator());
 	}
 
 	@Bean

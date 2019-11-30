@@ -115,7 +115,7 @@ security:
   jwt:
     resource-id: stegerilumination_resource 
   encoding-strength: 10
-  security-realm: inventario
+  security-realm: inventario 
   oauth2:
     resource:
       user-info-uri:  http://localhost:8602/micro-auth/usuario 
