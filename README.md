@@ -285,15 +285,117 @@ Para la configuración de throttling, se agrego dentro del microservicio de gate
 
 Bueno esta parte espero mejorarla realmente, ya que es un poco chafa , primero hay que tener en cuenta dos cosas , al menos en esta configuración de plantilla tenemos dos tipos de "authorization" , la primera que es cuando un usuario solicita un token y la siguiente cuando el mismo token es enviado al gateway para posteriormente ser validado por los "Recursos" del microservicio del que se requiere.
 
-Authorization Basic <Base64>
-Authorization Bearer <Token>
+- Authorization Basic <-Base64->
+- Authorization Bearer <-Token->
 
 Bueno dicho lo anterior lo que se hace es un simple filtro , si el token contiene Basic o Bearer ,
 y dependiendo de cual tenga pues procesara el token en caso de ser bearer y dejara pasar la peticion en caso de se basic.
 
 Cuando la peticion contenga bearer entonces decodifica el token , y busca al usuario a travez de el, si encuentra al usuario lo serializo en un json y lo guardo como si fuera una llave, para despues aplicar Throttling a ese usuario y contabilizar sus request que le quedan a ese token , de momento el Throttling no esta bajo base de datos por lo que si llegaras a reiniciar el servidor de gateway entonces reiniciarias los conteos del Throttling.
  
-#### Throttling ####
+#### Idioma ####
+
+Como es sabido un solo idioma no sera suficiente para grandes proyectos , por eso se decidio incluir multiidioma en esta plantilla , ademas de que no solo tendriamos un buen manejo de multiples idiomas sino tambien tendriamos un buen manejo de todos los mensajes de nuestra plataforma en un solo lugar , hay alguna partes de la plantilla que necesitaran una revisada ya que muchas cosas estan hardcodeadas y hay que implementarles el "Translation"
+
+Para esta fase de idiomas se implementarón 2 funciones principales
+
+- Idioma al enviar excepciones 
+- Idioma al validar los modelos de datos
+
+Para la primera configuración es necesario implementar un bean y extender a la clase AcceptHeaderLocaleResolver 
+para que todas nuestras peticiones que enviemos con el header: 
+- Accept-Language: en 
+- Accept-Language: es 
+- etc.....
+
+cambien el idioma en automatico
+
+```
+	@Override
+	public Locale resolveLocale(HttpServletRequest request) {
+		String headerLang = request.getHeader(header);
+		Locale locale = headerLang == null || headerLang.isEmpty() ? Locale.getDefault()
+				: Locale.lookup(Locale.LanguageRange.parse(headerLang), locales());
+		return locale;
+	}
+
+  
+	@Bean
+	public ReloadableResourceBundleMessageSource messageSource() {
+		ReloadableResourceBundleMessageSource rs = new ReloadableResourceBundleMessageSource();
+		rs.setBasenames(baseName);
+		rs.setDefaultEncoding(encoding);
+		rs.setUseCodeAsDefaultMessage(true);
+		return rs;
+	}
+
+```
+
+Para esta configuración ahora ser aun poco tediosa , ya que las validaciones en JPA tambien deben modificarse y no es suficiente con la configuración de arriba.
+
+Asi que lo mejor fue implementar directamente nuestro custom y ese custom agregarlo a las propiedades HIBERNATE,
+"javax.persistence.validation.factory"
+
+``` 
+	// TRADUCCION Y MANEJO DE MENSAJES DESDE EL MODELO CON JPA
+	@Bean
+	@Lazy
+	public HibernatePropertiesCustomizer hibernatePropertiesCustomizer(final Validator validator) {
+		ValidatorFactory validatorFactory = Validation.byDefaultProvider().configure()
+				.messageInterpolator(new ContextualMessageInterpolator(new ResourceBundleMessageInterpolator(
+						new AggregateResourceBundleLocator(Arrays.asList(validationBaseName)))))
+				.buildValidatorFactory();
+		return new HibernatePropertiesCustomizer() {
+			@Override
+			public void customize(Map<String, Object> hibernateProperties) {
+				hibernateProperties.put("javax.persistence.validation.factory", validatorFactory);
+			}
+		};
+	}
+```
+
+Ahora todo esto se hace para que tu puedas tener esto en el modelo de datos y pueda cambiar tambien de idioma:
+
+```
+	@Id
+	@Column(name = "id", updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@NotNull(message = "{usuario.username.notnull}")
+	@Length(min = 5, max = 250, message = "{usuario.username.lenght}")
+	@Column(length = 255, nullable = false, unique = true)
+	private String username;
+ 
+	@JsonIgnore
+	@NotNull(message = "{usuario.password.notnull}")
+	@Length(min = 5, max = 255, message = "{usuario.password.lenght}")
+	@Column(length = 255, nullable = false)
+	private String password;
+	
+	@Transient
+	private String repetirPassword;
+
+	@Pattern(regexp = ".+@.+\\..+", message = "{usuario.correo.pattern}")
+	@NotNull(message = "{usuario.correo.notnull}")
+	@Length(min = 3, max = 250, message = "{usuario.correo.length}")
+	@Column(length = 255, nullable = false, unique = true)
+	private String correo;
+```
+
+Y ahora podemos recibir las validaciones del modelo en el idioma solicitado
+
+<div align="center">
+    <img src="images/Archivos de idioma.png" width="500px"></img> 
+</div>
+
+<div align="center">
+    <img src="images/Archivos de idioma2.png" width="500px"></img> 
+</div>
+
+
+
+
 
 
 
