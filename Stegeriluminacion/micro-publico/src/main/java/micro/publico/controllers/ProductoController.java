@@ -2,6 +2,7 @@ package micro.publico.controllers;
 
 
 
+import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ import interfaces.ACRUDEndPoints;
 import interfaces.publico.ICRUDEndPoints;
 import interfaces.publico.IFiltroEndPoints;
 import micro.publico.services.ProductoService;
+import modelo.Pregunta;
 import modelo.producto.Producto;
 import  steger.excepciones.controladas.ErrorInternoControlado;
 
@@ -68,6 +70,10 @@ public class ProductoController  extends ACRUDEndPoints<Producto> implements ICR
 	}
 
 
+	@Override
+	public ResponseEntity<Respuesta<List<Producto>>> obtenerTodos() {
+	    throw new UnsupportedOperationException();
+	}
 	
 	
 	/********************* PAGINABLES ***********************/

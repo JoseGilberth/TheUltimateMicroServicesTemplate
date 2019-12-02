@@ -1,5 +1,7 @@
 package micro.publico.controllers;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import dto.micro.publico.favoritos.FiltroFavoritosDTO;
 import interfaces.ACRUDEndPoints;
 import interfaces.publico.ICRUDEndPoints;
 import interfaces.publico.IFiltroEndPoints;
+import modelo.Comentarios;
 import modelo.Favoritos;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 import steger.excepciones.controladas.ErrorInternoControlado;
@@ -78,7 +81,12 @@ public class FavoritosController extends ACRUDEndPoints<Favoritos> implements IC
 		respuesta = Ifavoritos.borrarByUser(usuarioPublico.getId(), idFavoritos); //BORRA COMENTARIO BY USER
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
-	
+
+
+	@Override
+	public ResponseEntity<Respuesta<List<Favoritos>>> obtenerTodos() {
+	    throw new UnsupportedOperationException();
+	}
 	
 	
 	/********************* PAGINABLES ***********************/

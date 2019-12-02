@@ -2,6 +2,8 @@ package modelo.auth.log;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,15 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import lombok.Data;
+import modelo.auth.usuarios.publicos.MotivoAltaBajaPublico;
+import modelo.auth.usuarios.publicos.PermisoPublico;
+import modelo.auth.usuarios.publicos.UsuarioPublico;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionEntrega;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionFacturacion;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionVivienda;
+
+@Data
 @Entity
 @XmlRootElement
 @Table(indexes = { @Index(columnList = "usuario", name = "index_usuario") })
@@ -52,53 +63,5 @@ public class Log implements Serializable {
 	public void prePersist() {
 		this.fechaAlta = new Date();
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
  
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public String getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(String tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
-
-	public String getApartado() {
-		return apartado;
-	}
-
-	public void setApartado(String apartado) {
-		this.apartado = apartado;
-	}
-
-	public String getAccion() {
-		return accion;
-	}
-
-	public void setAccion(String accion) {
-		this.accion = accion;
-	}
-
-	public Date getFechaAlta() {
-		return fechaAlta;
-	}
-
-	public void setFechaAlta(Date fechaAlta) {
-		this.fechaAlta = fechaAlta;
-	}
-
 }

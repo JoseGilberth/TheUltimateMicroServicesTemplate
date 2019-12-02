@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,9 +24,16 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.Data;
+import modelo.auth.usuarios.publicos.MotivoAltaBajaPublico;
+import modelo.auth.usuarios.publicos.PermisoPublico;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionEntrega;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionFacturacion;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionVivienda;
 import modelo.producto.Producto;
 
+@Data
 @Entity
 @XmlRootElement
 @Table()
@@ -53,7 +62,6 @@ public class Favoritos implements Serializable {
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private UsuarioPublico usuarioPublico;
-	 
 	
 	@CreatedDate
 	@Column(updatable = false)
@@ -61,55 +69,5 @@ public class Favoritos implements Serializable {
 
 	@LastModifiedDate
 	private LocalDateTime fechaActualizacion;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public int getEstrellas() {
-		return estrellas;
-	}
-
-	public void setEstrellas(int estrellas) {
-		this.estrellas = estrellas;
-	}
-
-	public Producto getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
-
-	public UsuarioPublico getUsuarioPublico() {
-		return usuarioPublico;
-	}
-
-	public void setUsuarioPublico(UsuarioPublico usuarioPublico) {
-		this.usuarioPublico = usuarioPublico;
-	}
-
-	public LocalDateTime getFechaAlta() {
-		return fechaAlta;
-	}
-
-	public void setFechaAlta(LocalDateTime fechaAlta) {
-		this.fechaAlta = fechaAlta;
-	}
-
-	public LocalDateTime getFechaActualizacion() {
-		return fechaActualizacion;
-	}
-
-	public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
-		this.fechaActualizacion = fechaActualizacion;
-	}
-	
-	
-
+ 
 }

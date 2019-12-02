@@ -1,6 +1,8 @@
 package micro.publico.controllers;
 
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import interfaces.publico.ICRUDEndPoints;
 import micro.publico.services.RespuestaService;
 import modelo.Respuesta;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
+import modelo.producto.Producto;
 import steger.excepciones.controladas.ErrorInternoControlado;
 
 
@@ -91,6 +94,13 @@ public class RespuestaController extends ACRUDEndPoints<Respuesta> implements IC
 		respuesta = IRespuesta.borrarByUser(usuarioPublico.getId(), idRespuesta); //BORRA COMENTARIO BY USER
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
+ 
+
+	@Override
+	public ResponseEntity<dto.main.Respuesta<List<Respuesta>>> obtenerTodos() {
+	    throw new UnsupportedOperationException();
+	}
+
 	
 	/********************* PAGINABLES ***********************/
 	

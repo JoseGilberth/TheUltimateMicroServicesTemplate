@@ -1,5 +1,7 @@
 package micro.publico.controllers;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +86,10 @@ public class SolicitudDeCompraController  extends ACRUDEndPoints<SolicitudDeComp
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 
+	@Override
+	public ResponseEntity<Respuesta<List<SolicitudDeCompra>>> obtenerTodos() {
+	    throw new UnsupportedOperationException();
+	}
 	
 	
 	/********************* PAGINABLES ***********************/
@@ -108,12 +114,5 @@ public class SolicitudDeCompraController  extends ACRUDEndPoints<SolicitudDeComp
 		    return ResponseEntity.status(500).body( ErrorInternoControlado.error(ex.getMessage()) ); 
 		}
 	}
-	
-	
-	
-	
-	
-	
-
 	
 }

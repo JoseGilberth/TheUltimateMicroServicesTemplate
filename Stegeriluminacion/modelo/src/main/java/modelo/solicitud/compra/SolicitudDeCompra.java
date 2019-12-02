@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,10 +24,16 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.Data;
+import modelo.auth.usuarios.publicos.MotivoAltaBajaPublico;
+import modelo.auth.usuarios.publicos.PermisoPublico;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 import modelo.auth.usuarios.publicos.ubicacion.DireccionEntrega;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionFacturacion;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionVivienda;
 import modelo.producto.Producto;
 
+@Data
 @Entity
 @XmlRootElement
 @Table()
@@ -79,109 +86,5 @@ public class SolicitudDeCompra  implements Serializable {
 
 	@LastModifiedDate
 	private LocalDateTime fechaActualizacion;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public TipoPago getTipoPago() {
-		return tipoPago;
-	}
-
-	public void setTipoPago(TipoPago tipoPago) {
-		this.tipoPago = tipoPago;
-	}
-
-	public TipoEnvio getTipoEnvio() {
-		return TipoEnvio;
-	}
-
-	public void setTipoEnvio(TipoEnvio tipoEnvio) {
-		TipoEnvio = tipoEnvio;
-	}
-
-	public Set<Producto> getProductos() {
-		return productos;
-	}
-
-	public void setProductos(Set<Producto> productos) {
-		this.productos = productos;
-	}
-
-	public UsuarioPublico getUsuarioPublico() {
-		return usuarioPublico;
-	}
-
-	public void setUsuarioPublico(UsuarioPublico usuarioPublico) {
-		this.usuarioPublico = usuarioPublico;
-	}
-
-	public LocalDateTime getFechaAlta() {
-		return fechaAlta;
-	}
-
-	public void setFechaAlta(LocalDateTime fechaAlta) {
-		this.fechaAlta = fechaAlta;
-	}
-
-	public LocalDateTime getFechaActualizacion() {
-		return fechaActualizacion;
-	}
-
-	public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
-		this.fechaActualizacion = fechaActualizacion;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	/**
-	 * @return the direccionEntrega
-	 */
-	public DireccionEntrega getDireccionEntrega() {
-		return direccionEntrega;
-	}
-
-	/**
-	 * @param direccionEntrega the direccionEntrega to set
-	 */
-	public void setDireccionEntrega(DireccionEntrega direccionEntrega) {
-		this.direccionEntrega = direccionEntrega;
-	}
-
-	/**
-	 * @return the costoTotal
-	 */
-	public double getCostoTotal() {
-		return costoTotal;
-	}
-
-	/**
-	 * @param costoTotal the costoTotal to set
-	 */
-	public void setCostoTotal(double costoTotal) {
-		this.costoTotal = costoTotal;
-	}
-
-	/**
-	 * @return the tipoProcesoSolicitud
-	 */
-	public TipoProcesoSolicitud getTipoProcesoSolicitud() {
-		return tipoProcesoSolicitud;
-	}
-
-	/**
-	 * @param tipoProcesoSolicitud the tipoProcesoSolicitud to set
-	 */
-	public void setTipoProcesoSolicitud(TipoProcesoSolicitud tipoProcesoSolicitud) {
-		this.tipoProcesoSolicitud = tipoProcesoSolicitud;
-	}
-
-	
-	
+ 
 }

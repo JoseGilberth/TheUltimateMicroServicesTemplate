@@ -1,13 +1,25 @@
 package modelo.auth.oauth2;
 
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import lombok.Data;
+import modelo.auth.usuarios.publicos.MotivoAltaBajaPublico;
+import modelo.auth.usuarios.publicos.PermisoPublico;
+import modelo.auth.usuarios.publicos.UsuarioPublico;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionEntrega;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionFacturacion;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionVivienda;
+
 @Entity
 @Table
+@Data
 public class OauthRefreshToken {
 
 	@Id
@@ -22,31 +34,5 @@ public class OauthRefreshToken {
 	@Column(name = "authentication" , length= 16777215  ) //MEDIUM BLOB
 	private String authentication;
 
-	public String getToken_id() {
-		return token_id;
-	}
-
-	public void setToken_id(String token_id) {
-		this.token_id = token_id;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-
-
-	public String getAuthentication() {
-		return authentication;
-	}
-
-	public void setAuthentication(String authentication) {
-		this.authentication = authentication;
-	}
-
-
+	 
 }

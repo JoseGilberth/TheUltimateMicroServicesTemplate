@@ -1,5 +1,7 @@
 package micro.publico.controllers;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,6 @@ public class ComentariosController  extends ACRUDEndPoints<Comentarios> implemen
 		Respuesta<Comentarios> respuesta = null;   
 		respuesta = IComentario.crearPorUsuario(auth , com); 
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
-			
 	}
 
 	@PutMapping(consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE })
@@ -68,7 +69,11 @@ public class ComentariosController  extends ACRUDEndPoints<Comentarios> implemen
 		respuesta = IComentario.eliminarPorUsuario(auth, idComentario); //BORRA COMENTARIO BY USER
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
-	
+
+	@Override
+	public ResponseEntity<Respuesta<List<Comentarios>>> obtenerTodos() {
+	    throw new UnsupportedOperationException();
+	}
 	
 	/********************* PAGINABLES ***********************/
 	@Override
@@ -98,6 +103,7 @@ public class ComentariosController  extends ACRUDEndPoints<Comentarios> implemen
 		    return ResponseEntity.status(500).body( ErrorInternoControlado.error(ex.getMessage()) ); 
 		}
 	}
+
 
 
 }

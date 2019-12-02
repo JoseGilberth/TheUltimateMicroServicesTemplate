@@ -2,6 +2,8 @@ package modelo.producto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +20,15 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.Data;
+import modelo.auth.usuarios.publicos.MotivoAltaBajaPublico;
+import modelo.auth.usuarios.publicos.PermisoPublico;
+import modelo.auth.usuarios.publicos.UsuarioPublico;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionEntrega;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionFacturacion;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionVivienda;
+
+@Data
 @Entity
 @XmlRootElement
 @Table()
@@ -48,48 +59,6 @@ public class UnidadVenta implements Serializable {
 	@LastModifiedDate
 	private LocalDateTime fechaActualizacion;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getEtiqueta() {
-		return etiqueta;
-	}
-
-	public void setEtiqueta(String etiqueta) {
-		this.etiqueta = etiqueta;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public LocalDateTime getFechaAlta() {
-		return fechaAlta;
-	}
-
-	public void setFechaAlta(LocalDateTime fechaAlta) {
-		this.fechaAlta = fechaAlta;
-	}
-
-	public LocalDateTime getFechaActualizacion() {
-		return fechaActualizacion;
-	}
-
-	public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
-		this.fechaActualizacion = fechaActualizacion;
-	}
-
-	public String getEtiquetaCorta() {
-		return etiquetaCorta;
-	}
-
-	public void setEtiquetaCorta(String etiquetaCorta) {
-		this.etiquetaCorta = etiquetaCorta;
-	}
+ 
 
 }
