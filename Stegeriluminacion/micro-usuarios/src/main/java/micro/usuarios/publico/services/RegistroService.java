@@ -100,7 +100,7 @@ public class RegistroService implements IRegistroService {
 				if (!rt.isExpirado()) {
 
  					
-					UsuarioPublico usuarioPublico = usuariosPublicoDao.buscarPorUsuario(rt.getUsuario().getUsername());
+					UsuarioPublico usuarioPublico = usuariosPublicoDao.buscarPorUsuario(rt.getUsuarioPublico().getUsername());
 				
 					usuarioPublico.setEnabled(true);
 					usuarioPublico = usuariosPublicoDao.saveAndFlush(usuarioPublico);

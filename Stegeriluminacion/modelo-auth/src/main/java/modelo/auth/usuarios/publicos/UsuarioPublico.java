@@ -17,14 +17,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.Data;
 import modelo.auth.usuarios.Usuario;
 import modelo.auth.usuarios.publicos.ubicacion.DireccionEntrega;
 import modelo.auth.usuarios.publicos.ubicacion.DireccionFacturacion;
@@ -37,8 +36,9 @@ import modelo.auth.usuarios.publicos.ubicacion.DireccionVivienda;
 		@UniqueConstraint(columnNames={"username"} , name = "unique_username"),
 		@UniqueConstraint(columnNames={"correo"} , name = "unique_correo"),
 		@UniqueConstraint(columnNames={"telefonoCelular"} , name = "unique_telefonoCelular")
-	} 
+	}
 )
+@Data
 public class UsuarioPublico extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -80,128 +80,5 @@ public class UsuarioPublico extends Usuario implements Serializable {
 
 	public UsuarioPublico() {
 
-	}
-
-	@PrePersist
-	private void prePersist() {
-	}
-
-	@PreUpdate
-	private void preUpdate() {
-	}
-
-	/**
-	 * @return the telefonoCelular
-	 */
-	public String getTelefonoCelular() {
-		return telefonoCelular;
-	}
-
-	/**
-	 * @param telefonoCelular the telefonoCelular to set
-	 */
-	public void setTelefonoCelular(String telefonoCelular) {
-		this.telefonoCelular = telefonoCelular;
-	}
-
-	/**
-	 * @return the direccionVivienda
-	 */
-	public DireccionVivienda getDireccionVivienda() {
-		return direccionVivienda;
-	}
-
-	/**
-	 * @param direccionVivienda the direccionVivienda to set
-	 */
-	public void setDireccionVivienda(DireccionVivienda direccionVivienda) {
-		this.direccionVivienda = direccionVivienda;
-	}
-
-	/**
-	 * @return the direccionFacturacion
-	 */
-	public Set<DireccionFacturacion> getDireccionFacturacion() {
-		return direccionFacturacion;
-	}
-
-	/**
-	 * @param direccionFacturacion the direccionFacturacion to set
-	 */
-	public void setDireccionFacturacion(Set<DireccionFacturacion> direccionFacturacion) {
-		this.direccionFacturacion = direccionFacturacion;
-	}
-
-	/**
-	 * @return the direccionEntrega
-	 */
-	public Set<DireccionEntrega> getDireccionEntrega() {
-		return direccionEntrega;
-	}
-
-	/**
-	 * @param direccionEntrega the direccionEntrega to set
-	 */
-	public void setDireccionEntrega(Set<DireccionEntrega> direccionEntrega) {
-		this.direccionEntrega = direccionEntrega;
-	}
-
-	/**
-	 * @return the permisos
-	 */
-	public Set<PermisoPublico> getPermisos() {
-		return permisos;
-	}
-
-	/**
-	 * @param permisos the permisos to set
-	 */
-	public void setPermisos(Set<PermisoPublico> permisos) {
-		this.permisos = permisos;
-	}
-
-	/**
-	 * @return the motivosAltaBaja
-	 */
-	public Set<MotivoAltaBajaPublico> getMotivosAltaBaja() {
-		return motivosAltaBaja;
-	}
-
-	/**
-	 * @param motivosAltaBaja the motivosAltaBaja to set
-	 */
-	public void setMotivosAltaBaja(Set<MotivoAltaBajaPublico> motivosAltaBaja) {
-		this.motivosAltaBaja = motivosAltaBaja;
-	}
-
-	/**
-	 * @return the serialversionuid
-	 */
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public Integer getLimitRequest() {
-		return limitRequest;
-	}
-
-	public void setLimitRequest(Integer limitRequest) {
-		this.limitRequest = limitRequest;
-	}
-
-	public TimeUnit getTimeUnit() {
-		return timeUnit;
-	}
-
-	public void setTimeUnit(TimeUnit timeUnit) {
-		this.timeUnit = timeUnit;
-	}
-
-	public Integer getTokenExpiration() {
-		return tokenExpiration;
-	}
-
-	public void setTokenExpiration(Integer tokenExpiration) {
-		this.tokenExpiration = tokenExpiration;
 	} 
 }

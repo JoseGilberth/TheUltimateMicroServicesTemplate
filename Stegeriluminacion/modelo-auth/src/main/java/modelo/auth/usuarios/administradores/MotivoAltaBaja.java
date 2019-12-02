@@ -15,6 +15,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table
 public class MotivoAltaBaja {
@@ -33,36 +36,10 @@ public class MotivoAltaBaja {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date fechaAlta;
 
-
 	@PrePersist
 	public void prePersist(){
 		this.fechaAlta = new Date();
 	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getMotivo() {
-		return motivo;
-	}
-
-	public void setMotivo(String motivo) {
-		this.motivo = motivo;
-	}
-
-	public Date getFechaAlta() {
-		return fechaAlta;
-	}
-
-	public void setFechaAlta(Date fechaAlta) {
-		this.fechaAlta = fechaAlta;
-	}
-
-	
+	 
 	
 }

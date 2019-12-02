@@ -12,9 +12,11 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import lombok.Data;
+
 @Entity
 @XmlRootElement
-
+@Data
 @Table(
 		indexes = {
 		 	@Index(columnList = "etiqueta", name = "index_etiqueta" , unique = true )
@@ -36,71 +38,5 @@ public class TipoEntidad implements Serializable {
 
 	@Column(nullable = false , unique = true )
 	private String etiqueta;
-
-	public Long getId() {
-		return this.id;
-	}
-
-	public void setId(final Long id) {
-		this.id = id;
-	}
-
-	public int getVersion() {
-		return this.version;
-	}
-
-	public void setVersion(final int version) {
-		this.version = version;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof TipoEntidad)) {
-			return false;
-		}
-		TipoEntidad other = (TipoEntidad) obj;
-		if (id != null) {
-			if (!id.equals(other.id)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	public String getEtiqueta() {
-		return etiqueta;
-	}
-
-	public void setEtiqueta(String etiqueta) {
-		this.etiqueta = etiqueta;
-	}
-
-	
-	
-	public String getClave() {
-		return clave;
-	}
-
-	public void setClave(String clave) {
-		this.clave = clave;
-	}
-
-	@Override
-	public String toString() {
-		String result = getClass().getSimpleName() + " ";
-		if (etiqueta != null && !etiqueta.trim().isEmpty())
-			result += "etiqueta: " + etiqueta;
-		return result;
-	}
+ 
 }

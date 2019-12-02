@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import lombok.Data;
+
+@Data
 @Entity
 //https://memorynotfound.com/spring-security-forgot-password-send-email-reset-password/
 public class ResetTokenAdministrador implements Serializable {
@@ -32,39 +35,7 @@ public class ResetTokenAdministrador implements Serializable {
 
 	@Column(nullable = false)
 	private Date expiracion;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public UsuarioAdministrador getUserAdmin() {
-		return userAdmin;
-	}
-
-	public void setUserAdmin(UsuarioAdministrador userAdmin) {
-		this.userAdmin = userAdmin;
-	}
-
-	public Date getExpiracion() {
-		return expiracion;
-	}
-
-	public void setExpiracion(Date expiracion) {
-		this.expiracion = expiracion;
-	}
-
+ 
 	public void setExpiracionInMinutes(int minutes) {
 		Calendar now = Calendar.getInstance();
 		now.add(Calendar.MINUTE, minutes);

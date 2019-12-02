@@ -10,8 +10,11 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.Data;
+
 @Entity
 @Table
+@Data
 public class PermisoPublico {
 
 	@Id
@@ -26,32 +29,6 @@ public class PermisoPublico {
 	@NotNull( message="{permiso.publico.descripcion.notnull}" )
 	@Length( min = 10 , max = 500 , message = "{permiso.publico.descripcion.length}" )
 	@Column(length = 500 , nullable = false, unique = false)
-	private String descripcion;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getEtiqueta() {
-		return etiqueta;
-	}
-
-	public void setEtiqueta(String etiqueta) {
-		this.etiqueta = etiqueta;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	
+	private String descripcion;	
 
 }

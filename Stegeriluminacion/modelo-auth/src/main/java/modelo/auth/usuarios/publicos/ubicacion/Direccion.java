@@ -14,6 +14,9 @@ import javax.persistence.MappedSuperclass;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import lombok.Data;
+
+@Data
 @MappedSuperclass
 public class Direccion implements Serializable {
 

@@ -49,13 +49,13 @@ public class EmailService implements IEmailService {
 			/* PROCESO PARA VALIDAR SU USUARIO */
 			ResetTokenPublico token = new ResetTokenPublico();
 			token.setToken(usuario.getUsername() + UUID.randomUUID().toString());
-			token.setUsuario(usuario);
+			token.setUsuarioPublico(usuario);
 			token.setExpiracionInMinutes(1440);
 			resetTokenPublicoDao.save(token);
 
 			Map<String, Object> model = new HashMap<>();
 			String url = urlToSend + token.getToken();
-			model.put("user", token.getUsuario().getUsername());
+			model.put("user", token.getUsuarioPublico().getUsername());
 			model.put("resetUrl", url);
 			mail.setModel(model);
 			

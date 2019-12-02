@@ -10,12 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import lombok.Data;
 import modelo.auth.usuarios.Usuario;
 
+@Data
 @Entity
 @Table(indexes = { @Index(columnList = "username", name = "index_ua_usuario"),
 		@Index(columnList = "correo", name = "index_ua_correo") })
@@ -30,44 +30,7 @@ public class UsuarioAdministrador extends Usuario {
 
 	public UsuarioAdministrador() {
 
-	}
-
-	@PrePersist
-	private void prePersist() {
-	}
-
-	@PreUpdate
-	private void preUpdate() {
-	}
-
-	/**
-	 * @return the permisos
-	 */
-	public Set<PermisoAdministrador> getPermisos() {
-		return permisos;
-	}
-
-	/**
-	 * @param permisos the permisos to set
-	 */
-	public void setPermisos(Set<PermisoAdministrador> permisos) {
-		this.permisos = permisos;
-	}
-
-	/**
-	 * @return the motivosAltaBaja
-	 */
-	public Set<MotivoAltaBaja> getMotivosAltaBaja() {
-		return motivosAltaBaja;
-	}
-
-	/**
-	 * @param motivosAltaBaja the motivosAltaBaja to set
-	 */
-	public void setMotivosAltaBaja(Set<MotivoAltaBaja> motivosAltaBaja) {
-		this.motivosAltaBaja = motivosAltaBaja;
-	}
-
-	
+	} 
+ 
 
 }
