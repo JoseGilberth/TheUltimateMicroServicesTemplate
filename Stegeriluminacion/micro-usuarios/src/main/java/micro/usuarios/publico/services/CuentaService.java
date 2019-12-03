@@ -90,14 +90,14 @@ public class CuentaService implements ICuentaService {
 			if (rt != null) {
 				if (!rt.isExpirado()) {
 
-					UsuarioPublico usuarioPublico = usuariosPublicoDao.buscarPorUsuario(rt.getUsuario().getUsername());
+					UsuarioPublico usuarioPublico = usuariosPublicoDao.buscarPorUsuario(rt.getUsuarioPublico().getUsername());
 					if (!usuarioPublico.isEnabled()) {
 						return ErrorInternoControlado.usuarioNoActivo(false);
 					}
 
 					String claveHash = bcrypt.encode(password);
 					
-					usuariosPublicoDao.cambiarPassword(claveHash, rt.getUsuario().getUsername());
+					usuariosPublicoDao.cambiarPassword(claveHash, rt.getUsuarioPublico().getUsername());
 					
 					resetTokenPublicoDao.delete(rt);
 

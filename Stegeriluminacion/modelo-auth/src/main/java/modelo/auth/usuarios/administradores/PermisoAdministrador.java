@@ -10,6 +10,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table
 public class PermisoAdministrador {
@@ -28,31 +31,6 @@ public class PermisoAdministrador {
 	@Length( min = 10 , max = 500 , message = "{permiso.administrador.descripcion.length}" )
 	@Column(length = 500 , nullable = false, unique = false)
 	private String descripcion;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getEtiqueta() {
-		return etiqueta;
-	}
-
-	public void setEtiqueta(String etiqueta) {
-		this.etiqueta = etiqueta;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	
+ 
 
 }

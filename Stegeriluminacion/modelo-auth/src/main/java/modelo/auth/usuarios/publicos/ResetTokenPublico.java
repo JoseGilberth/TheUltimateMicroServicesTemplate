@@ -13,7 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class ResetTokenPublico implements Serializable {
 
 	private static final long serialVersionUID = 3756655220417479455L;
@@ -27,43 +30,11 @@ public class ResetTokenPublico implements Serializable {
 	private String token;
 
 	@OneToOne(targetEntity = UsuarioPublico.class, fetch = FetchType.EAGER)
-	private UsuarioPublico user;
+	private UsuarioPublico usuarioPublico;
 
 	@Column(nullable = false)
 	private Date expiracion;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public UsuarioPublico getUsuario() {
-		return user;
-	}
-
-	public void setUsuario(UsuarioPublico user) {
-		this.user = user;
-	}
-
-	public Date getExpiracion() {
-		return expiracion;
-	}
-
-	public void setExpiracion(Date expiracion) {
-		this.expiracion = expiracion;
-	}
-
+ 
 	public void setExpiracionInMinutes(int minutes) {
 		Calendar now = Calendar.getInstance();
 		now.add(Calendar.MINUTE, minutes);

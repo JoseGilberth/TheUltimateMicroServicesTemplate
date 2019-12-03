@@ -22,8 +22,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.Data;
+
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)  
+@EntityListeners(AuditingEntityListener.class) 
+@Data
 public class Usuario {
 
 	@Id
@@ -80,27 +83,7 @@ public class Usuario {
 	
 	public Usuario() {
 	}
-	
-	@PreUpdate
-	private void preUpdate() {
-		
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	  
 
 	@JsonIgnore
 	public String getPassword() {
@@ -111,81 +94,6 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getRepetirPassword() {
-		return repetirPassword;
-	}
-
-	public void setRepetirPassword(String repetirPassword) {
-		this.repetirPassword = repetirPassword;
-	}
-
-	public String getCorreo() {
-		return correo;
-	}
-
-	public void setCorreo(String correo) {
-		this.correo = correo;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getApellido1() {
-		return apellido1;
-	}
-
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
-	}
-
-	public String getApellido2() {
-		return apellido2;
-	}
-
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
-	}
-
-	/**
-	 * @return the fechaAlta
-	 */
-	public LocalDateTime getFechaAlta() {
-		return fechaAlta;
-	}
-
-	/**
-	 * @param fechaAlta the fechaAlta to set
-	 */
-	public void setFechaAlta(LocalDateTime fechaAlta) {
-		this.fechaAlta = fechaAlta;
-	}
-
-	/**
-	 * @return the ultimaActualizacion
-	 */
-	public LocalDateTime getUltimaActualizacion() {
-		return ultimaActualizacion;
-	}
-
-	/**
-	 * @param ultimaActualizacion the ultimaActualizacion to set
-	 */
-	public void setUltimaActualizacion(LocalDateTime ultimaActualizacion) {
-		this.ultimaActualizacion = ultimaActualizacion;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+ 
 
 }

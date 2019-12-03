@@ -1,5 +1,7 @@
 package micro.publico.controllers;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +105,10 @@ public class PreguntaController extends ACRUDEndPoints<Pregunta> implements ICRU
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 	
-
+	@Override
+	public ResponseEntity<Respuesta<List<Pregunta>>> obtenerTodos() {
+	    throw new UnsupportedOperationException();
+	}
 	
 	/********************* PAGINABLES ***********************/
 	@GetMapping (produces= { MediaType.APPLICATION_JSON_UTF8_VALUE , MediaType.APPLICATION_XML_VALUE } )
@@ -116,6 +121,8 @@ public class PreguntaController extends ACRUDEndPoints<Pregunta> implements ICRU
 		    return ResponseEntity.status(500).body( ErrorInternoControlado.error(ex.getMessage()) ); 
 		}
 	}
+
+
 
 	
 }

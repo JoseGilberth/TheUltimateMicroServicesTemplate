@@ -13,7 +13,9 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import lombok.Data;
 
+@Data
 @MappedSuperclass
 public class Cuenta {
 

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,6 +28,15 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.Data;
+import modelo.auth.usuarios.publicos.MotivoAltaBajaPublico;
+import modelo.auth.usuarios.publicos.PermisoPublico;
+import modelo.auth.usuarios.publicos.UsuarioPublico;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionEntrega;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionFacturacion;
+import modelo.auth.usuarios.publicos.ubicacion.DireccionVivienda;
+
+@Data
 @Entity
 @XmlRootElement
 @Table()
@@ -100,123 +110,6 @@ public class Producto implements Serializable {
 		UUID randomUUID = UUID.randomUUID(); 
 		this.uuid = randomUUID;
 	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getEtiqueta() {
-		return etiqueta;
-	}
-
-	public void setEtiqueta(String etiqueta) {
-		this.etiqueta = etiqueta;
-	}
-
-	public double getCosto() {
-		return costo;
-	}
-
-	public void setCosto(double costo) {
-		this.costo = costo;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public Set<Imagen> getImagenes() {
-		return imagenes;
-	}
-
-	public void setImagenes(Set<Imagen> imagenes) {
-		this.imagenes = imagenes;
-	}
-
-	public UnidadMedida getUnidadMedida() {
-		return unidadMedida;
-	}
-
-	public void setUnidadMedida(UnidadMedida unidadMedida) {
-		this.unidadMedida = unidadMedida;
-	}
-
-	public UnidadVenta getUnidadVenta() {
-		return unidadVenta;
-	}
-
-	public void setUnidadVenta(UnidadVenta unidadVenta) {
-		this.unidadVenta = unidadVenta;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-	public LocalDateTime getFechaAlta() {
-		return fechaAlta;
-	}
-
-	public void setFechaAlta(LocalDateTime fechaAlta) {
-		this.fechaAlta = fechaAlta;
-	}
-
-	public LocalDateTime getFechaActualizacion() {
-		return fechaActualizacion;
-	}
-
-	public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
-		this.fechaActualizacion = fechaActualizacion;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public boolean isActivo() {
-		return activo;
-	}
-
-	public void setActivo(boolean activo) {
-		this.activo = activo;
-	}
-
-	public Marca getMarca() {
-		return marca;
-	}
-
-	public void setMarca(Marca marca) {
-		this.marca = marca;
-	}
-
-	public UUID getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-
-	public boolean isActivoPublico() {
-		return activoPublico;
-	}
-
-	public void setActivoPublico(boolean activoPublico) {
-		this.activoPublico = activoPublico;
-	}
-
-	
+	 
 	
 }
