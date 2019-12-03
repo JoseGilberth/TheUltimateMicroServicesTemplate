@@ -60,13 +60,7 @@ public class EmailService implements IEmailService {
 			mail.setModel(model);
 			
 			Respuesta<Boolean> respuesta = iEmailExternalService.registro(mail); 
-			
-			//respuesta.setCodigo(200);
-			//respuesta.setCodigoHttp(200);
-			//respuesta.setCuerpo(true);
-			//respuesta.setEstado(true);
-			//respuesta.setMensaje(Translator.toLocale("usuarios.creado"));
-			System.out.println(" entro aqui <---------------->");
+			 
 			return respuesta;
 			
 		}catch( Exception ex) {

@@ -54,13 +54,11 @@ public class RegistroService implements IRegistroService {
 	public Respuesta<UsuarioPublico> crearRegistro(UsuarioPublico usuarioPublico) {
 		try {
 			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
-
 			if (!usuarioPublico.getPassword().equals(usuarioPublico.getRepetirPassword())) {
 				return ErrorInternoControlado.passwordsNoCoinciden(null);
 			}
-
 			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(), usuarioPublico.getCorreo());
-			if (usuario != null) {// EXISTE EN LA BASE DE DATOS
+			if (usuario != null) {
 				return ErrorInternoControlado.usuarioDuplicado(null);
 			}
 			usuarioPublico.setPassword(bcrypt.encode(usuarioPublico.getPassword()));
@@ -77,8 +75,8 @@ public class RegistroService implements IRegistroService {
 				respuesta.setMensaje(Translator.toLocale("usuarios.creado"));
 				return respuesta;
 			} else {
-				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-				return ErrorInternoControlado.error(Translator.toLocale("error.correo.envio"));
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly(); 
+				return ErrorInternoControlado.errorAlEnviarElCorreo(null);
 			}
 		} catch (Exception ex ) {
 			ex.printStackTrace();

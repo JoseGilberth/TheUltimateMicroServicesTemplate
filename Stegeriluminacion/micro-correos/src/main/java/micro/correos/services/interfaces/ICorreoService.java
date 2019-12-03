@@ -1,11 +1,14 @@
 
 package micro.correos.services.interfaces;
 
- import dto.micro.correo.Mail;
+import javax.mail.MessagingException;
+
+import dto.main.Respuesta;
+import dto.micro.correo.Mail;
 
 public interface ICorreoService {
 
 	public void registro(Mail mail);
-	public void cambiarContraseña(Mail mail);
-	
+	public Respuesta<Boolean> changePassword(Mail mail) throws MessagingException ;
+
 }

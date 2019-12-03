@@ -12,13 +12,7 @@ import feign.RequestInterceptor;
 
 @Configuration
 public class MicroServiceToMicroservice {
-
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		return bCryptPasswordEncoder;
-	}
-
+ 
 	/*
 	 * AYUDA A FEIGN PARA PONER EL JWT AUTOMATICAMENTE Y SE ENVIE ENTRE
 	 * MICROSERVICIOS ES UN SIMPLE INTERCEPTOR QUE MANDA EL TOKEN EN LA PETICION
