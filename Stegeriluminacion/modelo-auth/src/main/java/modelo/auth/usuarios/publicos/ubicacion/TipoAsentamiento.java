@@ -10,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotBlank;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
 
@@ -25,6 +28,7 @@ import lombok.Data;
 public class TipoAsentamiento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable = false)
@@ -34,6 +38,8 @@ public class TipoAsentamiento implements Serializable {
 	@Column(name = "version")
 	private int version;
 
+	@NotBlank(message = "{tipoasentamiento.etiqueta.notblank}") 
+	@Length(min = 5, max = 250, message = "{tipoasentamiento.etiqueta.lenght}")
 	@Column(nullable = false , unique = true )
 	private String etiqueta;
 

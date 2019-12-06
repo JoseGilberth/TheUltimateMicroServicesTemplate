@@ -7,7 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
+import javax.persistence.PrePersist;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,8 +26,8 @@ public class Tarjeta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@NotNull(message = "El número de tarjeta no debe estar vacio.")
-	@Length(min = 16, max = 16, message = "La longitud del número de tarjeta debe ser de 16 dígitos")
+	@NotBlank(message = "{tarjeta.numero.notblank}")
+	@Length(min = 16, max = 16, message = "{tarjeta.numero.lenght}")	
 	@Column(length = 16, nullable = false, unique = true)
 	private String numero;
 
@@ -44,6 +45,10 @@ public class Tarjeta {
 	@Column(nullable = false)
 	private boolean enabled;
 
+	@PrePersist
+	private void prePersist() {
+		this.enabled = false;
+	}
 	
 	
 }

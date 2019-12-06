@@ -10,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotBlank;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
 
@@ -35,6 +38,8 @@ public class TipoVialidad implements Serializable {
 	@Column(name = "version")
 	private int version;
 
+	@NotBlank(message = "{tipovialidad.etiqueta.notblank}") 
+	@Length(min = 5, max = 250, message = "{tipovialidad.etiqueta.lenght}")
 	@Column(nullable = false , unique = true )
 	private String etiqueta;
 

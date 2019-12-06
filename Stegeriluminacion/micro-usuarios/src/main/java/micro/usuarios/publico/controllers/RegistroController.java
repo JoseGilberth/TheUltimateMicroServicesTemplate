@@ -26,40 +26,25 @@ public class RegistroController {
 	
 	@Autowired
 	RegistroService registroService;
-	
 
 	@GetMapping( value="/heartbit", produces= { MediaType.APPLICATION_JSON_UTF8_VALUE , MediaType.APPLICATION_XML_VALUE } )
 	public ResponseEntity<String>  heartBit() { 
 		return new ResponseEntity<String>( "OK" , HttpStatus.OK );
 	}
-
 	
-	@PostMapping ( 
-	    consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
-	  , produces= { MediaType.APPLICATION_JSON_UTF8_VALUE , MediaType.APPLICATION_XML_VALUE }
-	)
+	@PostMapping ( consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces= { MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<Respuesta<UsuarioPublico>> registrar( @RequestBody UsuarioPublico usuarioPublico) {
 		usuarioPublico.setCorreo(usuarioPublico.getCorreo().replaceAll("\\s",""));
 		Respuesta<UsuarioPublico> respuesta = registroService.crearRegistro( usuarioPublico );
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body( respuesta );  
 	}
 	
-
-
 	@GetMapping(value = "/activar/{token}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> activarUsuario(@PathVariable("token") String token) {
 		Respuesta<String> respuesta = null;
-		try {
-			respuesta = registroService.activarUsuario( token ); 
-		    return ResponseEntity.status(respuesta.getCodigoHttp()).body( respuesta.getCuerpo() );   
-		}catch (Exception ex) {
-		    return ResponseEntity.status(500).body( "" ); 
-		} 
+		respuesta = registroService.activarUsuario( token ); 
+		return ResponseEntity.status(respuesta.getCodigoHttp()).body( respuesta.getCuerpo() );   
 	}
 
-	
-	
-	
-	
 	 
 }

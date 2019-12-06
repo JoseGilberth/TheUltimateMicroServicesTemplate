@@ -13,8 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -42,16 +44,22 @@ public class Imagen implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+ 	@NotBlank(message = "{imagen.etiqueta.notblank}") 
+	@Length(min = 1, max = 255, message = "{imagen.etiqueta.length}")
 	@Column(nullable = false)
 	private String etiqueta;
 
+ 	@NotBlank(message = "{imagen.imagen.notblank}")  
 	@Lob
 	@Column(nullable = false, length = 5000000 ) // 5 MEGAS
 	private byte[] imagen;
 
+ 	@NotBlank(message = "{imagen.mimeType.notblank}") 
+	@Length(min = 1, max = 255, message = "{imagen.mimeType.length}")
 	@Column(nullable = false)
 	private String mimeType;
-	 
+
+ 	@NotBlank(message = "{imagen.tamano.notblank}")
 	@Column(nullable = false)
 	private int tamano;
 

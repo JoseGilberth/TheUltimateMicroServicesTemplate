@@ -1,6 +1,7 @@
 package modelo.auth.usuarios.publicos;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -12,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.data.annotation.CreatedDate;
 
 import lombok.Data;
 
@@ -35,7 +38,7 @@ public class TokensPublico implements Serializable {
 
 	@Column(nullable = false)
 	private Date expiracion;
- 
+  
 	public void setExpiracionInMinutes(int minutes) {
 		Calendar now = Calendar.getInstance();
 		now.add(Calendar.MINUTE, minutes);

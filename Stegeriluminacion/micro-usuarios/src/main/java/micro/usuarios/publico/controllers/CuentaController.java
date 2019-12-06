@@ -34,35 +34,12 @@ public class CuentaController {
 	}
 
 	
-	@PostMapping (
-		value="/cambiar/password"
-	  , consumes = MediaType.APPLICATION_JSON_UTF8_VALUE
-	  , produces= { MediaType.APPLICATION_JSON_UTF8_VALUE , MediaType.APPLICATION_XML_VALUE }
-	)
+	@PostMapping (value="/cambiar/password", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces= { MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<Respuesta<Boolean>> cambiarClave(  @RequestBody UsuarioPublicoCambiarClaveDTO usuarioPublicoCambiarClaveDTO) {
 		Respuesta<Boolean> respuesta = null;
-		try {
-			respuesta = cuentaService.cambiarPassword(usuarioPublicoCambiarClaveDTO);
-		    return ResponseEntity.status( respuesta.getCodigoHttp() ).body(respuesta); 
-		}catch (Exception ex) {
-		    return ResponseEntity.status(500).body( ErrorInternoControlado.error(ex.getMessage()) ); 
-		}
+		respuesta = cuentaService.cambiarPassword(usuarioPublicoCambiarClaveDTO);
+		return ResponseEntity.status( respuesta.getCodigoHttp() ).body(respuesta); 
 	}
-
-
-	@Deprecated
-	@PostMapping(value = "/restablecer/password/{token}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Respuesta<Boolean>> restablecerClave(@PathVariable("token") String token, @RequestBody String clave) {
-		Respuesta<Boolean> respuesta = null;
-		try {
-			respuesta = cuentaService.restablecerPassword(token,clave);
-		    return ResponseEntity.status( respuesta.getCodigoHttp() ).body(respuesta); 
-		}catch (Exception ex) {
-		    return ResponseEntity.status(500).body( ErrorInternoControlado.error(ex.getMessage()) ); 
-		} 
-	}
-
-	
-
+ 
 
 }

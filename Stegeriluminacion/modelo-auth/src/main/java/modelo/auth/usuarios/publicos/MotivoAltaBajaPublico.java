@@ -1,5 +1,6 @@
 package modelo.auth.usuarios.publicos;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedDate;
 
 import lombok.Data;
 
@@ -32,14 +34,9 @@ public class MotivoAltaBajaPublico {
 	@Column(length = 255, nullable = false, unique = false)
 	private String motivo;
 
-	@Column(nullable = false)
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date fechaAlta;
-
-	@PrePersist
-	public void prePersist(){
-		this.fechaAlta = new Date();
-	}
-	 
+	@CreatedDate
+	@Column(updatable = false)
+	LocalDateTime fechaAlta;
+ 
 	
 }

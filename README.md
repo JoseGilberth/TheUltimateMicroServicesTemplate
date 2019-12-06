@@ -19,6 +19,45 @@ Espero esta plantilla ayude a muchos programadores que se encuentren en una situ
 
 **Integrar Multiresources dentro de un microservicio para poder usar multiples cliente id**
 
+- Tomaremos como ejemplo el recursos del microservicio de autenticacion
+
+<div align="center">
+    <img src="images/Archivos de seguridad - retos.png" width="400px"</img> 
+</div>
+
+Pero solo se ha configurado un "resourceID" a la vez
+```
+	@Override
+	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+		resources.resourceId(resourceId);
+	}
+```
+El problema es que se puedan tener multiples configuraciones de recursos "ResourceServerConfiguration"
+Por ejemplo tener el cliente  **stegerilumination** con el resourceid: **stegerilumination_resource**
+DIgamos este cliente va a controlar todo lo relacionado con swagger y la administracion, 
+por lo que se le debe negar el acceso a los endpoints de microservicio, a excepcion de los mencionados anteriormente
+
+<div align="center">
+    <img src="images/Archivos de seguridad - retos2.png" width="400px"</img> 
+</div>
+
+y a su vez poder añadir un nuevo cliente que pueda hacer peticiones a los endpoints del microservicio pero
+no tenga permisos para entrar a los recursos de administración o swagger.
+
+Por ende deberá tener una configuracion de recurso para el solo.
+
+Ese es el problema
+
+**Tener multiples configuraciones de recursos para multiples clientes**
+y cada configuración tener reglas de seguridad.
+
+DE momento sabemos que con "hasAnyAuthority" puede solventarse este problema de reglas de seguridad pero este
+solo contempla 1 solo cliente y no varios
+
+<div align="center">
+    <img src="images/Archivos de seguridad - retos3.png" width="400px"</img> 
+</div>
+
 
 ## Estructura del proyecto
 

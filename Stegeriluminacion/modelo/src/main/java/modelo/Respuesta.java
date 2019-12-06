@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -45,13 +46,13 @@ public class Respuesta implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotEmpty(message = "Debe agregar una respuesta.")
-	@Length(min = 10, max = 500 , message = "La respuesta debe contener al menos 3 caracteres y menos de 500 caracteres.")
-	@Column(name = "respuesta", unique = false, nullable = false, length = 255)
-	private String respuesta;
  
-	@NotNull(message = "Debe indicar un producto.") 
+	@NotBlank( message="{respuesta.respuesta.notblank}" )
+	@Length(min = 10, max = 500 , message = "{respuesta.respuesta.length}")
+	@Column(name = "respuesta", length = 500, unique = false, nullable = false)
+	private String respuesta;
+
+	@NotNull( message="{respuesta.pregunta.notnull}" ) 
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Pregunta pregunta;

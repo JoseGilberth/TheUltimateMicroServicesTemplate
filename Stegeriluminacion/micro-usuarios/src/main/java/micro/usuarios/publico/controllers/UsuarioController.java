@@ -19,7 +19,6 @@ import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioPublicoDTO;
 import micro.usuarios.publico.services.UsuarioService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
-import steger.excepciones.controladas.ErrorInternoControlado;
 
 @RestController
 @RequestMapping(path = "/usuarios/publico")
@@ -30,35 +29,24 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 
-	@PostMapping(value = "/filtro", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE })
+	@PostMapping(value = "/filtro", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<Respuesta<Page<UsuarioPublico>>> filtrar(Pageable pageable, @RequestBody FiltroUsuarioPublicoDTO filtroUsuarioPublicoDTO) { // size=10 page=1
 		Respuesta<Page<UsuarioPublico>> respuesta = usuarioService.filtrar(pageable, filtroUsuarioPublicoDTO);
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 
-	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE })
+	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<Respuesta<UsuarioPublico>> obtenerPorToken(OAuth2Authentication auth) {
-		Respuesta<UsuarioPublico> respuesta = null;
-		try {
-			respuesta = usuarioService.obtenerPorToken(auth);
-			return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
-		} catch (Exception ex) {
-			return ResponseEntity.status(500).body(ErrorInternoControlado.error(ex.getMessage()));
-		}
+		Respuesta<UsuarioPublico> respuesta = null; 
+		respuesta = usuarioService.obtenerPorToken(auth);
+		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta); 
 	}
 
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
-			MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<Respuesta<UsuarioPublico>> actualizar(@RequestBody UsuarioPublico usuarioPublico,
-			OAuth2Authentication auth) {
-
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE } )
+	public ResponseEntity<Respuesta<UsuarioPublico>> actualizar(@RequestBody UsuarioPublico usuarioPublico,OAuth2Authentication auth) {
 		Respuesta<UsuarioPublico> respuesta = null;
-		try {
-			respuesta = usuarioService.actualizar(usuarioPublico, auth);
-			return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
-		} catch (Exception ex) {
-			return ResponseEntity.status(500).body(ErrorInternoControlado.error(ex.getMessage()));
-		}
+		respuesta = usuarioService.actualizar(usuarioPublico, auth);
+		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 
 }

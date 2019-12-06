@@ -16,10 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -46,19 +48,19 @@ public class Favoritos implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotEmpty(message = "Debe indicar una cantidad de estrellas al producto.")
-	@Min(message = "El minímo para estrellas debe ser 0", value = 0)
-	@Max(message = "El máximo para estrellas debe ser 0", value = 5)
+ 
+	@NotBlank( message="{favoritos.estrellas.notblank}" )
+	@Min(message = "{favoritos.estrellas.min}", value = 0)
+	@Max(message = "{favoritos.estrellas.max}", value = 5)
 	@Column(name = "estrellas", unique = false, nullable = false)
 	private int estrellas;
 	 
-	@NotNull(message = "Debe indicar un producto.") 
+	@NotNull(message = "{favoritos.producto.notnull}") 
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Producto producto;
-
-	@NotNull(message = "Debe indicar un usuario publico.") 
+ 
+	@NotNull(message = "{favoritos.usuarioPublico.notnull}") 
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private UsuarioPublico usuarioPublico;

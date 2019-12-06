@@ -9,7 +9,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-
  
 @Configuration
 @EnableResourceServer
@@ -32,10 +31,13 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	public void configure(HttpSecurity http) throws Exception {
 
 		http.exceptionHandling().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable().requestMatchers().and()
-				.authorizeRequests().antMatchers(unProtectedPaths).permitAll()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable()
+				.requestMatchers().and()
+				.authorizeRequests()
+				.antMatchers(unProtectedPaths).permitAll()
 				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").hasAnyAuthority("proyecto:web:swagger:admin")
 				.anyRequest().authenticated();
 	}
+
 
 }

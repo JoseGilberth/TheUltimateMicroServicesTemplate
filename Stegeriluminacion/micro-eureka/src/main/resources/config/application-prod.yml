@@ -70,7 +70,7 @@ management:
   
 # SECURITY
 security:   
-  unprotected-paths: /heartbit 
+  unprotected-paths: /heartbit , /admin/instances
   jwt: 
     resource-id: stegerilumination_resource
   oauth2:

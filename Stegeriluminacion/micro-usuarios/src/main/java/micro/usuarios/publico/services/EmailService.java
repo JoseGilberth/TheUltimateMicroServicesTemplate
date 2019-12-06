@@ -38,13 +38,13 @@ public class EmailService implements IEmailService {
 
     @Transactional( rollbackFor = Exception.class, propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT,  readOnly = false)	
 	@Override
-	public Respuesta<Boolean> registro(String correo, String contenido, UsuarioPublico usuario, String urlToSend) { 
+	public Respuesta<Boolean> registro(String[] correos, String[] bcc,String[] cc, String subject, UsuarioPublico usuario, String urlToSend) { 
 		try {
 			
 			Mail mail = new Mail();
 			mail.setFrom(stegeriluminacionCorreo);
-			mail.setTo(correo);
-			mail.setSubject(contenido);
+			mail.setTo(correos);
+			mail.setSubject(subject);
 
 			/* PROCESO PARA VALIDAR SU USUARIO */
 			ResetTokenPublico token = new ResetTokenPublico();
@@ -53,14 +53,20 @@ public class EmailService implements IEmailService {
 			token.setExpiracionInMinutes(1440);
 			resetTokenPublicoDao.save(token);
 
-			Map<String, Object> model = new HashMap<>();
+			Map<String, Object> variables = new HashMap<>();
 			String url = urlToSend + token.getToken();
-			model.put("user", token.getUsuarioPublico().getUsername());
-			model.put("resetUrl", url);
-			mail.setModel(model);
+			variables.put("user", token.getUsuarioPublico().getUsername());
+			variables.put("resetUrl", url);
+			mail.setVariables(variables);
 			
 			Respuesta<Boolean> respuesta = iEmailExternalService.registro(mail); 
-			 
+			
+			//respuesta.setCodigo(200);
+			//respuesta.setCodigoHttp(200);
+			//respuesta.setCuerpo(true);
+			//respuesta.setEstado(true);
+			//respuesta.setMensaje(Translator.toLocale("usuarios.creado"));
+			System.out.println(" entro aqui <---------------->");
 			return respuesta;
 			
 		}catch( Exception ex) {
@@ -73,13 +79,15 @@ public class EmailService implements IEmailService {
 
     @Transactional( rollbackFor = Exception.class, propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT,  readOnly = false)	
 	@Override
-	public Respuesta<Boolean> cambiarPassword(String correo, String contenido, UsuarioPublico usuario, String passwordTemp) { 
+	public Respuesta<Boolean> cambiarPassword(String[] correos, String[] bcc,String[] cc, String subject, UsuarioPublico usuario, String passwordTemp) { 
 		try {
 			
 			Mail mail = new Mail();
 			mail.setFrom(soporteCorreo);
-			mail.setTo(correo);
-			mail.setSubject(contenido);
+			mail.setTo( correos );
+			mail.setBcc(bcc);
+			mail.setCc(cc); 
+			mail.setSubject(subject);
 
 			/* PROCESO PARA VALIDAR SU USUARIO */
 			//ResetTokenPublico token = new ResetTokenPublico();
@@ -88,10 +96,10 @@ public class EmailService implements IEmailService {
 			//token.setExpiracionInMinutes(2880);
 			//resetTokenPublicoDao.save(token);
 
-			Map<String, Object> model = new HashMap<>(); 
-			model.put("user", usuario.getUsername());
-			model.put("passwordTemp", passwordTemp);
-			mail.setModel(model);
+			Map<String, Object> variables = new HashMap<String, Object>(); 
+			variables.put("user", usuario.getUsername());
+			variables.put("passwordTemp", passwordTemp);
+			mail.setVariables(variables);
 			
 			Respuesta<Boolean> respuesta = iEmailExternalService.cambiarPassword(mail); 
 			return respuesta;

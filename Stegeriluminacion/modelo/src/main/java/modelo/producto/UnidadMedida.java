@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -41,15 +42,15 @@ public class UnidadMedida implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotEmpty(message = "Debe indicar un nombre a la unidad de medida.")
-	@Length(min = 3, max = 255, message = "El nombre debe contener al menos 3 caracteres y menos 255 caracteres.")
+ 
+ 	@NotBlank(message = "{unidadmedida.etiqueta.notblank}")
+	@Length(min = 3, max = 255, message = "{unidadmedida.etiqueta.length}")
 	@Column(name = "etiqueta", unique = true, nullable = false, length = 40)
 	private String etiqueta;
 
-	@NotEmpty(message = "Debe indicar un nombre corto a la unidad de medida.")
-	@Length(min = 3, max = 255, message = "El nombre debe contener al menos 3 caracteres y menos 255 caracteres.")
-	@Column(name = "etiquetaCorta", unique = true, nullable = false, length = 40)
+ 	@NotBlank(message = "{unidadmedida.etiquetaCorta.notblank}")
+	@Length(min = 3, max = 255, message = "{unidadmedida.etiquetaCorta.length}")
+ 	@Column(name = "etiquetaCorta", unique = true, nullable = false, length = 40)
 	private String etiquetaCorta;
 
 	@CreatedDate

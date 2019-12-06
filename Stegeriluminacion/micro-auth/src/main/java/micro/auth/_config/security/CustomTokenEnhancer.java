@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import dao.auth.usuarios.publicos.UsuarioPublicoDao;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 import utils.Times;
-
+ 
 public class CustomTokenEnhancer implements TokenEnhancer {
 
 	Logger logger = LoggerFactory.getLogger(CustomTokenEnhancer.class);

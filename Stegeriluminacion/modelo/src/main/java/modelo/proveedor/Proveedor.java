@@ -52,7 +52,7 @@ public class Proveedor implements Serializable{
 	@JoinColumn(nullable = false)
 	private DireccionVivienda direccion;
 
-	@NotNull(message = "Debe indicar una valor de estatus de producto.")  
+	@NotNull( message="{proveedor.activo.notnull}" )
 	@Column(name = "activo", nullable = false)
 	private boolean activo;
 	

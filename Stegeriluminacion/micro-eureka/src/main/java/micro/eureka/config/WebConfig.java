@@ -42,8 +42,7 @@ import feign.RequestInterceptor;
  * It may prevent other things from working, such as the springfox-swagger-ui html page. 
  * – Paulo Merson May 30 at 17:34 
 */
-@Configuration
-//@EnableWebMvc
+@Configuration 
 public class WebConfig implements WebMvcConfigurer {
 
 	/*

@@ -41,7 +41,7 @@ public class CorreoService implements ICorreoService {
 					StandardCharsets.UTF_8.name());
 
 			Context context = new Context();
-			context.setVariables(mail.getModel());
+			context.setVariables(mail.getVariables());
 			context.setVariable("imageResourceName", "logo.png"); // so that we can reference it from HTML
 
 			String html = templateEngine.process("email/registro", context);
@@ -64,7 +64,7 @@ public class CorreoService implements ICorreoService {
 			MimeMessage message = emailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,StandardCharsets.UTF_8.name());
 			Context context = new Context();
-			context.setVariables(mail.getModel());
+			context.setVariables(mail.getVariables());
 			context.setVariable("imageResourceName", "logo.png"); 
 			String html = templateEngine.process("email/cambio_password", context);
 			helper.setTo(mail.getTo());

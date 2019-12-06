@@ -12,7 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.Length;
@@ -42,13 +44,13 @@ public class UnidadVenta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotEmpty(message = "Debe indicar un nombre a la unidad de venta.")
-	@Length(min = 3, max = 255, message = "El nombre debe contener al menos 3 caracteres y menos 255 caracteres.")
+ 	@NotBlank(message = "{unidadventa.etiqueta.notblank}")
+	@Length(min = 3, max = 255, message = "{unidadventa.etiqueta.length}")
 	@Column(name = "etiqueta", unique = true, nullable = false, length = 255)
 	private String etiqueta;
 
-	@NotEmpty(message = "Debe indicar un nombre corto a la unidad de venta.")
-	@Length(min = 3, max = 255, message = "El nombre debe contener al menos 3 caracteres y menos 255 caracteres.")
+ 	@NotBlank(message = "{unidadventa.etiquetaCorta.notblank}")
+	@Length(min = 3, max = 255, message = "{unidadventa.etiquetaCorta.length}")
 	@Column(name = "etiquetaCorta", unique = true, nullable = false, length = 255)
 	private String etiquetaCorta;
 

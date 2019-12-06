@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -41,9 +42,9 @@ public class TipoEnvio implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotEmpty(message = "Debe indicar un nombre al tipo de envio.")
-	@Length(min = 3, max = 255, message = "El nombre debe contener al menos 3 caracteres y menos 255 caracteres.")
+	
+	@NotBlank( message="{tipoenvio.etiqueta.notblank}" ) 
+	@Length(min = 3, max = 255 , message = "{tipoenvio.etiqueta.length}")
 	@Column(name = "etiqueta", unique = true, nullable = false, length = 255)
 	private String etiqueta;
 

@@ -29,13 +29,17 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		resources.resourceId(resource_id);
 	}
 
- 
+  
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
+
 		http.exceptionHandling().authenticationEntryPoint(new AuthException()).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable().requestMatchers().and()
-				.authorizeRequests().antMatchers(unProtectedPaths).permitAll().antMatchers("/admin").authenticated()
-				.anyRequest().permitAll();
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable()
+				.requestMatchers().and()
+				.authorizeRequests()
+				.antMatchers(unProtectedPaths).permitAll()
+				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").hasAnyAuthority("proyecto:web:swagger:admin")
+				.anyRequest().authenticated();
 	}
 
 }

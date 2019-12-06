@@ -1,6 +1,7 @@
 package modelo.auth.log;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -14,9 +15,13 @@ import javax.persistence.Index;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType; 
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedDate;
 
 import lombok.Data;
 import modelo.auth.usuarios.publicos.MotivoAltaBajaPublico;
@@ -38,30 +43,25 @@ public class Log implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotNull(message = "El usuario no debe ser nulo")
+ 
+	@NotBlank( message="{log.usuario.notblank}" )
 	@Column(nullable = false, length = 255)
 	private String usuario;
-
-	@NotNull(message = "El tipo de usuario no debe ser nulo")
+ 
+	@NotBlank( message="{log.tipoUsuario.notblank}" )
 	@Column(nullable = false, length = 255)
 	private String tipoUsuario;
-
-	@NotNull(message = "El apartado no debe ser nulo")
+ 
+	@NotBlank( message="{log.apartado.notblank}" )
 	@Column(nullable = false, length = 255)
 	private String apartado;
 
-	@NotNull(message = "La acción no debe ser nula")
+	@NotBlank( message="{log.accion.notblank}" ) 
 	@Column(nullable = false, length = 255)
 	private String accion;
 
-	@Column(nullable = false)
-	@Temporal(value = TemporalType.TIMESTAMP)
-	private Date fechaAlta;
-
-	@PrePersist
-	public void prePersist() {
-		this.fechaAlta = new Date();
-	}
+	@CreatedDate
+	@Column(updatable = false)
+	LocalDateTime fechaAlta;
  
 }

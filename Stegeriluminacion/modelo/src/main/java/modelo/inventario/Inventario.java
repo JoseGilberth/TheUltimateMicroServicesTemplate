@@ -14,9 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -44,29 +46,35 @@ public class Inventario implements Serializable{
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+ 
+ 	@NotBlank(message = "{inventario.existencias.notblank}")  
 	@Column(name = "existencias", nullable = false)
 	private double existencias;
 
+ 	@NotBlank(message = "{inventario.invMinimo.notblank}")  
 	@Column(name = "invMinimo", nullable = false)
 	private double invMinimo;
 
+
+ 	@NotBlank(message = "{inventario.invMaximo.notblank}")  
 	@Column(name = "invMaximo", nullable = false)
 	private double invMaximo;
 
+ 	@NotBlank(message = "{inventario.costo.notblank}")  
 	@Column(name = "costo", nullable = false)
 	private double costo;
 
+ 	@NotBlank(message = "{inventario.costoMayoreo.notblank}")  
 	@Column(name = "costoMayoreo", nullable = false)
 	private double costoMayoreo;
 
-	@NotNull(message = "Debe indicar un proveedor.")
+	@NotNull(message = "{inventario.proveedor.notnull}")
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Proveedor proveedor;
 
-	@NotNull(message = "Debe indicar un producto.")
-	@ManyToOne
+	@NotNull(message = "{inventario.producto.notnull}")
+ 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Producto producto;
 

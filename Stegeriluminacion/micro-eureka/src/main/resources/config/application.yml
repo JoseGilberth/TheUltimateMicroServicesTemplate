@@ -5,10 +5,10 @@ spring:
     location: classpath:/banners/banner-dev.txt  
   main:
     allow-bean-definition-overriding: true
-  boot:
+  boot: 
     admin:
       context-path: /admin  #A different context path for Spring boot admin server has been provided avoiding conflict with eureka       instance-proxy:
-        ignored-headers: Authorization, Cookie, Set-Cookie
+        ignored-headers: Authorization, Cookie, Set-Cookie      monitor:        status-interval: 300000 # 5 minutos        status-lifetime: 300000 # 5 minutos
   datasource: # CONFIGURACIONES DE CONEXION
     url: jdbc:mysql://localhost/stegeriluminacion?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=America/Mexico_City
     username: root
@@ -27,12 +27,13 @@ spring:
     database-platform: org.hibernate.dialect.MySQL57Dialect 
     
 
-eureka:
+eureka: 
   datacenter: Main
   environment: prod
   region: default
   instance:
-    hostname: localhost 
+    hostname: localhost      lease-renewal-interval-in-seconds: 300000 # 5 minutos
+    lease-expiration-duration-in-seconds: 300000 # 5 minutos
   server:
     wait-time-in-ms-when-sync-empty: 0
   client:
@@ -41,7 +42,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8600/discovery-server/eureka
     eureka-server-read-timeout-seconds: 180000 # 3 minutos
-    eureka-server-connect-timeout-seconds: 180000 # 3 minutos
+    eureka-server-connect-timeout-seconds: 180000 # 3 minutos    registry-fetch-interval-seconds:  300000 # 5 minutos
   # ZIPKIN
   zipkin:
     base-url: http://localhost:8609/micro-zipkin/
@@ -68,7 +69,7 @@ management:
   
 # SECURITY
 security:   
-  unprotected-paths: /heartbit 
+  unprotected-paths: /heartbit , /admin/instances , /eureka/, /eureka/**
   jwt: 
     resource-id: stegerilumination_resource
   oauth2:

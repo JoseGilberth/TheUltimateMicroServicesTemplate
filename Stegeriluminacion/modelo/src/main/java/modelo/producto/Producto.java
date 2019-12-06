@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -52,48 +53,48 @@ public class Producto implements Serializable {
 
 	@Column(name = "uuid", updatable = false, nullable = false)
 	private UUID uuid;
-
-	@NotEmpty(message = "Debe indicar un nombre del producto.")
-	@Length(min = 3, max = 255, message = "El nombre debe contener al menos 3 caracteres y menos 255 caracteres.")
+ 
+ 	@NotBlank(message = "{producto.etiqueta.notblank}")
+	@Length(min = 3, max = 255, message = "{producto.etiqueta.length}")
 	@Column(name = "etiqueta", unique = false, nullable = false, length = 255)
 	private String etiqueta;
 
 	@Column(name = "costo", nullable = false)
 	private double costo;
 
-	@NotEmpty(message = "Debe indicar una descripción del producto.")
-	@Length(min = 3, max = 5000, message = "La descripción debe contener al menos 3 caracteres.")
+	@NotBlank(message = "{producto.descripcion.notblank}")
+	@Length(min = 3, max = 5000, message = "{producto.descripcion.length}")
 	@Column(name = "descripcion", unique = false, nullable = false, length = 5000)
 	private String descripcion;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Imagen> imagenes = new HashSet<Imagen>();
 
-	@NotNull(message = "Debe indicar una unidad de medida del producto.") 
+	@NotNull(message = "{producto.unidadMedida.notnull}") 
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private UnidadMedida unidadMedida;
 
-	@NotNull(message = "Debe indicar una unidad de venta del producto.") 
+	@NotNull(message = "{producto.unidadVenta.notnull}")  
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private UnidadVenta unidadVenta;
 
-	@NotNull(message = "Debe indicar una categoría del producto.") 
+	@NotNull(message = "{producto.categoria.notnull}")  
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Categoria categoria;
 
-	@NotNull(message = "Debe indicar una marca del producto.") 
+	@NotNull(message = "{producto.marca.notnull}")  
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Marca marca;
 
-	@NotNull(message = "Debe indicar una valor de estatus de producto.")  
+ 	@NotNull(message = "{producto.activo.notnull}")  
 	@Column(name = "activo", nullable = false)
 	private boolean activo;
 
-	@NotNull(message = "Debe indicar una valor de estatus de actividad para clientes.")  
+ 	@NotNull(message = "{producto.activoPublico.notnull}")  
 	@Column(name = "activoPublico", nullable = false)
 	private boolean activoPublico;
 	 

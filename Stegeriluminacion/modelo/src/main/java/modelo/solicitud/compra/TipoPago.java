@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -40,10 +41,10 @@ public class TipoPago implements Serializable {
 	@Id
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@NotEmpty(message = "Debe indicar un nombre al tipo de pago.")
-	@Length(min = 3, max = 255, message = "El nombre debe contener al menos 3 caracteres y menos 255 caracteres.")
+	private Long id; 
+	 
+	@NotBlank( message="{tipopago.etiqueta.notblank}" ) 
+	@Length(min = 3, max = 255 , message = "{tipopago.etiqueta.length}")
 	@Column(name = "etiqueta", unique = true, nullable = false, length = 255)
 	private String etiqueta;
 	

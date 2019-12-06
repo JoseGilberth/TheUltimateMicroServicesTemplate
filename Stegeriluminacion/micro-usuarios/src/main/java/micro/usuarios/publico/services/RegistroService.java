@@ -54,18 +54,20 @@ public class RegistroService implements IRegistroService {
 	public Respuesta<UsuarioPublico> crearRegistro(UsuarioPublico usuarioPublico) {
 		try {
 			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
+
 			if (!usuarioPublico.getPassword().equals(usuarioPublico.getRepetirPassword())) {
 				return ErrorInternoControlado.passwordsNoCoinciden(null);
 			}
+
 			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(), usuarioPublico.getCorreo());
-			if (usuario != null) {
+			if (usuario != null) {// EXISTE EN LA BASE DE DATOS
 				return ErrorInternoControlado.usuarioDuplicado(null);
 			}
 			usuarioPublico.setPassword(bcrypt.encode(usuarioPublico.getPassword()));
 
 			UsuarioPublico usuarioPublic = usuariosPublicoDao.saveAndFlush(usuarioPublico);
-
-			Respuesta<Boolean> correo = emailService.registro(usuarioPublico.getCorreo(), "Bienvenido", usuarioPublico, stegeriluminacionRegistro );
+			
+			Respuesta<Boolean> correo = emailService.registro( new String[]{usuarioPublico.getCorreo()} ,null , null , "Bienvenido", usuarioPublico, stegeriluminacionRegistro );
 			
 			if (correo.getCodigoHttp() == 200) {
 				respuesta.setCodigo(200);
@@ -75,8 +77,8 @@ public class RegistroService implements IRegistroService {
 				respuesta.setMensaje(Translator.toLocale("usuarios.creado"));
 				return respuesta;
 			} else {
-				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly(); 
-				return ErrorInternoControlado.errorAlEnviarElCorreo(null);
+				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+				return ErrorInternoControlado.error(Translator.toLocale("error.correo.envio"));
 			}
 		} catch (Exception ex ) {
 			ex.printStackTrace();

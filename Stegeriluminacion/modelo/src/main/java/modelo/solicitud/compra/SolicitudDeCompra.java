@@ -17,9 +17,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -46,23 +48,23 @@ public class SolicitudDeCompra  implements Serializable {
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@NotNull(message = "Debe indicar un tipo de pago.")
+ 
+	@NotNull( message="{solicitudcompra.tipoPago.notnull}" )  
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private TipoPago tipoPago;
-
-	@NotNull(message = "Debe indicar un tipo de envio.")
+ 
+	@NotNull( message="{solicitudcompra.tipoEnvio.notnull}" )  
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private TipoEnvio TipoEnvio;
+	private TipoEnvio tipoEnvio;
 
-	@NotNull(message = "Debe indicar una dirección de entrega.")
+	@NotNull( message="{solicitudcompra.direccionEntrega.notnull}" )   
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private DireccionEntrega direccionEntrega;
- 
-	@NotNull(message = "Debe indicar a que usuario le pertenece esta solicitud.")
+
+	@NotNull( message="{solicitudcompra.usuarioPublico.notnull}" )
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private UsuarioPublico usuarioPublico;
@@ -73,9 +75,8 @@ public class SolicitudDeCompra  implements Serializable {
 
 	@Column(name = "costoTotal", nullable = false)
 	private double costoTotal;
-	
 
-	@NotNull(message = "Debe indicar un tipo de proceso para la solicitud.")
+	@NotNull( message="{solicitudcompra.tipoProcesoSolicitud.notnull}" )
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private TipoProcesoSolicitud tipoProcesoSolicitud;

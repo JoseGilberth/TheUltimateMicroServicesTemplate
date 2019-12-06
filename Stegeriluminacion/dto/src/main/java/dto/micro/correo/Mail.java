@@ -2,46 +2,21 @@ package dto.micro.correo;
 
 import java.util.Map;
 
+import lombok.Data;
+
+@Data
 public class Mail {
 
 	private String from;
-	private String to;
+	private String[] to;
+	private String[] cc;
+	private String[] bcc;
 	private String subject;
-	private Map<String, Object> model;
-
+	private Map<String, Object> variables;
+ 
 	public Mail() {
 
 	}
 
-	public String getFrom() {
-		return from;
-	}
 
-	public void setFrom(String from) {
-		this.from = from;
-	}
-
-	public String getTo() {
-		return to;
-	}
-
-	public void setTo(String to) {
-		this.to = to;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public Map<String, Object> getModel() {
-		return model;
-	}
-
-	public void setModel(Map<String, Object> model) {
-		this.model = model;
-	}
 }

@@ -49,6 +49,7 @@ spring:
         url: http://localhost:8600/discovery-server/admin
         instance:
           service-base-url: http://localhost:8601
+        period: 300000 # 5 minutos
        
 # CONFIGURACION PARA TODOS LOS ENDPOINTS
 management: 

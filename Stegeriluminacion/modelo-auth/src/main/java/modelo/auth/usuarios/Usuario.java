@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,10 +22,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
+import utils.validations.matchers.FieldMatch;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class) 
 @Data
+@FieldMatch.List({
+    @FieldMatch(first = "password", second = "repetirPassword", message = "Los passwords deben coincidir")
+})
 public class Usuario {
 
 	@Id
