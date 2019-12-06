@@ -22,7 +22,7 @@ Espero esta plantilla ayude a muchos programadores que se encuentren en una situ
 - Tomaremos como ejemplo el recursos del microservicio de autenticacion
 
 <div align="center">
-    <img src="images/retos.png" width="400px"</img> 
+    <img src="images/retos.png" width="400px"></img> 
 </div>
 
 Pero solo se ha configurado un "resourceID" a la vez
@@ -38,7 +38,7 @@ DIgamos este cliente va a controlar todo lo relacionado con swagger y la adminis
 por lo que se le debe negar el acceso a los endpoints de microservicio, a excepcion de los mencionados anteriormente
 
 <div align="center">
-    <img src="images/retos2.png" width="400px"</img> 
+    <img src="images/retos2.png" width="400px"></img> 
 </div>
 
 y a su vez poder añadir un nuevo cliente que pueda hacer peticiones a los endpoints del microservicio pero
@@ -55,7 +55,7 @@ DE momento sabemos que con "hasAnyAuthority" puede solventarse este problema de 
 solo contempla 1 solo cliente y no varios
 
 <div align="center">
-    <img src="images/retos3.png" width="400px"</img> 
+    <img src="images/retos3.png" width="400px"></img> 
 </div>
 
 
@@ -185,7 +185,7 @@ Dentro del microservicio "Auth" , en la clase **AuthorizationServerConfig** dent
 Los archivos que se usaron para la seguridad del token se encuentran en recursos dentro de la carpeta de recursos.
 
 <div align="center">
-    <img src="images/Archivos de Seguridad.png" width="400px"</img> 
+    <img src="images/Archivos de Seguridad.png" width="400px"></img> 
 </div>
   
 - ELIMINA JKS DE CERTIFICADOS SI YA EXISTEN 
