@@ -49,6 +49,7 @@ spring:
         url: http://localhost:8600/discovery-server/admin  
         instance:
           service-base-url: http://localhost:8604  
+        period: 300000 # 5 minutos
       
       
 # CORREO    
@@ -59,9 +60,9 @@ correo:
   
  
 # EUREKA
-eureka:
+eureka: 
   instance:
-    hostname: localhost
+    hostname: localhost    lease-renewal-interval-in-seconds: 300000 # 5 minutos
   client:
     register-with-eureka: true
     service-url:

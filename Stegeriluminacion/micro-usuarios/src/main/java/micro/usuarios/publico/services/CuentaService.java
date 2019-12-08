@@ -11,16 +11,14 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import dao.auth.usuarios.publicos.ResetTokenPublicoDao;
 import dao.auth.usuarios.publicos.UsuarioPublicoDao;
 import dto.main.Respuesta;
 import dto.micro.usuarios.UsuarioPublicoCambiarClaveDTO;
-import  steger.excepciones.controladas.ErrorInternoControlado;
-import utils.Random;
 import micro.usuarios._config.languaje.Translator;
 import micro.usuarios.publico.services.interfaces.ICuentaService;
-import modelo.auth.usuarios.publicos.ResetTokenPublico;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
+import  steger.excepciones.controladas.ErrorInternoControlado;
+import utils.Random;
 
 @Service
 public class CuentaService implements ICuentaService {
@@ -35,10 +33,8 @@ public class CuentaService implements ICuentaService {
 
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
-
-	@Autowired
-	private ResetTokenPublicoDao resetTokenPublicoDao;
-
+ 
+ 
 	@Value("${correo.registro}")
 	String stegeriluminacionRegistro;
 

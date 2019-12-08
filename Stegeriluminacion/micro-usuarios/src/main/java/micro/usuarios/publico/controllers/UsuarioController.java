@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,7 +20,8 @@ import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioPublicoDTO;
 import micro.usuarios.publico.services.UsuarioService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
-
+import utils.validaciones.interfaces.OnUpdate;
+ 
 @RestController
 @RequestMapping(path = "/usuarios/publico")
 public class UsuarioController {
@@ -43,7 +45,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE } )
-	public ResponseEntity<Respuesta<UsuarioPublico>> actualizar(@RequestBody UsuarioPublico usuarioPublico,OAuth2Authentication auth) {
+	public ResponseEntity<Respuesta<UsuarioPublico>> actualizar(@Validated(OnUpdate.class) @RequestBody UsuarioPublico usuarioPublico,OAuth2Authentication auth) {
 		Respuesta<UsuarioPublico> respuesta = null;
 		respuesta = usuarioService.actualizar(usuarioPublico, auth);
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);

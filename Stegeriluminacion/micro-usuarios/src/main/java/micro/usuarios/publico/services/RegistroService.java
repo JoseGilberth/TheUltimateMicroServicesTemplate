@@ -53,12 +53,8 @@ public class RegistroService implements IRegistroService {
 	@Override
 	public Respuesta<UsuarioPublico> crearRegistro(UsuarioPublico usuarioPublico) {
 		try {
-			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
-
-			if (!usuarioPublico.getPassword().equals(usuarioPublico.getRepetirPassword())) {
-				return ErrorInternoControlado.passwordsNoCoinciden(null);
-			}
-
+			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>(); 
+			
 			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(), usuarioPublico.getCorreo());
 			if (usuario != null) {// EXISTE EN LA BASE DE DATOS
 				return ErrorInternoControlado.usuarioDuplicado(null);

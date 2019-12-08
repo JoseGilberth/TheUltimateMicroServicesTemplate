@@ -57,6 +57,7 @@ spring:
 eureka:
   instance:
     hostname: localhost
+    lease-renewal-interval-in-seconds: 300000 # 5 minutos
   client:
     register-with-eureka: true
     service-url:

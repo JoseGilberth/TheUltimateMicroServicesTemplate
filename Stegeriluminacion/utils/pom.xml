@@ -4,13 +4,13 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>mx.com.pasionprogramada</groupId>
 		<artifactId>Stegeriluminacion</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	
+
 	<artifactId>utils</artifactId>
 	<name>utils</name>
 	<url>http://maven.apache.org</url>
@@ -21,15 +21,14 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
-  
-	<dependencies>
-
- 		<dependency>
+ 
+	<dependencies> 
+		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.6</version>
 		</dependency>
-
+		
 	</dependencies>
 
 	<!-- BUILD (NECESARIO PARA PROYECTOS MULTIMODULE) -->

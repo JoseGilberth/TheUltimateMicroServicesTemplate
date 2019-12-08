@@ -22,14 +22,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
-import utils.validations.matchers.FieldMatch;
+import utils.validaciones.interfaces.OnCreate;
+import utils.validaciones.interfaces.OnUpdate;
+import utils.validaciones.matchers.create.FieldMatch;
+import utils.validaciones.matchers.update.FieldMatchUpdate;
+import utils.validaciones.unique.create.UniqueUser;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class) 
 @Data
-@FieldMatch.List({
-    @FieldMatch(first = "password", second = "repetirPassword", message = "Los passwords deben coincidir")
-})
+@FieldMatch(first = "password", second = "repetirPassword", message = "{usuario.password.match}" , groups = { OnCreate.class })
+@FieldMatchUpdate(first = "password", second = "repetirPassword", message = "{usuario.password.match}" , groups = { OnUpdate.class })
+@UniqueUser(username = "username", correo = "correo", message = "{usuario.username.uniqueuser}", groups = { OnCreate.class } )
 public class Usuario {
 
 	@Id
