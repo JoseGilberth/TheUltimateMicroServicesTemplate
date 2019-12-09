@@ -26,15 +26,13 @@ import utils.validaciones.interfaces.OnCreate;
 import utils.validaciones.interfaces.OnUpdate;
 import utils.validaciones.matchers.create.FieldMatch;
 import utils.validaciones.matchers.update.FieldMatchUpdate;
-import utils.validaciones.unique.create.UniqueUser;
-
+ 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class) 
 @Data
 @FieldMatch(first = "password", second = "repetirPassword", message = "{usuario.password.match}" , groups = { OnCreate.class })
 @FieldMatchUpdate(first = "password", second = "repetirPassword", message = "{usuario.password.match}" , groups = { OnUpdate.class })
-@UniqueUser(username = "username", correo = "correo", message = "{usuario.username.uniqueuser}", groups = { OnCreate.class } )
-public class Usuario {
+ public class Usuario {
 
 	@Id
 	@Column(name = "id", updatable = false, nullable = false)

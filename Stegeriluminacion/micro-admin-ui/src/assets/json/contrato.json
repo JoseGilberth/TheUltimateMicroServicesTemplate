@@ -1,0 +1,18 @@
+{
+<<<<<<< HEAD
+  "grant_type": "password",
+  "basic": "T0pVRTJmWG9iZTVidVpIWVlsRlRESEFHYnJrYTpkQm8xZEJ5RjBmd25vbTR4aEliQ2Jrcl9Va2Nh",
+  "usuario": "",
+  "password": "",
+  "url": "https://132.148.242.63:8243/token",
+  "contrato": "SALUDFISCALDESARROLLO"
+  }
+=======
+    "grant_type": "password",
+    "basic": "T0pVRTJmWG9iZTVidVpIWVlsRlRESEFHYnJrYTpkQm8xZEJ5RjBmd25vbTR4aEliQ2Jrcl9Va2Nh",
+    "usuario": "",
+    "password": "",
+    "url": "https://132.148.242.63:8243/token",
+    "contrato": "SALUDFISCALDESARROLLO"
+}
+>>>>>>> 61d2f39e4f609d32cb712d5f55a181a12c3071f7

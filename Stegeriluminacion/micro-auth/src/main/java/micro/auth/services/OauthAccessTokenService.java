@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import dao.auth.oauth.OauthAccessTokenDao;
 import dto.main.Respuesta;
-import dto.micro.administracion.oauthaccesstoken.FiltroOauthAccessTokenDTO;
+import dto.micro.auth.oauthaccesstoken.FiltroOauthAccessTokenDTO;
 import micro.auth._config.languaje.Translator;
 import micro.auth.services.interfaces.ACrud;
 import micro.auth.services.interfaces.IOauthAccessToken;

@@ -1,0 +1,240 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <div *ngIf="!usuarios.esProveedor" class="row">
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+              <div class="card-icon">
+                <i class="fa fa-archive"></i>
+              </div>
+              <p class="card-category">Repositorio</p>
+              <h3 class="card-title">184</h3>
+            </div>
+
+            <div class="card-footer">
+              <div class="stats">
+                <i class="fa fa-calendar-o"> </i> Última Actualizacion 1/1/2019
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-rose card-header-icon">
+              <div class="card-icon">
+                <i class="fa fa-envelope"></i>
+              </div>
+              <p class="card-category">Buzón Tributario</p>
+              <h3 class="card-title">0</h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="fa fa-calendar-o"> </i> Última Actualizacion 1/1/2019
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                <i class="fa fa-code-fork"></i>
+              </div>
+              <p class="card-category">Integración ERP</p>
+              <h3 class="card-title">8</h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="fa fa-calendar-o"> </i> Última Actualizacion 1/1/2019
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+              <div class="card-icon">
+                <i class="fa fa-id-card"></i>
+              </div>
+              <p class="card-category">Proveedores</p>
+              <h3 class="card-title">+5</h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="fa fa-calendar-o"> </i> Última Actualizacion 1/1/2019
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    <div [hidden]="usuarios.esProveedor" class="row">
+        <div class="col-md-4">
+          <div class="card card-chart">
+            <div class="card-header card-header-rose" data-header-animation="true">
+              <div class="ct-chart" id="websiteViewsChart"></div>
+            </div>
+            <div class="card-body">
+              <div class="card-actions">
+                <button mat-raised-button type="button" class="btn btn-danger btn-link fix-broken-card">
+                  <i class="material-icons">build</i> !
+                </button>
+                <button mat-raised-button type="button" class="btn btn-info btn-link" matTooltip="Refresh"
+                        [matTooltipPosition]="'below'">
+                  <i class="material-icons">refresh</i>
+                </button>
+                <button mat-raised-button type="button" class="btn btn-default btn-link" matTooltip="Change Date"
+                        [matTooltipPosition]="'below'">
+                  <i class="material-icons">edit</i>
+                </button>
+              </div>
+              <h4 class="card-title"> Clinica Fiscal - Agosto/2018</h4>
+              <p class="card-category">Last Campaign Performance</p>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons">access_time</i> campaign sent 2 days ago
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4">
+          <div class="card card-chart">
+            <div class="card-header card-header-success" data-header-animation="true">
+              <div class="ct-chart" id="dailySalesChart"></div>
+            </div>
+            <div class="card-body">
+              <div class="card-actions">
+                <button mat-raised-button type="button" class="btn btn-danger btn-link fix-broken-card">
+                  <i class="material-icons">build</i> Fix Header!
+                </button>
+                <button mat-raised-button type="button" class="btn btn-info btn-link" matTooltip="Refresh"
+                        [matTooltipPosition]="'below'">
+                  <i class="material-icons">refresh</i>
+                </button>
+                <button mat-raised-button type="button" class="btn btn-default btn-link" matTooltip="Change Date"
+                        [matTooltipPosition]="'below'">
+                  <i class="material-icons">edit</i>
+                </button>
+              </div>
+              <h4 class="card-title"> Triple Match</h4>
+              <p class="card-category">
+                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons">access_time</i> updated 4 minutes ago
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4">
+          <div class="card card-chart">
+            <div class="card-header card-header-info" data-header-animation="true">
+              <div class="ct-chart" id="completedTasksChart"></div>
+            </div>
+            <div class="card-body">
+              <div class="card-actions">
+                <button mat-raised-button type="button" class="btn btn-danger btn-link fix-broken-card">
+                  <i class="material-icons">build</i> Fix Header!
+                </button>
+                <button mat-raised-button type="button" class="btn btn-info btn-link" matTooltip="Refresh"
+                        [matTooltipPosition]="'below'">
+                  <i class="material-icons">refresh</i>
+                </button>
+                <button mat-raised-button type="button" class="btn btn-default btn-link" matTooltip="Change Date"
+                        [matTooltipPosition]="'below'">
+                  <i class="material-icons">edit</i>
+                </button>
+              </div>
+              <h4 class="card-title">Facturas Financieras</h4>
+              <p class="card-category">Last Campaign Performance</p>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons">access_time</i> campaign sent 2 days ago
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div *ngIf="usuarios.esProveedor" class="row">
+
+
+      <div class="col-lg-3 col-md-6 col-sm-6 " (click)="irPagina('expediente')">
+        <div class="card card-stats paginacion">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="fa fa-archive"></i>
+            </div>
+            <p class="card-category">Expediente</p>
+            <h3 class="card-title"></h3>
+          </div>
+
+          <div class="card-footer">
+            <div class="stats">
+              <i class="fa fa-calendar-o"> </i> Última Actualizacion 1/1/2019
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 col-sm-6" (click)="irPagina('facturas')">
+        <div class="card card-stats paginacion">
+          <div class="card-header card-header-rose card-header-icon">
+            <div class="card-icon">
+              <i class="fa fa-file-text"></i>
+            </div>
+            <p class="card-category">Facturas</p>
+            <h3 class="card-title">0</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="fa fa-calendar-o"> </i> Última Actualizacion 1/1/2019
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="col-lg-3 col-md-6 col-sm-6" (click)="irPagina('orden')">
+        <div class="card card-stats paginacion">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="fa fa-shopping-cart"></i>
+            </div>
+            <p class="card-category">Órdenes de compra</p>
+            <h3 class="card-title"></h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="fa fa-calendar-o"> </i> Última Actualizacion 1/1/2019
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

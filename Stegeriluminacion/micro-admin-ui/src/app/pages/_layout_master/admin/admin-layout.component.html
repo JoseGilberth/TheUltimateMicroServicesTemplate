@@ -1,0 +1,42 @@
+<div class="wrapper">
+
+
+    <!-- MENU IZQUIERDO -->
+    <div [hidden]="!utilComponent.seleccionEmpresa" class="sidebar" data-color="white" data-background-color="sf"
+        data-image="./../../../../assets/img/sidebar-1.jpg">
+        <app-sidebar-cmp></app-sidebar-cmp>
+        <div class="sidebar-background" style="background-image: url(assets/img/sidebar-1.jpg)"></div>
+    </div>
+
+    <!-- PANEL PRINCIPAL -->
+    <div class="main-panel">
+        <!-- HEADER -->
+        <app-navbar-cmp></app-navbar-cmp>
+        <!-- CONTENIDO -->
+        <router-outlet>
+
+            <div *ngIf="utilComponent.loading"
+                style="z-index: 9999; background: rgba(255,255,255,.5); width:100%; height: 100%; position: fixed; top: 0; left: 0; overflow: auto;">
+
+                <div class="loader">
+                    <svg class="circular" viewBox="25 25 50 50">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                            stroke-miterlimit="10" />
+                    </svg>
+                </div>
+                <!--<div class="loader">
+                    <img style='width:120px; margin: 20px 0 0 0;' src='assets/img/cargando_2.gif' />
+                    <br>
+                </div>-->
+            </div>
+
+        </router-outlet>
+        <!-- FOOTER -->
+        <div *ngIf="!isMap()">
+            <app-footer-cmp></app-footer-cmp>
+        </div>
+    </div>
+
+    <!-- CONFIGURACIÓN DERECHA -->
+    <!--app-fixedplugin></app-fixedplugin-->
+</div>

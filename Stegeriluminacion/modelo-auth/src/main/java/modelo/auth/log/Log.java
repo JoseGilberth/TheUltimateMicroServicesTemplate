@@ -27,9 +27,6 @@ import lombok.Data;
 import modelo.auth.usuarios.publicos.MotivoAltaBajaPublico;
 import modelo.auth.usuarios.publicos.PermisoPublico;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
-import modelo.auth.usuarios.publicos.ubicacion.DireccionEntrega;
-import modelo.auth.usuarios.publicos.ubicacion.DireccionFacturacion;
-import modelo.auth.usuarios.publicos.ubicacion.DireccionVivienda;
 
 @Data
 @Entity

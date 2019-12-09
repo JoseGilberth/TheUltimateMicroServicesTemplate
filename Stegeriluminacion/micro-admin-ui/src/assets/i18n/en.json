@@ -1,0 +1,2391 @@
+{
+    "genericos": {
+        "todos": "Todos",
+        "activo": "Activo",
+        "inactivo": "Inactivo",
+        "ok": "OK",
+        "creado": "¡Creado!",
+        "error": "Error",
+        "aceptar": "Aceptar",
+        "cancelar": "Cancelar",
+        "cerrar": "Cerrar",
+        "validar": "Validar",
+        "crear": "Crear",
+        "actualizar": "Actualizar",
+        "aplicar": "Aplicar",
+        "consultar": "Consultar",
+        "noAsignado": "No asignado",
+        "enCaptura": "En captura",
+        "procesandoERP": "Procesando en ERP",
+        "enviadoERP": "Enviado a ERP",
+        "errorAlEnviar": "Error al enviar al ERP"
+
+    },
+    "data_tables": {
+        "idioma": {
+            "decimal": "",
+            "emptyTable": "No hay datos disponibles en la tabla",
+            "info": "Página _PAGE_ de _PAGES_",
+            "infoEmpty": "",
+            "infoFiltered": "(Filtrados de _MAX_ registros totales)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "_MENU_ registros por página",
+            "loadingRecords": "Cargando...",
+            "processing": "Cargando....",
+            "search": "Buscar: ",
+            "zeroRecords": "No se encontraron registros que coincidan",
+            "paginate": {
+                "first": "Primera",
+                "last": "Última",
+                "next": ">",
+                "previous": "<"
+            },
+            "aria": {
+                "sortAscending": ": Activar para mostrar en ascendencia",
+                "sortDescending": ": Activar para mostrar en descendencia"
+            }
+        }
+    },
+    "validaciones": {
+        "required": "El campo '{{ campo }}' es requerido.",
+        "min": "No se permiten menos de {{ min }} caracteres.",
+        "max": "No se permiten más de {{ max }} caracteres.",
+        "size": "Solo se permiten más de {{ min }} caracteres y menos de {{ max }}.",
+        "match": "El campo '{{ campo1 }}' no coincide con el campo '{{ campo2 }}'.",
+        "textOnly": "Solo se permite texto en este campo.",
+        "numberOnly": "Solo se permiten números en este campo."
+    },
+    "erroresGenerales": {
+        "error": "Whoops, algo salió mal.",
+        "permiso": "No cuenta con el permiso necesario para acceder a este recurso"
+    },
+
+    "login": {
+        "titulo": "Acceso",
+        "iniciar_sesion": "Iniciar sesión",
+        "cerrar_sesion": "Cerrar sesión",
+        "usuario": "Usuario",
+        "password": "Password",
+        "errores": {
+            "601": "El usuario se encuentra inactivo, favor de verificar.",
+            "602": "Usuario inexistente.",
+            "606": "Usuario o password incorrectos.",
+            "607": "Error de conexión con el servicio de autenticación de Salud Fiscal."
+        }
+    },
+    "registro": {
+        "crear": "Crear cuenta",
+        "password": "Contraseña",
+        "rePassword": "Confitmar contraseña",
+        "correo": "Correo",
+        "rfc": "RFC",
+        "usuario": "Usuario",
+        "razonSocial": "Razón social"
+    },
+    "principal": {
+        "usuarios": {
+            "errores": {
+                "600": "El usuario ya se encuentra en el sistema, favor de verificar",
+                "603": "El usuario no puede ser eliminado por ser default, favor de verificar"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            },
+            "index": {
+                "titulo": "Lista de usuarios",
+                "id": "Id",
+                "usuario": "Usuario",
+                "nombre": "Nombre",
+                "primer_apellido": "Primer apellido",
+                "segundo_apellido": "Segundo apellido",
+                "perfil": "Perfil",
+                "empresas": "Empresas",
+                "activo": "Estatus",
+                "acciones": "Acciones",
+                "sin-datos": "¡No hay datos!",
+                "tooltip-buscar": "Buscar",
+                "tooltip-filtro": "Filtro",
+                "tooltip-quitar-filtro": "Quitar filtro",
+                "tooltip-agregar": "Agregar",
+                "tooltip-editar": "Editar",
+                "tooltip-eliminar": "Eliminar",
+                "tooltip-activar": "Activar"
+            },
+            "filtro": {
+                "titulo": "Filtrar usuarios",
+                "usuario": "Usuario",
+                "nombre": "Nombre",
+                "correo": "Correo",
+                "perfil": "Perfil",
+                "empresa": "Empresa",
+                "estatus": "Estatus",
+                "cancelar": "Cancelar",
+                "filtrar": "Aplicar"
+            },
+            "crear": {
+                "titulo": "Crear usuario",
+                "usuario": "Usuario",
+                "password": "Password",
+                "passwordconfim": "Confirma el password",
+                "validacion_password": "Los passwords no coinciden",
+                "nombre": "Nombre",
+                "primer_apellido": "Primer apellido",
+                "segundo_apellido": "Segundo apellido",
+                "correo": "Correo",
+                "validacion_correo": "Ingresa una dirección de correo valida.",
+                "empresas": "Empresas",
+                "id": "Id",
+                "todas": "Todas",
+                "roles": "Roles",
+                "descripcion": "Descripción",
+                "sin_datos": "Sin datos",
+                "cancelar": "Cancelar",
+                "crear": "Crear",
+                "validacion_empresas": "Debe seleccionar al menos una empresa.",
+                "validacion_perfiles": "Debe seleccionar al menos un perfil.",
+                "creando_usuario": "Creando al usuario…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editar": {
+                "titulo": "Editar usuario",
+                "usuario": "Usuario",
+                "password": "Password",
+                "passwordconfim": "Confirme el password",
+                "validacion_password": "Los passwords no coinciden",
+                "nombre": "Nombre",
+                "primer_apellido": "Primer apellido",
+                "segundo_apellido": "Segundo apellido",
+                "correo": "Correo",
+                "validacion_correo": "Ingresa una dirección de correo valida.",
+                "empresas": "Empresas",
+                "id": "Id",
+                "todas": "Todas",
+                "roles": "Roles",
+                "descripcion": "Descripción",
+                "sin_datos": "Sin datos",
+                "cancelar": "Cancelar",
+                "actualizar": "Actualizar",
+                "validacion_empresas": "Debe seleccionar al menos una empresa.",
+                "validacion_perfiles": "Debe seleccionar al menos un perfil.",
+                "actualizando_usuario": "Actualizando al usuario.",
+                "actualizado": "¡Actualizado!",
+                "error": "Error"
+            },
+            "eliminar": {
+                "titulo": "¿Desea eliminar el usuario seleccionado?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto": "El usuario {{ usuario }} será eliminado",
+                "fallo": "Error al eliminar al usuario",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "activar": {
+                "titulo": "¿Activar usuario?",
+                "aceptar": "Si, ¡activar!",
+                "cancelar": "No, cancelar",
+                "texto": "El usuario {{ usuario }} será activado",
+                "fallo": "Error al activar al usuario",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Canceló la operación",
+                "activado": "Activado",
+                "error": "Error"
+            }
+        },
+        "perfiles": {
+            "perfiles": "Perfiles",
+            "errores": {
+                "604": "El rol ya se encuentra en el sistema, favor de verificar",
+                "605": "El rol no puede ser eliminado por ser default , favor de verificar"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            },
+            "index": {
+                "titulo": "Lista de perfiles",
+                "id": "Id",
+                "nombre": "Nombre",
+                "permisos": "Permisos",
+                "descripcion": "Descripción",
+                "activo": "Estatus",
+                "acciones": "Acciones",
+                "sin-datos": "¡No hay datos!",
+                "tooltip-buscar": "Buscar",
+                "tooltip-filtro": "Filtro",
+                "tooltip-quitar-filtro": "Quitar filtro",
+                "tooltip-agregar": "Agregar",
+                "tooltip-editar": "Editar",
+                "tooltip-eliminar": "Eliminar",
+                "tooltip-activar": "Activar"
+            },
+            "filtro": {
+                "titulo": "Filtrar perfiles",
+                "nombre": "Nombre",
+                "descripcion": "Descripción",
+                "estatus": "Estatus",
+                "cancelar": "Cancelar",
+                "filtrar": "Aplicar"
+            },
+            "crear": {
+                "titulo": "Crear perfil",
+                "nombre": "Nombre",
+                "descripcion": "Descripción",
+                "validacion_permisos": "Debe de seleccionar al menos un permiso para el rol",
+                "creando_perfil": "Creando el perfil...",
+                "cancelar": "Cancelar",
+                "creado": "¡Creado!",
+                "error": "Error",
+                "crear": "Crear"
+            },
+            "editar": {
+                "titulo": "Editar perfil",
+                "nombre": "Nombre",
+                "descripcion": "Descripción",
+                "validacion_permisos": "Debe de seleccionar al menos un permiso para el rol",
+                "actualizando_perfil": "Actualizando el perfil...",
+                "cancelar": "Cancelar",
+                "actualizado": "¡Actualizado!",
+                "error": "Error",
+                "crear": "Crear"
+            },
+            "eliminar": {
+                "titulo": "¿Eliminar perfil?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto": "El perfil {{ perfil }} será eliminado",
+                "fallo": "Error al eliminar el perfil",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            },
+            "activar": {
+                "titulo": "¿Activar perfil?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡activar!",
+                "texto": "El perfil {{ perfil }} será activado",
+                "fallo": "Error al activar el perfil",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            }
+        },
+        "contratos": {
+            "index": {
+                "titulo": "Lista de contratos",
+                "folio": "Folio",
+                "descripcion": "Descripción",
+                "propietario": "Propietario",
+                "empresas": "Empresas",
+                "acciones": "Acciones",
+                "sin-datos": "¡No hay datos!",
+                "tooltip-buscar": "Buscar",
+                "tooltip-filtro": "Filtro",
+                "tooltip-quitar-filtro": "Quitar filtro",
+                "tooltip-agregar": "Agregar",
+                "tooltip-editar": "Editar",
+                "tooltip-eliminar": "Eliminar",
+                "tooltip-activar": "Activar"
+            },
+            "eliminar": {
+                "titulo": "¿Eliminar contrato?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto": "El contrato {{ contrato }} será eliminado",
+                "fallo": "Error al eliminar el contrato",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            }
+        },
+        "empresas": {
+            "index": {
+                "titulo": "Lista de empresas",
+                "logo": "Logo",
+                "empresa": "Empresa",
+                "rfc": "RFC",
+                "sync": "Estatus SYNC",
+                "sat": "Credenciales SAT",
+                "infonavit": "Credenciales infonavit",
+                "enrolamiento": "Enrolamiento SAT",
+                "acciones": "Acciones",
+                "sin-datos": "¡No hay datos!",
+                "tooltip-buscar": "Buscar",
+                "tooltip-filtro": "Filtro",
+                "tooltip-quitar-filtro": "Quitar filtro",
+                "tooltip-agregar": "Agregar",
+                "tooltip-editar": "Editar",
+                "tooltip-eliminar": "Eliminar",
+                "tooltip-activar": "Activar"
+            },
+            "crear": {
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "configuracion-sincronizacion": "Configuración de sincronización",
+                "configuracion-sat": "Configuración del SAT",
+                "servidorEntrada": "Información del servidor"
+            },
+            "editar": {
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "configuracion-sincronizacion": "Configuración de sincronización",
+                "configuracion-sat": "Configuración del SAT"
+            },
+            "filtro": {
+                "titulo": "Filtrar empresas",
+                "cancelar": "Cancelar",
+                "filtrar": "Aplicar"
+            },
+            "eliminar": {
+                "titulo": "¿Eliminar empresa?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto": "La empresa {{ empresa }} será eliminada",
+                "fallo": "Error al eliminar la empresa",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            }
+        },
+        "registro": {
+            "crearM": {
+                "titulo": "Crear usuario",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando_cuenta": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            }
+        }
+    },
+    "triplematch": {
+        "facturas-recibidas": {
+            "tooltip": {
+                "historial": "Historial",
+                "comentario": "Comentarios",
+                "detalle": "Detalles",
+                "info": "Información",
+                "eliminar": "Eliminar"
+            },
+            "index": {
+                "titulo": "Administración de facturas triple match",
+                "listado": "Listado de facturas triple match",
+                "acciones": "Acciones",
+                "activo": "Estatus",
+                "id": "Id",
+                "nombre": "Nombre",
+                "rfc": "RFC",
+                "tooltip-detalle": "Ver detalle",
+                "empty": "Sin datos",
+                "estados-factura": "Estados de factura",
+                "conciliacion": "Conciliación",
+                "envioErp": "Envío ERP",
+                "proveedor": "Proveedor",
+                "serieFolio": "Serie / Folio:",
+                "fecha": "Fecha factura",
+                "total": "Total"
+            },
+            "modal-proveedor": {
+                "titulo": "Filtrar proveedores",
+                "nombre": "Nombre",
+                "rfc": "RFC",
+                "cancelar": "Cancelar",
+                "filtrar": "Filtrar"
+            },
+            "detalle-factura": {
+                "titulo": "Detalle de factura",
+                "revision": " En revisión",
+                "orden_compra": "Órdenes de compra",
+                "grn": "GRN",
+                "lineas": "Líneas factura",
+                "facturas": "Facturas",
+                "general": "General",
+                "actualizar": "Actualizar",
+                "conciliar": "Conciliar",
+                "ordenes": "Órdenes de compra",
+                "ordenesAsociadas": "Órdenes de compra asociadas",
+                "gnr": "GRN",
+                "historial": "Historial",
+                "comentarios": "Comentarios",
+                "enviar_erp": "Enviar al ERP",
+                "informacion": "Ver información",
+                "pdf": "Ver PDF",
+                "rechazar": "Rechazar",
+                "razon_social": "Razón Social:",
+                "rfc": "RFC:",
+                "identFact": "Identificador factura:",
+                "folioFisc": "Folio fiscal:",
+                "serieFolio": "Serie / Folio:",
+                "razonFecha": "Razón fecha factura:",
+                "fecha": "Fecha:",
+                "moneda": "Moneda:",
+                "subTotal": "Subtotal:",
+                "impuestoRetenido": "Impuestos retenidos:",
+                "impuestosTrasladado": "Impuestos trasladados:",
+                "total": "Total",
+                "estatusFactura": "Estatus de factura",
+                "estatusERP": "Estatus ERP",
+                "estatusConciliacion": "Estatus conciliación",
+                "tituloLinea": "Líneas de factura",
+                "acciones": "Acciones",
+                "descripion": "Descripción",
+                "unidad": "Unidad",
+                "costo": "Costo",
+                "cantidadFact": "Cant. facturada",
+                "um": "U.M.",
+                "descuento": "Descuento",
+                "recepcion": "Recepción",
+                "cantRecibida": "Cant. recibida",
+                "tiutloOrdenes": "Asociar órdenes de compra a la factura",
+                "fechaOrden": "Fecha de la orden",
+                "ordenCompra": "Orden de compra",
+                "monto": "Monto",
+                "asociada": "Asociada",
+                "numero": "Número",
+                "precio": "Precio",
+                "cantidadEsperada": "Cant. esperada",
+                "cantidadRecibida": "Cant. recibida",
+                "cantidadPendiente": "Cant. pendiente",
+                "cantidadFacturada": "Cant. facturada",
+                "descripcion": "Descripción",
+                "tituloGrn": "Configurar GRN para proveedor",
+                "asociadas": "Asociadas",
+                "disponibles": "Disponibles",
+                "identificadorGRN": "Identificador del GRN",
+                "cantidadOc": "Cant. oc. asociadas",
+                "cantidadComp": "Cantidad comprobada",
+                "cantidadFaltante": "Cantidad faltante",
+                "asociar": "Asociar",
+                "desasociar": "Desasociar",
+                "detalle": "Detalle",
+                "lineasO": "Líneas",
+                "filtro-detalle": {
+                    "cancelar": "¡Cancelar!",
+                    "filtrar": "Filtrar",
+                    "titulo": "Filtrar",
+                    "razon_social": "Razón social"
+                },
+                "rechazarM": {
+                    "titulo": "¿Rechazar factura?",
+                    "cancelar": "No, cancelar",
+                    "aceptar": "Si, ¡rechazar!",
+                    "texto1": "La factura cambiará su estado a rechazada",
+                    "siRechazar": "Si, ¡rechazar!",
+                    "noRechazar": "No, cancelar",
+                    "fallo": "Error al rechazar la factura",
+                    "cancelado": "Cancelado",
+                    "cancelado_texto": "Canceló la operación",
+                    "cancelaste_operacion": "Canceló la operación",
+                    "rechazado": "Rechazada",
+                    "error": "Error"
+                },
+                "recepcionesDisp": {
+                    "titulo": "Recepciones disponibles",
+                    "po": "PO",
+                    "numLinea": "# Línea",
+                    "um": "U.M.",
+                    "cantRecibida": "Cant. recibida",
+                    "cantFacturada": "Cant. facturada",
+                    "costo": "Costo",
+                    "descripcion": "Descripción"
+                },
+                "msjAsociar": {
+                    "titulo": "Asociar orden de compra",
+                    "aceptar": "Aceptar",
+                    "texto1": "La orden de compra se asoció correctamente.",
+                    "fallo": "Error al asociar la orden de compra",
+                    "error": "Error"
+                },
+                "msjDesasociar": {
+                    "titulo": "Desasociar orden de compra",
+                    "aceptar": "Aceptar",
+                    "texto1": "La orden de compra se desasoció correctamente.",
+                    "fallo": "Error al desasociar la orden de compra",
+                    "error": "Error"
+                },
+                "msjAsociarRecepcion": {
+                    "titulo": "Recepción asociada",
+                    "aceptar": "Aceptar",
+                    "texto1": "La recepción se asoció correctamente",
+                    "fallo": "Error al asociar la orden de compra",
+                    "error": "Error"
+                },
+                "msjDesasociarRecepcion": {
+                    "titulo": "¿Desasociar la recepción?",
+                    "aceptar": "Aceptar",
+                    "texto": "La recepción se desasoció correctamente",
+                    "texto1": "La recepción regresará a la lista de recepciones disponibles",
+                    "siDesasociar": "Si, ¡desasociar!",
+                    "noDesasociar": "No, cancelar",
+                    "desasociada": "Recepción desasociada",
+                    "fallo": "Error al desasociar la orden de compra",
+                    "cancelado": "Cancelado",
+                    "cancelado_texto": "Canceló la operación",
+                    "error": "Error"
+                },
+                "detalles-linea": {
+                    "titulo": "Detalles de la línea",
+                    "campo": "Campo",
+                    "ordenado": "Ordenado",
+                    "recibido": "Recibido",
+                    "facturado": "Facturado",
+                    "costo": "Costo",
+                    "cantidad": "Cantidad",
+                    "unidadMedida": "Unidad de medida",
+                    "total": "Total"
+                }
+            }
+        },
+        "documentos-no-procesados": {
+            "modal-detalle": {
+                "titulo": "Detalle de mensaje",
+                "nombre": "Nombre",
+                "rfcemisor": "RFC emisor",
+                "aplicacion": "Aplicación",
+                "emisor": "Emisor",
+                "estatus": "Estatus",
+                "total": "Total",
+                "mensaje-exitoso": "Factura guardada correctamente",
+                "mensaje-erroneo": "Algo salio mal",
+                "cerrar": "Cerrar",
+                "pdf": "pdf"
+            },
+            "titulo": "Mensajes del buzón",
+            "remitente": "Remitente",
+            "factura": "Factura",
+            "fecha": "Fecha",
+            "asunto": "Asunto",
+            "filtro": "Filtrar",
+            "administrador": "Administrador",
+            "validador": "Validador",
+            "autorizadorViaticos": "Autorizador de viaticos",
+            "estado": "Estado",
+            "mensaje": "Mensaje",
+            "filtrar": "Filtrar",
+            "cancelar": "Cancelar",
+            "sin-datos": "¡No hay datos!",
+            "tooltip-mensaje": "Destalles del mensaje"
+
+        }
+    },
+    "repositorio": {
+        "facturasEmitidas": "Lista de facturas emitidas",
+        "facturasRecibidas": "Lista de facturas recibidas",
+        "complementosEmitidos": "Lista de complementos emitidos",
+        "complementosRecibidos": "Lista de complementos recibidos",
+        "nominas": "Lista de nóminas emitidas",
+        "declaraciones": "Lista de declarciones",
+
+        "filtro": {
+            "facturasEmitidas": "Filtrar facturas emitidas",
+            "facturasRecibidas": "Filtrar facturas recibidas",
+            "complementosEmitidos": "Filtrar complementos emitidos",
+            "complementosRecibidos": "Filtrar complementos recibidos",
+            "nominas": "Filtrar nóminas emitidas",
+            "declarcaiones": "Filtrar nóminas emitidas"
+        },
+        "comun": {
+            "acciones": "Acciones",
+            "serie": "Serie",
+            "fecha": "Fecha",
+            "folio": "Folio",
+            "estatus": "Estatus",
+            "rfc": "RFC",
+            "folioFiscal": "Folio fiscal (uuid)",
+            "razonSocial": "Razon social",
+            "rfcReceptor": "RFC receptor",
+            "nombreReceptor": "Nombre receptor",
+            "rfcEmisor": "RFC emisor",
+            "nombreEmisor": "Nombre emisor",
+            "subtotal": "Subtotal",
+            "descuento": "Descuento",
+            "iva": "IVA",
+            "trasladado": "Total trasladado",
+            "retenido": "Total retenido",
+            "total": "Total",
+            "fechaI": "Fecha inicio",
+            "fechaF": "Fecha fin",
+
+            "operacion": "# de operación",
+            "rfcEmpresa": "RFC empresa",
+            "declaracion": "Declaración",
+            "complementaria": "Complementaria",
+            "fechaP": "Fecha presentada",
+            "anio": "Año",
+            "periodicidad": "Periodicidad",
+            "periodo": "Periódo"
+
+        },
+        "logValidacion": {
+            "titulo": "Log de validaciones",
+            "tipo": "Tipo de validaciones"
+        },
+        "detalles": {
+            "titulo": "Detalle de complemento",
+            "uuid": "UUID relacionado",
+            "fecha": "Fecha de pago",
+            "cuenta": "Cta. beneficiario",
+            "monto": "Monto",
+            "forma": "Forma de pago"
+        },
+        "tooltip": {
+            "filtro": "Filtro",
+            "excel": "Generar reporte en excel",
+            "zip": "Descargar facturas filtradas",
+            "pdf": "Descargar PDF",
+            "xml": "Descargar XML",
+            "log": "Log validaciones",
+            "detalles": "Detalles"
+        }
+
+    },
+    "erp": {
+        "controlSync": {
+            "titulo": "Procesando",
+            "sincronizado": "¡Sincronizando!",
+            "sincronizando": "Procesando la solicitud…",
+            "mensaje": "El proceso se ha iniciado correctamente.",
+            "error": "Error"
+        },
+        "articulos": {
+            "index": {
+                "id": "ID",
+                "titulo": "Artículos",
+                "acciones": "Acciones",
+                "nombre": "Nombre",
+                "estatus": "Estatus",
+                "descripcion": "Descripción",
+                "unidad": "Unidad de medida",
+                "tipo": "Tipo",
+
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar artículos",
+                "tootipQuitar": "Quitar filtrar",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+
+            },
+            "crearM": {
+                "titulo": "Agregar artículo",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando_articulo": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar artículo",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando_articulo": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar artículo?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, Cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "monedas": {
+            "index": {
+                "titulo": "Mondedas",
+                "acciones": "Acciones",
+                "iso": "Moneda ISO",
+                "idMoneda": "ID Moneda",
+                "descripcion": "Descripción",
+                "nombre": "Nombre",
+                "estatus": "Estatus",
+                "clave": "Clave",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar artículos",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar moneda",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando_moneda": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar moneda",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando_moneda": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar moneda?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro",
+                "texto2": "será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "departamentos": {
+            "index": {
+                "id": "ID",
+                "titulo": "Departamentos",
+                "acciones": "Acciones",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "nombre": "Nombre",
+                "linea": "Línea de código de unidad",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar departamento",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando_depa": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar departamento",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando_depa": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar departamento?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro",
+                "texto2": "será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "cuentasERP": {
+            "index": {
+                "id": "ID",
+                "titulo": "Cuentas ERP",
+                "acciones": "Acciones",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "estatus": "Estatus",
+                "cuenta": "Número de cuenta",
+                "descripcion": "Desctipción",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar cuenta ERP",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando_cuenta": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar cuenta ERP",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando_cuenta": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar cuenta ERP?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "empleados": {
+            "index": {
+                "id": "ID",
+                "titulo": "Empleados",
+                "acciones": "Acciones",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "nombre": "Nombre",
+                "usuario": "Usuario",
+                "idUsuario": "ID de usuario",
+                "departamento": "Departamento",
+                "idDepartamento": "Departamento",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar empleado",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar cuenta ERP",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar empleado?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el empleado",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "codigoCosto": {
+            "index": {
+                "id": "ID",
+                "titulo": "Código de costo",
+                "acciones": "Acciones",
+                "idCodigo": "ID código",
+                "idNegocio": "ID negocio",
+                "codigo": "Código",
+                "descripcion": "Descripción",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar código de costo",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar código de costo",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar código de costo?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "unidadMedida": {
+            "index": {
+                "id": "ID",
+                "titulo": "Unidad de medida",
+                "acciones": "Acciones",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "codigoiso": "Código ISO",
+                "descripcioniso": "Descripción ISO",
+                "descripcion": "Descripción",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Asociar unidad de medida",
+                "cancelar": "¡Cancelar!",
+                "crear": "Asociar",
+                "creando": "Asociando el registro…",
+                "creado": "¡Asociado!",
+                "error": "Error"
+            },
+            "crearM2": {
+                "titulo": "Desasociar unidad de medida",
+                "cancelar": "¡Cancelar!",
+                "crear": "Desasociar",
+                "creando": "Desasociando el registro…",
+                "creado": "¡Desasociado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar unidad de medida",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar el registro?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar unidad de medida",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            },
+            "configuracion": {
+                "unidades": "Unidades de medida"
+            }
+        },
+        "clientes": {
+            "index": {
+                "id": "ID",
+                "titulo": "Clientes",
+                "acciones": "Acciones",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "idpais": "ID país",
+                "rfc": "RFC",
+                "nombre": "Nombre",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar cliente",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando cliente…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar Cliente",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar cliente?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, Cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "impuestos": {
+            "index": {
+                "id": "ID",
+                "titulo": "Impuestos",
+                "acciones": "Acciones",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "idsat": "ID SAT",
+                "nombre": "Nombre",
+                "config": "Configurar",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar impuesto",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar impuesto",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar impuesto?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "cuentaPago": {
+            "index": {
+                "id": "ID",
+                "titulo": "Cuentas de pago",
+                "acciones": "Acciones",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "idEmpresa": "ID empresa",
+                "nombre": "Nombre",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar",
+                "tooltipSinc": "Sincronizar"
+            },
+            "crearM": {
+                "titulo": "Agregar cuenta de pago",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar cuenta de pago",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar cuenta de pago?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, Cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "miscelaneo": {
+            "index": {
+                "id": "ID",
+                "titulo": "Código misceláneo",
+                "acciones": "Acciones",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "descripcion": "Descripción",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar código misceláneo",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar código misceláneo",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar código misceláneo?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "almacen": {
+            "index": {
+                "id": "ID",
+                "titulo": "Almacén",
+                "acciones": "Acciones",
+                "nombre": "Nombre",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar almacén",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar almacén",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar almacén?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, Cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "proyectos": {
+            "index": {
+                "id": "ID",
+                "titulo": "Proyectos",
+                "acciones": "Acciones",
+                "nombre": "Nombre",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Agregar proyecto",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar proyecto",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar proyecto?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "sistemas": {
+            "index": {
+                "id": "ID",
+                "titulo": "Sistemas ERP",
+                "tituloTbl": "Sistemas externos ERP",
+                "acciones": "Acciones",
+                "nombre": "Nombre",
+                "idempresa": "ID empresa",
+                "proyecto": "Proyecto estatus",
+                "orden": "Orden servicio",
+                "empleados": "Empleados estatus",
+                "prefijo": "Prefijo empleado",
+                "prefijoEE": "Prefijo empleado estatus",
+                "estatus": "Estatus sistema ERP",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Sistemas ERP",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar sistema ERP",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar sistemas ERP?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "ordenes": {
+            "index": {
+                "id": "ID",
+                "titulo": "Órdenes de compra",
+                "acciones": "Acciones",
+                "orden": "Orden de compra",
+                "erp": "ERP",
+                "fecha": "Fecha orden",
+                "proveedor": "Proveedor",
+                "almacen": "Almacén",
+                "costo": "Costo",
+                "estatus": "Estatus",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "lineas": {
+                "titulo": "Agregar línea",
+                "articulo": "Articulo",
+                "unidad": "Unidad de medida",
+                "cantidad": "Cantidad ordenada",
+                "recibida": "Cantidad recibida",
+                "costo": "Costo"
+            },
+            "crearM": {
+                "titulo": "Orden de compra",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar orden de compra",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar orden de compra?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar cliente",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        },
+        "ordenesS": {
+            "index": {
+                "id": "ID",
+                "titulo": "Órdenes de servicio",
+                "acciones": "Acciones",
+                "descripcion": "Descripción",
+                "iderp": "ID ERP",
+                "idsis": "ID sistema ERP",
+                "codmisc": "Código miscelaneo",
+                "estatus": "Estatus",
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "lineas": {
+                "id": "ID",
+                "titulo": "Línea de servicio",
+                "descripcion": "Descripción",
+                "activo": "Estatus",
+                "id_sro": "ID SRO"
+            },
+            "lineasOp": {
+                "id": "ID",
+                "titulo": "Lineas de operación",
+                "descripcion": "Descripción",
+                "activo": "Estatus",
+                "id_sro": "ID SRO"
+            },
+            "crearM": {
+                "titulo": "Orden de servicio",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar orden de servicio",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar orden de servicio?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar cliente",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        }
+
+    },
+    "proveedores": {
+        "expediente": {
+            "titulo": "Expedientes generales no asignados",
+            "titulo2": "Expedientes asignados",
+            "eliminar": {
+                "titulo": "¿Eliminar expediente?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto": "El expediente será eliminado",
+                "fallo": "Error al eliminar el expediente",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            },
+            "agregar": {
+                "titulo": "¿Agregar expediente?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡agregar!",
+                "texto": "El expediente será agregado",
+                "fallo": "Error al agregar el expediente",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            }
+        },
+        "proveedores": {
+            "eliminar": {
+                "titulo": "¿Eliminar proveedor?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto": "El registro será eliminado",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            },
+            "vincular": {
+                "titulo": "¿Vincular proveedor?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡vincular!",
+                "texto": "El proveedor será vinculado",
+                "fallo": "Error al vincular el proveedor",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            },
+            "desvincular": {
+                "titulo": "¿Desvincular proveedor?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡desvincular!",
+                "texto": "El proveedor será desvinculado",
+                "fallo": "Error al desvincular el proveedor",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            },
+            "enviar": {
+                "titulo": "¿Invitar proveedor al portal?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡invitar!",
+                "texto": "El proveedor será invitado al portal",
+                "fallo": "Error al invitar el proveedor",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            },
+            "reenviar": {
+                "titulo": "¿Reenviar invitación a proveedor?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡reenviar!",
+                "texto": "Se reenviará la invitación al portal",
+                "fallo": "Error al reenviar invitación",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación"
+            },
+            "crearM": {
+                "titulo": "Proveedor",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar proveedor",
+                "cancelar": "¡Cancelar!",
+                "crear": "Editar",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "asociarM": {
+                "titulo": "Asociar orden de compra",
+                "cancelar": "¡Cancelar!",
+                "crear": "Asociar",
+                "modificando": "Asociando el registro…",
+                "modificado": "¡Asociado!",
+                "error": "Error"
+            },
+            "desasociarM": {
+                "titulo": "Desasociar orden de compra",
+                "cancelar": "¡Cancelar!",
+                "crear": "Desasociar",
+                "modificando": "Desasociando el registro…",
+                "modificado": "¡Desasociado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar proveedor?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar proveedor",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            }
+        }
+    },
+    "viaticos": {
+        "registroviajes": {
+            "index": {
+                "titulo": "Registro de viajes",
+                "acciones": "Acciones",
+                "estatus": "Estatus",
+                "id": "ID",
+                "nombre": "Nombre",
+                "fecha_salida": "Fecha de salida",
+                "fecha_regreso": "Fecha de regreso",
+                "usuario": "Usuario",
+                "tooltip-filtro": "Buscar",
+                "tooltip-quitar-filtro": "Quitar filtro",
+                "tooltip-agregar": "Nuevo registro",
+                "tooltip-editar": "Editar",
+                "tooltip-comentarios": "Comentarios",
+                "tooltip-detalle": "Detalle",
+                "tooltip-eliminar": "Eliminar",
+                "tooltip-historial": "Historial",
+                "tooltip-pdf": "PDF",
+                "sin-datos": "Sin datos"
+            },
+            "comentario": {
+                "titulo": "Comentarios"
+            },
+            "crear": {
+                "titulo": "Nueva solicitud de viaje",
+                "datosViaje": "Datos del viaje",
+                "unidadNegocio": "Unidad de negocio:",
+                "nombreViaje": "Nombre del viaje",
+                "origen": "Origen",
+                "fechaPartida": "Fecha de partida",
+                "departamento": "Departamento",
+                "proyectos": "Proyectos",
+                "ordenesServicio": "Órdenes de servicio",
+                "descripcionCorta": "Descripción corta",
+                "destino": "Destino",
+                "fechaRegreso": "Fecha de regreso",
+                "moneda": "Moneda",
+                "proyecto": "Proyecto",
+                "codigoCosto": "Código de costo",
+                "ordenServicio": "Orden de Servicio",
+                "codigoMisc": "Código miscelaneo",
+                "acciones": "Acciones",
+                "autorizado": "Autorizado",
+                "fechaP": "Fecha partida",
+                "fechaL": "Fecha llegada",
+                "viajeRedondo": "Viaje redondo",
+                "ciudad": "Ciudad",
+                "fechaEntrada": "Fecha entrada",
+                "fechaSalida": "Fecha salida",
+                "noches": "Noches",
+                "anticipo": "Anticipo",
+                "descripcion": "Descripción",
+                "categoria": "Categoría",
+                "monto": "Monto",
+                "montoTotal": "Monto total",
+                "porDia": "Por día",
+                "periodo": "Periodo",
+                "numeroDias": "Número de días",
+                "resumen": "Resumen de anticipos",
+                "anticipoTotal": "Anticipo total",
+                "id": "ID",
+                "ida": "Ida",
+                "regreso": "Regreso",
+                "estado": "Estado",
+                "autorizacion": "Autorización"
+            },
+            "vuelo": {
+                "titulo": "Nuevo vuelo",
+                "viajeRedondo": "Viaje redondo",
+                "fechaVueloIda": "Fecha del vuelo de ida",
+                "horaVueloIda": "Hora del vuelo de ida",
+                "fechaVueloRegreso": "Fecha del vuelo de regreso",
+                "horaVueloRegreso": "Hora del vuelo de regreso",
+                "origen": "Origen",
+                "destino": "Destino",
+                "autorizar": "Autorizar"
+
+            }
+        },
+        "autorizar": {
+            "index": {
+                "titulo": "Autorizar viáticos",
+                "liquidacion": "Liquidación de viáticos",
+                "acciones": "Acciones",
+                "estatus": "Estatus",
+                "id": "ID",
+                "razon": "Razón",
+                "usuario": "Usuario",
+                "fechaIni": "Fecha inicial",
+                "fechaFin": "Fecha final",
+                "total": "Total de liquidación",
+                "asignadas": "Asignadas a mi",
+                "todas": "Todas",
+                "todos": "Todos",
+                "tooltip-filtro": "Filtrar",
+                "tooltip-Qfiltro": "Quitar filtro",
+                "tooltip-excel": "Generar reporte en excel",
+                "tooltip-pdf": "PDF",
+                "tooltip-detalles": "Detalles",
+                "tooltip-historial": "Historial",
+                "tooltip-eliminar": "Eliminar"
+            },
+            "detalles": {
+                "acciones": "Acciones",
+                "titulo": "Detalle de liquidación",
+                "facturado": "Facturado",
+                "noFacturado": "No facturado",
+                "fechaIni": "Fecha inicio",
+                "fechaFin": "Fecha fin",
+                "estatus": "Estatus",
+                "resumen": "Resumen",
+                "moneda": "Moneda",
+                "impuesto": "Impuesto",
+                "totalFacturado": "Total facturado",
+                "total": "Total",
+                "anticipo": "Anticipo",
+                "reembolso": "Reembolso",
+                "conceptos": "Conceptos",
+                "hotel": "Hoteles",
+                "renta": "Renta de autos",
+                "diversos": "Diversos",
+                "fecha": "Fecha",
+                "gasto": "Gasto",
+                "importe": "Importe",
+                "decripcion": "Descripción",
+                "tooltip-aprovado": "Aprobado",
+                "tooltip-aprovar": "Aprobar",
+                "tooltip-rechazar": "Rechazar",
+                "tooltip-rechazado": "Rechazado",
+                "tooltip-comentario": "Comentarios",
+                "tooltip-info": "Ver información",
+                "enviarERP": "Enviar a ERP"
+
+            }
+        },
+        "mensajesBuzon": {
+            "index": {
+                "titulo": "Mensajes recibidos",
+                "acciones": "Acciones",
+                "remitente": "Remitente",
+                "estado": "Estado",
+                "fecha": "Fecha",
+                "adjuntos": "Número de adjuntos",
+                "tooltip-filtro": "Filtrar",
+                "tooltip-Qfiltro": "Filtrar"
+            },
+            "filtro": {
+                "contenido": "Contenido del mensaje",
+                "mostrar": "Mostrar solo con errores"
+            }
+        },
+        "configuraciones": {
+            "index": {
+                "acciones": "Acciones",
+                "id": "ID",
+                "titulo": "Conceptos de gastos",
+                "concepto": "Concepto",
+                "categoria": "Categoría",
+                "cuenta": "Número de cuenta",
+                "config": "Configuracion departamento",
+                "tipo": "Tipo",
+                "deducible": "Deduciblie",
+                "noDeducible": "NO deduciblie",
+                "descripcion": "Descripción",
+
+                "tooltipEditar": "Editar",
+                "tooltipEliminar": "Eliminar",
+                "tootipFiltro": "Filtrar",
+                "tootipQuitar": "Quitar filtro",
+                "tooltipNuevo": "Nuevo",
+                "tooltipCerrar": "Cerrar"
+            },
+            "crearM": {
+                "titulo": "Conceptos de Gastos",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "editarM": {
+                "titulo": "Editar conceptos de gastos",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "modificando": "Modificando el registro…",
+                "modificado": "¡Modificado!",
+                "error": "Error"
+            },
+            "eliminarM": {
+                "titulo": "¿Eliminar conceptos de gastos?",
+                "cancelar": "No, cancelar",
+                "aceptar": "Si, ¡eliminar!",
+                "texto1": "El registro será eliminado",
+                "siEliminar": "Si, ¡eliminar!",
+                "noEliminar": "No, cancelar",
+                "fallo": "Error al eliminar el registro",
+                "cancelado": "Cancelado",
+                "cancelado_texto": "Canceló la operación",
+                "cancelaste_operacion": "Canceló la operación",
+                "eliminado": "Eliminado",
+                "error": "Error"
+            },
+            "cancelar_operacion": {
+                "titulo": "¿Desea cancelar la operación?",
+                "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+                "aceptar": "Aceptar",
+                "cancelar": "Cancelar",
+                "cancelado": "Cancelado",
+                "cancelaste_operacion": "Cancelado"
+            },
+            "autorizaciones": {
+                "titulo": "Flujo de aprobación",
+                "titulo_tab1": "Configuraciones viaticantes",
+                "titulo_tab2": "Configuraciones departamentos",
+                "permisos": {
+                    "gastos": "¿El usuario puede elegir sus conceptos de gastos por departamento?",
+                    "vuelos": "¿El usuario puede seleccionar vuelo?",
+                    "hospedaje": "¿El usuario puede seleccionar hospedaje? "
+                },
+                "tipo": {
+                    "flujo": "Por flujo",
+                    "autorizador": "Por autorizador",
+                    "titulo1": "Autorizador",
+                    "titulo2": "Flujo aprobación"
+                },
+                "placeHolder": {
+                    "deptoSelect": "Departamentos",
+                    "criterios": "Criterios",
+                    "usuarios": "Usuarios"
+                },
+                "tooltip": {
+                    "detalles": "Detalles",
+                    "eliminar": "Eliminar"
+                }
+            }
+        }
+    },
+    "buzon": {
+        "index": {
+            "acciones": "Acciones",
+            "titulo": "Buzón tributario",
+            "fecha": "Fecha",
+            "mensajeT": "Título del mensaje",
+            "tooltipDetalle": "Detalle del mensaje",
+            "tooltipDescargar": "Descargar"
+        },
+        "detalleM": {
+            "tiutloTxt": "Titulo",
+            "mensaje": "Mensaje",
+            "fecha": "Fecha de descarga:"
+        }
+    },
+
+    "listaNegra": {
+        "busquedaRFC": {
+            "acciones": "Acciones",
+            "listanegra": "Lista negra",
+            "id": "Id Interno",
+            "no": "No",
+            "rfc": "RFC",
+            "nContr": "Nombre del contribuyente",
+            "situacion": "Situación del contribuyente",
+            "globalPres": "Número y fecha de oficio global de presunción",
+            "satPres": "Publicación página SAT presuntos",
+            "dofPres": "Publicación DOF presuntos",
+            "satDesv": "Publicación página SAT desvirtuados",
+            "contrDesv": "Número y fecha de oficio global de contribuyentes que desvirtuaron",
+            "dofDesv": "Publicación DOF desvirtuados",
+            "globalDef": "Número y fecha de oficio global de definitivos",
+            "satDef": "Publicación página SAT definitivos",
+            "dofDef": "Publicación DOF definitivos",
+            "globalSenFav": "Número y fecha de oficio global de sentencia favorable",
+            "satSenFav": "Publicación página SAT sentencia favorable",
+            "dofSenFav": "Publicación DOF sentencia favorable",
+            "ultima": "Última atualización",
+            "estado": "Estado",
+            "activo": "Activo",
+            "razon": "Razón social",
+            "tipo": "Tipo persona",
+            "supuesto": "Supuesto",
+            "primera": "Fechas de primera publicación",
+            "monto": "Monto",
+            "publicacion": "Fecha de publicación",
+            "carga": "Fecha carga",
+            "fecha": "Fecha",
+            "cliente": "Cliente",
+            "proveedor": "Proveedor",
+            "69": "Artículo 69",
+            "69b": "Artículo 69 B",
+            "tratamiento": "Tratamiento",
+            "detalle": "Detalles"
+        },
+        "clienteProv": {
+            "titulo": "Clientes proveedores",
+            "unidad": "Unidad de negocio",
+            "estado": "Estado",
+            "tooltipLista": "Está en lista negra",
+            "tooltipNolista": "No está en lista negra"
+
+        },
+        "configuracion": {
+            "titulo": "Configuración",
+            "email": "Email",
+            "notificar": "Notificar",
+            "eliminar": "Eliminar",
+            "eliminarM": "¿Eliminar correo?",
+            "errorCorre": "Favor de introducir un correo"
+        }
+
+    },
+    "clinicaFiscal": {
+        "modal": {
+            "conciliacion": {
+                "titulo": "Fecha de conciliación"
+            },
+            "actualizacion": {
+                "titulo": "Actualización del UUID"
+            }
+        },
+        "tooltip": {
+            "detalles": "Detalles",
+            "conciliar": "Conciliar",
+            "actualizar": "Actualizar UUID"
+        },
+        "errores": {
+            "901": "Error 901",
+            "902": "Error 902",
+            "903": "Error 903",
+            "904": "Error 904",
+            "905": "Error 905"
+        },
+        "advertencias": {
+            "archivo": "Debe seleccionar un archivo para cargar la información.",
+            "fechaConciliacion": "Debe ingresar la fecha de conciliación.",
+            "uuidActualizado": "Debe ingresar el UUID para poder actualizarlo."
+        },
+        "carga": "Carga del archivo",
+        "cargaCorrecta": "El archivo se procesó correctamente.",
+        "cargaIncorrecta": "El archivo no se proces&oacute; correctamente.",
+        "fechaConciliacionCorrecta": "La fecha de conciliación se actualizó correctamente.",
+        "uuidActualizacionCorrecta": "El UUID se actualizó correctamente.",
+        "totales": {
+            "noPagadas": "Total de \"No pagadas\"",
+            "pagadas": "Total de \"Pagadas\"",
+            "parcialidades": "Total de \"Parcialidades\"",
+            "pagosEx": "Total de \"Pagos excedentes\"",
+            "pagadoCanc": "Total de \"Pagadas canceladas\""
+        },
+        "facturas": {
+            "acciones": "Acciones",
+            "estatusPago": "Estatus pago",
+            "estatusCompl": "Estatus complemento",
+            "conciliacion": "Conciliación",
+            "fechaConciliacion": "Fecha conciliación",
+            "fechaFacturacion": "Fecha facturación",
+            "fechaEmision": "Fecha emisión",
+            "fechaPagoCompl": "Fecha pago complemento",
+            "fechaCSV": "Fecha pago en CSV",
+            "difFechas": "Diferencia fechas",
+            "uuid": "UUID",
+            "razonSocial": "Razón social",
+            "rfc": "RFC",
+            "monto": "Monto",
+            "moneda": "Moneda",
+            "difMonto": "Diferencia monto",
+            "metodoPago": "Método pago",
+            "formaPago": "Forma pago"
+        },
+        "pagosSinFactura": {
+            "acciones": "Acciones",
+            "uuid": "UUID",
+            "serie": "Serie",
+            "moneda": "Moneda",
+            "rfc": "RFC",
+            "voucher": "Voucher",
+            "vendor": "Vendor",
+            "nombre": "Nombre",
+            "total": "Total",
+            "cambio": "Cambio",
+            "fecha": "Fecha"
+        },
+        "complementos": {
+            "uuid": "UUID complemento",
+            "fecha": "Fecha pago",
+            "numero": "Número de parcialidad",
+            "saldoAnt": "Saldo anterior",
+            "saldoPag": "Saldo pagado",
+            "saldoPen": "Saldo pendiente"
+        },
+        "pagos": {
+            "fecha": "Fecha pago",
+            "total": "Total",
+            "tipoCambio": "Tipo de cambio",
+            "moneda": "Moneda",
+            "numPago": "Número de pago"
+        },
+        "reporte": "Resultados",
+        "filtro": {
+            "facturas": "Filtrar facturas",
+            "pagos": "Filtrar pagos sin factura"
+        },
+        "select": {
+            "tipoFecha": "Tipo de fecha",
+            "conciliacion": "Estatus de conciliación",
+            "estatusPago": "Estatus pago",
+            "estatusCompl": "Estatus complemento",
+            "metodo": "Método de pago",
+            "forma": "Forma de pago"
+        },
+        "input": {
+            "fechaInicio": "Desde",
+            "fechaFin": "Hasta",
+            "uuid": "UUID",
+            "rfc": "RFC"
+        }
+    },
+    "facturasFinancieras": {
+        "index": {
+            "titulo": "Administración de facturas financieras",
+            "titulo2": "Buzón de facturas",
+            "titulo3": "Administración de facturas sin orden de compra",
+            "titulo4": "Listado de facturas financieras",
+            "acciones": "Acciones",
+            "proveedor": "Proveedor",
+            "fecha": "Fecha",
+            "importe": "Importe",
+            "fechaDia": "Por día",
+            "fechaRango": "Por rango",
+            "fechaIni": "Fecha inicio",
+            "fechaFin": "Fecha fin",
+            "estatus": "Estatus",
+            "tooltip-filtro": "Filtro",
+            "tooltip-pdf": "Descargar PDF",
+            "tooltip-comentario": "Comentarios",
+            "tooltip-editar": "Editar comprobante",
+            "tooltip-eliminar": "Eliminar",
+            "tooltip-enviar": "Enviar a ERP",
+            "tooltip-agregar": "Agregar facturas",
+            "tooltip-detalles": "Detalles",
+            "tooltip-actualizar": "Actualizar",
+            "tooltip-factura": "Cargar factura"
+        },
+        "tblMultilinea": {
+            "descripcion": "Descripción",
+            "cant": "Cantidad",
+            "costo": "Costo",
+            "importe": "Importe"
+        },
+        "detallesIzq": {
+            "titulo": "Detalles de la factura",
+            "rfc": "RFC:",
+            "emision": "Emisión:",
+            "folio": "Folio:",
+            "total": "Total:"
+
+        },
+
+        "comprobante": {
+            "acciones": "Acciones",
+            "titulo": "Comprobante",
+            "titulo1": "General",
+            "titulo2": "Desglose de factura",
+            "montoTotal": "Monto total:",
+            "fechaGasto": "Fecha del gasto",
+            "impuestos": "Impuestos",
+            "impuestoSAT": "Impuestos SAT",
+            "impuestoERP": "Impuestos ERP",
+            "ivaTras": "IVA traslado",
+            "proveedor": "Proveedor",
+            "cuentaUnica": "Cuenta única",
+            "cuentaMultiple": "Múltiples cuentas",
+            "descripcion": "Descripción",
+            "cuenta": "Cuenta",
+            "codigosUnidad": "Códigos de unidad",
+            "codigoUnidad": "Código de unidad",
+            "cantidad": "Cantidad",
+            "costo": "Costo",
+            "importe": "Importe",
+            "monto": "Monto"
+        },
+        "buzonNoProcesados": {
+            "tituloPrincipal": "Mensajes del buzón",
+            "tituloModal": "Buscar",
+            "tablaMensajes": {
+                "acciones": "Acciones",
+                "remitente": "Remitente",
+                "factura": "Factura",
+                "fecha": "Fecha",
+                "asunto": "Asunto",
+                "tooltip": {
+                    "detalle": "Detalles",
+                    "mensaje": "Mensaje"
+                }
+            },
+            "filtros": {
+                "placeHolder": {
+                    "remitente": "Remitente",
+                    "estado": "Estado",
+                    "contenido": "Contenido del mensaje",
+                    "chk": "Mostrar solo con errores"
+                }
+            }
+        },
+        "eliminarM": {
+            "titulo": "¿Eliminar factura?",
+            "cancelar": "No, cancelar",
+            "aceptar": "Si, ¡eliminar!",
+            "texto1": "El registro será eliminado",
+            "siEliminar": "Si, ¡eliminar!",
+            "noEliminar": "No, cancelar",
+            "fallo": "Error al eliminar el registro",
+            "cancelado": "Cancelado",
+            "cancelado_texto": "Canceló la operación",
+            "cancelaste_operacion": "Canceló la operación",
+            "eliminado": "Eliminado",
+            "error": "Error"
+        },
+        "crearM": {
+            "titulo": "Enviar a ERP",
+            "cancelar": "¡Cancelar!",
+            "crear": "Enviar",
+            "creando": "Enviando el registro…",
+            "creado": "¡Enviado!",
+            "error": "Error"
+        },
+        "cancelar_operacion": {
+            "titulo": "¿Desea cancelar la operación?",
+            "contenido": "Se perderán todos los cambios que haya realizado ¿desea continuar?",
+            "aceptar": "Aceptar",
+            "cancelar": "Cancelar",
+            "cancelado": "Cancelado",
+            "cancelaste_operacion": "Cancelado"
+        }
+    },
+    "portalProveedores": {
+        "ordenesCompra": {
+            "titulo": "Órdenes de compra",
+            "acciones": "Acciones",
+            "clave": "Clave",
+            "fechaOrden": "Fecha de la orden",
+            "monto": "Monto total",
+            "indicadorEntrega": "Indicador de entrega",
+            "indicadorConciliacion": "Indicador de conciliación",
+            "filtro": "Filtro",
+            "actualizar": "Actualizar",
+            "recibido": "Recibido",
+            "descripcion": "Descripción",
+            "precio": "Precio",
+            "ua": "U.M.",
+            "esperada": "Cantidad esperada",
+            "recibida": "Cantidad recibida",
+            "pendiente": "Cantidad pendiente",
+            "tooltip-detalles": "Detalles",
+            "estatus": "Estado",
+            "ordenado": "Ordenado",
+            "pendienteS": "Pendiente",
+            "completado": "Completado"
+        },
+        "expediente": {
+            "titulo": "Documentación solicitada",
+            "acciones": "Acciones",
+            "estatus": "Estatus",
+            "fechaActualizacion": "Fecha actualización",
+            "tipoDoc": "Tipo de documento",
+            "nombre": "Nombre",
+            "descripcion": "Descripción",
+            "tooltip-pdf": "PDF",
+            "tooltip-comentario": "Comentario",
+            "tooltip-subir": "Subir archivo",
+            "fechaIni": "Fecha inicio",
+            "fechaFin": "Fecha fin",
+            "crearM": {
+                "titulo": "Subir arhcivo",
+                "cancelar": "¡Cancelar!",
+                "crear": "Crear",
+                "creando": "Creando el registro…",
+                "creado": "¡Creado!",
+                "error": "Error"
+            },
+            "asociarM": {
+                "titulo": "Asociar orden de compra",
+                "cancelar": "Cancelar!",
+                "crear": "Asociar",
+                "modificando": "Asociando el registro…",
+                "modificado": "¡Asociado!",
+                "error": "Error"
+            },
+            "desasociarM": {
+                "titulo": "Desasociar orden de compra",
+                "cancelar": "Cancelar!",
+                "crear": "Desasociar",
+                "modificando": "Desasociando el registro…",
+                "modificado": "¡Desasociado!",
+                "error": "Error"
+            }
+        },
+        "detalle-factura": {
+            "titulo": "Detalle de factura",
+            "revision": " En revisión",
+            "orden_compra": "Órdenes de compra",
+            "grn": "GRN",
+            "lineas": "Lineas",
+            "facturas": "Facturas",
+            "actualizar": "Actualizar",
+            "ordenes": "Órdenes de compra",
+            "gnr": "GRN",
+            "historial": "Historial",
+            "comentarios": "Comentarios",
+            "enviar_erp": "Enviar al ERP",
+            "enviar_revision": "Enviar a revisión",
+            "informacion": "Ver información",
+            "pdf": "Ver PDF",
+            "rechazar": "Rechazar",
+            "razon_social": "Razón social:",
+            "rfc": "RFC:",
+            "identFact": "Identificador Factura:",
+            "serieFolio": "Serie / Folio:",
+            "razonFecha": "Razón fecha factura:",
+            "moneda": "Moneda:",
+            "subTotal": "Subtotal:",
+            "impuestoRetenido": "Impuestos retenidos:",
+            "impuestosTrasladado": "Impuestos trasladados:",
+            "total": "Total",
+            "estatusFactura": "Estatus de factura",
+            "tituloLinea": "Líneas de factura",
+            "acciones": "Acciones",
+            "descripion": "Descripción",
+            "costo": "Costo",
+            "cantidadFact": "Cant. facturada",
+            "um": "U.M.",
+            "descuento": "Descuento",
+            "recepcion": "Recepción",
+            "cantRecibida": "Cant. recibida",
+            "tiutloOrdenes": "Asociar órdenes de compra a la factura",
+            "fechaOrden": "Fecha de la orden",
+            "ordenCompra": "Orden de compra",
+            "monto": "Monto",
+            "asociada": "Asociada",
+            "numero": "Número",
+            "precion": "Precio",
+            "cantidadEsperada": "Cantidad Esperada",
+            "cantidadRecibida": "Cantidad Recibida",
+            "cantidadPendiente": "Cantidad Pendiente",
+            "descripcion": "Descripción",
+            "tituloGrn": "Configurar GRN para proveedor",
+            "asociadas": "Asociadas ",
+            "disponibles": "Disponibles",
+            "identificadorGRN": "Identificador del GRN",
+            "cantidadOc": "Cant. oc. asociadas",
+            "cantidadComp": "Cantidad comprobada",
+            "cantidadFaltante": "Cantidad faltante",
+            "filtro-detalle": {
+                "cancelar": "¡Cancelar!",
+                "filtrar": "Filtrar",
+                "titulo": "Filtrar",
+                "razon_social": "Razón social"
+            },
+            "enviarM": {
+                "titulo": "Enviar a revisión",
+                "cancelar": "Cancelar!",
+                "crear": "Enviar",
+                "creando": "Enviando el registro…",
+                "creado": "¡Enviado!",
+                "error": "Error"
+            }
+
+        }
+    },
+    "footer": {
+        "salud_fiscal": "Salud Fiscal 2.0",
+        "app_where": "Appwhere.mx"
+    }
+}

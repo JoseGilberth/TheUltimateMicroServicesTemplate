@@ -1,0 +1,96 @@
+<div class="wrapper wrapper-full-page">
+  <div class="page-header register-page header-filter" filter-color="black"
+    style="background-image: url('./assets/img/register.jpg'); background-size: cover; background-position: top center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto ">
+          <div class="card card-signup">
+            <h2 class="card-title text-center">Registro</h2>
+            <div class="card-body">
+              <div class="col-md-12 mr-auto ">
+                <mat-form-field appearance="standard">
+                  <mat-label>{{ 'registro.usuario' | translate }}</mat-label>
+                  <mat-icon matPrefix>person</mat-icon>
+                  <input matInput required [(ngModel)]="crearNuevo.usuario">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                  <mat-label>{{ 'registro.razonSocial' | translate }}</mat-label>
+                  <mat-icon matPrefix>person</mat-icon>
+                  <input matInput required [(ngModel)]="crearNuevo.nombre">
+                </mat-form-field>
+                <mat-form-field appearance="standard">
+                  <mat-label>{{ 'registro.correo' | translate }}</mat-label>
+                  <mat-icon matPrefix>mail</mat-icon>
+                  <input type="email" matInput required [(ngModel)]="crearNuevo.correo">
+                </mat-form-field>
+                <form [formGroup]="form">
+                  <mat-form-field appearance="standard">
+                    <mat-label>{{ 'registro.password' | translate }}</mat-label>
+                    <mat-icon matPrefix>lock_outline</mat-icon>
+                    <input matInput required maxlength="8" type="password" [(ngModel)]="crearNuevo.password"
+                      formControlName="password" [errorStateMatcher]="passwordErrorMatcher">
+                    <mat-error>Error: {{ getErrorMessage('password') }}</mat-error>
+                  </mat-form-field>
+                  <mat-form-field appearance="standard">
+                    <mat-label>{{ 'registro.rePassword' | translate }}</mat-label>
+                    <mat-icon matPrefix>lock_outline</mat-icon>
+                    <input matInput required maxlength="8" type="password" [(ngModel)]="crearNuevo.passwordConfirm"
+                      formControlName="confirm" [errorStateMatcher]="confirmErrorMatcher">
+                    <mat-error>Error: {{ getErrorMessage('confirm') }}</mat-error>
+                  </mat-form-field>
+                </form>
+                <!-- <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="" checked="">
+                      <span class="form-check-sign">
+                          <span class="check"></span>
+                        </span>
+                      I agree to the
+                      <a href="#something">terms and conditions</a>.
+                    </label>
+                  </div>-->
+                <div class="text-center">
+                  <button [disabled]="verifica()" (click)="crear()"
+                    class="btn btn-salud-fiscal btn-sf">{{ 'registro.crear' | translate }}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<footer class="footer ">
+      <div class="container">
+         <nav class="pull-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Creative Tim
+              </a>
+            </li>
+            <li>
+              <a href="https://creative-tim.com/about-us">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="http://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright pull-right">
+          &copy;
+        {{test | date: 'yyyy'}}, made with <i class="material-icons">favorite</i> by
+          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+        </div>
+      </div>
+    </footer>-->
+  </div>
+</div>

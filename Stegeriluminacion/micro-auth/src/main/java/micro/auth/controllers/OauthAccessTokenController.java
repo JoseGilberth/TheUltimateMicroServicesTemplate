@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dto.main.Respuesta;
-import dto.micro.administracion.oauthaccesstoken.FiltroOauthAccessTokenDTO;
+import dto.micro.auth.oauthaccesstoken.FiltroOauthAccessTokenDTO;
 import micro.auth.services.OauthAccessTokenService;
 import modelo.auth.oauth2.OauthAccessToken;
 

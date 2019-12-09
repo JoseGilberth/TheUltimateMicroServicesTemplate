@@ -25,9 +25,6 @@ import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
 import modelo.auth.usuarios.Usuario;
-import modelo.auth.usuarios.publicos.ubicacion.DireccionEntrega;
-import modelo.auth.usuarios.publicos.ubicacion.DireccionFacturacion;
-import modelo.auth.usuarios.publicos.ubicacion.DireccionVivienda;
 
 @Entity
 @Table(indexes = { @Index(columnList = "username", name = "index_usuario"),
@@ -47,16 +44,6 @@ public class UsuarioPublico extends Usuario implements Serializable {
 	@Length(min = 10, max = 10, message = "{usuario.publico.telefonoCelular.lenght}")	
 	@Column(name = "telefonoCelular", unique = true, nullable = false, length = 10)
 	private String telefonoCelular;
-
-	@OneToOne
-	@JoinColumn(nullable = true)
-	private DireccionVivienda direccionVivienda;
-
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<DireccionFacturacion> direccionFacturacion;
-
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<DireccionEntrega> direccionEntrega;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_publico_permiso_publico", joinColumns = @JoinColumn(name = "usuario_publico_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "permisos_id", referencedColumnName = "id"))

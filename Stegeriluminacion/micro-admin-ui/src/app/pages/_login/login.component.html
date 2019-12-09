@@ -1,0 +1,77 @@
+<div class="wrapper wrapper-full-page">
+  <div class="page-header login-page header-filter" filter-color="blue"
+    style="background-image: url('./assets/img/login.jpg'); background-size: cover; background-position: top center;">
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container">
+      <div class="row">
+
+
+        <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+
+          <form class="form" (ngSubmit)="f.form.valid && iniciarSesion()" #f="ngForm" [formGroup]="loginFG" novalidate>
+
+            <div class="card card-login card-hidden">
+              <div class="card-header card-header-primary text-center">
+                <h4 class="card-title">{{ 'login.titulo' | translate }}</h4>
+
+              </div>
+              <div class="card-body ">
+
+                <span class="bmd-form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">person</i>
+                      </span>
+                    </div>
+                    <input type="Usuario" class="form-control" placeholder="{{ 'login.usuario' | translate }}"
+                      [(ngModel)]="loginDTO.username" name="usuario" formControlName="usuario" required>
+                  </div>
+                </span>
+                <span class="bmd-form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">lock_outline</i>
+                      </span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="{{ 'login.password' | translate }}"
+                      [(ngModel)]="loginDTO.password" name="password" formControlName="password" required>
+                  </div>
+                </span>
+              </div>
+
+              <div class="card-footer justify-content-center">
+                <button type="submit" [disabled]="f.form.invalid"
+                  class="btn btn-salud-fiscal btn-sf">{{ 'login.iniciar_sesion' | translate }}</button>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="footer ">
+      <div class="container-fluid">
+        <nav class="pull-left">
+          <ul>
+            <li>
+              <a href="https://www.saludfiscal.com">
+                {{ 'footer.salud_fiscal' | translate }}
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright pull-right">
+          &copy;
+          {{test | date: 'yyyy'}}, Por
+          <a href="https://www.appwhere.com" target="_blank">{{ 'footer.app_where' | translate }}</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</div>

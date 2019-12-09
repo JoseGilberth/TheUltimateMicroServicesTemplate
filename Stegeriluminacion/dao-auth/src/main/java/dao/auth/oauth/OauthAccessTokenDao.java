@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import dto.micro.administracion.oauthaccesstoken.FiltroOauthAccessTokenDTO;
+import dto.micro.auth.oauthaccesstoken.FiltroOauthAccessTokenDTO;
 import modelo.auth.oauth2.OauthAccessToken; 
  
 public interface OauthAccessTokenDao extends JpaRepository<OauthAccessToken, String>{
