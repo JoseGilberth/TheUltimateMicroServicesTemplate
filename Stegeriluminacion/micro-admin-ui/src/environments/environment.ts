@@ -13,11 +13,19 @@ export const environment = {
    * MODULO LOGIN
    * 
   */
-  // LOGIN
+  // MICRO_AUTH
   micro_auth: {
     base: "uaa",
     post: {
       iniciarSesion: "oauth/token"
+    }
+  },
+  
+  // MICRO USUARIOS
+  micro_usuarios: {
+    base: "micro-usuarios",
+    post: {
+      obtenerPorFiltro: "usuarios/publico/filtro"
     }
   }
  

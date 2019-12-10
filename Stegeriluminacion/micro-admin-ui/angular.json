@@ -27,7 +27,8 @@
               "node_modules/angular-calendar/scss/angular-calendar.scss",
               "node_modules/sweetalert2/src/sweetalert2.scss",
               "src/assets/css/demo.css",
-              "src/assets/scss/material-dashboard.scss"
+              "src/assets/scss/material-dashboard.scss",
+              "node_modules/datatables.net-bs/css/dataTables.bootstrap.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",

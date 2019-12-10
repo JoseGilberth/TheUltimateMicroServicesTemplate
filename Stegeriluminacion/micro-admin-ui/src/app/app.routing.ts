@@ -16,8 +16,8 @@ export const AppRoutes: Routes = [
     component: AdminLayoutComponent,
     canActivate: [AuthGuardService, PermissionGuardService],
     children: [
-      { path: '', loadChildren: './pages/administracion/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' }} 
-     // , { path: 'usuarios', loadChildren: './pages/administracion/principal/usuarios/usuarios.module#UsuariosModule', data: { breadcrumb: 'Usuarios', permiso: 'Application/SF:SaludFiscal:Web:Principal:Usuarios:Modulo' }, canActivate: [PermissionGuardService] }
+      { path: '', loadChildren: './pages/administracion/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' } }
+      , { path: 'usuarios', loadChildren: './pages/administracion/usuarios/usuarios.module#UsuariosModule', data: { breadcrumb: 'Usuarios' }}
     ]
   },
   {

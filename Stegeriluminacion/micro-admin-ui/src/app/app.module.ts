@@ -24,7 +24,6 @@ import { FooterModule } from './pages/_layout_master/footer/footer.module';
 import { NavbarModule } from './pages/_layout_master/navbar/navbar.module';
 //MASTER
 import { SidebarModule } from './pages/_layout_master/sidebar/sidebar.module';
-import { Token } from './_dto/Token.Dto';
 //SEGURIDAD
 import { AuthGuardService } from './_guards/auth-guard.service';
 import { PermissionGuardService } from './_guards/permission-guard.service';
@@ -32,6 +31,7 @@ import { PermissionGuardService } from './_guards/permission-guard.service';
 import { NotificationComponent } from './_shared/notification.component';
 import { TokenInterceptor } from './_shared/token-interceptor';
 import { UtilComponent } from './_shared/util.component';
+import { Token } from './_dto/login/Token.Dto';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -40,8 +40,10 @@ export function createTranslateLoader(http: HttpClient) {
 
 export function tokenGetter() {
     let token: Token = <Token>JSON.parse(localStorage.getItem(configuraciones.static.token));
-    console.log("TOKEN:_ " + JSON.stringify( token));
-    return token.access_token;
+    if (token != null) {
+        return token.access_token;
+    }
+    return null;
 }
 
 export const MY_FORMATS = {

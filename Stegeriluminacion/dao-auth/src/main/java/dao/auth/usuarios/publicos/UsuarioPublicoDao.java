@@ -14,13 +14,19 @@ import modelo.auth.usuarios.publicos.UsuarioPublico;
 
 public interface UsuarioPublicoDao extends  JpaRepository<UsuarioPublico, Long >{
 
-	@Query("FROM UsuarioPublico up " + " WHERE (:#{#filtroUsuarioPublicoDTO.username} is null or up.username =:#{#filtroUsuarioPublicoDTO.username})"
+	
+	@Query("FROM UsuarioPublico up "
+	      + " WHERE (:#{#filtroUsuarioPublicoDTO.username} is null or up.username =:#{#filtroUsuarioPublicoDTO.username})"
 			+ " AND (:#{#filtroUsuarioPublicoDTO.correo} is null or up.correo = :#{#filtroUsuarioPublicoDTO.correo})"
 			+ " AND (:#{#filtroUsuarioPublicoDTO.nombre} is null or up.nombre = :#{#filtroUsuarioPublicoDTO.nombre})"
 			+ " AND (:#{#filtroUsuarioPublicoDTO.apellido1} is null or up.apellido1 = :#{#filtroUsuarioPublicoDTO.apellido1})" 
 			+ " AND (:#{#filtroUsuarioPublicoDTO.apellido2} is null or up.apellido2 = :#{#filtroUsuarioPublicoDTO.apellido2})"
-			+ " AND (:#{#filtroUsuarioPublicoDTO.enabled} is null or up.enabled = :#{#filtroUsuarioPublicoDTO.enabled})"  
+			+ " AND (:#{#filtroUsuarioPublicoDTO.telefonoCelular} is null or up.telefonoCelular = :#{#filtroUsuarioPublicoDTO.telefonoCelular})"
+			+ " AND (:#{#filtroUsuarioPublicoDTO.limitRequestInicial} is null or up.limitRequest between :#{#filtroUsuarioPublicoDTO.limitRequestInicial} AND :#{#filtroUsuarioPublicoDTO.limitRequestFinal} )"
+			+ " AND (:#{#filtroUsuarioPublicoDTO.timeUnit} is null or up.timeUnit = :#{#filtroUsuarioPublicoDTO.timeUnit})"
+			+ " AND (:#{#filtroUsuarioPublicoDTO.tokenExpirationInicial} is null or up.tokenExpiration between :#{#filtroUsuarioPublicoDTO.tokenExpirationInicial} AND :#{#filtroUsuarioPublicoDTO.tokenExpirationFinal} )"
 			+ " AND (:#{#filtroUsuarioPublicoDTO.fechaAltaInicial} is null or up.fechaAlta between :#{#filtroUsuarioPublicoDTO.fechaAltaInicial} AND :#{#filtroUsuarioPublicoDTO.fechaAltaFinal} )"
+			+ " AND (:#{#filtroUsuarioPublicoDTO.enabled} is null or up.enabled = :#{#filtroUsuarioPublicoDTO.enabled})"  
 			+ " ORDER BY up.fechaAlta desc")
 	Page<UsuarioPublico> obtenerTodosPorPaginacion(Pageable pageable, FiltroUsuarioPublicoDTO filtroUsuarioPublicoDTO);
  

@@ -4,8 +4,8 @@ import { Router, CanActivate } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { configuraciones } from 'src/environments/configuraciones';
 import { UtilComponent } from '../_shared/util.component';
-import { Token } from '../_dto/Token.Dto';
-
+import { Token } from '../_dto/login/Token.Dto';
+ 
 
 @Injectable()
 export class AuthGuardService implements CanActivate {

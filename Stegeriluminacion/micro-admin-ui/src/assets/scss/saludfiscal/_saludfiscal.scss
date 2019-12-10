@@ -198,7 +198,7 @@ mat-tree {
 }
 
 
-/*table header size changed*/
+/*table header size changed
 
 table.dataTable>thead>tr>th,
 table.dataTable>tfoot>tr>th {
@@ -206,56 +206,54 @@ table.dataTable>tfoot>tr>th {
     font-weight: 600;
     padding: 5px !important;
 }
-
-
-/*table data size changed*/
-
+ 
 table.dataTable>tbody>tr>td {
     padding: 2px !important;
     font-size: 0.8rem;
 }
+*/
 
-
-/*smaller size filter text box*/
+/*smaller size filter text box
 
 .dataTables_filter>label>input {
     line-height: normal !important;
 }
+*/
 
-
-/*filter label text size changed*/
+/*filter label text size changed
 
 .dataTables_filter>label {
     font-weight: normal !important;
     font-size: 15px !important;
 }
+*/
 
-
-/*entry length text size changed*/
+/*entry length text size changed
 
 .dataTables_length>label {
     font-weight: normal !important;
     font-size: 13px !important;
 }
+*/
 
-
-/*table paging size changed*/
+/*table paging size changed
 
 .dataTables_wrapper .dataTables_paginate>span>a {
     margin-bottom: 0px !important;
     padding: 2px 10px !important;
 }
+*/
 
 
-/*table paging size changed*/
+/*table paging size changed
 
 .dataTables_wrapper .dataTables_paginate>a {
     margin-bottom: 0px !important;
     padding: 2px 10px !important;
-}
+}*/
 
 
-/*table paging float right*/
+/*table paging float right
 
 .dataTables_wrapper .dataTables_paginate {
     text-align: right !important;
@@ -292,6 +290,7 @@ table.dataTable>tbody>tr>td {
     min-height: 300px;
 }
 
+*/
 
 /* SWEET ALERT STYLE OVERRIDED */
 

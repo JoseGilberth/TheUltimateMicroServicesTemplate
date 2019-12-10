@@ -127,9 +127,7 @@ autorización y al micro servicio de eureka
 - http://localhost:8602/micro-auth/actuator  -- Micro servicio de autenticación
 - http://localhost:8603/micro-correos/actuator -- Micro servicio de correos
 - http://localhost:8604/micro-usuarios/actuator -- Micro servicio de usuarios
-- http://localhost:8605/micro-administracion/actuator -- Micro servicio de administracion
-- http://localhost:8606/micro-publico/actuator -- Micro servicio publico
-- http://localhost:8607/micro-catalogos/actuator -- Micro servicio de catalogos
+- http://localhost:8605/micro-administracion/actuator -- Micro servicio de administracion 
  
 | Micro servicio | Puerto |
 | ------------- | ------------- |
@@ -138,9 +136,7 @@ autorización y al micro servicio de eureka
 | micro-auth | 8602  |  
 | micro-correos  |  8603  |  
 | micro-usuarios | 8604  |  
-| micro-administracion  |  8605  |
-| micro-publico |  8606  |
-| micro-catalogos| 8607  |  
+| micro-administracion  |  8605  | 
 
 ## Caracteristicas especiales de esta plantilla
 
@@ -450,18 +446,13 @@ Las siguientes url de monitoreo serviran para acceder a algunas caracteristicas 
   - http://localhost:8602/micro-auth/actuator 
   - http://localhost:8603/micro-correos/actuator 
   - http://localhost:8604/micro-usuarios/actuator 
-  - http://localhost:8605/micro-administracion/actuator 
-  - http://localhost:8606/micro-publico/actuator 
-  - http://localhost:8607/micro-catalogos/actuator 
+  - http://localhost:8605/micro-administracion/actuator  
 
   - http://localhost:8601/stegeriluminacion/uaa/actuator
   - http://localhost:8601/stegeriluminacion/micro-auth/actuator
   - http://localhost:8601/stegeriluminacion/micro-correos/actuator
   - http://localhost:8601/stegeriluminacion/micro-usuarios/actuator
-  - http://localhost:8601/stegeriluminacion/micro-administracion/actuator
-  - http://localhost:8601/stegeriluminacion/micro-publico/actuator
-  - http://localhost:8601/stegeriluminacion/micro-catalogos/actuator 
-
+  - http://localhost:8601/stegeriluminacion/micro-administracion/actuator 
 
 - SWAGGER 
   - http://localhost:8601/stegeriluminacion/swagger-ui.html
@@ -484,13 +475,7 @@ Las siguientes url de monitoreo serviran para acceder a algunas caracteristicas 
 
   - http://localhost:8605/micro-administracion/hystrix
   - http://localhost:8605/micro-administracion/actuator/hystrix.stream
-
-  - http://localhost:8606/micro-publico/hystrix
-  - http://localhost:8606/micro-publico/actuator/hystrix.stream
-
-  - http://localhost:8607/micro-catalogos/hystrix
-  - http://localhost:8607/micro-catalogos/actuator/hystrix.stream
-
+ 
 - SPRING BOOT ADMIN
   - http://localhost:8600/discovery-server/admin
 

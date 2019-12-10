@@ -1,0 +1,66 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons ">search</i>
+                        </div>
+                        <h4 class="card-title">{{ 'principal.usuarios.filtro.titulo' | translate }}</h4>
+                    </div>
+
+                    <div class="card-body">
+
+                        <!-- ===============================================
+                                            FORMULARIOS
+                            ===============================================
+                        -->
+                        <div>
+                            <mat-form-field>
+                                <input matInput placeholder="{{ 'principal.usuarios.filtro.usuario' | translate }}"
+                                    [(ngModel)]="filtro.usuario">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="{{ 'principal.usuarios.filtro.nombre' | translate }}"
+                                    [(ngModel)]="filtro.nombre">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="{{ 'principal.usuarios.filtro.correo' | translate }}"
+                                    [(ngModel)]="filtro.correo">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="{{ 'principal.usuarios.filtro.perfil' | translate }}"
+                                    [(ngModel)]="filtro.rol">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="{{ 'principal.usuarios.filtro.empresa' | translate }}"
+                                    [(ngModel)]="filtro.empresa">
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>{{ 'principal.usuarios.filtro.estatus' | translate }}</mat-label>
+                                <select matNativeControl [(ngModel)]="filtro.activo">
+                                    <option value="" selected>{{ 'genericos.todos' | translate }}</option>
+                                    <option value="true">{{ 'genericos.activo' | translate }}</option>
+                                    <option value="false">{{ 'genericos.inactivo' | translate }}</option>
+                                </select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="row contenedor-botones-sf">
+                            <button mat-raised-button class="btn btn-cancelar btn-salud-fiscal"
+                                (click)="cerrar()">{{ 'principal.usuarios.filtro.cancelar' | translate }}</button>
+
+                            <button mat-raised-button class="btn btn-filtro btn-salud-fiscal"
+                                (click)="filtrar()">{{ 'principal.usuarios.filtro.filtrar' | translate }}</button>
+                        </div>
+
+                    </div><!-- /CARD BODY -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

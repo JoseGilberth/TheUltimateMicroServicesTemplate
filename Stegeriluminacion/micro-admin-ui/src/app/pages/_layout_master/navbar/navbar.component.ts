@@ -9,8 +9,7 @@ import { configuraciones } from '../../../../environments/configuraciones';
 import { UtilComponent } from '../../../_shared/util.component';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { LoginService } from 'src/app/_servicios/login.service';
-import { Token } from 'src/app/_dto/Token.Dto';
-
+import { Token } from 'src/app/_dto/login/Token.Dto';
 
 const misc: any = {
     navbar_menu_visible: 0,
@@ -287,7 +286,7 @@ export class NavbarComponent implements OnInit {
                     return this.titulo;
                 }
 
-                /*for (let j = 0; j < this.listTitles[i].children.length; j++) {
+                for (let j = 0; j < this.listTitles[i].children.length; j++) {
                     let subtitle = this.listTitles[i].path + '/' + this.listTitles[i].children[j].path;
                     if (subtitle === titlee) {
                         return this.listTitles[i].children[j].title;
@@ -306,7 +305,7 @@ export class NavbarComponent implements OnInit {
                             }
                         }
                     }
-                }*/
+                }
             } else if (this.listTitles[i].type === "multi-sub") { // CAMBIAR ESTE METODO A UNO RECURSIVO YA QUE DE MOMENTO SOLO ACEPTA DOS NIVELES
                 for (let j = 0; j < this.listTitles[i].children.length; j++) {
                     let subtitle = this.listTitles[i].path + '/' + this.listTitles[i].children[j].path;

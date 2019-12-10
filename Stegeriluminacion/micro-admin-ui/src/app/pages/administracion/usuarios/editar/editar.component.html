@@ -1,0 +1,254 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons ">edit</i>
+                        </div>
+                        <h4 class="card-title">{{ 'principal.usuarios.editar.titulo' | translate}}</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <!-- ===============================================
+                                                FORMULARIOS
+                                ============================================= -->
+                        <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" [formGroup]="usuariosFG" novalidate>
+                            <div class="row">
+                                <div class="col-6">
+                                    <!-- MITAD 1 -->
+                                    <!-- USUARIO -->
+                                    <mat-form-field>
+                                        <input matInput name="usuario" formControlName="usuario"
+                                            placeholder="{{ 'principal.usuarios.editar.usuario' | translate}}"
+                                            [(ngModel)]="usuario.usuario" required autocomplete="off"
+                                            (keypress)="validacionesComponent.pattern($event, configuraciones.principal.usuarios.usuario.pattern, configuraciones.principal.usuarios.usuario.max )">
+                                        <!-- VALIDACIONES -->
+                                        <mat-hint align="end">
+                                            {{ 'validaciones.size' | translate:{min: configuraciones.principal.usuarios.usuario.min , max: configuraciones.principal.usuarios.usuario.max }  }}
+                                        </mat-hint>
+                                        <mat-error *ngIf="usuariosFG.controls.usuario.errors?.required">
+                                            {{ 'validaciones.required' | translate:{campo: 'principal.usuarios.editar.usuario' | translate }  }}
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <br>
+                                    <!-- PASSWORD -->
+                                    <mat-form-field>
+                                        <input matInput type="password" name="password" formControlName="password"
+                                            placeholder="{{ 'principal.usuarios.editar.password' | translate}}"
+                                            [(ngModel)]="usuario.password"
+                                            (keypress)="validacionesComponent.pattern($event, configuraciones.principal.usuarios.password.pattern, configuraciones.principal.usuarios.password.max )">
+                                        <!-- VALIDACIONES -->
+                                        <mat-hint align="end">
+                                            {{ 'validaciones.size' | translate:{min: configuraciones.principal.usuarios.password.min , max: configuraciones.principal.usuarios.password.max }  }}
+                                        </mat-hint>
+                                        <mat-error *ngIf="usuariosFG.controls.password.errors?.required">
+                                            {{ 'validaciones.required' | translate:{campo: 'principal.usuarios.editar.password' | translate }  }}
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <br>
+                                    <!-- CONFIRMAR PASSWORD -->
+                                    <mat-form-field>
+                                        <input matInput type="password" name="passwordConfirm"
+                                            formControlName="passwordConfirm"
+                                            placeholder="{{ 'principal.usuarios.editar.passwordconfim' | translate}}"
+                                            [(ngModel)]="usuario.passwordConfirm"
+                                            (keypress)="validacionesComponent.pattern($event, configuraciones.principal.usuarios.passwordconfim.pattern, configuraciones.principal.usuarios.passwordconfim.max )">
+                                        <!-- VALIDACIONES -->
+                                        <mat-hint align="end">
+                                            {{ 'validaciones.size' | translate:{min: configuraciones.principal.usuarios.passwordconfim.min , max: configuraciones.principal.usuarios.passwordconfim.max }  }}
+                                        </mat-hint>
+                                        <mat-error *ngIf="usuariosFG.controls.passwordConfirm.errors?.required">
+                                            {{ 'validaciones.required' | translate:{campo: 'principal.usuarios.editar.passwordconfim' | translate }  }}
+                                        </mat-error>
+                                        <mat-error *ngIf="usuariosFG.controls.passwordConfirm.errors?.MatchPassword">
+                                            {{ 'validaciones.match' | translate:{ campo1: 'principal.usuarios.editar.password' | translate , campo2: 'principal.usuarios.editar.passwordconfim' | translate }  }}
+                                            <br>
+                                            {{ 'principal.usuarios.editar.validacion_password' | translate}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <br>
+                                    <!-- NOMBRE -->
+                                    <mat-form-field>
+                                        <input matInput name="nombre" formControlName="nombre"
+                                            placeholder="{{ 'principal.usuarios.editar.nombre' | translate}}"
+                                            [(ngModel)]="usuario.nombre" required
+                                            (keypress)="validacionesComponent.pattern($event, configuraciones.principal.usuarios.nombre.pattern, configuraciones.principal.usuarios.nombre.max )">
+                                        <!-- VALIDACIONES -->
+                                        <mat-hint align="end">
+                                            {{ 'validaciones.size' | translate:{min: configuraciones.principal.usuarios.nombre.min , max: configuraciones.principal.usuarios.nombre.max }  }}
+                                        </mat-hint>
+                                        <mat-error *ngIf="usuariosFG.controls.nombre.errors?.required">
+                                            {{ 'validaciones.required' | translate:{campo: 'principal.usuarios.editar.nombre' | translate }  }}
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                </div>
+                                <br>
+                                <!-- MITAD 2 -->
+                                <div class="col-6">
+
+                                    <!-- PRIMER APELLIDO -->
+                                    <mat-form-field>
+                                        <input matInput name="primerApellido" formControlName="primerApellido"
+                                            placeholder="{{ 'principal.usuarios.editar.primer_apellido' | translate}}"
+                                            [(ngModel)]="usuario.primerApellido" required
+                                            (keypress)="validacionesComponent.pattern($event, configuraciones.principal.usuarios.primer_apellido.pattern, configuraciones.principal.usuarios.primer_apellido.max )">
+                                        <!-- VALIDACIONES -->
+                                        <mat-hint align="end">
+                                            {{ 'validaciones.size' | translate:{min: configuraciones.principal.usuarios.primer_apellido.min , max: configuraciones.principal.usuarios.primer_apellido.max }  }}
+                                        </mat-hint>
+                                        <mat-error *ngIf="usuariosFG.controls.primerApellido.errors?.required">
+                                            {{ 'validaciones.required' | translate:{campo: 'principal.usuarios.editar.primer_apellido' | translate }  }}
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <br>
+                                    <!-- SEGUNDO APELLIDO -->
+                                    <mat-form-field>
+                                        <input matInput name="segundoApellido" formControlName="segundoApellido"
+                                            placeholder="{{ 'principal.usuarios.editar.segundo_apellido' | translate}}"
+                                            [(ngModel)]="usuario.segundoApellido" required
+                                            (keypress)="validacionesComponent.pattern($event, configuraciones.principal.usuarios.segundo_apellido.pattern, configuraciones.principal.usuarios.segundo_apellido.max )">
+                                        <!-- VALIDACIONES -->
+                                        <mat-hint align="end">
+                                            {{ 'validaciones.size' | translate:{min: configuraciones.principal.usuarios.segundo_apellido.min , max: configuraciones.principal.usuarios.segundo_apellido.max }  }}
+                                        </mat-hint>
+                                        <mat-error *ngIf="usuariosFG.controls.segundoApellido.errors?.required">
+                                            {{ 'validaciones.required' | translate:{campo: 'principal.usuarios.editar.segundo_apellido' | translate }  }}
+                                        </mat-error>
+                                    </mat-form-field>
+                                    <br>
+                                    <!-- CORREO -->
+                                    <mat-form-field>
+                                        <input type="email" matInput name="correo" formControlName="correo"
+                                            placeholder="{{ 'principal.usuarios.editar.correo' | translate}}"
+                                            [(ngModel)]="usuario.correo" required>
+                                        <!-- VALIDACIONES -->
+                                        <mat-hint align="end">
+                                            {{ 'validaciones.size' | translate:{min: configuraciones.principal.usuarios.correo.min , max: configuraciones.principal.usuarios.correo.max }  }}
+                                        </mat-hint>
+                                        <mat-error *ngIf="usuariosFG.controls.correo.errors?.required">
+                                            {{ 'validaciones.required' | translate:{campo: 'principal.usuarios.editar.correo' | translate }  }}
+                                        </mat-error>
+                                        <mat-error *ngIf="usuariosFG.controls.correo.errors?.email">
+                                            {{ 'principal.usuarios.editar.validacion_correo' | translate}}
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <!-- ===============================================
+                                                            TABLA DE EMPRESAS 
+                                        ================================================
+                                    -->
+                                    <label>{{ 'principal.usuarios.editar.empresas' | translate}}</label>
+                                    <div class="material-datatables">
+                                        <table id="empresas" class="table table-striped table-no-bordered table-hover"
+                                            cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ 'principal.usuarios.editar.id' | translate}}</th>
+                                                    <th>{{ 'principal.usuarios.editar.nombre' | translate}}</th>
+                                                    <th>
+                                                        <mat-checkbox #todasEmpresas name="selecciona_todas_empresas">
+                                                            {{ 'principal.usuarios.editar.todas' | translate}}
+                                                        </mat-checkbox>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngIf="empresasDTO?.length != 0">
+                                                <tr *ngFor="let empresa of empresasDTO">
+                                                    <td>{{ empresa.idEmpresa }}</td>
+                                                    <td>{{ empresa.razon_social }}</td>
+                                                    <td>
+                                                        <mat-checkbox #empresaCheckBox
+                                                            [checked]="util.arrayObjectIndexOf(empresasSeleccionadas, empresa.idEmpresa, 'idEmpresa')"
+                                                            (change)="validaEmpresasSeleccionadas(empresa , empresaCheckBox , todasEmpresas )">
+                                                        </mat-checkbox>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody *ngIf="empresasDTO?.length == 0">
+                                                <tr>
+                                                    <td colspan="3" class="no-data-available">
+                                                        {{ 'principal.usuarios.editar.sin_datos' | translate}}</td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div><!--  TABLA DE EMPRESAS  -->
+                                </div>
+                                <div class="col-6">
+                                    <!-- ===============================================
+                                                TABLA DE ROLES 
+                                        ================================================
+                                    -->
+                                    <label>{{ 'principal.usuarios.editar.roles' | translate}}</label>
+                                    <div class="material-datatables">
+                                        <table id="roles" class="table table-striped table-no-bordered table-hover"
+                                            cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ 'principal.usuarios.editar.id' | translate}}</th>
+                                                    <th>{{ 'principal.usuarios.editar.nombre' | translate}}</th>
+                                                    <th>{{ 'principal.usuarios.editar.descripcion' | translate}}</th>
+                                                    <th>
+                                                        <mat-checkbox #todosRoles name="selcciona_todos_roles">
+                                                            {{ 'principal.usuarios.editar.todas' | translate}}
+                                                        </mat-checkbox>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody *ngIf="rolesDTO?.length != 0">
+
+                                                <tr *ngFor="let rol of rolesDTO">
+                                                    <td>{{ rol.id }}</td>
+                                                    <td>{{ rol.etiqueta }}</td>
+                                                    <td>{{ rol.descripcion }}</td>
+                                                    <td>
+                                                        <mat-checkbox #rolCheckBox
+                                                            [checked]="util.arrayObjectIndexOf( rolesSeleccionados , rol.id, 'id')"
+                                                            (change)="validaRolesSeleccionados(rol , rolCheckBox , todosRoles )">
+                                                        </mat-checkbox>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                            <tbody *ngIf="rolesDTO?.length == 0">
+                                                <tr>
+                                                    <td colspan="4" class="no-data-available">
+                                                        {{ 'principal.usuarios.editar.sin_datos' | translate}}</td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div><!--  TABLA DE ROLES  -->
+
+                                </div>
+                            </div>
+
+                            <br>
+                            <br>
+
+                            <div class="row contenedor-botones-sf">
+                                <button mat-raised-button class="btn btn-cancelar btn-salud-fiscal"
+                                    (click)="cancelar()">{{ 'principal.usuarios.editar.cancelar' | translate }}</button>
+                                <button mat-raised-button class="btn btn-sf btn-salud-fiscal"
+                                    [disabled]="f.form.invalid"
+                                    (click)="actualizar()">{{ 'principal.usuarios.editar.actualizar' | translate }}</button>
+                            </div>
+
+
+                        </form>
+                    </div><!-- /CARD BODY -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

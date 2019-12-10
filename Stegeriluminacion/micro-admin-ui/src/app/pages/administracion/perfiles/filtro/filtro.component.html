@@ -1,0 +1,56 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header card-header-primary card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons ">search</i>
+                        </div>
+                        <h4 class="card-title">{{ 'principal.perfiles.filtro.titulo' | translate }}</h4>
+                    </div>
+
+                    <div class="card-body">
+
+                        <!-- ===============================================
+                                            FORMULARIOS
+                            ===============================================
+                        -->
+                        <div>
+                            <mat-form-field>
+                                <input matInput placeholder="{{ 'principal.perfiles.filtro.nombre' | translate }}"
+                                    [(ngModel)]="filtro.nombre">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="{{ 'principal.perfiles.filtro.descripcion' | translate }}"
+                                    [(ngModel)]="filtro.descripcion">
+                            </mat-form-field>
+
+                            <mat-form-field>
+                                <mat-label>{{ 'principal.perfiles.filtro.estatus' | translate }}</mat-label>
+                                <select matNativeControl [(ngModel)]="filtro.activo">
+                                    <option value="" selected>{{ 'genericos.todos' | translate }}</option>
+                                    <option value="true">{{ 'genericos.activo' | translate }}</option>
+                                    <option value="false">{{ 'genericos.inactivo' | translate }}</option>
+                                </select>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div class="row contenedor-botones-sf">
+
+                            <button mat-raised-button class="btn btn-cancelar btn-salud-fiscal"
+                                (click)="cerrar()">{{ 'principal.perfiles.filtro.cancelar' | translate }}</button>
+
+                            <button mat-raised-button class="btn btn-filtro btn-salud-fiscal"
+                                (click)="filtrar()">{{ 'principal.perfiles.filtro.filtrar' | translate }}</button>
+                        </div>
+
+                    </div><!-- /CARD BODY -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

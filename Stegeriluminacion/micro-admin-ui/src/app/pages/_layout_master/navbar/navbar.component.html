@@ -25,18 +25,6 @@
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
 
-        <!-- SELECCIONAR EMPRESA -->
-        <button mat-raised-button href="#" (click)="seleccionarEmpresa()"
-            class="btn btn-salud-fiscal btn-transparente">{{ utilComponent.empresaSeleccionada }}
-            <b class="caret"></b>
-        </button>
-
-        <!-- SELECCIONAR SISTEMA ERP -->
-        <button mat-raised-button href="#" (click)="seleccionarSistemaERP()"
-            class="btn btn-salud-fiscal btn-transparente">{{ utilComponent.sysERPSeleccionado }}
-            <b class="caret"></b>
-        </button>
-
         <!-- SEGUNDA PARTE LADO DERECHO FINAL -->
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
 
@@ -53,7 +41,7 @@
 
             <ul class="navbar-nav">
 
-                <!-- ALERTAS -->
+                <!-- ALERTAS 
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -72,22 +60,22 @@
                             <mat-grid-tile>
                                 <div class="row" style="width: 100%">
                                     <div class="col-9 text-left">
-                                        {{notificacion.titulo}}
+                                        TITULO
                                     </div>
                                     <div class="col-3 text-left">
-                                        {{notificacion.fecha}}
+                                        FEHCA
                                     </div>
                                 </div>
                             </mat-grid-tile>
                             <mat-grid-tile>
                                 <div class="row" style="width: 100%">
                                     <div class="col-12 text-left" style="text-overflow: ellipsis !important;">
-                                        {{notificacion.contenido}}
+                                       CONTENIDO
                                     </div>
                                 </div>
                             </mat-grid-tile>
                         </mat-grid-list>
-                        <div class="dropdown-item" *ngIf="listaNotificaciones[0].total > 5">
+                        <div class="dropdown-item" *ngIf="6 > 5">
                             <div class="row" style="width: 100%">
                                 <div class="col-12 text-center">
                                     <a class="nav-link" routerLink="/notificaciones">Mostrar Más ... </a>
@@ -95,35 +83,10 @@
                             </div>
                         </div>
                     </div>
-                </li>
-
-
-                <!-- CONFIGURACION DE EMPRESAS -->
-                <li class="nav-item"
-                    *ngIf="utilComponent.hasPermiso('Application/SF:SaludFiscal:Web:Principal:Empresas:Modulo')">
-                    <a class="nav-link" routerLink="/empresas">
-                        <i class="material-icons">card_travel</i>
-                        <p>
-                            <span class="d-lg-none d-md-block">Empresas</span>
-                        </p>
-                    </a>
-                </li>
-
-
-                <!-- CONFIGURACION DE CONTRATOS -->
-                <li class="nav-item"
-                    *ngIf="utilComponent.hasPermiso('Application/SF:SaludFiscal:Web:Principal:Contratos:Modulo')">
-                    <a class="nav-link" routerLink="/contratos">
-                        <i class="material-icons">description</i>
-                        <p>
-                            <span class="d-lg-none d-md-block">Contratos</span>
-                        </p>
-                    </a>
-                </li>
+                </li>--> 
 
                 <!-- CONFIGURACION DE USUARIOS -->
-                <li class="nav-item"
-                    *ngIf="utilComponent.hasPermiso('Application/SF:SaludFiscal:Web:Principal:Usuarios:Modulo')">
+                <li class="nav-item">
                     <a class="nav-link" routerLink="/usuarios">
                         <i class="material-icons">supervisor_account</i>
                         <p>
@@ -133,8 +96,7 @@
                 </li>
 
                 <!-- CONFIGURACION DE PERFILES -->
-                <li class="nav-item"
-                    *ngIf="utilComponent.hasPermiso('Application/SF:SaludFiscal:Web:Principal:Perfiles:Modulo')">
+                <li class="nav-item">
                     <a class="nav-link" routerLink="/perfiles">
                         <i class="material-icons">security</i>
                         <p>

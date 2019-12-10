@@ -3,12 +3,10 @@ import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { LoginDTO } from 'src/app/_dto/login/Login.Dto';
+import { LoginService } from 'src/app/_servicios/login.service';
 import { UtilComponent } from 'src/app/_shared/util.component';
 import { configuraciones } from 'src/environments/configuraciones';
-import swal from 'sweetalert2';
-import { LoginService } from 'src/app/_servicios/login.service';
-import { Token } from 'src/app/_dto/Token.Dto';
-import { LoginDTO } from 'src/app/_dto/Login.Dto';
 
 declare var $: any;
 
