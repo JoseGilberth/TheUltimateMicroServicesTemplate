@@ -11,17 +11,19 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { BuscarUsuariosComponent } from './buscar/buscar.component';
 import { Subject } from 'rxjs';
+import { TimeUnitService } from '../../../_servicios/catalogos/timeunits.service';
 
 @Component({
   templateUrl: 'usuarios.component.html',
   styleUrls: ['usuarios.component.css']
 })
-export class UsuariosComponent extends TableComponent implements OnDestroy {
+export class UsuariosComponent extends TableComponent {
 
   public configuraciones: any;
   public utilComponent: any;
   public totalItems: number = 0;
   public currentPage: number = 0;
+  public isLoading: boolean = false;
   public cantidadAMostrar: number = 5;
   bsModalRef: BsModalRef;
 
@@ -43,23 +45,22 @@ export class UsuariosComponent extends TableComponent implements OnDestroy {
     this.usuariosPublicosFiltroDTO = new UsuariosPublicosFiltroDTO();
     this.listAll(this.currentPage, this.cantidadAMostrar);
   }
-
-  ngOnDestroy() {
-  }
-
+ 
   /*
   ================================================================
                           OBTENER USUARIOS
   ================================================================
   */
   listAll(pagina: number, cantidad: number) {
+    this.isLoading = true;
+    this.usuariosPublicosDTO = [];
     this.usuariosPublicosService.obtenerTodos(this.usuariosPublicosFiltroDTO, pagina, cantidad)
       .subscribe(resp => {
-        this.util.loading = false;
+        this.isLoading = false;
         let pageable: PageableDTO = <PageableDTO>resp.cuerpo;
         this.usuariosPublicosDTO = pageable.content;
       }, (error: HttpErrorResponse) => {
-        this.util.loading = false;
+        this.isLoading = false;
       });
   }
   pageChanged(event: any): void {
@@ -92,27 +93,28 @@ export class UsuariosComponent extends TableComponent implements OnDestroy {
 
   /*
   ================================================================
-                          FILTRAR USUARIOS
+                          BUSCAR USUARIOS
   ================================================================
   */
   buscar() {
-    const initialState = {
-      usuariosPublicosFiltroDTO: this.usuariosPublicosFiltroDTO
+    const modalOptions = {
+      initialState: {
+        usuariosPublicosFiltroDTO: this.usuariosPublicosFiltroDTO
+      },
+      class: 'modal-lg'
     };
-
-    this.bsModalRef = this.modalService.show(BuscarUsuariosComponent, { initialState });
+    this.bsModalRef = this.modalService.show(BuscarUsuariosComponent, modalOptions);
     this.bsModalRef.content.onClose = new Subject<boolean>();
     this.bsModalRef.content.onClose.subscribe((result: boolean) => {
       if (result) {
         this.listAll(this.currentPage, this.cantidadAMostrar);
       }
-    }); 
+    });
   }
 
-  quitarFiltro() {
+  eliminarBusqueda() {
     this.util.cleanProperties(this.usuariosPublicosFiltroDTO);
-    this.usuariosPublicosFiltroDTO.enabled = true;
+    this.listAll(this.currentPage, this.cantidadAMostrar);
   }
-
 
 }

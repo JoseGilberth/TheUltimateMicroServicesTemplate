@@ -20,25 +20,25 @@
       <!-- CORREO -->
       <div class="form-group">
         <label class="form-col-form-label" for="correo">Correo</label>
-        <input type="text" class="form-control" id="correo">
+        <input type="text" class="form-control" id="correo" [(ngModel)]="usuariosPublicosFiltroDTO.correo">
       </div>
 
       <!-- NOMBRE -->
       <div class="form-group">
         <label class="form-col-form-label" for="nombre">Nombre</label>
-        <input type="text" class="form-control" id="nombre">
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="usuariosPublicosFiltroDTO.nombre">
       </div>
 
       <!-- APELLIDO 1 -->
       <div class="form-group">
         <label class="form-col-form-label" for="apellido1">Apellido 1</label>
-        <input type="text" class="form-control" id="apellido1">
+        <input type="text" class="form-control" id="apellido1" [(ngModel)]="usuariosPublicosFiltroDTO.apellido1">
       </div>
 
       <!-- APELLIDO 2 -->
       <div class="form-group">
         <label class="form-col-form-label" for="apellido2">Apellido 2</label>
-        <input type="text" class="form-control" id="apellido2">
+        <input type="text" class="form-control" id="apellido2" [(ngModel)]="usuariosPublicosFiltroDTO.apellido2">
       </div>
 
     </div><!-- 1RA MITAD -->
@@ -49,52 +49,60 @@
       <!-- USUARIO -->
       <div class="form-group">
         <label class="form-col-form-label" for="usuario">Usuario</label>
-        <input type="text" class="form-control" id="usuario">
+        <input type="text" class="form-control" id="usuario" [(ngModel)]="usuariosPublicosFiltroDTO.username">
       </div>
 
       <!-- Télefono Celular  -->
       <div class="form-group">
         <label class="form-col-form-label" for="telefonoCelular">Télefono Celular</label>
-        <input type="text" class="form-control" id="telefonoCelular">
+        <input type="text" class="form-control" id="telefonoCelular"
+          [(ngModel)]="usuariosPublicosFiltroDTO.telefonoCelular">
       </div>
 
 
       <!-- Peticiones MINIMAS  -->
       <div class="form-group row">
         <div class="col-6">
-          <input type="text" class="form-control" placeholder="Peticiones minimas">
+          <input type="text" class="form-control" placeholder="Peticiones minimas"
+            [(ngModel)]="usuariosPublicosFiltroDTO.limitRequestInicial">
         </div>
         <div class="col-6">
-          <input type="text" class="form-control" placeholder="Peticiones máximas">
+          <input type="text" class="form-control" placeholder="Peticiones máximas"
+            [(ngModel)]="usuariosPublicosFiltroDTO.limitRequestFinal">
         </div>
       </div>
 
       <!-- UNIDAD DE TIEMPO  -->
       <div class="form-group">
         <label for="ccmonth">Unidad de tiempo</label>
-        <select class="form-control" id="ccmonth">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-          <option>11</option>
-          <option>12</option>
+        <select class="form-control" id="ccmonth" [(ngModel)]="usuariosPublicosFiltroDTO.timeUnit">
+            <option *ngFor="let timeUnit of timeUnitsDto" [value]="timeUnit">{{ timeUnit }}</option>
+
         </select>
+      </div>
+
+
+      <!-- PEPIRACION DE TOKEN -->
+      <div class="form-group row">
+        <div class="col-6">
+          <input type="text" class="form-control" placeholder="Expiración de token minimas"
+            [(ngModel)]="usuariosPublicosFiltroDTO.tokenExpirationInicial">
+        </div>
+        <div class="col-6">
+          <input type="text" class="form-control" placeholder="Expiracón de token  máximas"
+            [(ngModel)]="usuariosPublicosFiltroDTO.tokenExpirationFinal">
+        </div>
       </div>
 
       <!-- FECHA DE ALTA  -->
       <div class="form-group row">
         <div class="col-6">
-          <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date">
+          <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date"
+            [(ngModel)]="usuariosPublicosFiltroDTO.fechaAltaInicial">
         </div>
         <div class="col-6">
-          <input class="form-control" id="date-input" type="date" name="date-input2" placeholder="date">
+          <input class="form-control" id="date-input" type="date" name="date-input2" placeholder="date"
+            [(ngModel)]="usuariosPublicosFiltroDTO.fechaAltaFinal">
         </div>
       </div>
 
@@ -105,7 +113,7 @@
         </div>
         <div class="col-9">
           <label class="switch switch-label switch-lg switch-3d switch-pill switch-primary">
-            <input type="checkbox" class="switch-input" checked>
+            <input type="checkbox" class="switch-input" checked [(ngModel)]="usuariosPublicosFiltroDTO.enabled">
             <span class="switch-slider" data-checked="✓" data-unchecked="✕"></span>
           </label>
         </div>

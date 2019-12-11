@@ -21,6 +21,14 @@ export const environment = {
     base: "micro-usuarios",
     post: {
       obtenerPorFiltro: "usuarios/publico/filtro"
+    },
+    get: {
+      timeUnits: "usuarios/publico/filtro"
+    },
+    catalogos: {
+      get: {
+        timeUnits: "catalogos/timeunits"
+      }
     }
   }
  

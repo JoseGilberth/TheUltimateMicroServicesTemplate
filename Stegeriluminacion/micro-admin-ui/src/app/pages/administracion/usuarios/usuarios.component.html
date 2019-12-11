@@ -30,19 +30,18 @@
               <i class="fa fa-plus"></i> Crear
             </button>
 
-            <!-- 
-          <button type="button" class="btn btn-botonera btn-danger btn-sm float-right" popover="I will hide on blur"
-            triggers="mouseenter:mouseleave">
-            <i class="fa fa-close"></i> Quitar Filtro
-          </button>
-          -->
+            <button *ngIf="usuariosPublicosFiltroDTO.busqueda" (click)="eliminarBusqueda()" type="button"
+              class="btn btn-botonera btn-danger btn-sm float-right" popover="I will hide on blur"
+              triggers="mouseenter:mouseleave">
+              <i class="fa fa-close"></i> Quitar Filtro
+            </button>
 
             <!-- BUSQUEDA -->
             <button (click)="buscar()" type="button" class="btn btn-botonera btn-primary btn-sm float-right"
               popover="Busca usuarios mediante un filtro" triggers="mouseenter:mouseleave">
               <i class="fa fa-search"></i> Buscar
-            </button> 
-            
+            </button>
+
           </div>
 
           <!-- TABLE -->
@@ -98,9 +97,17 @@
               <!-- SIN DATOS -->
               <tbody *ngIf="usuariosPublicosDTO?.length <= 0">
                 <tr>
-                  <td class="no-data-available">No hay Datos</td>
+                  <td colspan="11" class="no-data-available">No hay Datos</td>
                 </tr>
               </tbody>
+
+              <!-- SIN DATOS -->
+              <tbody *ngIf="usuariosPublicosDTO?.length <= 0 && isLoading">
+                <tr>
+                  <td colspan="11" class="no-data-available"><img src="assets/img/loading/loading.gif"></td>
+                </tr>
+              </tbody>
+
             </table>
           </div>
 

@@ -12,6 +12,7 @@ export class PermissionGuardService implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         let hasPermission: boolean = true;
+        /*
         route.children.forEach(child => {
             if (child.data.permiso != undefined) {
                 console.log("PERMISO: " + child.data.permiso);
@@ -26,6 +27,7 @@ export class PermissionGuardService implements CanActivate {
                 }
             }
         });
+        */
         return hasPermission;
     }
 
