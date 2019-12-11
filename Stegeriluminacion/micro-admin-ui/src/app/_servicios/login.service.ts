@@ -2,11 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-import { Respuesta } from 'src/app/_dto/_main/Respuesta.Dto';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { LoginDTO } from '../_dto/login/Login.Dto';
 import { Token } from '../_dto/login/Token.Dto';
- 
+
 
 
 

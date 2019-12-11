@@ -2,121 +2,22 @@
 
 export const configuraciones = {
 
-    principal: {
-        usuarios: {
-            usuario: {
-                required: "required",
-                min: 2,
-                max: 10,
-                pattern: "^[a-zA-Z0-9 áéíóúÁÉÍÓÚ]*$" // VALIDA SOLO LETRAS Y ESPACIOS EN BLANCO
-            },
-            password: {
-                required: "required",
-                min: 1,
-                max: 8,
-                pattern: "^(?=.{0,8}$)(([a-zA-Z0-9 \\\]\\\[!#$%&()*+,-.:;<=>?@\\^_{|}~])\\2?(?!\\2))+$" // VALIDA SOLO LETRAS Y ESPACIOS EN BLANCO
-            },
-            passwordconfim: {
-                required: "required",
-                min: 1,
-                max: 80,
-                pattern: "" // VALIDA SOLO LETRAS Y ESPACIOS EN BLANCO
-            },
-            nombre: {
-                required: "required",
-                min: 1,
-                max: 50,
-                pattern: "^[a-zA-Z áéíóúÁÉÍÓÚ]*$" // VALIDA SOLO LETRAS Y ESPACIOS EN BLANCO
-            },
-            primer_apellido: {
-                required: "required",
-                min: 1,
-                max: 30,
-                pattern: "^[a-zA-Z áéíóúÁÉÍÓÚ]*$" // VALIDA SOLO LETRAS Y ESPACIOS EN BLANCO
-            },
-            segundo_apellido: {
-                required: "required",
-                min: 1,
-                max: 30,
-                pattern: "^[a-zA-Z áéíóúÁÉÍÓÚ]*$" // VALIDA SOLO LETRAS Y ESPACIOS EN BLANCO
-            },
-            correo: {
-                required: "required",
-                min: 1,
-                max: 73,
-                pattern: ""// VALIDA SOLO LETRAS Y ESPACIOS EN BLANCO
-            }
-        },
-        perfiles: {
-            nombre: {
-                required: "required",
-                min: 1,
-                max: 50,
-                pattern: "^[a-zA-Z áéíóúÁÉÍÓÚ]*$" // VALIDA SOLO LETRAS Y ESPACIOS EN BLANCO
-            },
-            descripcion: {
-                required: "required",
-                min: 1,
-                max: 120,
-                pattern: "^[a-zA-Z áéíóúÁÉÍÓÚ,]*$" // VALIDA SOLO LETRAS Y ESPACIOS EN BLANCO
-            }
-        }
-    },
-    erp:{
-        departamentos: {
-            numeros: {
-                min: 1,
-                max: 50,
-                pattern: "^[0-9]*$"
-            }
-        },
-        costo:{
-            min: 1,
-            max: 50,
-            pattern: '(\\d*[^a-zA-Z\\|\\°\\!\\"\\#\\$\\%\\&\\/\\(\\)\\,\\:\\;=\\-\\>\\<\\_\\[\\]\\¨\\*\\´\\?\\¡ñÑ])(\\.?)(\\d{1,2})?'
-        }
-    },
     static: {
-        empresas: "EMPRESA",
-        proveedor: "PROVEEDOR",
         token: "TOKEN",
         usuario: "USUARIO",
         roles: "ROLES",
-        articulos: "ARTICULOS",
-        monedas: "MONEDAS",
-        departamento: "DEPARTAMENTO",
-        cuentasERP: "CUENTASERP",
-        empleados: "EMPLEADOS",
-        costoCod: "CODIGOCOSTO",
-        unidadMedida: "UMEDIDA",
-        cliente: "CLIENTE",
-        impuestos: "IMPUESTOS",
-        cuentaPago: "CUENTAPAGO",
-        miscelaneo: "MISCELANEO",
-        almacen: "ALMACEN",
-        proyecto: "PROYECTOS",
-        sistemas: "SISTEMAS",
-        ordenes: "ORDCOMPRA",
-        oServicios: "ORDSERVICIO",
-        permisos: "PERMISOS",
-        registroviajes: "REGISTRODEVIAJES",
-        administracionviajes: "ADMINISTRACIONDEVIAJES",
-        conceptosPago: "CONCEPTOS",
-        sistemaERP: "SISTEMAERP",
-        detalleFact: "DETALLEFACT",
-        documentoExpediente: "DOCEXPEDIENTE",
-        configExpediente: "CONFIGEXP"
+        permisos: "PERMISOS"
     },
-    botones: { 
-        boton_resumen: "fa fa-list-alt" ,
-        boton_expandir: "fa fa-bars" ,
-        boton_detalle: "fa fa-book" ,
-        boton_configurar: "fa fa-cog" ,
-        boton_buscar: "fa fa-search" ,
-        boton_activar: "fa fa-check" ,
-        boton_agregar: "fa fa-plus" ,
-        boton_editar: "fa fa-edit" ,
-        boton_eliminar: "fa fa-trash" ,
+    botones: {
+        boton_resumen: "fa fa-list-alt",
+        boton_expandir: "fa fa-bars",
+        boton_detalle: "fa fa-book",
+        boton_configurar: "fa fa-cog",
+        boton_buscar: "fa fa-search",
+        boton_activar: "fa fa-check",
+        boton_agregar: "fa fa-plus",
+        boton_editar: "fa fa-edit",
+        boton_eliminar: "fa fa-trash",
         boton_filtro: "fa fa-filter",
         boton_excel: "fa fa-file-excel-o",
         boton_descargar_varios: "fa fa-file-archive-o",
@@ -183,34 +84,6 @@ export const configuraciones = {
             [5, 10, 15],
             [5, 10, 15]
         ]
-    },
-    modulo: {
-        erp: {
-            id: 1,
-            sub_modulos: {
-                cuentas: {
-                    id: 1
-                },
-                monedas: {
-                    id: 2
-                },
-                impuestos: {
-                    id: 3
-                },
-                clientes: {
-                    id: 4
-                },
-                departamentos: {
-                    id: 5
-                },
-                proveedores: {
-                    id: 6
-                },
-                unidades: {
-                    id: 7
-                }
-            }
-        }
-    },
+    }
 
 };

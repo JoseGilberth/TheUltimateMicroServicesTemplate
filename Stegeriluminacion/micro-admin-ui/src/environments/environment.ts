@@ -7,12 +7,7 @@ export const environment = {
 
   production: false,
   host: 'http://localhost:8601/stegeriluminacion',
-
-  /** 
-   * 
-   * MODULO LOGIN
-   * 
-  */
+ 
   // MICRO_AUTH
   micro_auth: {
     base: "uaa",

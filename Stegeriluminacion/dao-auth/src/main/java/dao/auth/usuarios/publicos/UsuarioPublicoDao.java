@@ -17,6 +17,7 @@ public interface UsuarioPublicoDao extends  JpaRepository<UsuarioPublico, Long >
 	
 	@Query("FROM UsuarioPublico up "
 	      + " WHERE (:#{#filtroUsuarioPublicoDTO.username} is null or up.username =:#{#filtroUsuarioPublicoDTO.username})"
+			+ " AND (:#{#filtroUsuarioPublicoDTO.id} is null or up.id = :#{#filtroUsuarioPublicoDTO.id})"
 			+ " AND (:#{#filtroUsuarioPublicoDTO.correo} is null or up.correo = :#{#filtroUsuarioPublicoDTO.correo})"
 			+ " AND (:#{#filtroUsuarioPublicoDTO.nombre} is null or up.nombre = :#{#filtroUsuarioPublicoDTO.nombre})"
 			+ " AND (:#{#filtroUsuarioPublicoDTO.apellido1} is null or up.apellido1 = :#{#filtroUsuarioPublicoDTO.apellido1})" 

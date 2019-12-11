@@ -37,7 +37,7 @@ import utils.validaciones.matchers.update.FieldMatchUpdate;
 	@Id
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@NotNull(message = "{usuario.username.notnull}")
 	@Length(min = 5, max = 250, message = "{usuario.username.lenght}")

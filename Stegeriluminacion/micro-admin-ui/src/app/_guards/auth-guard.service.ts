@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { configuraciones } from 'src/environments/configuraciones';
-import { UtilComponent } from '../_shared/util.component';
+ import { UtilComponent } from '../_shared/util.component';
 import { Token } from '../_dto/login/Token.Dto';
+import { configuraciones } from '../../environments/configuraciones';
  
 
 @Injectable()

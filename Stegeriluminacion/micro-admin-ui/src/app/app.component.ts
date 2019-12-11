@@ -1,30 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
-  selector: 'app-my-app',
-  templateUrl: './app.component.html'
+  // tslint:disable-next-line
+  selector: 'body',
+  template: '<router-outlet></router-outlet>'
 })
-
 export class AppComponent implements OnInit {
-  private _router: Subscription;
-
-  constructor(private router: Router, translate: TranslateService) {
-    translate.setDefaultLang('es');
-    translate.use('es');
-
-  }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
-      const body = document.getElementsByTagName('body')[0];
-      const modalBackdrop = document.getElementsByClassName('modal-backdrop')[0];
-      if (body.classList.contains('modal-open')) {
-        body.classList.remove('modal-open');
-        modalBackdrop.remove();
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
       }
+      window.scrollTo(0, 0);
     });
   }
 }

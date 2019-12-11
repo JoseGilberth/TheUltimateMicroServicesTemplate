@@ -1,23 +1,20 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-//import { MaterialModule } from '../app.module';
-import { SharedModule } from '../../../_shared/shared.module';
-import { MdModule } from '../../_template/md/md.module';
-import { DashboardComponent } from './dashboard.component';
-import { DashboardRoutes } from './dashboard.routing';
+import { ChartsModule } from 'ng2-charts';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
+import { DashboardComponent } from './dashboard.component';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(DashboardRoutes),
-        FormsModule,
-        MdModule,
-        SharedModule
-    ],
-    declarations: [DashboardComponent]
+  imports: [
+    FormsModule,
+    DashboardRoutingModule,
+    ChartsModule,
+    BsDropdownModule,
+    ButtonsModule.forRoot()
+  ],
+  declarations: [ DashboardComponent ]
 })
-
 export class DashboardModule { }

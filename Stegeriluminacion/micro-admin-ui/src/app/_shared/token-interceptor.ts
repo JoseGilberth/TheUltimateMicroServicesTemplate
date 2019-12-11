@@ -8,12 +8,12 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/switchMap';
-import { Observable } from 'rxjs/Observable';
-import { configuraciones } from 'src/environments/configuraciones';
-import { Respuesta } from '../_dto/_main/Respuesta.Dto';
+ import { Respuesta } from '../_dto/_main/Respuesta.Dto';
 import { NotificationComponent } from './notification.component';
 import { Token } from '../_dto/login/Token.Dto';
-
+import { configuraciones } from '../../environments/configuraciones';
+import { Observable } from 'rxjs';
+ 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 

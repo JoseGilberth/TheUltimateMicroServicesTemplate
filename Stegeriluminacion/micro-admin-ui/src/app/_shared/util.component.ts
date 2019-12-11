@@ -1,7 +1,7 @@
 import { OnInit } from '@angular/core';
-import { configuraciones } from 'src/environments/configuraciones';
-import swal, { SweetAlertType } from 'sweetalert2'; 
 import { ItemNode } from './arbol/ItemNode';
+import { configuraciones } from '../../environments/configuraciones';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 declare const $: any;
 
@@ -24,12 +24,16 @@ export class UtilComponent implements OnInit {
                    VERIFICA SI HAY UNA EMPRESA SELECCIONADA
     ================================================================
     */
-    showLoading(titulo: string, texto: string, tipo: SweetAlertType) {
-        swal({
-            title: texto, text: texto, type: tipo, showLoaderOnConfirm: true, allowOutsideClick: false,
+    showLoading(titulo: string, texto: string, tipo: SweetAlertIcon) {
+        Swal.fire({
+            icon: 'error',
+            title: titulo,
+            text: texto,
+            showLoaderOnConfirm: true,
+            allowOutsideClick: false,
             onBeforeOpen: () => {
-                swal.showLoading()
-            },
+                Swal.showLoading()
+            }
         });
     }
 
@@ -198,43 +202,6 @@ export class UtilComponent implements OnInit {
     }
 
 
-    seleccionaEmpresa(datos: any) {
-        this.seleccionEmpresa = false;
-        // console.log("EMPRESA: " + this.seleccionEmpresa);
-        swal.close();
-        swal({
-            title: "Selección de empresa",
-            text: "Seleccione una empresa para continuar",
-            input: 'select',
-            inputOptions: datos,
-            inputPlaceholder: 'Seleccione',
-            type: 'warning',
-            showCancelButton: false,
-            confirmButtonText: "Aceptar",
-            cancelButtonText: "Cancelar",
-            showLoaderOnConfirm: true,
-            inputValidator: (valor) => {
-                return new Promise((resolve) => {
-                    console.log("VALOR DE EMPRESA: " + JSON.stringify(valor));
-                    if (valor.trim() != "") {
-                        localStorage.setItem(configuraciones.static.empresas, valor);
-                        this.empresaSeleccionada = JSON.parse(valor).razon_social;
-                        this.seleccionEmpresa = true;
-                        swal.close();
-                        this.sysERPSeleccionado = "Seleccione un sistema ERP";
-                        localStorage.setItem(configuraciones.static.sistemaERP, null);
-                    } else {
-                        resolve('Deberá seleccionar una empresa')
-                    }
-                })
-            },
-            allowOutsideClick: false
-        }).then(function (data) {
-            if (data.dismiss) {
-                swal("Whoops", "Es necesario seleccionar una empresa", 'error')
-            }
-        });
-    }
 
     hasPermiso(permiso: string) {
         try {
@@ -449,6 +416,6 @@ export class UtilComponent implements OnInit {
         // filtroFacturas.fecha_fin = filtroFacturas.fecha_fin.replace(/:/g,'%3A');
         return filtroFacturas;
     }
-    
+
 
 }
