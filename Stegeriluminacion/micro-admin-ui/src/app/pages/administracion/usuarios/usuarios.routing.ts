@@ -1,18 +1,18 @@
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CrearUsuarioComponent } from './crear/crear.component';
 //import { CrearComponent } from './crear/crear.component';
 //import { EditarComponent } from './editar/editar.component';
 import { UsuariosComponent } from './usuarios.component';
-import { PermissionGuardService } from '../../../_guards/permission-guard.service';
-import { NgModule } from '@angular/core';
 
 
 const UsuariosRoutes: Routes = [
   {
-    path: '',
-    component: UsuariosComponent,
-    data: {
-      title: 'usuarios'
-    }
+    path: '', data: { title: 'Usuarios' },
+    children: [
+      { path: '', component: UsuariosComponent, pathMatch: 'full', data: { title: '' } },
+      { path: 'crear', component: CrearUsuarioComponent, data: { title: 'Crear' } }
+    ]
   }
 ];
 

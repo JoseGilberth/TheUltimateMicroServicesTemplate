@@ -107,7 +107,7 @@ export class UtilComponent implements OnInit {
     }
 
 
-    /* 
+    /*
     AYUDA A CONVERTIR UNA CADENA DE TEXTO A UN ARBOL EN FORMATO DE STRING
      */
     setNestedData(root, path, sep, value) {
@@ -121,7 +121,7 @@ export class UtilComponent implements OnInit {
         return root;
     }
 
-    /* 
+    /*
     AYUDA A CONVERTIR UN OBJECTO DE STRING A UN OBJETO QUE PUEDE LEER EL COMPONENTE TREE DE ANGULAR
     */
     obtenerHijosPermiso(base): ItemNode[] {
@@ -152,9 +152,11 @@ export class UtilComponent implements OnInit {
 
 
     convertDateToMX(fecha: string) {
-        const format = 'dd/MM/yyyy HH:mm:ss.SS';
+      if( fecha != null || fecha != undefined){
+        const format = 'dd/MM/yyyyTHH:mm:ss.SS';
         const locale = 'es-MX';
         return formatDate(fecha, format, locale);
+      }
     }
 
 

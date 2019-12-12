@@ -26,6 +26,7 @@ import { PermissionGuardService } from './_guards/permission-guard.service';
 import { NotificationComponent } from './_shared/notification.component';
 import { TokenInterceptor } from './_shared/token-interceptor';
 import { UtilComponent } from './_shared/util.component';
+import { TreeviewModule } from 'ngx-treeview';
 
 
 import es from '@angular/common/locales/es';
@@ -36,7 +37,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
-// Import containers 
+// Import containers
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -62,6 +63,7 @@ export function tokenGetter() {
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
+    TreeviewModule.forRoot(),
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,

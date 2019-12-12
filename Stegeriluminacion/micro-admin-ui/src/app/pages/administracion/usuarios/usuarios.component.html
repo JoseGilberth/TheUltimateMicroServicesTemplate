@@ -15,6 +15,7 @@
           <!-- BOTONERA -->
           <div style="margin: 15px 0;">
 
+            <!-- MOSTRAR -->
             <label for="ccmonth">&nbsp;&nbsp; Mostrar</label>
             <select class="form-control float-left select-custom" [(ngModel)]="cantidadAMostrar"
               (change)="rowsToShow($event.target.value)" id="ccmonth">
@@ -24,12 +25,13 @@
               <option>50</option>
             </select>
 
-            <button type="button" class="btn btn-botonera btn-primary btn-sm float-right disabled" popover="I will hide on blur I will hide on blur I will hide on blur 
-            I will hide on blur I will hide on blur I will hide on blur I will hide on blur 
-            I will hide on blur" triggers="mouseenter:mouseleave">
+            <!-- CREAR -->
+            <button (click)="nuevo()" type="button" class="btn btn-botonera btn-primary btn-sm float-right"
+              popover="Crea un nuevo usuario" triggers="mouseenter:mouseleave">
               <i class="fa fa-plus"></i> Crear
             </button>
 
+            <!-- QUITAR FILTRO -->
             <button *ngIf="usuariosPublicosFiltroDTO.busqueda" (click)="eliminarBusqueda()" type="button"
               class="btn btn-botonera btn-danger btn-sm float-right" popover="I will hide on blur"
               triggers="mouseenter:mouseleave">

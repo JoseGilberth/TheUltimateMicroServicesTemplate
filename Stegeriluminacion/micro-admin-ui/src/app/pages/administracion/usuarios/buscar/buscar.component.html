@@ -76,7 +76,7 @@
       <div class="form-group">
         <label for="ccmonth">Unidad de tiempo</label>
         <select class="form-control" id="ccmonth" [(ngModel)]="usuariosPublicosFiltroDTO.timeUnit">
-            <option *ngFor="let timeUnit of timeUnitsDto" [value]="timeUnit">{{ timeUnit }}</option>
+          <option *ngFor="let timeUnit of timeUnitsDto" [value]="timeUnit">{{ timeUnit }}</option>
 
         </select>
       </div>
@@ -113,7 +113,7 @@
         </div>
         <div class="col-9">
           <label class="switch switch-label switch-lg switch-3d switch-pill switch-primary">
-            <input type="checkbox" class="switch-input" checked [(ngModel)]="usuariosPublicosFiltroDTO.enabled">
+            <input type="checkbox" class="switch-input" [(ngModel)]="!usuariosPublicosFiltroDTO.enabled">
             <span class="switch-slider" data-checked="✓" data-unchecked="✕"></span>
           </label>
         </div>

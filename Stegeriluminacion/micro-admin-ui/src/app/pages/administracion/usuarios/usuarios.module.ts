@@ -16,6 +16,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BuscarUsuariosComponent } from './buscar/buscar.component';
+import { CrearUsuarioComponent } from './crear/crear.component';
+import { TreeviewModule } from 'ngx-treeview';
 
 @NgModule({
   imports: [
@@ -27,17 +29,18 @@ import { BuscarUsuariosComponent } from './buscar/buscar.component';
     AlertModule.forRoot(),
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
+    TreeviewModule.forRoot(),
     ReactiveFormsModule
   ],
   entryComponents: [
     //EditarComponent,
-    //CrearComponent,
+    CrearUsuarioComponent,
     BuscarUsuariosComponent
   ],
   declarations: [
-    //CrearComponent,
-    UsuariosComponent,
     //EditarComponent,
+    CrearUsuarioComponent,
+    UsuariosComponent,
     BuscarUsuariosComponent
   ]
 })
