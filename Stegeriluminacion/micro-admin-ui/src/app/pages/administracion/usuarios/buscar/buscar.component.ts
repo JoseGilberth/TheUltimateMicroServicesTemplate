@@ -17,7 +17,8 @@ export class BuscarUsuariosComponent {
   timeUnitsDto: string[] = [];
 
   constructor(public bsModalRef: BsModalRef
-    , private timeUnitService: TimeUnitService,private utilComponent: UtilComponent) {
+    , private timeUnitService: TimeUnitService,private utilComponent: UtilComponent
+    , private util: UtilComponent) {
   }
 
   public ngOnInit(): void {
@@ -37,6 +38,10 @@ export class BuscarUsuariosComponent {
   public onCancel(): void {
     this.onClose.next(false);
     this.bsModalRef.hide();
+  }
+
+  limpiarBusqueda(){
+    this.util.cleanProperties(this.usuariosPublicosFiltroDTO);
   }
 
 

@@ -152,12 +152,11 @@ export class UtilComponent implements OnInit {
 
 
     convertDateToMX(fecha: string) {
-      if( fecha != null || fecha != undefined){
-        const format = 'dd/MM/yyyyTHH:mm:ss.SS';
-        const locale = 'es-MX';
-        return formatDate(fecha, format, locale);
-      }
-    }
-
+        if( fecha != null || fecha != undefined){
+            const format = 'yyyy-MM-ddTHH:mm:ss.SS';
+            const locale = 'es-MX';
+            return formatDate(fecha, format, locale);
+        } 
+    } 
 
 }
