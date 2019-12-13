@@ -25,7 +25,7 @@ export const routes: Routes = [
     },
     children: [
       { path: '', loadChildren: './pages/administracion/dashboard/dashboard.module#DashboardModule' },
-      { path: 'usuarios', loadChildren: () => import('./pages/administracion/usuarios/usuarios.module').then(m => m.UsuariosModule) },
+      { path: 'usuarios/publicos', loadChildren: () => import('./pages/administracion/usuarios/usuarios.module').then(m => m.UsuariosModule) },
       { path: 'base', loadChildren: () => import('./pages/administracion/base/base.module').then(m => m.BaseModule) },
       { path: 'buttons', loadChildren: () => import('./pages/administracion/buttons/buttons.module').then(m => m.ButtonsModule) },
       { path: 'charts', loadChildren: () => import('./pages/administracion/chartjs/chartjs.module').then(m => m.ChartJSModule) },
