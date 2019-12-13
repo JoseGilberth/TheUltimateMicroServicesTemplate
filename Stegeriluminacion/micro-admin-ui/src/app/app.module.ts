@@ -1,6 +1,7 @@
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import es from '@angular/common/locales/es';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,6 +12,8 @@ import { ChartsModule } from 'ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { ToastrModule } from 'ngx-toastr';
+import { TreeviewModule } from 'ngx-treeview';
 import { configuraciones } from '../environments/configuraciones';
 import { AppComponent } from './app.component';
 // Import routing module
@@ -26,11 +29,8 @@ import { PermissionGuardService } from './_guards/permission-guard.service';
 import { NotificationComponent } from './_shared/notification.component';
 import { TokenInterceptor } from './_shared/token-interceptor';
 import { UtilComponent } from './_shared/util.component';
-import { TreeviewModule } from 'ngx-treeview';
 
 
-import es from '@angular/common/locales/es';
-import { registerLocaleData } from '@angular/common';
 registerLocaleData(es);
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -67,6 +67,7 @@ export function tokenGetter() {
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

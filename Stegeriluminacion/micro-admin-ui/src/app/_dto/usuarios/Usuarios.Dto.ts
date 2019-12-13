@@ -6,7 +6,7 @@ export class UsuariosDTO {
     password: string;
     repetirPassword: string;
     correo: string;
-    nombre: string;
+    nombre: string; 
     apellido1: string;
     apellido2: string;
     fechaAlta: string;

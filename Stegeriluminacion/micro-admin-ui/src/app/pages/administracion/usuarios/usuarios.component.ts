@@ -1,17 +1,16 @@
-import { Component, OnDestroy, HostListener, EventEmitter, Output } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Subject } from 'rxjs';
+import { configuraciones } from '../../../../environments/configuraciones';
 import { UsuariosPublicosDTO } from '../../../_dto/usuarios/UsuariosPublicos.Dto';
 import { UsuariosPublicosFiltroDTO } from '../../../_dto/usuarios/UsuariosPublicosFiltroDTO';
-import { UsuariosPublicosService } from '../../../_servicios/usuariospublicos.service';
-import { UtilComponent } from '../../../_shared/util.component';
-import { Router } from '@angular/router';
-import { configuraciones } from '../../../../environments/configuraciones';
-import { TableComponent } from '../../../_interfaces/tables.component';
 import { PageableDTO } from '../../../_dto/_main/Pageable.Dto';
-import { HttpErrorResponse } from '@angular/common/http';
-import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { TableComponent } from '../../../_interfaces/tables.component';
+import { UsuariosPublicosService } from '../../../_servicios/usuarios/usuariospublicos.service';
+import { UtilComponent } from '../../../_shared/util.component';
 import { BuscarUsuariosComponent } from './buscar/buscar.component';
-import { Subject } from 'rxjs';
-import { TimeUnitService } from '../../../_servicios/catalogos/timeunits.service';
 
 @Component({
   templateUrl: 'usuarios.component.html',
@@ -45,7 +44,7 @@ export class UsuariosComponent extends TableComponent {
     this.usuariosPublicosFiltroDTO = new UsuariosPublicosFiltroDTO();
     this.listAll(this.currentPage, this.cantidadAMostrar);
   }
- 
+
   /*
   ================================================================
                           OBTENER USUARIOS

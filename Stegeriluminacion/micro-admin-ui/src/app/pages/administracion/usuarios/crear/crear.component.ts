@@ -2,7 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { UsuariosPublicosDTO } from '../../../../_dto/usuarios/UsuariosPublicos.Dto';
 import { TimeUnitService } from '../../../../_servicios/catalogos/timeunits.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { TreeviewItem, DropdownTreeviewComponent, TreeviewConfig } from 'ngx-treeview';
+import { TreeviewItem, DropdownTreeviewComponent, TreeviewConfig, TreeviewI18n } from 'ngx-treeview';
+import { PermisosPublicosService } from '../../../../_servicios/usuarios/permisospublicos.service';
+import { PermisoPublicoDTO } from '../../../../_dto/usuarios/PermisoPublico.Dto';
+import { UtilComponent } from '../../../../_shared/util.component';
+import { UsuariosPublicosService } from '../../../../_servicios/usuarios/usuariospublicos.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,76 +16,58 @@ import { TreeviewItem, DropdownTreeviewComponent, TreeviewConfig } from 'ngx-tre
 })
 export class CrearUsuarioComponent {
 
-  dropdownEnabled = true;
-  items: TreeviewItem[];
-  values: number[];
+  permisos: TreeviewItem[];
   config = TreeviewConfig.create({
     hasAllCheckBox: true,
     hasFilter: true,
     hasCollapseExpand: true,
     decoupleChildFromParent: false,
-    maxHeight: 400
+    maxHeight: 500
   });
 
-
-  public usuariosPublicosDTO: UsuariosPublicosDTO;
   timeUnitsDto: string[] = [];
   isLoading: boolean = false;
-  constructor(private timeUnitService: TimeUnitService) {
+
+  public usuariosPublicosDTO: UsuariosPublicosDTO;
+  public permisosPublicosDTO: PermisoPublicoDTO[] = [];
+  public permisosPublicosSeleccionados: PermisoPublicoDTO[];
+
+  constructor(private timeUnitService: TimeUnitService
+    , private permisosPublicosService: PermisosPublicosService
+    , private utilComponent: UtilComponent
+    , private router: Router
+    , private usuariosPublicosService: UsuariosPublicosService) {
+
   }
 
   ngOnInit(): void {
     this.usuariosPublicosDTO = new UsuariosPublicosDTO();
     this.listAllTimeUnits();
-    this.items = this.getBooks();
-
-  }
-  getBooks(): TreeviewItem[] {
-    const childrenCategory = new TreeviewItem({
-      text: 'Children', value: 1, collapsed: true, children: [
-        { text: 'Baby 3-5', value: 11 },
-        { text: 'Baby 6-8', value: 12 },
-        { text: 'Baby 9-12', value: 13 }
-      ]
-    });
-    const itCategory = new TreeviewItem({
-      text: 'IT', value: 9, children: [
-        {
-          text: 'Programming', value: 91, children: [{
-            text: 'Frontend', value: 911, children: [
-              { text: 'Angular 1', value: 9111 },
-              { text: 'Angular 2', value: 9112 },
-              { text: 'ReactJS', value: 9113, disabled: true }
-            ]
-          }, {
-            text: 'Backend', value: 912, children: [
-              { text: 'C#', value: 9121 },
-              { text: 'Java', value: 9122 },
-              { text: 'Python', value: 9123, checked: false, disabled: true }
-            ]
-          }]
-        },
-        {
-          text: 'Networking', value: 92, children: [
-            { text: 'Internet', value: 921 },
-            { text: 'Security', value: 922 }
-          ]
-        }
-      ]
-    });
-    const teenCategory = new TreeviewItem({
-      text: 'Teen', value: 2, collapsed: true, disabled: true, children: [
-        { text: 'Adventure', value: 21 },
-        { text: 'Science', value: 22 }
-      ]
-    });
-    const othersCategory = new TreeviewItem({ text: 'Others', value: 3, checked: false, disabled: true });
-    return [childrenCategory, itCategory, teenCategory, othersCategory];
+    this.listAllPermisos();
   }
 
 
-  onFilterChange(value: string) {
-    console.log('filter:', value);
+  onConfirm() {
+    this.utilComponent.showSweetAlertLoading("Creando", "");
+    this.usuariosPublicosDTO.permisos = this.permisosPublicosSeleccionados;
+    this.usuariosPublicosService.crear(this.usuariosPublicosDTO)
+      .subscribe(resp => {
+        this.isLoading = false;
+        this.utilComponent.showSweetAlert("Creado", resp.mensaje, "success");
+      }, error => {
+        this.isLoading = false;
+        console.log("EL ERROR DENTRO DE CREAR: " + JSON.stringify(error));
+        this.utilComponent.showSweetAlert("Error", this.utilComponent.trataErrores(error), "error");
+      });
+  }
+
+  reinciarValores() {
+    this.utilComponent.cleanProperties(this.usuariosPublicosDTO);
+    this.utilComponent.cleanProperties(this.permisosPublicosSeleccionados);
+  }
+
+  public regresar(): void {
+    this.router.navigate(["/usuarios"]);
   }
 
   /*
@@ -94,6 +82,28 @@ export class CrearUsuarioComponent {
       .subscribe(resp => {
         this.isLoading = false;
         this.timeUnitsDto = resp.cuerpo;
+      }, (error: HttpErrorResponse) => {
+        this.isLoading = false;
+      });
+  }
+
+  /*
+  ================================================================
+                     OBTENER PERMISOS
+  ================================================================
+  */
+  listAllPermisos() {
+    this.isLoading = true;
+    this.timeUnitsDto = [];
+    this.permisosPublicosService.obtenerTodos()
+      .subscribe(resp => {
+        this.isLoading = false;
+        this.permisosPublicosDTO = <PermisoPublicoDTO[]>resp.cuerpo;
+        let nestedObjects = {};
+        this.permisosPublicosDTO.forEach(permiso => {
+          this.utilComponent.setNestedData(nestedObjects, permiso.etiqueta, ':', permiso);
+          this.permisos = this.utilComponent.obtenerHijosPermiso(nestedObjects);
+        });
       }, (error: HttpErrorResponse) => {
         this.isLoading = false;
       });

@@ -26,13 +26,15 @@ import utils.validaciones.interfaces.OnCreate;
 import utils.validaciones.interfaces.OnUpdate;
 import utils.validaciones.matchers.create.FieldMatch;
 import utils.validaciones.matchers.update.FieldMatchUpdate;
- 
+
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class) 
+@EntityListeners(AuditingEntityListener.class)
 @Data
-@FieldMatch(first = "password", second = "repetirPassword", message = "{usuario.password.match}" , groups = { OnCreate.class })
-@FieldMatchUpdate(first = "password", second = "repetirPassword", message = "{usuario.password.match}" , groups = { OnUpdate.class })
- public class Usuario {
+@FieldMatch.List({
+	@FieldMatch(first = "password", second = "repetirPassword", message = "Los passwords deben coincidir.", groups = { OnCreate.class }),
+})
+@FieldMatchUpdate(first = "password", second = "repetirPassword", message = "Los passwords deben coincidir.", groups = { OnUpdate.class })
+public class Usuario {
 
 	@Id
 	@Column(name = "id", updatable = false, nullable = false)
@@ -43,14 +45,15 @@ import utils.validaciones.matchers.update.FieldMatchUpdate;
 	@Length(min = 5, max = 250, message = "{usuario.username.lenght}")
 	@Column(length = 255, nullable = false, unique = true)
 	private String username;
- 
+
 	@JsonIgnore
 	@NotNull(message = "{usuario.password.notnull}")
 	@Length(min = 5, max = 255, message = "{usuario.password.lenght}")
 	@Column(length = 255, nullable = false)
 	private String password;
-	
+
 	@Transient
+	
 	private String repetirPassword;
 
 	@Pattern(regexp = ".+@.+\\..+", message = "{usuario.correo.pattern}")
@@ -77,7 +80,7 @@ import utils.validaciones.matchers.update.FieldMatchUpdate;
 
 	@LastModifiedDate
 	LocalDateTime ultimaActualizacion;
-	
+
 	@Column(nullable = false)
 	private boolean enabled;
 
@@ -85,10 +88,9 @@ import utils.validaciones.matchers.update.FieldMatchUpdate;
 	private void prePersist() {
 		enabled = false;
 	}
-	
+
 	public Usuario() {
 	}
-	  
 
 	@JsonIgnore
 	public String getPassword() {
@@ -99,6 +101,5 @@ import utils.validaciones.matchers.update.FieldMatchUpdate;
 	public void setPassword(String password) {
 		this.password = password;
 	}
- 
 
 }

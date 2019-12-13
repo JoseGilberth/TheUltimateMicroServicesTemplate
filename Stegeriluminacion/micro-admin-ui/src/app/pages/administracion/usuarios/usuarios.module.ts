@@ -18,6 +18,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BuscarUsuariosComponent } from './buscar/buscar.component';
 import { CrearUsuarioComponent } from './crear/crear.component';
 import { TreeviewModule } from 'ngx-treeview';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { TreeviewModule } from 'ngx-treeview';
     AlertModule.forRoot(),
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
-    TreeviewModule.forRoot(),
+    TreeviewModule.forRoot(), 
     ReactiveFormsModule
   ],
   entryComponents: [

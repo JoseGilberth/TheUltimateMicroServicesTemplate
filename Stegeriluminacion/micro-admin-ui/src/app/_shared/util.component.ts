@@ -1,12 +1,19 @@
-import { OnInit } from '@angular/core';
+import { OnInit, Injectable } from '@angular/core';
 import { ItemNode } from './arbol/ItemNode';
 import { configuraciones } from '../../environments/configuraciones';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 import { PermisoPublicoDTO } from '../_dto/usuarios/PermisoPublico.Dto';
 import { formatDate } from '@angular/common';
+import { TreeviewItem, TreeItem } from 'ngx-treeview';
+import { ToastrService } from "ngx-toastr";
+import { HttpErrorResponse } from '@angular/common/http';
 
 declare const $: any;
 
+
+@Injectable({
+    providedIn: 'root'
+})
 export class UtilComponent implements OnInit {
 
     loading: boolean = false;
@@ -15,12 +22,54 @@ export class UtilComponent implements OnInit {
     empresaSeleccionada: string = "Seleccione una empresa";
     sysERPSeleccionado: string = "Seleccione un sistema ERP";
 
-    constructor() {
+    constructor(private toastr: ToastrService) {
     }
 
     ngOnInit() {
     }
 
+    trataErrores(error: HttpErrorResponse): string {
+        let errores: string = "";
+        if (error.error != null) {
+            if (error.error.cuerpo != null) {
+                if (error.error.cuerpo.lista != null) {
+                    let cadenas = JSON.parse(JSON.stringify(error.error.cuerpo.lista));
+                    for (let value of Object.values(cadenas)) {
+                        this.presentToasterInfo(String(value));
+                        errores += value + "<br>";
+                    }
+                    return errores;
+                } else {
+                    errores = error.error.mensaje;
+                    return errores;
+                }
+            } else {
+                errores = error.error.mensaje;
+                return errores;
+            }
+        }
+    }
+
+    presentToasterInfo(mensaje: string) {
+        this.toastr.info(mensaje, "", {
+            timeOut: 13000
+        });
+    }
+
+    showSweetAlertLoading(titulo: string, texto: string) {
+        Swal.fire({
+            title: titulo, text: texto, showLoaderOnConfirm: true, allowOutsideClick: false,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+            },
+        });
+    }
+
+    showSweetAlert(titulo: string, texto: string, tipo: SweetAlertIcon) {
+        Swal.fire({
+            icon: tipo, title: titulo, html: texto, showLoaderOnConfirm: true, allowOutsideClick: false
+        });
+    }
     /* VALIDA SI UN VALOR SE ENCUENTRA DENTRO DE UN ARREGLO POR MEDIO DE UNA PROPIEDAD EN ESPECIFICO */
     arrayObjectIndexOf(myArray, searchTerm, property) {
         for (var i = 0, len = myArray.length; i < len; i++) {
@@ -124,16 +173,17 @@ export class UtilComponent implements OnInit {
     /*
     AYUDA A CONVERTIR UN OBJECTO DE STRING A UN OBJETO QUE PUEDE LEER EL COMPONENTE TREE DE ANGULAR
     */
-    obtenerHijosPermiso(base): ItemNode[] {
-        let returnChildren: ItemNode[] = [];
+    obtenerHijosPermiso(base): TreeviewItem[] {
+        let returnChildren: TreeviewItem[] = [];
         let index: number;
         for (let key in base) {
-            let item = new ItemNode();// NODO
-            item.item = key;
+            const item = new TreeviewItem({ text: 'Others', value: null, checked: false, disabled: false });
+            item.text = key;
             if (typeof base[key] == "object") {
                 let permisosDTO: PermisoPublicoDTO = <PermisoPublicoDTO>base[key];
                 if (permisosDTO.id != null) {
                     item.value = base[key];
+                    item.text += " | " + permisosDTO.descripcion;
                     returnChildren.push(item);
                 } else {
                     let children = this.obtenerHijosPermiso(base[key]);
@@ -152,11 +202,11 @@ export class UtilComponent implements OnInit {
 
 
     convertDateToMX(fecha: string) {
-        if( fecha != null || fecha != undefined){
+        if (fecha != null || fecha != undefined) {
             const format = 'yyyy-MM-ddTHH:mm:ss.SS';
             const locale = 'es-MX';
             return formatDate(fecha, format, locale);
-        } 
-    } 
+        }
+    }
 
 }

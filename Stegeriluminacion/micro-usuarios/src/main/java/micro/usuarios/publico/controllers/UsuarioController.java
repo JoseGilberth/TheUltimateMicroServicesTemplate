@@ -18,36 +18,48 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioPublicoDTO;
-import micro.usuarios.publico.services.UsuarioService;
+import micro.usuarios.publico.services.interfaces.IUsuarioService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
+import utils.validaciones.interfaces.OnCreate;
 import utils.validaciones.interfaces.OnUpdate;
- 
+
 @RestController
 @RequestMapping(path = "/usuarios/publico")
 public class UsuarioController {
 
-	Logger logger = LoggerFactory.getLogger( this.getClass() );
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	UsuarioService usuarioService;
+	IUsuarioService usuarioService;
 
-	@PostMapping(value = "/filtro", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<Respuesta<Page<UsuarioPublico>>> filtrar(Pageable pageable, @RequestBody FiltroUsuarioPublicoDTO filtroUsuarioPublicoDTO) { // size=10 page=1
+	@PostMapping(value = "/filtro", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Respuesta<Page<UsuarioPublico>>> filtrar(Pageable pageable,
+			@RequestBody FiltroUsuarioPublicoDTO filtroUsuarioPublicoDTO) { // size=10 page=1
 		Respuesta<Page<UsuarioPublico>> respuesta = usuarioService.filtrar(pageable, filtroUsuarioPublicoDTO);
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<Respuesta<UsuarioPublico>> obtenerPorToken(OAuth2Authentication auth) {
-		Respuesta<UsuarioPublico> respuesta = null; 
+		Respuesta<UsuarioPublico> respuesta = null;
 		respuesta = usuarioService.obtenerPorToken(auth);
-		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta); 
+		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE } )
-	public ResponseEntity<Respuesta<UsuarioPublico>> actualizar(@Validated(OnUpdate.class) @RequestBody UsuarioPublico usuarioPublico,OAuth2Authentication auth) {
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Respuesta<UsuarioPublico>> actualizar(
+			@Validated(OnUpdate.class) @RequestBody UsuarioPublico usuarioPublico, OAuth2Authentication auth) {
 		Respuesta<UsuarioPublico> respuesta = null;
 		respuesta = usuarioService.actualizar(usuarioPublico, auth);
+		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
+	}
+
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Respuesta<UsuarioPublico>> crearPorAdministrador(
+			@Validated(OnCreate.class) @RequestBody UsuarioPublico usuarioPublico) {
+		Respuesta<UsuarioPublico> respuesta = null;
+		respuesta = usuarioService.crearUsuarioPorAdministracion(usuarioPublico);
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 

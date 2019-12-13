@@ -3,6 +3,6 @@ export class Respuesta {
     codigo: number;
     total?: number;
     mensaje: string;
-    exitoso: boolean;
+    estado: boolean;
     cuerpo?: any;
 }

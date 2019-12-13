@@ -1,7 +1,8 @@
 
 
 export const configuraciones = {
-
+    
+    intentosError: 2,
     static: {
         token: "TOKEN",
         usuario: "USUARIO",

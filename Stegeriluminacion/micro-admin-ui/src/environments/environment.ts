@@ -20,10 +20,11 @@ export const environment = {
   micro_usuarios: {
     base: "micro-usuarios",
     post: {
-      obtenerPorFiltro: "usuarios/publico/filtro"
+      obtenerPorFiltro: "usuarios/publico/filtro",
+      crearUsuarioPublico: "usuarios/publico"
     },
     get: {
-      timeUnits: "usuarios/publico/filtro"
+      obtenerPermisos: "permisos/publico"
     },
     catalogos: {
       get: {
