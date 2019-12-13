@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable } from 'rxjs'; 
+import { Observable } from 'rxjs';
 import { UsuariosPublicosFiltroDTO } from '../../_dto/usuarios/UsuariosPublicosFiltroDTO';
 import { UsuariosPublicosDTO } from '../../_dto/usuarios/UsuariosPublicos.Dto';
 import { environment } from '../../../environments/environment';
@@ -15,8 +15,9 @@ export class UsuariosPublicosService {
 
   private obtenerTodosUrl: string = `${environment.host}/${environment.micro_usuarios.base}/${environment.micro_usuarios.post.obtenerPorFiltro}`;
   private crearUrl: string = `${environment.host}/${environment.micro_usuarios.base}/${environment.micro_usuarios.post.crearUsuarioPublico}`;
+  private actualizarUrl: string = `${environment.host}/${environment.micro_usuarios.base}/${environment.micro_usuarios.put.actualizarUsuarioPublico}`;
 
-  
+
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) { }
 
   obtenerTodos(usuariosFiltroDTO: UsuariosPublicosFiltroDTO, pagina: number = 1, tamano: number = 10): Observable<Respuesta> {
@@ -33,7 +34,7 @@ export class UsuariosPublicosService {
   }
 
   actualizar(id: number, usuariosPublicosDTO: UsuariosPublicosDTO): Observable<Respuesta> {
-    return this.http.put<Respuesta>(`${this.obtenerTodosUrl}/${id}`, usuariosPublicosDTO);
+    return this.http.put<Respuesta>(`${this.actualizarUrl}/${id}`, usuariosPublicosDTO);
   }
 
   activar(id: number): Observable<Respuesta> {

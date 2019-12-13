@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,6 +61,17 @@ public class UsuarioController {
 			@Validated(OnCreate.class) @RequestBody UsuarioPublico usuarioPublico) {
 		Respuesta<UsuarioPublico> respuesta = null;
 		respuesta = usuarioService.crearUsuarioPorAdministracion(usuarioPublico);
+		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
+	}
+
+	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = {
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Respuesta<UsuarioPublico>> actualizarPorAdministrador(@PathVariable("id") Long id,
+			@Validated(OnUpdate.class) @RequestBody UsuarioPublico usuarioPublico) {
+		Respuesta<UsuarioPublico> respuesta = null;
+		respuesta = usuarioService.actualizarUsuarioPorAdministracion(id, usuarioPublico);
+		logger.info("respuesta: " + respuesta);
+
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 

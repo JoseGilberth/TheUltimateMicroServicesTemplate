@@ -23,6 +23,9 @@ export const environment = {
       obtenerPorFiltro: "usuarios/publico/filtro",
       crearUsuarioPublico: "usuarios/publico"
     },
+    put: {
+      actualizarUsuarioPublico: "usuarios/publico"
+    },
     get: {
       obtenerPermisos: "permisos/publico"
     },

@@ -51,7 +51,8 @@
               <!-- REPETIR PASSWORD -->
               <div class="form-group">
                 <label class="form-col-form-label" for="repetirPassword">Repetir password</label>
-                <input type="password" class="form-control" id="repetirPassword" [(ngModel)]="usuariosPublicosDTO.repetirPassword">
+                <input type="password" class="form-control" id="repetirPassword"
+                  [(ngModel)]="usuariosPublicosDTO.repetirPassword">
               </div>
 
             </div>
@@ -128,10 +129,11 @@
           </div>
         </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-sm btn-success float-right btn-footer" (click)="onConfirm()"><i
+          <button type="submit" class="btn btn-sm btn-success float-right btn-footer" (click)="actualizar()"><i
               class="fa fa-user"></i>
-            Crear</button>
-          <button type="reset" class="btn btn-sm btn-danger float-right btn-footer" (click)="reinciarValores()"><i class="fa fa-ban"></i> Reiniciar
+            Actualizar</button>
+          <button type="reset" class="btn btn-sm btn-danger float-right btn-footer" (click)="reinciarValores()"><i
+              class="fa fa-ban"></i> Reiniciar
             valores</button>
           <button type="button" class="btn btn-sm btn-primary float-right btn-footer" (click)="regresar()"><i
               class="fa fa-chevron-left"></i>

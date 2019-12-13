@@ -8,12 +8,13 @@ import { TimeUnitService } from '../../../../_servicios/catalogos/timeunits.serv
 import { PermisosPublicosService } from '../../../../_servicios/usuarios/permisospublicos.service';
 import { UsuariosPublicosService } from '../../../../_servicios/usuarios/usuariospublicos.service';
 import { UtilComponent } from '../../../../_shared/util.component';
+import { configuraciones } from '../../../../../environments/configuraciones';
 
 
 @Component({
-  templateUrl: 'crear.component.html'
+  templateUrl: 'editar.component.html'
 })
-export class CrearUsuarioComponent {
+export class EditarUsuarioComponent {
 
   permisos: TreeviewItem[];
   config = TreeviewConfig.create({
@@ -29,7 +30,7 @@ export class CrearUsuarioComponent {
 
   public usuariosPublicosDTO: UsuariosPublicosDTO;
   public permisosPublicosDTO: PermisoPublicoDTO[] = [];
-  public permisosPublicosSeleccionados: PermisoPublicoDTO[];
+  public permisosPublicosSeleccionados: PermisoPublicoDTO[] = [];
 
   constructor(private timeUnitService: TimeUnitService
     , private permisosPublicosService: PermisosPublicosService
@@ -40,22 +41,23 @@ export class CrearUsuarioComponent {
   }
 
   ngOnInit(): void {
-    this.usuariosPublicosDTO = new UsuariosPublicosDTO();
+    this.usuariosPublicosDTO = <UsuariosPublicosDTO>JSON.parse(sessionStorage.getItem(configuraciones.static.usuario));
+    this.usuariosPublicosDTO.password = "";
+    this.usuariosPublicosDTO.repetirPassword = "";
     this.listAllTimeUnits();
     this.listAllPermisos();
   }
 
 
-  onConfirm() {
-    this.utilComponent.showSweetAlertLoading("Creando", "");
+  actualizar() {
+    this.utilComponent.showSweetAlertLoading("Actualizando", "");
     this.usuariosPublicosDTO.permisos = this.permisosPublicosSeleccionados;
-    this.usuariosPublicosService.crear(this.usuariosPublicosDTO)
+    this.usuariosPublicosService.actualizar(this.usuariosPublicosDTO.id, this.usuariosPublicosDTO)
       .subscribe(resp => {
         this.isLoading = false;
-        this.utilComponent.showSweetAlert("Creado", resp.mensaje, "success");
+        this.utilComponent.showSweetAlert("Actualizado", resp.mensaje, "success");
       }, error => {
         this.isLoading = false;
-        console.log("EL ERROR DENTRO DE CREAR: " + JSON.stringify(error));
         this.utilComponent.showSweetAlert("Error", this.utilComponent.trataErrores(error), "error");
       });
   }
@@ -102,11 +104,33 @@ export class CrearUsuarioComponent {
         this.permisosPublicosDTO.forEach(permiso => {
           this.utilComponent.setNestedData(nestedObjects, permiso.etiqueta, ':', permiso);
           this.permisos = this.utilComponent.obtenerHijosPermiso(nestedObjects);
+          this.remarcaPermisosYaAdquiridos(this.permisos, this.usuariosPublicosDTO.permisos);
         });
       }, (error: HttpErrorResponse) => {
         this.isLoading = false;
       });
   }
+
+
+  remarcaPermisosYaAdquiridos(treeviewItems: TreeviewItem[], permisos: PermisoPublicoDTO[]) {
+    treeviewItems.forEach(treeviewItem => {
+      let nodoPermisoPublicoDto: PermisoPublicoDTO = treeviewItem.value;
+      this.usuariosPublicosDTO.permisos.forEach(permisoUsuario => { // TODOS LOS PERMISOS DEL USUARIO
+        if (nodoPermisoPublicoDto != null) {
+          if (nodoPermisoPublicoDto.id === permisoUsuario.id) {
+            treeviewItem.checked = true;
+            this.permisosPublicosSeleccionados.push(nodoPermisoPublicoDto);
+          }
+        }
+      });
+      // REPITE EL PROCESO
+      if (treeviewItem.children != null) {
+        this.remarcaPermisosYaAdquiridos(treeviewItem.children, permisos);
+      }
+    });
+  }
+
+
 
 
 }

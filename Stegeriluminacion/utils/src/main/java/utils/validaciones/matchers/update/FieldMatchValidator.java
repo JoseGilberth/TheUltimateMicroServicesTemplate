@@ -30,7 +30,13 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatchUpdate
 			final Object password = BeanUtils.getProperty(value, firstFieldName);
 			final Object repetirPassword = BeanUtils.getProperty(value, secondFieldName);  
 			
+			logger.info("password: " + password);
+			logger.info("repetirPassword: " + repetirPassword);
+			
 			if (repetirPassword.toString().equals("") && password.toString().length() > 0) {
+				return true;
+			}
+			if (repetirPassword.toString().equals("") && password.toString().equals("") ) {
 				return true;
 			}
 			if (password.toString().equals(repetirPassword)) {

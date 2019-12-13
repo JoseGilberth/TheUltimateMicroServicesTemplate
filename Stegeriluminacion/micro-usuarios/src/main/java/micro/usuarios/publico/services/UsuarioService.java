@@ -78,7 +78,8 @@ public class UsuarioService extends ACrud<UsuarioPublico> implements IUsuarioSer
 		try {
 			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
 
-			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(), usuarioPublico.getCorreo());
+			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(),
+					usuarioPublico.getCorreo());
 			if (usuario != null) {
 				return ErrorInternoControlado.usuarioDuplicado(null);
 			}
@@ -97,6 +98,32 @@ public class UsuarioService extends ACrud<UsuarioPublico> implements IUsuarioSer
 			if (ex instanceof ConstraintViolationException) {
 				throw ex;
 			}
+			return ErrorInternoControlado.error(ex.getMessage());
+		}
+	}
+
+	@Override
+	public Respuesta<UsuarioPublico> actualizarUsuarioPorAdministracion(Long id, UsuarioPublico usuarioPublico) {
+		try {
+			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
+
+			UsuarioPublico usuarioActual = usuarioPublicoDao.findById(id).get();
+
+			/* PASSWORD */
+			if (usuarioPublico.getPassword().isEmpty()) {
+				usuarioPublico.setPassword(usuarioActual.getPassword());
+			} else {
+				usuarioPublico.setPassword(bcrypt.encode(usuarioPublico.getPassword()));
+			}
+			UsuarioPublico usuarioPublic = usuarioPublicoDao.saveAndFlush(usuarioPublico);
+			respuesta.setCodigo(200);
+			respuesta.setCodigoHttp(200);
+			respuesta.setCuerpo(usuarioPublic);
+			respuesta.setEstado(true);
+			respuesta.setMensaje(Translator.toLocale("usuarios.actualizado"));
+			return respuesta;
+		} catch (Exception ex) {
+			ex.printStackTrace();
 			return ErrorInternoControlado.error(ex.getMessage());
 		}
 	}
