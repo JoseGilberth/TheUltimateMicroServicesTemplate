@@ -7,6 +7,8 @@ import { formatDate } from '@angular/common';
 import { TreeviewItem, TreeItem } from 'ngx-treeview';
 import { ToastrService } from "ngx-toastr";
 import { HttpErrorResponse } from '@angular/common/http';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { TokenDecoded } from '../_dto/login/TokenDecoded.Dto';
 
 declare const $: any;
 
@@ -28,10 +30,28 @@ export class UtilComponent implements OnInit {
     ngOnInit() {
     }
 
+
+    validaPermiso(authorityToValidate: string): boolean {
+        let valido: boolean = false;
+        const helper = new JwtHelperService();
+        let token = localStorage.getItem(configuraciones.static.token);
+        let decodedToken = <TokenDecoded>helper.decodeToken(token);
+        //const expirationDate = helper.getTokenExpirationDate(token);
+        //const isExpired = helper.isTokenExpired(token);
+        let indice = decodedToken.authorities.findIndex(authority => authority == authorityToValidate);
+        if (indice != -1) {
+            valido = true;
+        }
+        return valido;
+    }
+
     trataErrores(error: HttpErrorResponse): string {
         let errores: string = "";
         if (error.error != null) {
             if (error.error.cuerpo != null) {
+                if (error.error.codigo == 403) {
+                    this.presentToasterError(String(error.error.mensaje));
+                }
                 if (error.error.cuerpo.lista != null) {
                     let cadenas = JSON.parse(JSON.stringify(error.error.cuerpo.lista));
                     for (let value of Object.values(cadenas)) {
@@ -52,7 +72,25 @@ export class UtilComponent implements OnInit {
 
     presentToasterInfo(mensaje: string) {
         this.toastr.info(mensaje, "", {
-            timeOut: 13000
+            timeOut: 5000
+        });
+    }
+
+    presentToasterSuccess(mensaje: string) {
+        this.toastr.success(mensaje, "", {
+            timeOut: 5000
+        });
+    }
+
+    presentToasterWarning(mensaje: string) {
+        this.toastr.warning(mensaje, "", {
+            timeOut: 5000
+        });
+    }
+
+    presentToasterError(mensaje: string) {
+        this.toastr.error(mensaje, "", {
+            timeOut: 5000
         });
     }
 

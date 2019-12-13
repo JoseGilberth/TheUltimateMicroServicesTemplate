@@ -16,7 +16,7 @@ export class UsuariosPublicosService {
   private obtenerTodosUrl: string = `${environment.host}/${environment.micro_usuarios.base}/${environment.micro_usuarios.post.obtenerPorFiltro}`;
   private crearUrl: string = `${environment.host}/${environment.micro_usuarios.base}/${environment.micro_usuarios.post.crearUsuarioPublico}`;
   private actualizarUrl: string = `${environment.host}/${environment.micro_usuarios.base}/${environment.micro_usuarios.put.actualizarUsuarioPublico}`;
-
+  private borrarUrl: string = `${environment.host}/${environment.micro_usuarios.base}/${environment.micro_usuarios.delete.borrarUsuario}`;
 
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) { }
 
@@ -37,11 +37,8 @@ export class UsuariosPublicosService {
     return this.http.put<Respuesta>(`${this.actualizarUrl}/${id}`, usuariosPublicosDTO);
   }
 
-  activar(id: number): Observable<Respuesta> {
-    return this.http.get<Respuesta>(`${this.obtenerTodosUrl}/${id}`);
-  }
   borrar(id: number): Observable<Respuesta> {
-    return this.http.post<Respuesta>(`${this.obtenerTodosUrl}/${id}`, null);
+    return this.http.delete<Respuesta>(`${this.borrarUrl}/${id}`);
   }
 
 

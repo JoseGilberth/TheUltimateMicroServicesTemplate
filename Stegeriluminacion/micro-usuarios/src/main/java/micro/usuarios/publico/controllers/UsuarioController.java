@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,6 +73,13 @@ public class UsuarioController {
 		respuesta = usuarioService.actualizarUsuarioPorAdministracion(id, usuarioPublico);
 		logger.info("respuesta: " + respuesta);
 
+		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
+	}
+
+	@DeleteMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<Respuesta<Boolean>> borrarPorAdministrador(@PathVariable("id") Long id) {
+		Respuesta<Boolean> respuesta = null;
+		respuesta = usuarioService.borrarPorAdministrador(id );
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 

@@ -29,6 +29,9 @@ export const environment = {
     get: {
       obtenerPermisos: "permisos/publico"
     },
+    delete: {
+      borrarUsuario: "usuarios/publico"
+    },
     catalogos: {
       get: {
         timeUnits: "catalogos/timeunits"

@@ -27,20 +27,20 @@ import utils.validaciones.interfaces.OnUpdate;
 import utils.validaciones.matchers.create.FieldMatch;
 import utils.validaciones.matchers.update.FieldMatchUpdate;
 
+@Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@Data
 @FieldMatch.List({
 	@FieldMatch(first = "password", second = "repetirPassword", message = "Los passwords deben coincidir.", groups = { OnCreate.class }),
 })
 @FieldMatchUpdate(first = "password", second = "repetirPassword", message = "Los passwords deben coincidir.", groups = { OnUpdate.class })
 public class Usuario {
-
+	
 	@Id
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@NotNull(message = "{usuario.username.notnull}")
 	@Length(min = 5, max = 250, message = "{usuario.username.lenght}")
 	@Column(length = 255, nullable = false, unique = true)
@@ -53,7 +53,6 @@ public class Usuario {
 	private String password;
 
 	@Transient
-	
 	private String repetirPassword;
 
 	@Pattern(regexp = ".+@.+\\..+", message = "{usuario.correo.pattern}")

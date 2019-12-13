@@ -13,6 +13,10 @@ public class ErrorInternoControlado extends CustomError {
 	public static <T> Respuesta<T> usuarioDuplicado(T cuerpo) {
 		return error(RECURSO_DUPLICADO_USUARIO_ADMINISTRATIVO[0], RECURSO_DUPLICADO_USUARIO_ADMINISTRATIVO[1], cuerpo, Translator.toLocale("usuarios.duplicado"), false);
 	}
+	public static <T> Respuesta<T> usuarioOCorreoDuplicado(T cuerpo) {
+		return error(RECURSO_DUPLICADO_USUARIO_ADMINISTRATIVO[0], RECURSO_DUPLICADO_USUARIO_ADMINISTRATIVO[1], cuerpo, Translator.toLocale("usuarios.correo.duplicado"), false);
+	}
+
 
 	public static <T> Respuesta<T> usuarioNoActivo(T cuerpo) {
 		return error(RECURSO_DUPLICADO_USUARIO_ADMINISTRATIVO[0], RECURSO_DUPLICADO_USUARIO_ADMINISTRATIVO[1], cuerpo, "El usuario no existe", false);

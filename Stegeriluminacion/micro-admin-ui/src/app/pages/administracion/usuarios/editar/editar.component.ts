@@ -56,6 +56,7 @@ export class EditarUsuarioComponent {
       .subscribe(resp => {
         this.isLoading = false;
         this.utilComponent.showSweetAlert("Actualizado", resp.mensaje, "success");
+        this.regresar();
       }, error => {
         this.isLoading = false;
         this.utilComponent.showSweetAlert("Error", this.utilComponent.trataErrores(error), "error");

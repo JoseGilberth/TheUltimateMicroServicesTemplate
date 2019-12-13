@@ -26,7 +26,16 @@ INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope,
 
 -- PERMISOS -- AUTORITIES
 insert into permiso_administrador values (1,'swagger admin' , 'proyecto:web:swagger:admin');
+insert into permiso_administrador values (2,'Muestra a los usuarios publicos'   , 'web:administracion:usuarios:publicos:mostrar');
+insert into permiso_administrador values (3,'Crea un usuario público'   , 'web:administracion:usuarios:publicos:crear');
+insert into permiso_administrador values (4,'Edita un usuario público'  , 'web:administracion:usuarios:publicos:actualizar');
+insert into permiso_administrador values (5,'Borrar un usuario público' , 'web:administracion:usuarios:publicos:borrar');
+
 insert into usuario_administrador_permiso values (1,1);
+insert into usuario_administrador_permiso values (1,2);
+insert into usuario_administrador_permiso values (1,3);
+insert into usuario_administrador_permiso values (1,4);
+insert into usuario_administrador_permiso values (1,5);
 
 -- LOGGER
 INSERT INTO log (id,accion,apartado,fecha_alta,tipo_usuario,usuario) VALUES (1,'Alta de la plantilla','Sistema',now(),'publico','gilbertoAdmin');

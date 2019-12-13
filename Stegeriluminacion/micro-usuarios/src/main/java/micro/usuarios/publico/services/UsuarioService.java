@@ -81,8 +81,9 @@ public class UsuarioService extends ACrud<UsuarioPublico> implements IUsuarioSer
 			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(),
 					usuarioPublico.getCorreo());
 			if (usuario != null) {
-				return ErrorInternoControlado.usuarioDuplicado(null);
+				return ErrorInternoControlado.usuarioOCorreoDuplicado(null);
 			}
+
 			usuarioPublico.setPassword(bcrypt.encode(usuarioPublico.getPassword()));
 			UsuarioPublico usuarioPublic = usuariosPublicoDao.saveAndFlush(usuarioPublico);
 			respuesta.setCodigo(200);
@@ -126,6 +127,18 @@ public class UsuarioService extends ACrud<UsuarioPublico> implements IUsuarioSer
 			ex.printStackTrace();
 			return ErrorInternoControlado.error(ex.getMessage());
 		}
+	}
+
+	@Override
+	public Respuesta<Boolean> borrarPorAdministrador(Long id) {
+		Respuesta<Boolean> respuesta = new Respuesta<Boolean>();
+		usuarioPublicoDao.deleteById(id);
+		respuesta.setCodigo(200);
+		respuesta.setCodigoHttp(200);
+		respuesta.setCuerpo(true);
+		respuesta.setEstado(true);
+		respuesta.setMensaje(Translator.toLocale("usuarios.borrado"));
+		return respuesta;
 	}
 
 	@Override

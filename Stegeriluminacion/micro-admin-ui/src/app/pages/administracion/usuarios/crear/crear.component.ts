@@ -53,6 +53,7 @@ export class CrearUsuarioComponent {
       .subscribe(resp => {
         this.isLoading = false;
         this.utilComponent.showSweetAlert("Creado", resp.mensaje, "success");
+        this.regresar();
       }, error => {
         this.isLoading = false;
         console.log("EL ERROR DENTRO DE CREAR: " + JSON.stringify(error));

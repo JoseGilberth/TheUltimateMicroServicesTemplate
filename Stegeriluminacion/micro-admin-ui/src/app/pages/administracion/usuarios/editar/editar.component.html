@@ -98,6 +98,19 @@
                   [(ngModel)]="usuariosPublicosDTO.tokenExpiration">
               </div>
 
+              <!-- ESTATUS  -->
+              <div class="form-group">
+                <div class="col-3">
+                  Estatus:
+                </div>
+                <div class="col-9">
+                  <label class="switch switch-label switch-lg switch-3d switch-pill switch-primary">
+                    <input type="checkbox" class="switch-input" [(ngModel)]="usuariosPublicosDTO.enabled">
+                    <span class="switch-slider" data-checked="✓" data-unchecked="✕"></span>
+                  </label>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

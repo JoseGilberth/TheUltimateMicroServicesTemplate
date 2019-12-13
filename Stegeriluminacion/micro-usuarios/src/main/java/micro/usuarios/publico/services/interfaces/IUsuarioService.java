@@ -9,12 +9,17 @@ import dto.micro.usuarios.FiltroUsuarioPublicoDTO;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 
 public interface IUsuarioService {
-	 
+
 	Respuesta<UsuarioPublico> actualizar(UsuarioPublico usuarioPublico, OAuth2Authentication auth);
+
 	Respuesta<Page<UsuarioPublico>> filtrar(Pageable pageable, FiltroUsuarioPublicoDTO filtroUsuarioPublicoDTO);
+
 	Respuesta<UsuarioPublico> obtenerPorToken(OAuth2Authentication auth);
-	
+
 	Respuesta<UsuarioPublico> crearUsuarioPorAdministracion(UsuarioPublico usuarioPublico);
-	Respuesta<UsuarioPublico> actualizarUsuarioPorAdministracion( Long id,UsuarioPublico usuarioPublico);
+
+	Respuesta<UsuarioPublico> actualizarUsuarioPorAdministracion(Long id, UsuarioPublico usuarioPublico);
+
+	Respuesta<Boolean> borrarPorAdministrador(Long id);
 
 }

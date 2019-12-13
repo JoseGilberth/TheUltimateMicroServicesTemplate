@@ -43,7 +43,7 @@ export class TokenInterceptor implements HttpInterceptor {
                                 this.intentos = 0;
                                 throw new HttpErrorResponse({ error: 'bar', status: error.status });
                             }
-                            //this.util.presentSnackBarInfo("Intentando conectarse con el servidor", "X");
+                            this.util.presentToasterWarning("Intentando conectarse con el servidor");
                             this.intentos++;
                         })
                     );
@@ -57,7 +57,7 @@ export class TokenInterceptor implements HttpInterceptor {
             catchError((error: HttpErrorResponse) => {
                 this.util.trataErrores(error);
                 if (error.status === 0) {
-                    //this.util.presentSnackBarError("Error de conexión", "X");
+                    this.util.presentToasterWarning("Error de conexión");
                 }
                 return throwError(error);
             }));
@@ -65,11 +65,17 @@ export class TokenInterceptor implements HttpInterceptor {
 
 
     printRequest(req: HttpRequest<any>, respuesta: any) {
+        console.log(" ");
+        console.log(" ");
+        console.log(" ");
         console.log("Peticion URL: --------->>> " + req.url);
         console.log("Peticion METODO: ------>>> " + req.method);
         console.log("Peticion HEADERS: ----->>> " + JSON.stringify(req.headers));
         console.log('Peticion CONTENIDO: --->>> ' + JSON.stringify(req.body));
         console.log('Peticion RESPUESTA: --->>> ' + JSON.stringify(respuesta));
+        console.log(" ");
+        console.log(" ");
+        console.log(" ");
     }
 
     validaReglasIntento(metodo: string, url: string, error: any) {

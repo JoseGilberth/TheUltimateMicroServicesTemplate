@@ -26,23 +26,31 @@
             </select>
 
             <!-- CREAR -->
-            <button (click)="nuevo()" type="button" class="btn btn-botonera btn-primary btn-sm float-right"
-              popover="Crea un nuevo usuario" triggers="mouseenter:mouseleave">
-              <i class="fa fa-plus"></i> Crear
-            </button>
+            <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
+              popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:publicos:crear') ? 'Crea un usuario' : 'No tiene permitido crear usuarios' }}"
+              triggers="mouseenter:mouseleave">
+              <button (click)="nuevo()" type="button" class="btn btn-botonera btn-primary btn-sm float-right"
+                [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:publicos:crear')">
+                <i class="fa fa-plus"></i> Crear
+              </button>
+            </div>
 
             <!-- QUITAR FILTRO -->
             <button *ngIf="usuariosPublicosFiltroDTO.busqueda" (click)="eliminarBusqueda()" type="button"
-              class="btn btn-botonera btn-danger btn-sm float-right" popover="I will hide on blur"
+              class="btn btn-botonera btn-danger btn-sm float-right" popover="Elimina el filtro de busqueda"
               triggers="mouseenter:mouseleave">
               <i class="fa fa-close"></i> Quitar Filtro
             </button>
 
             <!-- BUSQUEDA -->
-            <button (click)="buscar()" type="button" class="btn btn-botonera btn-primary btn-sm float-right"
-              popover="Busca usuarios mediante un filtro" triggers="mouseenter:mouseleave">
-              <i class="fa fa-search"></i> Buscar
-            </button>
+            <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
+              popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:publicos:mostrar') ? 'busca un usuario' : 'No tiene permitido buscar usuarios' }}"
+              triggers="mouseenter:mouseleave">
+              <button (click)="buscar()" type="button" class="btn btn-botonera btn-primary btn-sm float-right"
+                [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:publicos:mostrar')">
+                <i class="fa fa-search"></i> Buscar
+              </button>
+            </div>
 
           </div>
 
@@ -68,17 +76,28 @@
               <tbody *ngIf="usuariosPublicosDTO?.length != 0">
                 <tr *ngFor="let usuario of usuariosPublicosDTO">
                   <!-- ACCIONES <span class="badge badge-success">Active</span>-->
-                  <td>
-                    <div style="width: 82px;">
-                      <button type="button" class="btn btn-botonera btn-danger btn-sm float-right"
-                        popover="I will hide on blur" triggers="mouseenter:mouseleave">
+                  <td style="width: 75px;">
+
+                    <!-- BORRAR -->
+                    <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
+                      popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:publicos:borrar') ? 'Eliminar un usuario' : 'No tiene permitido eliminar usuarios' }}"
+                      triggers="mouseenter:mouseleave">
+                      <button type="button" (click)="borrar(usuario)" class="btn btn-danger btn-sm"
+                        [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:publicos:borrar')">
                         <i class="fa fa-trash"></i>
                       </button>
-                      <button type="button" (click)="editar(usuario)" class="btn btn-botonera btn-primary btn-sm float-right"
-                        popover="I will hide on blur" triggers="mouseenter:mouseleave">
+                    </div>
+
+                    <!-- EDITAR -->
+                    <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
+                      popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:publicos:actualizar') ? 'Edita un usuario' : 'No tiene permitido editar usuarios' }}"
+                      triggers="mouseenter:mouseleave">
+                      <button type="button" (click)="editar(usuario)" class="btn btn-primary btn-sm"
+                        [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:publicos:actualizar')">
                         <i class="fa fa-edit"></i>
                       </button>
                     </div>
+
                   </td>
                   <td>{{ usuario.id }}</td>
                   <td>{{ usuario.username }}</td>
@@ -117,8 +136,8 @@
           <nav>
             <ul class="pagination no-margin pull-right">
               <pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage"
-                (pageChanged)="pageChanged($event)" class="pagination-sm" [maxSize]="6" previousText="&lsaquo;"
-                nextText="&rsaquo;" firstText="Primero" lastText="Último">
+                (pageChanged)="pageChanged($event)" class="pagination-sm" [itemsPerPage]="cantidadAMostrar"
+                previousText="&lsaquo;" nextText="&rsaquo;" firstText="Primero" lastText="Último">
               </pagination>
             </ul>
           </nav>

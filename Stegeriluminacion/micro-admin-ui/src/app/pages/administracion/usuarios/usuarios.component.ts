@@ -11,6 +11,8 @@ import { TableComponent } from '../../../_interfaces/tables.component';
 import { UsuariosPublicosService } from '../../../_servicios/usuarios/usuariospublicos.service';
 import { UtilComponent } from '../../../_shared/util.component';
 import { BuscarUsuariosComponent } from './buscar/buscar.component';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: 'usuarios.component.html',
@@ -19,7 +21,6 @@ import { BuscarUsuariosComponent } from './buscar/buscar.component';
 export class UsuariosComponent extends TableComponent {
 
   public configuraciones: any;
-  public utilComponent: any;
   public totalItems: number = 0;
   public currentPage: number = 0;
   public isLoading: boolean = false;
@@ -31,19 +32,19 @@ export class UsuariosComponent extends TableComponent {
   @Output() callbackOnModelWindowClose: EventEmitter<null> = new EventEmitter();
 
   constructor(private usuariosPublicosService: UsuariosPublicosService
-    , private util: UtilComponent
+    , public utilComponent: UtilComponent
     , private router: Router
-    , private modalService: BsModalService) {
+    , private modalService: BsModalService
+    , private toastr: ToastrService) {
     super();
     this.configuraciones = configuraciones;
-    this.utilComponent = util;
-
   }
 
   ngOnInit() {
     this.usuariosPublicosFiltroDTO = new UsuariosPublicosFiltroDTO();
     this.listAll(this.currentPage, this.cantidadAMostrar);
   }
+
 
   /*
   ================================================================
@@ -58,6 +59,7 @@ export class UsuariosComponent extends TableComponent {
         this.isLoading = false;
         let pageable: PageableDTO = <PageableDTO>resp.cuerpo;
         this.usuariosPublicosDTO = pageable.content;
+        this.totalItems = pageable.totalElements;
       }, (error: HttpErrorResponse) => {
         this.isLoading = false;
       });
@@ -67,7 +69,7 @@ export class UsuariosComponent extends TableComponent {
   }
   rowsToShow(value) {
     this.cantidadAMostrar = value;
-    this.listAll(this.currentPage, value);
+    this.listAll(0, this.cantidadAMostrar);
   }
 
   /*
@@ -78,6 +80,37 @@ export class UsuariosComponent extends TableComponent {
   editar(usuario: UsuariosPublicosDTO) {
     sessionStorage.setItem(configuraciones.static.usuario, JSON.stringify(usuario));
     this.router.navigate(["/usuarios/editar"]);
+  }
+
+  /*
+  ================================================================
+                          BORRAR USUARIO
+  ================================================================
+  */
+  borrar(usuario: UsuariosPublicosDTO) {
+    Swal.fire({
+      title: 'Borrar usuario?',
+      text: "Esta accion no puede ser removida!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borrar usuario!',
+      showLoaderOnConfirm: true,
+      preConfirm: (login) => {
+        return this.usuariosPublicosService.borrar(usuario.id)
+          .subscribe(resp => {
+            this.utilComponent.showSweetAlert("Borrado", resp.mensaje, "success");
+            this.listAll((this.currentPage - 1), this.cantidadAMostrar);
+          }, (error: HttpErrorResponse) => {
+            this.utilComponent.showSweetAlert("Error", this.utilComponent.trataErrores(error), "error");
+          });
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.value) {
+      }
+    })
   }
 
   /*
@@ -106,14 +139,14 @@ export class UsuariosComponent extends TableComponent {
     this.bsModalRef.content.onClose = new Subject<boolean>();
     this.bsModalRef.content.onClose.subscribe((result: boolean) => {
       if (result) {
-        this.listAll(this.currentPage, this.cantidadAMostrar);
+        this.listAll((this.currentPage - 1), this.cantidadAMostrar);
       }
     });
   }
 
   eliminarBusqueda() {
-    this.util.cleanProperties(this.usuariosPublicosFiltroDTO);
-    this.listAll(this.currentPage, this.cantidadAMostrar);
+    this.utilComponent.cleanProperties(this.usuariosPublicosFiltroDTO);
+    this.listAll((this.currentPage - 1), this.cantidadAMostrar);
   }
 
 }
