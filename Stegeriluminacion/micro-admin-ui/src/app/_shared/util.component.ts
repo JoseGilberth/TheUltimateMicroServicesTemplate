@@ -18,12 +18,8 @@ declare const $: any;
 })
 export class UtilComponent implements OnInit {
 
-    loading: boolean = false;
-    seleccionEmpresa: boolean = true;
-    seleccionSistema: boolean = true;
-    empresaSeleccionada: string = "Seleccione una empresa";
-    sysERPSeleccionado: string = "Seleccione un sistema ERP";
-
+    loading: boolean = false; 
+    
     constructor(private toastr: ToastrService) {
     }
 

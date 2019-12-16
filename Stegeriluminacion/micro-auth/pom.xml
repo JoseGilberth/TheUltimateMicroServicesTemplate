@@ -73,8 +73,8 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-		</dependency> 
-		<!-- ________ SEGURIDAD ________ --> 
+		</dependency>
+		<!-- ________ SEGURIDAD ________ -->
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
@@ -88,6 +88,12 @@
 		<dependency>
 			<groupId>org.springframework.security.oauth.boot</groupId>
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.cloudfoundry</groupId>
+			<artifactId>cloudfoundry-client-lib</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 		<!-- ________ JPA ________ -->
 		<dependency>
@@ -110,6 +116,8 @@
 			<artifactId>utils</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
+
 	</dependencies>
 
 

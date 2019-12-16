@@ -33,18 +33,16 @@ export class LoginComponent implements OnInit {
   }
 
   iniciarSesion() {
-    this.utilComponent.loading = true;
+    this.utilComponent.showSweetAlertLoading("Iniciar Sesión", "Iniciando sesion");
     this.loginService.iniciarSesion(this.loginDTO).subscribe(
       respuesta => {
         let token = respuesta;
         localStorage.setItem(configuraciones.static.token, JSON.stringify(token));
-        console.log("dashboard");
-        this.router.navigate(['dashboard']);
-        this.utilComponent.loading = false;
+         this.router.navigate(['dashboard']);
+         this.utilComponent.showSweetAlert("Bienvenido", "", "success"); 
       },
       (error: HttpErrorResponse) => {
         console.log("ERROR: " + JSON.stringify(error));
-        this.utilComponent.loading = false;
       });
   }
 

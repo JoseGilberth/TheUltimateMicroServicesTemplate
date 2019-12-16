@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioPublicoDTO;
+import interfaces.ACRUDEndPoints;
 import micro.usuarios.publico.services.interfaces.IUsuarioService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 import utils.validaciones.interfaces.OnCreate;
@@ -27,7 +28,7 @@ import utils.validaciones.interfaces.OnUpdate;
 
 @RestController
 @RequestMapping(path = "/usuarios/publico")
-public class UsuarioController {
+public class UsuarioController extends ACRUDEndPoints<UsuarioController> {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 

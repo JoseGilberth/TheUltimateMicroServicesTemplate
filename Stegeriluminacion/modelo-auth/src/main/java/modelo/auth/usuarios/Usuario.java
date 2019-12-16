@@ -1,5 +1,6 @@
 package modelo.auth.usuarios;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -34,8 +35,10 @@ import utils.validaciones.matchers.update.FieldMatchUpdate;
 	@FieldMatch(first = "password", second = "repetirPassword", message = "Los passwords deben coincidir.", groups = { OnCreate.class }),
 })
 @FieldMatchUpdate(first = "password", second = "repetirPassword", message = "Los passwords deben coincidir.", groups = { OnUpdate.class })
-public class Usuario {
-	
+public class Usuario implements Serializable{
+	 
+	private static final long serialVersionUID = -8409428002195898111L;
+
 	@Id
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

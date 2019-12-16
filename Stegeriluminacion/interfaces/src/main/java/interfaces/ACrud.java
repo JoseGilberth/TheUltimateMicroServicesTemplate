@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.stereotype.Component;
 
 import dto.main.Respuesta;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
@@ -21,6 +22,7 @@ import steger.excepciones.controladas.ErrorInternoControlado;
 
 @Scope(proxyMode = ScopedProxyMode.INTERFACES)
 @Transactional
+@Component(value = "ACRUD")
 public abstract class ACrud< T extends Serializable, S> {
 
 	@PersistenceContext

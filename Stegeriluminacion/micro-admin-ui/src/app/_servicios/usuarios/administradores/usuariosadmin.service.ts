@@ -1,18 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { UsuariosPublicosFiltroDTO } from '../../../_dto/usuarios/UsuariosPublicosFiltroDTO';
-import { Respuesta } from '../../../_dto/_main/Respuesta.Dto';
-import { UsuariosPublicosDTO } from '../../../_dto/usuarios/UsuariosPublicos.Dto';
+import { UsuariosAdminDTO } from '../../../_dto/usuarios/UsuariosAdmin.Dto';
 import { UsuariosAdminFiltroDTO } from '../../../_dto/usuarios/UsuariosAdminFiltro.Dto';
-import { UsuariosAdministradoresDTO } from '../../../_dto/usuarios/UsuariosAdministradores.Dto';
+import { Respuesta } from '../../../_dto/_main/Respuesta.Dto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuariosPublicosService {
+export class UsuariosAdminService {
 
   private obtenerTodosUrl: string = `${environment.host}/${environment.micro_usuarios.base}/${environment.micro_usuarios.post.obtenerUsuariosAdminFiltro}`;
   private crearUrl: string = `${environment.host}/${environment.micro_usuarios.base}/${environment.micro_usuarios.post.crearUsuarioAdmin}`;
@@ -29,12 +26,12 @@ export class UsuariosPublicosService {
     return this.http.get<Respuesta>(`${this.obtenerTodosUrl}`);
   }
 
-  crear(usuariosAdministradoresDTO: UsuariosAdministradoresDTO): Observable<Respuesta> {
-    return this.http.post<Respuesta>(`${this.crearUrl}`, usuariosAdministradoresDTO);
+  crear(usuariosAdminDTO: UsuariosAdminDTO): Observable<Respuesta> {
+    return this.http.post<Respuesta>(`${this.crearUrl}`, usuariosAdminDTO);
   }
 
-  actualizar(id: number, usuariosAdministradoresDTO: UsuariosAdministradoresDTO): Observable<Respuesta> {
-    return this.http.put<Respuesta>(`${this.actualizarUrl}/${id}`, usuariosAdministradoresDTO);
+  actualizar(id: number, usuariosAdminDTO: UsuariosAdminDTO): Observable<Respuesta> {
+    return this.http.put<Respuesta>(`${this.actualizarUrl}/${id}`, usuariosAdminDTO);
   }
 
   borrar(id: number): Observable<Respuesta> {

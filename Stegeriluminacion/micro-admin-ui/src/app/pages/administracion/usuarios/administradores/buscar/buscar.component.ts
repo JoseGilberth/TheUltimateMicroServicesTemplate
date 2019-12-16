@@ -2,33 +2,32 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
-import { UsuariosPublicosFiltroDTO } from '../../../../../_dto/usuarios/UsuariosPublicosFiltroDTO';
-import { TimeUnitService } from '../../../../../_servicios/catalogos/timeunits.service';
+ import { TimeUnitService } from '../../../../../_servicios/catalogos/timeunits.service';
 import { UtilComponent } from '../../../../../_shared/util.component';
+import { UsuariosAdminFiltroDTO } from '../../../../../_dto/usuarios/UsuariosAdminFiltro.Dto';
 
 @Component({
   templateUrl: 'buscar.component.html'
 })
 export class BuscarUsuariosComponent {
-  usuariosPublicosFiltroDTO: UsuariosPublicosFiltroDTO;
+  usuariosAdminFiltroDTO: UsuariosAdminFiltroDTO;
   onClose: Subject<boolean>;
   isLoading: boolean = false;
   timeUnitsDto: string[] = [];
 
   constructor(public bsModalRef: BsModalRef
-    , private timeUnitService: TimeUnitService, private utilComponent: UtilComponent
+    , private utilComponent: UtilComponent
     , private util: UtilComponent) {
   }
 
   public ngOnInit(): void {
     this.onClose = new Subject();
-    this.listAllTimeUnits();
   }
 
   public onConfirm(): void {
-    this.usuariosPublicosFiltroDTO.busqueda = true;
-    this.usuariosPublicosFiltroDTO.fechaAltaInicial = this.utilComponent.convertDateToMX(this.usuariosPublicosFiltroDTO.fechaAltaInicial);
-    this.usuariosPublicosFiltroDTO.fechaAltaFinal = this.utilComponent.convertDateToMX(this.usuariosPublicosFiltroDTO.fechaAltaFinal);
+    this.usuariosAdminFiltroDTO.busqueda = true;
+    this.usuariosAdminFiltroDTO.fechaAltaInicial = this.utilComponent.convertDateToMX(this.usuariosAdminFiltroDTO.fechaAltaInicial);
+    this.usuariosAdminFiltroDTO.fechaAltaFinal = this.utilComponent.convertDateToMX(this.usuariosAdminFiltroDTO.fechaAltaFinal);
 
     this.onClose.next(true);
     this.bsModalRef.hide();
@@ -40,24 +39,7 @@ export class BuscarUsuariosComponent {
   }
 
   limpiarBusqueda() {
-    this.util.cleanProperties(this.usuariosPublicosFiltroDTO);
+    this.util.cleanProperties(this.usuariosAdminFiltroDTO);
   }
-
-
-  /*
-  ================================================================
-                          OBTENER TIME UNITS
-  ================================================================
-  */
-  listAllTimeUnits() {
-    this.isLoading = true;
-    this.timeUnitsDto = [];
-    this.timeUnitService.obtenerTodos()
-      .subscribe(resp => {
-        this.isLoading = false;
-        this.timeUnitsDto = resp.cuerpo;
-      }, (error: HttpErrorResponse) => {
-        this.isLoading = false;
-      });
-  }
+ 
 }

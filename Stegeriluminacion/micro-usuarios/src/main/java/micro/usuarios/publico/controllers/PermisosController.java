@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dto.main.Respuesta;
+import interfaces.ACRUDEndPoints;
 import micro.usuarios.publico.services.PermisosPublicosService;
 import modelo.auth.usuarios.publicos.PermisoPublico;
 
 @RestController
 @RequestMapping(path = "/permisos/publico")
-public class PermisosController {
+public class PermisosController extends ACRUDEndPoints<PermisosController> {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 

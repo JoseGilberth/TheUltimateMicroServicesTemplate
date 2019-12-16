@@ -20,6 +20,7 @@ import dao.auth.usuarios.publicos.UsuarioPublicoDao;
 import dto.main.Respuesta;
 import  steger.excepciones.controladas.ErrorInternoControlado;
 import micro.usuarios._config.languaje.Translator;
+import micro.usuarios.publico.services.interfaces.IEmailService;
 import micro.usuarios.publico.services.interfaces.IRegistroService;
 import modelo.auth.usuarios.publicos.ResetTokenPublico;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
@@ -37,7 +38,7 @@ public class RegistroService implements IRegistroService {
 	private BCryptPasswordEncoder bcrypt;
 
 	@Autowired
-	EmailService emailService;
+	IEmailService emailService;
 
 	@Autowired
 	private ResetTokenPublicoDao resetTokenPublicoDao;

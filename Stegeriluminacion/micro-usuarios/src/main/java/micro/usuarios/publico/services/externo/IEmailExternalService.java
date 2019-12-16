@@ -17,5 +17,4 @@ public interface IEmailExternalService {
     @PostMapping(value = "/correo/cambiar/password")
     Respuesta<Boolean> cambiarPassword( @RequestBody Mail correo );
     
-   
 }

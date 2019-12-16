@@ -7,17 +7,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import dto.micro.auth.oauthaccesstoken.FiltroOauthAccessTokenDTO;
+import dto.micro.auth.FiltroOauthAccessTokenDTO;
 import modelo.auth.oauth2.OauthAccessToken; 
  
 public interface OauthAccessTokenDao extends JpaRepository<OauthAccessToken, String>{
 
 	@Query("FROM OauthAccessToken oauthAT "
-			+ " WHERE (:#{#filtroOauthAccessTokenDTO.authentication_id} is null or oauthAT.authentication_id =:#{#filtroOauthAccessTokenDTO.authentication_id})"
-			+ " AND (:#{#filtroOauthAccessTokenDTO.user_name} is null or oauthAT.user_name = :#{#filtroOauthAccessTokenDTO.user_name})"
-			+ " AND (:#{#filtroOauthAccessTokenDTO.client_id} is null or oauthAT.client_id = :#{#filtroOauthAccessTokenDTO.client_id})"
-			+ " AND (:#{#filtroOauthAccessTokenDTO.refresh_token} is null or oauthAT.refresh_token = :#{#filtroOauthAccessTokenDTO.refresh_token})"
-			+ " ORDER BY oauthAT.user_name asc")
+ 			+ " WHERE (:#{#filtroOauthAccessTokenDTO.user_name} is null or oauthAT.user_name like %:#{#filtroOauthAccessTokenDTO.user_name}%)"
+			+ " AND (:#{#filtroOauthAccessTokenDTO.client_id} is null or oauthAT.client_id like %:#{#filtroOauthAccessTokenDTO.client_id}%)"
+ 			+ " ORDER BY oauthAT.user_name asc")
 	Page<OauthAccessToken> obtenerTodosPorPaginacion(Pageable pageable , FiltroOauthAccessTokenDTO filtroOauthAccessTokenDTO);
 	
 

@@ -3,12 +3,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TreeviewConfig, TreeviewItem } from 'ngx-treeview';
 import { PermisoPublicoDTO } from '../../../../../_dto/usuarios/PermisoPublico.Dto';
-import { UsuariosPublicosDTO } from '../../../../../_dto/usuarios/UsuariosPublicos.Dto';
+import { UsuariosAdminDTO } from '../../../../../_dto/usuarios/UsuariosAdmin.Dto';
 import { TimeUnitService } from '../../../../../_servicios/catalogos/timeunits.service';
 import { UtilComponent } from '../../../../../_shared/util.component';
-import { PermisosPublicosService } from '../../../../../_servicios/usuarios/administradores/permisosadmin.service';
-import { UsuariosPublicosService } from '../../../../../_servicios/usuarios/administradores/usuariosadmin.service';
-
+import { PermisosAdminService } from '../../../../../_servicios/usuarios/administradores/permisosadmin.service';
+import { UsuariosAdminService } from '../../../../../_servicios/usuarios/administradores/usuariosadmin.service';
 
 @Component({
   templateUrl: 'crear.component.html'
@@ -27,20 +26,20 @@ export class CrearUsuarioComponent {
   timeUnitsDto: string[] = [];
   isLoading: boolean = false;
 
-  public usuariosPublicosDTO: UsuariosPublicosDTO;
-  public permisosPublicosDTO: PermisoPublicoDTO[] = [];
-  public permisosPublicosSeleccionados: PermisoPublicoDTO[];
+  public usuariosAdminDTO: UsuariosAdminDTO;
+  public permisosAdminDTO: PermisoPublicoDTO[] = [];
+  public permisosAdminSeleccionados: PermisoPublicoDTO[];
 
   constructor(private timeUnitService: TimeUnitService
-    , private permisosPublicosService: PermisosPublicosService
+    , private permisosAdminService: PermisosAdminService
     , private utilComponent: UtilComponent
     , private router: Router
-    , private usuariosPublicosService: UsuariosPublicosService) {
+    , private usuariosAdminService: UsuariosAdminService) {
 
   }
 
   ngOnInit(): void {
-    this.usuariosPublicosDTO = new UsuariosPublicosDTO();
+    this.usuariosAdminDTO = new UsuariosAdminDTO();
     this.listAllTimeUnits();
     this.listAllPermisos();
   }
@@ -48,8 +47,8 @@ export class CrearUsuarioComponent {
 
   onConfirm() {
     this.utilComponent.showSweetAlertLoading("Creando", "");
-    this.usuariosPublicosDTO.permisos = this.permisosPublicosSeleccionados;
-    this.usuariosPublicosService.crear(this.usuariosPublicosDTO)
+    this.usuariosAdminDTO.permisos = this.permisosAdminSeleccionados;
+    this.usuariosAdminService.crear(this.usuariosAdminDTO)
       .subscribe(resp => {
         this.isLoading = false;
         this.utilComponent.showSweetAlert("Creado", resp.mensaje, "success");
@@ -62,12 +61,12 @@ export class CrearUsuarioComponent {
   }
 
   reinciarValores() {
-    this.utilComponent.cleanProperties(this.usuariosPublicosDTO);
-    this.utilComponent.cleanProperties(this.permisosPublicosSeleccionados);
+    this.utilComponent.cleanProperties(this.usuariosAdminDTO);
+    this.utilComponent.cleanProperties(this.permisosAdminSeleccionados);
   }
 
   public regresar(): void {
-    this.router.navigate(["/usuarios/publicos"]);
+    this.router.navigate(["/usuarios/administradores"]);
   }
 
   /*
@@ -95,12 +94,12 @@ export class CrearUsuarioComponent {
   listAllPermisos() {
     this.isLoading = true;
     this.timeUnitsDto = [];
-    this.permisosPublicosService.obtenerTodos()
+    this.permisosAdminService.obtenerTodos()
       .subscribe(resp => {
         this.isLoading = false;
-        this.permisosPublicosDTO = <PermisoPublicoDTO[]>resp.cuerpo;
+        this.permisosAdminDTO = <PermisoPublicoDTO[]>resp.cuerpo;
         let nestedObjects = {};
-        this.permisosPublicosDTO.forEach(permiso => {
+        this.permisosAdminDTO.forEach(permiso => {
           this.utilComponent.setNestedData(nestedObjects, permiso.etiqueta, ':', permiso);
           this.permisos = this.utilComponent.obtenerHijosPermiso(nestedObjects);
         });

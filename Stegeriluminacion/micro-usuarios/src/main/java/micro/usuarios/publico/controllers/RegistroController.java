@@ -3,7 +3,6 @@ package micro.usuarios.publico.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,27 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dto.main.Respuesta;
-import micro.usuarios.publico.services.RegistroService;
+import interfaces.ACRUDEndPoints;
+import micro.usuarios.publico.services.interfaces.IRegistroService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 import utils.validaciones.interfaces.OnCreate;
- 
+
 @RestController
 @RequestMapping(path = "/usuarios/publico/registro")
-public class RegistroController {
+public class RegistroController extends ACRUDEndPoints<RegistroController> {
 
 	Logger logger = LoggerFactory.getLogger(RegistroController.class);
 
 	@Autowired
-	RegistroService registroService;
-
-	@GetMapping(value = "/heartbit", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
-			MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<String> heartBit() {
-		return new ResponseEntity<String>("OK", HttpStatus.OK);
-	}
+	IRegistroService registroService;
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<Respuesta<UsuarioPublico>> registrar( @Validated(OnCreate.class) @RequestBody UsuarioPublico usuarioPublico) {
+	public ResponseEntity<Respuesta<UsuarioPublico>> registrar(
+			@Validated(OnCreate.class) @RequestBody UsuarioPublico usuarioPublico) {
 		usuarioPublico.setCorreo(usuarioPublico.getCorreo().replaceAll("\\s", ""));
 		Respuesta<UsuarioPublico> respuesta = registroService.crearRegistro(usuarioPublico);
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);

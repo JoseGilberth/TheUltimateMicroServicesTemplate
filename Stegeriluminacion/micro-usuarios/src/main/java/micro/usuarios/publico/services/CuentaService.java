@@ -16,6 +16,7 @@ import dto.main.Respuesta;
 import dto.micro.usuarios.UsuarioPublicoCambiarClaveDTO;
 import micro.usuarios._config.languaje.Translator;
 import micro.usuarios.publico.services.interfaces.ICuentaService;
+import micro.usuarios.publico.services.interfaces.IEmailService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 import  steger.excepciones.controladas.ErrorInternoControlado;
 import utils.Random;
@@ -29,11 +30,10 @@ public class CuentaService implements ICuentaService {
 	UsuarioPublicoDao usuariosPublicoDao;
 
 	@Autowired
-	EmailService emailService;
+	IEmailService emailService;
 
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
- 
  
 	@Value("${correo.registro}")
 	String stegeriluminacionRegistro;

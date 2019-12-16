@@ -26,9 +26,9 @@ import { LoginComponent } from './pages/_login/login.component';
 import { Token } from './_dto/login/Token.Dto';
 import { AuthGuardService } from './_guards/auth-guard.service';
 import { PermissionGuardService } from './_guards/permission-guard.service';
-import { NotificationComponent } from './_shared/notification.component';
 import { TokenInterceptor } from './_shared/token-interceptor';
 import { UtilComponent } from './_shared/util.component';
+import { P403Component } from './pages/administracion/error/403.component';
 
 
 registerLocaleData(es);
@@ -81,13 +81,13 @@ export function tokenGetter() {
     AppComponent,
     ...APP_CONTAINERS,
     P404Component,
+    P403Component,
     P500Component,
     LoginComponent,
     RegisterComponent
   ],
   providers: [
     [AuthGuardService, PermissionGuardService],
-    NotificationComponent,
     UtilComponent,
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

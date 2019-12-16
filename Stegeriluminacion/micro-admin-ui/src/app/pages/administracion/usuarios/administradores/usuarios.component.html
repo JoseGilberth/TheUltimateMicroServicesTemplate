@@ -4,7 +4,7 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <i class="fa fa-users"></i>Usuarios publicos
+          <i class="fa fa-users"></i>Usuarios Administradores
         </div>
         <div class="card-body">
 
@@ -27,16 +27,16 @@
 
             <!-- CREAR -->
             <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
-              popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:publicos:crear') ? 'Crea un usuario' : 'No tiene permitido crear usuarios' }}"
+              popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:admin:crear') ? 'Crea un usuario' : 'No tiene permitido crear usuarios' }}"
               triggers="mouseenter:mouseleave">
               <button (click)="nuevo()" type="button" class="btn btn-botonera btn-primary btn-sm float-right"
-                [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:publicos:crear')">
+                [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:admin:crear')">
                 <i class="fa fa-plus"></i> Crear
               </button>
             </div>
 
             <!-- QUITAR FILTRO -->
-            <button *ngIf="usuariosPublicosFiltroDTO.busqueda" (click)="eliminarBusqueda()" type="button"
+            <button *ngIf="usuariosAdminFiltroDTO.busqueda" (click)="eliminarBusqueda()" type="button"
               class="btn btn-botonera btn-danger btn-sm float-right" popover="Elimina el filtro de busqueda"
               triggers="mouseenter:mouseleave">
               <i class="fa fa-close"></i> Quitar Filtro
@@ -44,10 +44,10 @@
 
             <!-- BUSQUEDA -->
             <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
-              popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:publicos:mostrar') ? 'busca un usuario' : 'No tiene permitido buscar usuarios' }}"
+              popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:admin:mostrar') ? 'busca un usuario' : 'No tiene permitido buscar usuarios' }}"
               triggers="mouseenter:mouseleave">
               <button (click)="buscar()" type="button" class="btn btn-botonera btn-primary btn-sm float-right"
-                [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:publicos:mostrar')">
+                [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:admin:mostrar')">
                 <i class="fa fa-search"></i> Buscar
               </button>
             </div>
@@ -63,37 +63,33 @@
                   <th>#</th>
                   <th>Id</th>
                   <th>Usuario</th>
-                  <th class="d-none d-sm-table-cell">Correo</th>
-                  <th class="d-none d-sm-table-cell">Nombre</th>
-                  <th class="d-none d-xl-table-cell">Teléfono Celular</th>
-                  <th class="d-none d-xl-table-cell">Limite de peticiones</th>
-                  <th class="d-none d-xl-table-cell">Tiempo</th>
-                  <th class="d-none d-xl-table-cell">Expiración Token</th>
-                  <th class="d-none d-lg-table-cell">Fecha Alta</th>
+                  <th>Correo</th>
+                  <th>Nombre</th>
+                  <th>Fecha Alta</th>
                   <th>Estatus</th>
                 </tr>
               </thead>
-              <tbody *ngIf="usuariosPublicosDTO?.length != 0">
-                <tr *ngFor="let usuario of usuariosPublicosDTO">
+              <tbody *ngIf="usuariosAdminDTO?.length != 0">
+                <tr *ngFor="let usuario of usuariosAdminDTO">
                   <!-- ACCIONES <span class="badge badge-success">Active</span>-->
                   <td style="width: 75px;">
 
                     <!-- BORRAR -->
                     <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
-                      popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:publicos:borrar') ? 'Eliminar un usuario' : 'No tiene permitido eliminar usuarios' }}"
+                      popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:admin:borrar') ? 'Eliminar un usuario' : 'No tiene permitido eliminar usuarios' }}"
                       triggers="mouseenter:mouseleave">
                       <button type="button" (click)="borrar(usuario)" class="btn btn-danger btn-sm"
-                        [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:publicos:borrar')">
+                        [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:admin:borrar')">
                         <i class="fa fa-trash"></i>
                       </button>
                     </div>
 
                     <!-- EDITAR -->
                     <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
-                      popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:publicos:actualizar') ? 'Edita un usuario' : 'No tiene permitido editar usuarios' }}"
+                      popover="{{ utilComponent.validaPermiso('web:administracion:usuarios:admin:actualizar') ? 'Edita un usuario' : 'No tiene permitido editar usuarios' }}"
                       triggers="mouseenter:mouseleave">
                       <button type="button" (click)="editar(usuario)" class="btn btn-primary btn-sm"
-                        [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:publicos:actualizar')">
+                        [disabled]="!utilComponent.validaPermiso('web:administracion:usuarios:admin:actualizar')">
                         <i class="fa fa-edit"></i>
                       </button>
                     </div>
@@ -101,14 +97,9 @@
                   </td>
                   <td>{{ usuario.id }}</td>
                   <td>{{ usuario.username }}</td>
-                  <td class="d-none d-sm-table-cell">{{ usuario.correo }}</td>
-                  <td class="d-none d-sm-table-cell">{{ usuario.nombre }} {{ usuario.apellido1 }}
-                    {{ usuario.apellido2 }}</td>
-                  <td class="d-none d-xl-table-cell">{{ usuario.telefonoCelular }}</td>
-                  <td class="d-none d-xl-table-cell">{{ usuario.limitRequest }}</td>
-                  <td class="d-none d-xl-table-cell">{{ usuario.timeUnit }}</td>
-                  <td class="d-none d-xl-table-cell">{{ usuario.tokenExpiration }}</td>
-                  <td class="d-none d-lg-table-cell">{{ usuario.fechaAlta }}</td>
+                  <td>{{ usuario.correo }}</td>
+                  <td>{{ usuario.nombre }} {{ usuario.apellido1 }} {{ usuario.apellido2 }}</td>
+                  <td>{{ usuario.fechaAlta }}</td>
                   <td>
                     <span
                       class="badge badge-{{ usuario.enabled ? 'success' : 'danger' }}">{{ usuario.enabled ? 'Activo' : 'Inactivo' }}</span>
@@ -116,14 +107,14 @@
                 </tr>
               </tbody>
               <!-- SIN DATOS -->
-              <tbody *ngIf="usuariosPublicosDTO?.length <= 0">
+              <tbody *ngIf="usuariosAdminDTO?.length <= 0">
                 <tr>
                   <td colspan="11" class="no-data-available">No hay Datos</td>
                 </tr>
               </tbody>
 
               <!-- SIN DATOS -->
-              <tbody *ngIf="usuariosPublicosDTO?.length <= 0 && isLoading">
+              <tbody *ngIf="usuariosAdminDTO?.length <= 0 && isLoading">
                 <tr>
                   <td colspan="11" class="no-data-available"><img src="assets/img/loading/loading.gif"></td>
                 </tr>

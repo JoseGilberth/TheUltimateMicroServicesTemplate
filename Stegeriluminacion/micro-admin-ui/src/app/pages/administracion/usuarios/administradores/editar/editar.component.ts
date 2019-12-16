@@ -2,13 +2,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TreeviewConfig, TreeviewItem } from 'ngx-treeview';
+import { configuraciones } from '../../../../../../environments/configuraciones';
 import { PermisoPublicoDTO } from '../../../../../_dto/usuarios/PermisoPublico.Dto';
-import { UsuariosPublicosDTO } from '../../../../../_dto/usuarios/UsuariosPublicos.Dto';
+import { UsuariosAdminDTO } from '../../../../../_dto/usuarios/UsuariosAdmin.Dto';
 import { TimeUnitService } from '../../../../../_servicios/catalogos/timeunits.service';
 import { UtilComponent } from '../../../../../_shared/util.component';
-import { configuraciones } from '../../../../../../environments/configuraciones';
-import { PermisosPublicosService } from '../../../../../_servicios/usuarios/administradores/permisosadmin.service';
-import { UsuariosPublicosService } from '../../../../../_servicios/usuarios/administradores/usuariosadmin.service';
+import { PermisosAdminService } from '../../../../../_servicios/usuarios/administradores/permisosadmin.service';
+import { UsuariosAdminService } from '../../../../../_servicios/usuarios/administradores/usuariosadmin.service';
 
 
 @Component({
@@ -28,22 +28,22 @@ export class EditarUsuarioComponent {
   timeUnitsDto: string[] = [];
   isLoading: boolean = false;
 
-  public usuariosPublicosDTO: UsuariosPublicosDTO;
-  public permisosPublicosDTO: PermisoPublicoDTO[] = [];
-  public permisosPublicosSeleccionados: PermisoPublicoDTO[] = [];
+  public usuariosAdminDTO: UsuariosAdminDTO;
+  public permisosAdminDTO: PermisoPublicoDTO[] = [];
+  public permisosAdminSeleccionados: PermisoPublicoDTO[] = [];
 
   constructor(private timeUnitService: TimeUnitService
-    , private permisosPublicosService: PermisosPublicosService
+    , private permisosAdminService: PermisosAdminService
     , private utilComponent: UtilComponent
     , private router: Router
-    , private usuariosPublicosService: UsuariosPublicosService) {
+    , private usuariosAdminService: UsuariosAdminService) {
 
   }
 
   ngOnInit(): void {
-    this.usuariosPublicosDTO = <UsuariosPublicosDTO>JSON.parse(sessionStorage.getItem(configuraciones.static.usuario));
-    this.usuariosPublicosDTO.password = "";
-    this.usuariosPublicosDTO.repetirPassword = "";
+    this.usuariosAdminDTO = <UsuariosAdminDTO>JSON.parse(sessionStorage.getItem(configuraciones.static.usuario));
+    this.usuariosAdminDTO.password = "";
+    this.usuariosAdminDTO.repetirPassword = "";
     this.listAllTimeUnits();
     this.listAllPermisos();
   }
@@ -51,8 +51,8 @@ export class EditarUsuarioComponent {
 
   actualizar() {
     this.utilComponent.showSweetAlertLoading("Actualizando", "");
-    this.usuariosPublicosDTO.permisos = this.permisosPublicosSeleccionados;
-    this.usuariosPublicosService.actualizar(this.usuariosPublicosDTO.id, this.usuariosPublicosDTO)
+    this.usuariosAdminDTO.permisos = this.permisosAdminSeleccionados;
+    this.usuariosAdminService.actualizar(this.usuariosAdminDTO.id, this.usuariosAdminDTO)
       .subscribe(resp => {
         this.isLoading = false;
         this.utilComponent.showSweetAlert("Actualizado", resp.mensaje, "success");
@@ -64,12 +64,12 @@ export class EditarUsuarioComponent {
   }
 
   reinciarValores() {
-    this.utilComponent.cleanProperties(this.usuariosPublicosDTO);
-    this.utilComponent.cleanProperties(this.permisosPublicosSeleccionados);
+    this.utilComponent.cleanProperties(this.usuariosAdminDTO);
+    this.utilComponent.cleanProperties(this.permisosAdminSeleccionados);
   }
 
   public regresar(): void {
-    this.router.navigate(["/usuarios/publicos"]);
+    this.router.navigate(["/usuarios/administradores"]);
   }
 
   /*
@@ -97,15 +97,15 @@ export class EditarUsuarioComponent {
   listAllPermisos() {
     this.isLoading = true;
     this.timeUnitsDto = [];
-    this.permisosPublicosService.obtenerTodos()
+    this.permisosAdminService.obtenerTodos()
       .subscribe(resp => {
         this.isLoading = false;
-        this.permisosPublicosDTO = <PermisoPublicoDTO[]>resp.cuerpo;
+        this.permisosAdminDTO = <PermisoPublicoDTO[]>resp.cuerpo;
         let nestedObjects = {};
-        this.permisosPublicosDTO.forEach(permiso => {
+        this.permisosAdminDTO.forEach(permiso => {
           this.utilComponent.setNestedData(nestedObjects, permiso.etiqueta, ':', permiso);
           this.permisos = this.utilComponent.obtenerHijosPermiso(nestedObjects);
-          this.remarcaPermisosYaAdquiridos(this.permisos, this.usuariosPublicosDTO.permisos);
+          this.remarcaPermisosYaAdquiridos(this.permisos, this.usuariosAdminDTO.permisos);
         });
       }, (error: HttpErrorResponse) => {
         this.isLoading = false;
@@ -116,11 +116,11 @@ export class EditarUsuarioComponent {
   remarcaPermisosYaAdquiridos(treeviewItems: TreeviewItem[], permisos: PermisoPublicoDTO[]) {
     treeviewItems.forEach(treeviewItem => {
       let nodoPermisoPublicoDto: PermisoPublicoDTO = treeviewItem.value;
-      this.usuariosPublicosDTO.permisos.forEach(permisoUsuario => { // TODOS LOS PERMISOS DEL USUARIO
+      this.usuariosAdminDTO.permisos.forEach(permisoUsuario => { // TODOS LOS PERMISOS DEL USUARIO
         if (nodoPermisoPublicoDto != null) {
           if (nodoPermisoPublicoDto.id === permisoUsuario.id) {
             treeviewItem.checked = true;
-            this.permisosPublicosSeleccionados.push(nodoPermisoPublicoDto);
+            this.permisosAdminSeleccionados.push(nodoPermisoPublicoDto);
           }
         }
       });

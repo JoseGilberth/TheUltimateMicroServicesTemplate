@@ -12,13 +12,15 @@ import { catchError, delayWhen, map, retryWhen, tap } from 'rxjs/operators';
 import { configuraciones } from '../../environments/configuraciones';
 import { UtilComponent } from './util.component';
 import { Token } from '../_dto/login/Token.Dto';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
     private intentos: number = 0;
 
-    constructor(private util: UtilComponent) { }
+    constructor(private util: UtilComponent
+        , public router: Router) { }
 
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -59,6 +61,11 @@ export class TokenInterceptor implements HttpInterceptor {
                 if (error.status === 0) {
                     this.util.presentToasterWarning("Error de conexión");
                 }
+                if (error.status === 401) {
+                    this.router.navigate(['/login']);
+                    sessionStorage.clear( );
+                    localStorage.clear();
+                }
                 return throwError(error);
             }));
     }
@@ -66,16 +73,14 @@ export class TokenInterceptor implements HttpInterceptor {
 
     printRequest(req: HttpRequest<any>, respuesta: any) {
         console.log(" ");
-        console.log(" ");
-        console.log(" ");
+        console.log(" "); 
         console.log("Peticion URL: --------->>> " + req.url);
         console.log("Peticion METODO: ------>>> " + req.method);
         console.log("Peticion HEADERS: ----->>> " + JSON.stringify(req.headers));
         console.log('Peticion CONTENIDO: --->>> ' + JSON.stringify(req.body));
         console.log('Peticion RESPUESTA: --->>> ' + JSON.stringify(respuesta));
         console.log(" ");
-        console.log(" ");
-        console.log(" ");
+        console.log(" "); 
     }
 
     validaReglasIntento(metodo: string, url: string, error: any) {
@@ -85,11 +90,9 @@ export class TokenInterceptor implements HttpInterceptor {
             && this.intentos >= configuraciones.intentosError
             && (error.status == 0 || (error.status >= 500 && error.status <= 599))) {
             this.intentos = 0;
-            console.log("validaReglasIntento true; " + configuraciones.intentosError);
-            return true;
+             return true;
         }
-        console.log("validaReglasIntento false; ");
-        return false;
+         return false;
     }
 
 

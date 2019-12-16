@@ -34,7 +34,7 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
         <div class="dropdown-header text-center"><strong>Cuenta</strong></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Cerrar Sesión</a>
+        <a class="dropdown-item" href="#" (click)="cerrarSesion()"><i class="fa fa-lock"></i> Cerrar Sesión</a>
         <!--
         <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span
             class="badge badge-info">42</span></a>
@@ -59,7 +59,7 @@
   </ul>
 </app-header>
 <div class="app-body">
-  
+
   <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized"
     (minimizedChange)="toggleMinimize($event)">
     <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>

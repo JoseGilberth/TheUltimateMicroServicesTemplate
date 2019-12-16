@@ -3,10 +3,8 @@ package micro.usuarios.publico.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,22 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dto.main.Respuesta;
 import dto.micro.usuarios.UsuarioPublicoCambiarClaveDTO;
-import micro.usuarios.publico.services.CuentaService;
+import interfaces.ACRUDEndPoints;
+import micro.usuarios.publico.services.interfaces.ICuentaService;
 
 @RestController
 @RequestMapping(path = "/usuarios/publico/cuenta")
-public class CuentaController {
+public class CuentaController extends ACRUDEndPoints<CuentaController> {
 
 	Logger logger = LoggerFactory.getLogger(CuentaController.class);
 
 	@Autowired
-	CuentaService cuentaService;
-
-	@GetMapping(value = "/heartbit", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
-			MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<String> heartBit() {
-		return new ResponseEntity<String>("OK", HttpStatus.OK);
-	}
+	ICuentaService cuentaService;
 
 	@PostMapping(value = "/cambiar/password", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })

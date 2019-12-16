@@ -15,6 +15,7 @@ import { Token } from '../_dto/login/Token.Dto';
 export class LoginService {
 
   private iniciarSesionUrl: string = `${environment.host}/${environment.micro_auth.base}/${environment.micro_auth.post.iniciarSesion}`;
+  private cerrarSesionUrl: string = `${environment.host}/${environment.micro_auth.base}/${environment.micro_auth.get.cerrarsesion}`;
 
   constructor(private http: HttpClient, public jwtHelper: JwtHelperService) { }
 
@@ -27,5 +28,9 @@ export class LoginService {
     return this.http.post<Token>(this.iniciarSesionUrl, body, { headers });
   }
 
+  
+  cerrarSesion(): Observable<Token> { 
+     return this.http.get<Token>(this.cerrarSesionUrl);
+  }
 
 }

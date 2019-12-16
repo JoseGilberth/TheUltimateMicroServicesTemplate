@@ -19,14 +19,14 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import dao.auth.usuarios.publicos.UsuarioPublicoDao;
 import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioPublicoDTO;
+import interfaces.ACrud;
 import micro.usuarios._config.languaje.Translator;
-import micro.usuarios.publico.services.interfaces.ACrud;
 import micro.usuarios.publico.services.interfaces.IUsuarioService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 import steger.excepciones.controladas.ErrorInternoControlado;
 
 @Service
-public class UsuarioService extends ACrud<UsuarioPublico> implements IUsuarioService {
+public class UsuarioService extends ACrud<UsuarioPublico, Long> implements IUsuarioService {
 
 	Logger logger = LoggerFactory.getLogger(UsuarioService.class);
 
@@ -38,9 +38,6 @@ public class UsuarioService extends ACrud<UsuarioPublico> implements IUsuarioSer
 
 	@Autowired
 	UsuarioPublicoDao usuariosPublicoDao;
-
-	@Autowired
-	EmailService emailService;
 
 	@Value("${correo.registro}")
 	String stegeriluminacionRegistro;

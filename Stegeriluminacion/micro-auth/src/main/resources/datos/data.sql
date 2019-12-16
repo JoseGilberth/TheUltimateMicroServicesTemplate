@@ -25,17 +25,37 @@ INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope,
 
 
 -- PERMISOS -- AUTORITIES
-insert into permiso_administrador values (1,'swagger admin' , 'proyecto:web:swagger:admin');
+insert into permiso_administrador values (1,'Permite ver el contenido de swagger' , 'web:administracion:mantenimiento:swagger');
+
 insert into permiso_administrador values (2,'Muestra a los usuarios publicos'   , 'web:administracion:usuarios:publicos:mostrar');
 insert into permiso_administrador values (3,'Crea un usuario público'   , 'web:administracion:usuarios:publicos:crear');
 insert into permiso_administrador values (4,'Edita un usuario público'  , 'web:administracion:usuarios:publicos:actualizar');
 insert into permiso_administrador values (5,'Borrar un usuario público' , 'web:administracion:usuarios:publicos:borrar');
+
+insert into permiso_administrador values (6,'Muestra a los usuarios administradores'   , 'web:administracion:usuarios:admin:mostrar');
+insert into permiso_administrador values (7,'Crea un usuario administradores'   , 'web:administracion:usuarios:admin:crear');
+insert into permiso_administrador values (8,'Edita un usuario administradores'  , 'web:administracion:usuarios:admin:actualizar');
+insert into permiso_administrador values (9,'Borrar un usuario administradores' , 'web:administracion:usuarios:admin:borrar');
+
+insert into permiso_administrador values (10,'Muestra el log del sistema' , 'web:administracion:log:mostrar');
+
+insert into permiso_administrador values (11,'Muestra las sesiones activas' , 'web:administracion:sesiones:mostrar');
+insert into permiso_administrador values (12,'Cierra la sesion de un usuario' , 'web:administracion:sesiones:cerrar');
+
+
 
 insert into usuario_administrador_permiso values (1,1);
 insert into usuario_administrador_permiso values (1,2);
 insert into usuario_administrador_permiso values (1,3);
 insert into usuario_administrador_permiso values (1,4);
 insert into usuario_administrador_permiso values (1,5);
+insert into usuario_administrador_permiso values (1,6);
+insert into usuario_administrador_permiso values (1,7);
+insert into usuario_administrador_permiso values (1,8);
+insert into usuario_administrador_permiso values (1,9);
+insert into usuario_administrador_permiso values (1,10);
+insert into usuario_administrador_permiso values (1,11);
+insert into usuario_administrador_permiso values (1,12);
 
 -- LOGGER
 INSERT INTO log (id,accion,apartado,fecha_alta,tipo_usuario,usuario) VALUES (1,'Alta de la plantilla','Sistema',now(),'publico','gilbertoAdmin');

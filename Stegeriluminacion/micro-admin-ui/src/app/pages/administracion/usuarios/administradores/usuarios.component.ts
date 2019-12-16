@@ -3,16 +3,16 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2';
 import { configuraciones } from '../../../../../environments/configuraciones';
-import { UsuariosPublicosDTO } from '../../../../_dto/usuarios/UsuariosPublicos.Dto';
-import { UsuariosPublicosFiltroDTO } from '../../../../_dto/usuarios/UsuariosPublicosFiltroDTO';
+import { UsuariosAdminDTO } from '../../../../_dto/usuarios/UsuariosAdmin.Dto';
+import { UsuariosAdminFiltroDTO } from '../../../../_dto/usuarios/UsuariosAdminFiltro.Dto';
 import { PageableDTO } from '../../../../_dto/_main/Pageable.Dto';
 import { TableComponent } from '../../../../_interfaces/tables.component';
+import { UsuariosAdminService } from '../../../../_servicios/usuarios/administradores/usuariosadmin.service';
 import { UtilComponent } from '../../../../_shared/util.component';
 import { BuscarUsuariosComponent } from './buscar/buscar.component';
-import Swal from 'sweetalert2';
-import { ToastrService } from 'ngx-toastr';
-import { UsuariosPublicosService } from '../../../../_servicios/usuarios/administradores/usuariosadmin.service';
+
 
 @Component({
   templateUrl: 'usuarios.component.html',
@@ -27,21 +27,20 @@ export class UsuariosAdminComponent extends TableComponent {
   public cantidadAMostrar: number = 5;
   bsModalRef: BsModalRef;
 
-  public usuariosPublicosDTO: UsuariosPublicosDTO[];
-  public usuariosPublicosFiltroDTO: UsuariosPublicosFiltroDTO;
+  public usuariosAdminDTO: UsuariosAdminDTO[];
+  public usuariosAdminFiltroDTO: UsuariosAdminFiltroDTO;
   @Output() callbackOnModelWindowClose: EventEmitter<null> = new EventEmitter();
 
-  constructor(private usuariosPublicosService: UsuariosPublicosService
+  constructor(private usuariosAdminService: UsuariosAdminService
     , public utilComponent: UtilComponent
     , private router: Router
-    , private modalService: BsModalService
-    , private toastr: ToastrService) {
+    , private modalService: BsModalService) {
     super();
     this.configuraciones = configuraciones;
   }
 
   ngOnInit() {
-    this.usuariosPublicosFiltroDTO = new UsuariosPublicosFiltroDTO();
+    this.usuariosAdminFiltroDTO = new UsuariosAdminFiltroDTO();
     this.listAll(this.currentPage, this.cantidadAMostrar);
   }
 
@@ -53,12 +52,12 @@ export class UsuariosAdminComponent extends TableComponent {
   */
   listAll(pagina: number, cantidad: number) {
     this.isLoading = true;
-    this.usuariosPublicosDTO = [];
-    this.usuariosPublicosService.obtenerTodos(this.usuariosPublicosFiltroDTO, pagina, cantidad)
+    this.usuariosAdminDTO = [];
+    this.usuariosAdminService.obtenerTodos(this.usuariosAdminFiltroDTO, pagina, cantidad)
       .subscribe(resp => {
         this.isLoading = false;
         let pageable: PageableDTO = <PageableDTO>resp.cuerpo;
-        this.usuariosPublicosDTO = pageable.content;
+        this.usuariosAdminDTO = pageable.content;
         this.totalItems = pageable.totalElements;
       }, (error: HttpErrorResponse) => {
         this.isLoading = false;
@@ -77,7 +76,7 @@ export class UsuariosAdminComponent extends TableComponent {
                           EDITAR USUARIO
   ================================================================
   */
-  editar(usuario: UsuariosPublicosDTO) {
+  editar(usuario: UsuariosAdminDTO) {
     sessionStorage.setItem(configuraciones.static.usuario, JSON.stringify(usuario));
     this.router.navigate(["/usuarios/administradores/editar"]);
   }
@@ -87,7 +86,7 @@ export class UsuariosAdminComponent extends TableComponent {
                           BORRAR USUARIO
   ================================================================
   */
-  borrar(usuario: UsuariosPublicosDTO) {
+  borrar(usuario: UsuariosAdminDTO) {
     Swal.fire({
       title: 'Borrar usuario?',
       text: "Esta accion no puede ser removida!",
@@ -98,7 +97,7 @@ export class UsuariosAdminComponent extends TableComponent {
       confirmButtonText: 'Si, borrar usuario!',
       showLoaderOnConfirm: true,
       preConfirm: (login) => {
-        return this.usuariosPublicosService.borrar(usuario.id)
+        return this.usuariosAdminService.borrar(usuario.id)
           .subscribe(resp => {
             this.utilComponent.showSweetAlert("Borrado", resp.mensaje, "success");
             this.listAll((this.currentPage - 1), this.cantidadAMostrar);
@@ -131,7 +130,7 @@ export class UsuariosAdminComponent extends TableComponent {
   buscar() {
     const modalOptions = {
       initialState: {
-        usuariosPublicosFiltroDTO: this.usuariosPublicosFiltroDTO
+        usuariosAdminFiltroDTO: this.usuariosAdminFiltroDTO
       },
       class: 'modal-lg'
     };
@@ -145,7 +144,7 @@ export class UsuariosAdminComponent extends TableComponent {
   }
 
   eliminarBusqueda() {
-    this.utilComponent.cleanProperties(this.usuariosPublicosFiltroDTO);
+    this.utilComponent.cleanProperties(this.usuariosAdminFiltroDTO);
     this.listAll((this.currentPage - 1), this.cantidadAMostrar);
   }
 

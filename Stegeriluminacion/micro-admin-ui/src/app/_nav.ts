@@ -38,7 +38,7 @@ export const navItems: INavData[] = [
     name: 'Sesiones Activas',
     url: '/sesiones',
     icon: 'icon-graph'
-  },
+  }/*,
   {
     title: true,
     name: 'Theme'
@@ -271,4 +271,5 @@ export const navItems: INavData[] = [
     variant: 'danger',
     attributes: { target: '_blank', rel: 'noopener' }
   }
+  */
 ];

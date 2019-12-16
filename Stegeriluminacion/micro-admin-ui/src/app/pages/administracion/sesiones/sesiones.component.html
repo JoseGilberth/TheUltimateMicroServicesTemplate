@@ -1,0 +1,116 @@
+<div class="animated fadeIn">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-users"></i>Sesiones
+        </div>
+        <div class="card-body">
+
+          <!-- BOTONERA -->
+          <div style="margin: 15px 0;">
+
+            <!-- MOSTRAR -->
+            <label for="ccmonth">&nbsp;&nbsp; Mostrar</label>
+            <select class="form-control float-left select-custom" [(ngModel)]="cantidadAMostrar"
+              (change)="rowsToShow($event.target.value)" id="ccmonth">
+              <option>5</option>
+              <option>10</option>
+              <option>25</option>
+              <option>50</option>
+            </select>
+
+            <!-- QUITAR FILTRO -->
+            <button *ngIf="sesionesFiltroDTO.busqueda" (click)="eliminarBusqueda()" type="button"
+              class="btn btn-botonera btn-danger btn-sm float-right" popover="Elimina el filtro de busqueda"
+              triggers="mouseenter:mouseleave">
+              <i class="fa fa-close"></i> Quitar Filtro
+            </button>
+
+            <!-- BUSQUEDA -->
+            <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
+              popover="{{ utilComponent.validaPermiso('web:administracion:sesiones:mostrar') ? 'busca dentro del log' : 'No tiene permitido buscar' }}"
+              triggers="mouseenter:mouseleave">
+              <button (click)="buscar()" type="button" class="btn btn-botonera btn-primary btn-sm float-right"
+                [disabled]="!utilComponent.validaPermiso('web:administracion:sesiones:mostrar')">
+                <i class="fa fa-search"></i> Buscar
+              </button>
+            </div>
+
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover table-sm table-fixed">
+              <caption>Bitacora</caption>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Usuario</th>
+                  <th>Tiempo restante</th>
+                  <th>Tipo</th>
+                  <th>Cliente</th>
+                  <th>Expiración</th>
+                  <th>Scope</th>
+                  <th>Información</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="sesionesDTO?.length != 0">
+                <tr *ngFor="let sesion of sesionesDTO">
+                  <td style="width: 75px;">
+
+                    <!-- CERRAR SESION -->
+                    <div class="btn btn-sm float-right" style="margin: 0; padding: 0;"
+                      popover="{{ utilComponent.validaPermiso('web:administracion:sesiones:cerrar') ? 'Cierra sesión remotamente a un usuario' : 'No tiene permitido cerrar sesiones de otros usuarios' }}"
+                      triggers="mouseenter:mouseleave">
+                      <button type="button" (click)="cerrarSesion(sesion)" class="btn btn-danger btn-sm"
+                        [disabled]="!utilComponent.validaPermiso('web:administracion:sesiones:cerrar')">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div> 
+
+                  </td>
+                  <td>{{ sesion.usuario }}</td>
+                  <td>{{ sesion.expiresIn }}</td>
+                  <td>{{ sesion.tokenType }}</td>
+                  <td>{{ sesion.clientId }}</td>
+                  <td>{{ sesion.expiration }}</td>
+                  <td>{{ sesion.scope }}</td>
+                  <td>{{ sesion.additionalInformation | json }}</td>
+                </tr>
+              </tbody>
+              <!-- SIN DATOS -->
+              <tbody *ngIf="sesionesDTO?.length <= 0">
+                <tr>
+                  <td colspan="11" class="no-data-available">No hay Datos</td>
+                </tr>
+              </tbody>
+
+              <!-- SIN DATOS -->
+              <tbody *ngIf="sesionesDTO?.length <= 0 && isLoading">
+                <tr>
+                  <td colspan="11" class="no-data-available"><img src="assets/img/loading/loading.gif"></td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+          <!--PAGINACION-->
+          <nav>
+            <ul class="pagination no-margin pull-right">
+              <pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage"
+                (pageChanged)="pageChanged($event)" class="pagination-sm" [itemsPerPage]="cantidadAMostrar"
+                previousText="&lsaquo;" nextText="&rsaquo;" firstText="Primero" lastText="Último">
+              </pagination>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>

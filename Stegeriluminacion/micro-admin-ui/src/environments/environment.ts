@@ -11,8 +11,14 @@ export const environment = {
   // MICRO_AUTH
   micro_auth: {
     base: "uaa",
+    get: {
+      cerrarsesion: "sesiones/cerrar"
+    },
     post: {
-      iniciarSesion: "oauth/token"
+      iniciarSesion: "oauth/token",
+      obtenerLogFiltro: "log/filtro",
+      obtenerSesionesFiltro: "sesiones/filtro",
+      eliminarToken: "sesiones/token",
     }
   },
 
@@ -27,22 +33,21 @@ export const environment = {
     post: {
       obtenerUsuariosPublicoFiltro: "usuarios/publico/filtro",
       crearUsuarioPublico: "usuarios/publico",
-      obtenerUsuariosAdminFiltro: "usuarios/publico/filtro",
-      crearUsuarioAdmin: "usuarios/publico"
+      obtenerUsuariosAdminFiltro: "usuarios/admin/filtro",
+      crearUsuarioAdmin: "usuarios/admin"
     },
     put: {
       actualizarUsuarioPublico: "usuarios/publico",
-      actualizarUsuarioAdmin: "usuarios/publico"
+      actualizarUsuarioAdmin: "usuarios/admin"
     },
     get: {
       obtenerPermisosPublicos: "permisos/publico",
-      obtenerPermisosAdmin: "permisos/publico"
+      obtenerPermisosAdmin: "permisos/admin"
     },
     delete: {
       borrarUsuarioPublico: "usuarios/publico",
-      borrarUsuarioAdmin: "usuarios/publico"
+      borrarUsuarioAdmin: "usuarios/admin"
     }
   }
-
 
 };

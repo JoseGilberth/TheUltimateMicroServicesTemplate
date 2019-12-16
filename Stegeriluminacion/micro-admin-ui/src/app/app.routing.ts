@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-// Import Containers
-
-import { LoginComponent } from './pages/_login/login.component';
-import { DefaultLayoutComponent } from './pages/_layout_master';
-import { P500Component } from './pages/administracion/error/500.component';
+import { RouterModule, Routes } from '@angular/router';
+import { P403Component } from './pages/administracion/error/403.component';
 import { P404Component } from './pages/administracion/error/404.component';
+import { P500Component } from './pages/administracion/error/500.component';
 import { RegisterComponent } from './pages/administracion/register/register.component';
-import { PermissionGuardService } from './_guards/permission-guard.service';
+import { DefaultLayoutComponent } from './pages/_layout_master';
+// Import Containers
+import { LoginComponent } from './pages/_login/login.component';
 import { AuthGuardService } from './_guards/auth-guard.service';
+import { PermissionGuardService } from './_guards/permission-guard.service';
+
 
 export const routes: Routes = [
   {
@@ -26,6 +26,9 @@ export const routes: Routes = [
     children: [
       { path: '', loadChildren: './pages/administracion/dashboard/dashboard.module#DashboardModule' },
       { path: 'usuarios', loadChildren: () => import('./pages/administracion/usuarios/usuarios.module').then(m => m.UsuariosModule) },
+      { path: 'log', loadChildren: () => import('./pages/administracion/log/log.module').then(m => m.LogModule) },
+      { path: 'sesiones', loadChildren: () => import('./pages/administracion/sesiones/sesiones.module').then(m => m.SesionesModule) },
+
       { path: 'base', loadChildren: () => import('./pages/administracion/base/base.module').then(m => m.BaseModule) },
       { path: 'buttons', loadChildren: () => import('./pages/administracion/buttons/buttons.module').then(m => m.ButtonsModule) },
       { path: 'charts', loadChildren: () => import('./pages/administracion/chartjs/chartjs.module').then(m => m.ChartJSModule) },
@@ -41,6 +44,13 @@ export const routes: Routes = [
     component: P404Component,
     data: {
       title: 'Page 404'
+    }
+  },
+  {
+    path: '403',
+    component: P403Component,
+    data: {
+      title: 'Page 403'
     }
   },
   {

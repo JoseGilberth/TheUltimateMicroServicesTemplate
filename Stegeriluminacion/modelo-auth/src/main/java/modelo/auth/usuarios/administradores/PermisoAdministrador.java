@@ -1,5 +1,7 @@
 package modelo.auth.usuarios.administradores;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,12 +17,18 @@ import lombok.Data;
 @Data
 @Entity
 @Table
-public class PermisoAdministrador {
+public class PermisoAdministrador implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 
 	@NotNull( message="{permiso.administrador.etiqueta.notnull}" )
