@@ -3,13 +3,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
-import { configuraciones } from '../../../../environments/configuraciones';
-import { UsuariosPublicosDTO } from '../../../_dto/usuarios/UsuariosPublicos.Dto';
-import { UsuariosPublicosFiltroDTO } from '../../../_dto/usuarios/UsuariosPublicosFiltroDTO';
-import { PageableDTO } from '../../../_dto/_main/Pageable.Dto';
-import { TableComponent } from '../../../_interfaces/tables.component';
-import { UsuariosPublicosService } from '../../../_servicios/usuarios/usuariospublicos.service';
-import { UtilComponent } from '../../../_shared/util.component';
+import { configuraciones } from '../../../../../environments/configuraciones';
+import { UsuariosPublicosDTO } from '../../../../_dto/usuarios/UsuariosPublicos.Dto';
+import { UsuariosPublicosFiltroDTO } from '../../../../_dto/usuarios/UsuariosPublicosFiltroDTO';
+import { PageableDTO } from '../../../../_dto/_main/Pageable.Dto';
+import { TableComponent } from '../../../../_interfaces/tables.component';
+import { UsuariosPublicosService } from '../../../../_servicios/usuarios/publicos/usuariospublicos.service';
+import { UtilComponent } from '../../../../_shared/util.component';
 import { BuscarUsuariosComponent } from './buscar/buscar.component';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
@@ -79,7 +79,7 @@ export class UsuariosComponent extends TableComponent {
   */
   editar(usuario: UsuariosPublicosDTO) {
     sessionStorage.setItem(configuraciones.static.usuario, JSON.stringify(usuario));
-    this.router.navigate(["/usuarios/editar"]);
+    this.router.navigate(["/usuarios/publicos/editar"]);
   }
 
   /*
@@ -119,7 +119,7 @@ export class UsuariosComponent extends TableComponent {
   ================================================================
   */
   nuevo() {
-    this.router.navigate(["/usuarios/crear"]);
+    this.router.navigate(["/usuarios/publicos/crear"]);
   }
 
 

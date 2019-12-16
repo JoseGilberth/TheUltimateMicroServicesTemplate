@@ -18,12 +18,26 @@ export const navItems: INavData[] = [
   {
     name: 'Usuarios Publicos',
     url: '/usuarios/publicos',
-    icon: 'icon-drop'
+    icon: 'icon-people'
   },
   {
     name: 'Usuarios Admin',
     url: '/usuarios/administradores',
-    icon: 'icon-drop'
+    icon: 'icon-people'
+  },
+  {
+    title: true,
+    name: 'Sistema'
+  },
+  {
+    name: 'Log',
+    url: '/log',
+    icon: 'icon-list'
+  },
+  {
+    name: 'Sesiones Activas',
+    url: '/sesiones',
+    icon: 'icon-graph'
   },
   {
     title: true,

@@ -19,23 +19,28 @@ export const environment = {
   // MICRO USUARIOS
   micro_usuarios: {
     base: "micro-usuarios",
-    post: {
-      obtenerPorFiltro: "usuarios/publico/filtro",
-      crearUsuarioPublico: "usuarios/publico"
-    },
-    put: {
-      actualizarUsuarioPublico: "usuarios/publico"
-    },
-    get: {
-      obtenerPermisos: "permisos/publico"
-    },
-    delete: {
-      borrarUsuario: "usuarios/publico"
-    },
     catalogos: {
       get: {
         timeUnits: "catalogos/timeunits"
       }
+    },
+    post: {
+      obtenerUsuariosPublicoFiltro: "usuarios/publico/filtro",
+      crearUsuarioPublico: "usuarios/publico",
+      obtenerUsuariosAdminFiltro: "usuarios/publico/filtro",
+      crearUsuarioAdmin: "usuarios/publico"
+    },
+    put: {
+      actualizarUsuarioPublico: "usuarios/publico",
+      actualizarUsuarioAdmin: "usuarios/publico"
+    },
+    get: {
+      obtenerPermisosPublicos: "permisos/publico",
+      obtenerPermisosAdmin: "permisos/publico"
+    },
+    delete: {
+      borrarUsuarioPublico: "usuarios/publico",
+      borrarUsuarioAdmin: "usuarios/publico"
     }
   }
 

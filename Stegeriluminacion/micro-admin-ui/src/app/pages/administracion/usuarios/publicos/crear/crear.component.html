@@ -1,0 +1,145 @@
+<div class="animated fadeIn">
+
+  <!-- INFORMACION BASICA -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <!-- TITULO -->
+        <div class="card-header">
+          <strong>Información básica</strong>
+          <small>usuarios publicos</small>
+        </div>
+        <!-- CONTENIDO -->
+        <div class="card-body">
+          <div class="row">
+
+            <!--========================================
+                                 PARTE 1
+            ========================================-->
+            <div class="col-6">
+
+              <!-- USUARIO -->
+              <div class="form-group">
+                <label class="form-col-form-label" for="usuario">Usuario</label>
+                <input type="text" class="form-control" id="usuario" [(ngModel)]="usuariosPublicosDTO.username">
+              </div>
+
+              <!-- NOMBRE -->
+              <div class="form-group">
+                <label class="form-col-form-label" for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" [(ngModel)]="usuariosPublicosDTO.nombre">
+              </div>
+
+              <!-- APELLIDO 1 -->
+              <div class="form-group">
+                <label class="form-col-form-label" for="apellido1">Apellido 1</label>
+                <input type="text" class="form-control" id="apellido1" [(ngModel)]="usuariosPublicosDTO.apellido1">
+              </div>
+
+              <!-- APELLIDO 2 -->
+              <div class="form-group">
+                <label class="form-col-form-label" for="apellido2">Apellido 2</label>
+                <input type="text" class="form-control" id="apellido2" [(ngModel)]="usuariosPublicosDTO.apellido2">
+              </div>
+
+              <!-- PASSWORD -->
+              <div class="form-group">
+                <label class="form-col-form-label" for="password">Password</label>
+                <input type="password" class="form-control" id="password" [(ngModel)]="usuariosPublicosDTO.password">
+              </div>
+
+              <!-- REPETIR PASSWORD -->
+              <div class="form-group">
+                <label class="form-col-form-label" for="repetirPassword">Repetir password</label>
+                <input type="password" class="form-control" id="repetirPassword" [(ngModel)]="usuariosPublicosDTO.repetirPassword">
+              </div>
+
+            </div>
+
+            <!--========================================
+                                 PARTE 2
+            ========================================-->
+            <div class="col-6">
+
+              <!-- CORREO -->
+              <div class="form-group">
+                <label class="form-col-form-label" for="correo">Correo</label>
+                <input type="text" class="form-control" id="correo" [(ngModel)]="usuariosPublicosDTO.correo">
+              </div>
+
+              <!-- Télefono Celular  -->
+              <div class="form-group">
+                <label class="form-col-form-label" for="telefonoCelular">Télefono Celular</label>
+                <input type="text" class="form-control" id="telefonoCelular"
+                  [(ngModel)]="usuariosPublicosDTO.telefonoCelular">
+              </div>
+
+              <!-- Peticiones MINIMAS  -->
+              <div class="form-group">
+                <label class="form-col-form-label">Cantidad de peticiones</label>
+                <input type="text" class="form-control" placeholder="Peticiones minimas"
+                  [(ngModel)]="usuariosPublicosDTO.limitRequest">
+              </div>
+
+              <!-- UNIDAD DE TIEMPO  -->
+              <div class="form-group">
+                <label class="form-col-form-label">Unidad de medida para la duración del token y las peticiones</label>
+                <label for="ccmonth">Unidad de tiempo</label>
+                <select class="form-control" id="ccmonth" [(ngModel)]="usuariosPublicosDTO.timeUnit">
+                  <option *ngFor="let timeUnit of timeUnitsDto" [value]="timeUnit">{{ timeUnit }}</option>
+                </select>
+              </div>
+
+              <!-- EXPIRACION DE TOKEN -->
+              <div class="form-group">
+                <label class="form-col-form-label" for="expiracionToken">Expiracion de token</label>
+                <input type="number" class="form-control" id="expiracionToken" placeholder="Expiración de token minimas"
+                  [(ngModel)]="usuariosPublicosDTO.tokenExpiration">
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ROLES Y PERMISOS -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <!-- TITULO -->
+        <div class="card-header">
+          <strong>Permisos en el sistema</strong>
+          <small>usuarios publicos</small>
+        </div>
+        <!-- CONTENIDO -->
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+
+              <ngx-treeview [config]="config" [items]="permisos"
+                (selectedChange)="permisosPublicosSeleccionados = $event">
+              </ngx-treeview>
+
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-success float-right btn-footer" (click)="onConfirm()"><i
+              class="fa fa-user"></i>
+            Crear</button>
+          <button type="reset" class="btn btn-sm btn-danger float-right btn-footer" (click)="reinciarValores()"><i class="fa fa-ban"></i> Reiniciar
+            valores</button>
+          <button type="button" class="btn btn-sm btn-primary float-right btn-footer" (click)="regresar()"><i
+              class="fa fa-chevron-left"></i>
+            regresar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -7,10 +7,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TreeviewModule } from 'ngx-treeview';
+import { BuscarUsuariosComponent } from './buscar/buscar.component';
+import { CrearUsuarioComponent } from './crear/crear.component';
+import { EditarUsuarioComponent } from './editar/editar.component';
+import { UsuariosComponent } from './usuarios.component';
 import { UsuariosRoutingModule } from './usuarios.routing';
-
-
-
 
 @NgModule({
   imports: [
@@ -26,8 +27,18 @@ import { UsuariosRoutingModule } from './usuarios.routing';
     ReactiveFormsModule
   ],
   entryComponents: [
+    // PUBLICOS
+    CrearUsuarioComponent,
+    EditarUsuarioComponent,
+    BuscarUsuariosComponent
+
   ],
   declarations: [
+    // PUBLICOS
+    UsuariosComponent,
+    CrearUsuarioComponent,
+    EditarUsuarioComponent,
+    BuscarUsuariosComponent
   ]
 })
 

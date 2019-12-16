@@ -2,19 +2,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TreeviewConfig, TreeviewItem } from 'ngx-treeview';
-import { PermisoPublicoDTO } from '../../../../_dto/usuarios/PermisoPublico.Dto';
-import { UsuariosPublicosDTO } from '../../../../_dto/usuarios/UsuariosPublicos.Dto';
-import { TimeUnitService } from '../../../../_servicios/catalogos/timeunits.service';
-import { PermisosPublicosService } from '../../../../_servicios/usuarios/permisospublicos.service';
-import { UsuariosPublicosService } from '../../../../_servicios/usuarios/usuariospublicos.service';
-import { UtilComponent } from '../../../../_shared/util.component';
-import { configuraciones } from '../../../../../environments/configuraciones';
+import { PermisoPublicoDTO } from '../../../../../_dto/usuarios/PermisoPublico.Dto';
+import { UsuariosPublicosDTO } from '../../../../../_dto/usuarios/UsuariosPublicos.Dto';
+import { TimeUnitService } from '../../../../../_servicios/catalogos/timeunits.service';
+import { PermisosPublicosService } from '../../../../../_servicios/usuarios/publicos/permisospublicos.service';
+import { UsuariosPublicosService } from '../../../../../_servicios/usuarios/publicos/usuariospublicos.service';
+import { UtilComponent } from '../../../../../_shared/util.component';
 
 
 @Component({
-  templateUrl: 'editar.component.html'
+  templateUrl: 'crear.component.html'
 })
-export class EditarUsuarioComponent {
+export class CrearUsuarioComponent {
 
   permisos: TreeviewItem[];
   config = TreeviewConfig.create({
@@ -30,7 +29,7 @@ export class EditarUsuarioComponent {
 
   public usuariosPublicosDTO: UsuariosPublicosDTO;
   public permisosPublicosDTO: PermisoPublicoDTO[] = [];
-  public permisosPublicosSeleccionados: PermisoPublicoDTO[] = [];
+  public permisosPublicosSeleccionados: PermisoPublicoDTO[];
 
   constructor(private timeUnitService: TimeUnitService
     , private permisosPublicosService: PermisosPublicosService
@@ -41,24 +40,23 @@ export class EditarUsuarioComponent {
   }
 
   ngOnInit(): void {
-    this.usuariosPublicosDTO = <UsuariosPublicosDTO>JSON.parse(sessionStorage.getItem(configuraciones.static.usuario));
-    this.usuariosPublicosDTO.password = "";
-    this.usuariosPublicosDTO.repetirPassword = "";
+    this.usuariosPublicosDTO = new UsuariosPublicosDTO();
     this.listAllTimeUnits();
     this.listAllPermisos();
   }
 
 
-  actualizar() {
-    this.utilComponent.showSweetAlertLoading("Actualizando", "");
+  onConfirm() {
+    this.utilComponent.showSweetAlertLoading("Creando", "");
     this.usuariosPublicosDTO.permisos = this.permisosPublicosSeleccionados;
-    this.usuariosPublicosService.actualizar(this.usuariosPublicosDTO.id, this.usuariosPublicosDTO)
+    this.usuariosPublicosService.crear(this.usuariosPublicosDTO)
       .subscribe(resp => {
         this.isLoading = false;
-        this.utilComponent.showSweetAlert("Actualizado", resp.mensaje, "success");
+        this.utilComponent.showSweetAlert("Creado", resp.mensaje, "success");
         this.regresar();
       }, error => {
         this.isLoading = false;
+        console.log("EL ERROR DENTRO DE CREAR: " + JSON.stringify(error));
         this.utilComponent.showSweetAlert("Error", this.utilComponent.trataErrores(error), "error");
       });
   }
@@ -69,7 +67,7 @@ export class EditarUsuarioComponent {
   }
 
   public regresar(): void {
-    this.router.navigate(["/usuarios"]);
+    this.router.navigate(["/usuarios/publicos"]);
   }
 
   /*
@@ -105,33 +103,11 @@ export class EditarUsuarioComponent {
         this.permisosPublicosDTO.forEach(permiso => {
           this.utilComponent.setNestedData(nestedObjects, permiso.etiqueta, ':', permiso);
           this.permisos = this.utilComponent.obtenerHijosPermiso(nestedObjects);
-          this.remarcaPermisosYaAdquiridos(this.permisos, this.usuariosPublicosDTO.permisos);
         });
       }, (error: HttpErrorResponse) => {
         this.isLoading = false;
       });
   }
-
-
-  remarcaPermisosYaAdquiridos(treeviewItems: TreeviewItem[], permisos: PermisoPublicoDTO[]) {
-    treeviewItems.forEach(treeviewItem => {
-      let nodoPermisoPublicoDto: PermisoPublicoDTO = treeviewItem.value;
-      this.usuariosPublicosDTO.permisos.forEach(permisoUsuario => { // TODOS LOS PERMISOS DEL USUARIO
-        if (nodoPermisoPublicoDto != null) {
-          if (nodoPermisoPublicoDto.id === permisoUsuario.id) {
-            treeviewItem.checked = true;
-            this.permisosPublicosSeleccionados.push(nodoPermisoPublicoDto);
-          }
-        }
-      });
-      // REPITE EL PROCESO
-      if (treeviewItem.children != null) {
-        this.remarcaPermisosYaAdquiridos(treeviewItem.children, permisos);
-      }
-    });
-  }
-
-
 
 
 }
