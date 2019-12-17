@@ -9,7 +9,7 @@
 		<artifactId>Stegeriluminacion</artifactId>
 		<version>1.0.0</version>
 	</parent>
- 
+
 	<artifactId>micro-usuarios</artifactId>
 	<name>micro-usuarios</name>
 	<url>http://maven.apache.org</url>
@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>  
+		</dependency>
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
-		</dependency> 
+		</dependency>
 		<!-- ________ THYMELEAF ________ -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -90,16 +90,46 @@
 			<groupId>mx.com.pasionprogramada</groupId>
 			<artifactId>dao</artifactId>
 			<version>1.0.0</version>
-		</dependency> 
+		</dependency>
 
 	</dependencies>
 
 	<build>
 		<finalName>micro-usuarios</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>static</directory>
+				<targetPath>static</targetPath>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${build.directory}/classes/static/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>../micro-admin-ui/dist</directory>
+                        			<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginDTO = new LoginDTO();
+    localStorage.clear();
+    sessionStorage.clear();
   }
 
   iniciarSesion() {
@@ -38,11 +40,13 @@ export class LoginComponent implements OnInit {
       respuesta => {
         let token = respuesta;
         localStorage.setItem(configuraciones.static.token, JSON.stringify(token));
-         this.router.navigate(['dashboard']);
-         this.utilComponent.showSweetAlert("Bienvenido", "", "success"); 
+        this.router.navigate(['dashboard']);
+        this.utilComponent.showSweetAlert("Bienvenido", "", "success");
       },
       (error: HttpErrorResponse) => {
         console.log("ERROR: " + JSON.stringify(error));
+        this.utilComponent.showSweetAlert("Error", this.utilComponent.trataErrores(error), "error");
+
       });
   }
 

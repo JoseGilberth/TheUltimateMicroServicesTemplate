@@ -1,6 +1,9 @@
 netstat -ao | find "8605" 
 Taskkill /PID  15552 /F
 
+--- ANGULAR
+ng build --prod --base-href=/micro-usuarios/admin/
+
 -- EUREKA
 http://localhost:8600/discovery-server/
 

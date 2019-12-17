@@ -25,6 +25,10 @@ export class TokenInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let token = <Token>JSON.parse(localStorage.getItem(configuraciones.static.token));
+        
+        console.log("request.url.includes('oauth/token') :" + request.url.includes("oauth/token"));
+        console.log("request.url :" + JSON.stringify(request.url));
+        
         if (token != null && !request.url.includes("oauth/token")) {
             request = request.clone({
                 headers: request.headers.set('Authorization', "Bearer " + token.access_token)
@@ -63,7 +67,7 @@ export class TokenInterceptor implements HttpInterceptor {
                 }
                 if (error.status === 401) {
                     this.router.navigate(['/login']);
-                    sessionStorage.clear( );
+                    sessionStorage.clear();
                     localStorage.clear();
                 }
                 return throwError(error);
@@ -73,14 +77,14 @@ export class TokenInterceptor implements HttpInterceptor {
 
     printRequest(req: HttpRequest<any>, respuesta: any) {
         console.log(" ");
-        console.log(" "); 
+        console.log(" ");
         console.log("Peticion URL: --------->>> " + req.url);
         console.log("Peticion METODO: ------>>> " + req.method);
         console.log("Peticion HEADERS: ----->>> " + JSON.stringify(req.headers));
         console.log('Peticion CONTENIDO: --->>> ' + JSON.stringify(req.body));
         console.log('Peticion RESPUESTA: --->>> ' + JSON.stringify(respuesta));
         console.log(" ");
-        console.log(" "); 
+        console.log(" ");
     }
 
     validaReglasIntento(metodo: string, url: string, error: any) {
@@ -90,9 +94,9 @@ export class TokenInterceptor implements HttpInterceptor {
             && this.intentos >= configuraciones.intentosError
             && (error.status == 0 || (error.status >= 500 && error.status <= 599))) {
             this.intentos = 0;
-             return true;
+            return true;
         }
-         return false;
+        return false;
     }
 
 
