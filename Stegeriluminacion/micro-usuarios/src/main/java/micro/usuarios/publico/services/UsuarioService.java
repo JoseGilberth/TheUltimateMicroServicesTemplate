@@ -16,10 +16,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import abstracts.ACrud;
 import dao.auth.usuarios.publicos.UsuarioPublicoDao;
 import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioPublicoDTO;
-import interfaces.ACrud;
 import micro.usuarios._config.languaje.Translator;
 import micro.usuarios.publico.services.interfaces.IUsuarioService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
@@ -71,7 +71,7 @@ public class UsuarioService extends ACrud<UsuarioPublico, Long> implements IUsua
 
 	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
 	@Override
-	public Respuesta<UsuarioPublico> crearUsuarioPorAdministracion(UsuarioPublico usuarioPublico) {
+	public Respuesta<UsuarioPublico> crear(UsuarioPublico usuarioPublico) {
 		try {
 			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
 
@@ -101,7 +101,7 @@ public class UsuarioService extends ACrud<UsuarioPublico, Long> implements IUsua
 	}
 
 	@Override
-	public Respuesta<UsuarioPublico> actualizarUsuarioPorAdministracion(Long id, UsuarioPublico usuarioPublico) {
+	public Respuesta<UsuarioPublico> actualizar(Long id, UsuarioPublico usuarioPublico) {
 		try {
 			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
 
@@ -127,7 +127,7 @@ public class UsuarioService extends ACrud<UsuarioPublico, Long> implements IUsua
 	}
 
 	@Override
-	public Respuesta<Boolean> borrarPorAdministrador(Long id) {
+	public Respuesta<Boolean> borrar(Long id) {
 		Respuesta<Boolean> respuesta = new Respuesta<Boolean>();
 		usuarioPublicoDao.deleteById(id);
 		respuesta.setCodigo(200);

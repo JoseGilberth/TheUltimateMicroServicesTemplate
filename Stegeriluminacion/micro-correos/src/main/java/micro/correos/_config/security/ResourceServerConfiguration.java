@@ -37,7 +37,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.requestMatchers().and()
 				.authorizeRequests()
 				.antMatchers(unProtectedPaths).permitAll()
-				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").hasAnyAuthority("proyecto:web:swagger:admin")
+				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").hasAuthority("web:administracion:mantenimiento:swagger")
 				.anyRequest().authenticated();
 	}
 

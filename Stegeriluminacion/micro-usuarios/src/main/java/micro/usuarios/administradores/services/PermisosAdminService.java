@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import interfaces.ACrud;
+import abstracts.ACrud;
 import micro.usuarios.administradores.services.interfaces.IPermisoAdministrador;
 import modelo.auth.usuarios.administradores.PermisoAdministrador;
 
@@ -12,5 +12,6 @@ import modelo.auth.usuarios.administradores.PermisoAdministrador;
 public class PermisosAdminService extends ACrud<PermisoAdministrador, Long> implements IPermisoAdministrador {
 
 	Logger logger = LoggerFactory.getLogger(PermisosAdminService.class);
+ 
 
 }

@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import abstracts.ACRUDEndPoints;
 import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioPublicoDTO;
-import interfaces.ACRUDEndPoints;
 import micro.usuarios.publico.services.interfaces.IUsuarioService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 import utils.validaciones.interfaces.OnCreate;
@@ -62,7 +62,7 @@ public class UsuarioController extends ACRUDEndPoints<UsuarioController> {
 	public ResponseEntity<Respuesta<UsuarioPublico>> crearPorAdministrador(
 			@Validated(OnCreate.class) @RequestBody UsuarioPublico usuarioPublico) {
 		Respuesta<UsuarioPublico> respuesta = null;
-		respuesta = usuarioService.crearUsuarioPorAdministracion(usuarioPublico);
+		respuesta = usuarioService.crear(usuarioPublico);
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 
@@ -71,7 +71,7 @@ public class UsuarioController extends ACRUDEndPoints<UsuarioController> {
 	public ResponseEntity<Respuesta<UsuarioPublico>> actualizarPorAdministrador(@PathVariable("id") Long id,
 			@Validated(OnUpdate.class) @RequestBody UsuarioPublico usuarioPublico) {
 		Respuesta<UsuarioPublico> respuesta = null;
-		respuesta = usuarioService.actualizarUsuarioPorAdministracion(id, usuarioPublico);
+		respuesta = usuarioService.actualizar(id, usuarioPublico);
 		logger.info("respuesta: " + respuesta);
 
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
@@ -80,7 +80,7 @@ public class UsuarioController extends ACRUDEndPoints<UsuarioController> {
 	@DeleteMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<Respuesta<Boolean>> borrarPorAdministrador(@PathVariable("id") Long id) {
 		Respuesta<Boolean> respuesta = null;
-		respuesta = usuarioService.borrarPorAdministrador(id );
+		respuesta = usuarioService.borrar(id );
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 

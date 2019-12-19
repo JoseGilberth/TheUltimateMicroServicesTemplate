@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import interfaces.ACrud;
+import abstracts.ACrud;
 import micro.usuarios.publico.services.interfaces.IPermisoPublico;
 import modelo.auth.usuarios.publicos.PermisoPublico;
 

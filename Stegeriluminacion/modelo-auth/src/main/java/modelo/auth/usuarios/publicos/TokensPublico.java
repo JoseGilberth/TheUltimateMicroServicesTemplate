@@ -1,7 +1,6 @@
 package modelo.auth.usuarios.publicos;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.data.annotation.CreatedDate;
 
 import lombok.Data;
 

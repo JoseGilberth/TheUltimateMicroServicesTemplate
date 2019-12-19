@@ -1,18 +1,9 @@
 package micro.usuarios.administradores.services.interfaces;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
-import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioAdminDTO;
+import interfaces.ICRUD;
 import modelo.auth.usuarios.administradores.UsuarioAdministrador;
 
-public interface IUsuarioAdminService {
-
-	Respuesta<Page<UsuarioAdministrador>> filtrar(Pageable pageable, FiltroUsuarioAdminDTO filtroUsuarioAdminDTO);
-
-	Respuesta<UsuarioAdministrador> crear(UsuarioAdministrador usuario);
-
-	Respuesta<UsuarioAdministrador> actualizar(Long id, UsuarioAdministrador usuario);
+public interface IUsuarioAdminService extends ICRUD<UsuarioAdministrador, FiltroUsuarioAdminDTO, Long> {
 
 }

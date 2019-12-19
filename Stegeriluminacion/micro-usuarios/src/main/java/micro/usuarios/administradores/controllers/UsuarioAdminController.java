@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import abstracts.ACRUDEndPoints;
+import abstracts.ACrud;
 import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioAdminDTO;
-import interfaces.ACRUDEndPoints;
-import interfaces.ACrud;
 import micro.usuarios.administradores.services.interfaces.IUsuarioAdminService;
 import modelo.auth.usuarios.administradores.UsuarioAdministrador;
 import utils.validaciones.interfaces.OnCreate;

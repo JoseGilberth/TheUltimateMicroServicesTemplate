@@ -1,4 +1,4 @@
-package interfaces;
+package abstracts;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.stereotype.Component;
 
 import dto.main.Respuesta;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
@@ -22,14 +21,14 @@ import steger.excepciones.controladas.ErrorInternoControlado;
 
 @Scope(proxyMode = ScopedProxyMode.INTERFACES)
 @Transactional
-@Component(value = "ACRUD")
-public abstract class ACrud< T extends Serializable, S> {
+public abstract class ACrud<T extends Serializable, S> {
 
 	@PersistenceContext
 	EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
-	private Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	private Class<T> clazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
+			.getActualTypeArguments()[0];
 
 	Logger logger = LoggerFactory.getLogger(clazz);
 
@@ -43,24 +42,18 @@ public abstract class ACrud< T extends Serializable, S> {
 		respuesta.setMensaje("obtenido");
 		return respuesta;
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	public Respuesta<List<T>> obtenerTodos() {
 		final Respuesta<List<T>> respuesta = new Respuesta<List<T>>();
-		try {
-			List<T> datos = entityManager.createQuery("from " + clazz.getName()).getResultList();
-			respuesta.setCodigo(200);
-			respuesta.setCodigoHttp(200);
-			respuesta.setCuerpo(datos);
-			respuesta.setEstado(true);
-			respuesta.setMensaje("obtenidos");
-			return respuesta;
-		} catch (Exception ex) {
-			return ErrorInternoControlado.error(ex.getMessage());
-		}
+		List<T> datos = entityManager.createQuery("from " + clazz.getName()).getResultList();
+		respuesta.setCodigo(200);
+		respuesta.setCodigoHttp(200);
+		respuesta.setCuerpo(datos);
+		respuesta.setEstado(true);
+		respuesta.setMensaje("obtenidos");
+		return respuesta;
 	}
-	
 
 	public Respuesta<T> crear(final T objeto) {
 		final Respuesta<T> respuesta = new Respuesta<T>();
@@ -74,7 +67,6 @@ public abstract class ACrud< T extends Serializable, S> {
 		return respuesta;
 	}
 
-	
 	public Respuesta<T> actualizar(final T objeto) {
 		final Respuesta<T> respuesta = new Respuesta<T>();
 		entityManager.merge(objeto);
@@ -87,8 +79,7 @@ public abstract class ACrud< T extends Serializable, S> {
 		return respuesta;
 	}
 
-	
-	public Respuesta<Boolean> eliminar(final  S id) {
+	public Respuesta<Boolean> eliminar(final S id) {
 		final Respuesta<Boolean> respuesta = new Respuesta<Boolean>();
 		T objeto = entityManager.find(clazz, id);
 		entityManager.remove(objeto);
@@ -217,7 +208,7 @@ public abstract class ACrud< T extends Serializable, S> {
 
 	public Respuesta<Boolean> eliminarPorUsuario(OAuth2Authentication auth, final S id) {
 		T objeto = entityManager.find(clazz, id);
-		
+
 		logger.info("CLASE ===>" + objeto.getClass().getName());
 		String usuario = validaUsuario(objeto);
 
@@ -279,6 +270,5 @@ public abstract class ACrud< T extends Serializable, S> {
 		}
 		return usuario;
 	}
-
 
 }

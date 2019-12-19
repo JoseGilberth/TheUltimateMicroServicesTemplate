@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import abstracts.ACRUDEndPoints;
 import dto.main.Respuesta;
-import interfaces.ACRUDEndPoints;
 import micro.usuarios.publico.services.interfaces.IRegistroService;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 import utils.validaciones.interfaces.OnCreate;
@@ -32,7 +32,7 @@ public class RegistroController extends ACRUDEndPoints<RegistroController> {
 	public ResponseEntity<Respuesta<UsuarioPublico>> registrar(
 			@Validated(OnCreate.class) @RequestBody UsuarioPublico usuarioPublico) {
 		usuarioPublico.setCorreo(usuarioPublico.getCorreo().replaceAll("\\s", ""));
-		Respuesta<UsuarioPublico> respuesta = registroService.crearRegistro(usuarioPublico);
+		Respuesta<UsuarioPublico> respuesta = registroService.crear(usuarioPublico);
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 

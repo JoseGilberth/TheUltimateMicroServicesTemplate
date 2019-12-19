@@ -15,10 +15,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import abstracts.ACrud;
 import dao.auth.usuarios.administradores.UsuarioAdministradorDao;
 import dto.main.Respuesta;
 import dto.micro.usuarios.FiltroUsuarioAdminDTO;
-import interfaces.ACrud;
 import micro.usuarios._config.languaje.Translator;
 import micro.usuarios.administradores.services.interfaces.IUsuarioAdminService;
 import modelo.auth.usuarios.Usuario;
@@ -105,6 +105,12 @@ public class UsuarioAdminService extends ACrud<UsuarioAdministrador, Long> imple
 		respuesta.setEstado(true);
 		respuesta.setMensaje(Translator.toLocale("proveedor.obtenido"));
 		return respuesta;
+	}
+
+	@Override
+	public Respuesta<Boolean> borrar(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

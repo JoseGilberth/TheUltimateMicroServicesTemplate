@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import abstracts.ACRUDEndPoints;
 import dto.main.Respuesta;
 import dto.micro.usuarios.UsuarioPublicoCambiarClaveDTO;
-import interfaces.ACRUDEndPoints;
 import micro.usuarios.publico.services.interfaces.ICuentaService;
 
 @RestController

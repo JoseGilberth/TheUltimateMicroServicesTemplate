@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -39,7 +40,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.requestMatchers().and()
 				.authorizeRequests()
 				.antMatchers(unProtectedPaths).permitAll()
-				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").hasAnyAuthority("proyecto:web:swagger:admin")
+				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").hasAuthority("web:administracion:mantenimiento:swagger")
+				.antMatchers( HttpMethod.POST , "/sesiones/filtro").hasAuthority("web:administracion:sesiones:mostrar")  
+				.antMatchers( HttpMethod.POST , "/log/filtro")	   .hasAuthority("web:administracion:log:mostrar") 
 				.anyRequest().authenticated();
 	}
 

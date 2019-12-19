@@ -42,7 +42,15 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 				.requestMatchers().and()
 				.authorizeRequests()
 				.antMatchers(unProtectedPaths).permitAll()
-				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").hasAuthority("proyecto:web:swagger:admin")
+				.antMatchers("/v2/api-docs", "/configuration/**", "/swagger-resources/**",  "/swagger-ui.html", "/webjars/**", "/api-docs/**").hasAuthority("web:administracion:mantenimiento:swagger")
+				 
+				.antMatchers( HttpMethod.GET    , "/permisos/admin")	 	 .hasAuthority("web:administracion:permisos:admin:mostrar") 
+				.antMatchers( HttpMethod.POST   , "/usuarios/admin/filtro")	 .hasAuthority("web:administracion:usuarios:admin:mostrar")
+				.antMatchers( HttpMethod.POST   , "/usuarios/admin")  	 	 .hasAuthority("web:administracion:usuarios:admin:crear")
+				.antMatchers( HttpMethod.PUT    , "/usuarios/admin/*")	 	 .hasAuthority("web:administracion:usuarios:admin:actualizar")
+				.antMatchers( HttpMethod.DELETE , "/usuarios/admin/*")	 	 .hasAuthority("web:administracion:usuarios:admin:borrar")
+
+				.antMatchers( HttpMethod.GET    , "/permisos/publico")	     .hasAuthority("web:administracion:permisos:publicos:mostrar") 
 				.antMatchers( HttpMethod.POST   , "/usuarios/publico/filtro").hasAuthority("web:administracion:usuarios:publicos:mostrar")
 				.antMatchers( HttpMethod.POST   , "/usuarios/publico")  	 .hasAuthority("web:administracion:usuarios:publicos:crear")
 				.antMatchers( HttpMethod.PUT    , "/usuarios/publico/*")	 .hasAuthority("web:administracion:usuarios:publicos:actualizar")

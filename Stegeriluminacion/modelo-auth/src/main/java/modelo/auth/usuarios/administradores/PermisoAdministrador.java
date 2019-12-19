@@ -18,13 +18,9 @@ import lombok.Data;
 @Entity
 @Table
 public class PermisoAdministrador implements Serializable {
-
-	/**
-	 * 
-	 */
+ 
 	private static final long serialVersionUID = 1L;
-
-
+ 
 	@Id
 	@Column(name = "id", updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

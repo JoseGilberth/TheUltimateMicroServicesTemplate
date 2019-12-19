@@ -18,13 +18,12 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import dao.auth.usuarios.publicos.ResetTokenPublicoDao;
 import dao.auth.usuarios.publicos.UsuarioPublicoDao;
 import dto.main.Respuesta;
-import  steger.excepciones.controladas.ErrorInternoControlado;
 import micro.usuarios._config.languaje.Translator;
 import micro.usuarios.publico.services.interfaces.IEmailService;
 import micro.usuarios.publico.services.interfaces.IRegistroService;
 import modelo.auth.usuarios.publicos.ResetTokenPublico;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
-
+import steger.excepciones.controladas.ErrorInternoControlado;
 
 @Service
 public class RegistroService implements IRegistroService {
@@ -46,26 +45,27 @@ public class RegistroService implements IRegistroService {
 	@Autowired
 	private SpringTemplateEngine templateEngine;
 
-
-    @Value("${correo.registro}")
+	@Value("${correo.registro}")
 	String stegeriluminacionRegistro;
-	
+
 	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
 	@Override
-	public Respuesta<UsuarioPublico> crearRegistro(UsuarioPublico usuarioPublico) {
+	public Respuesta<UsuarioPublico> crear(UsuarioPublico usuarioPublico) {
 		try {
-			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>(); 
-			
-			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(), usuarioPublico.getCorreo());
+			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
+
+			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(),
+					usuarioPublico.getCorreo());
 			if (usuario != null) {// EXISTE EN LA BASE DE DATOS
 				return ErrorInternoControlado.usuarioDuplicado(null);
 			}
 			usuarioPublico.setPassword(bcrypt.encode(usuarioPublico.getPassword()));
 
 			UsuarioPublico usuarioPublic = usuariosPublicoDao.saveAndFlush(usuarioPublico);
-			
-			Respuesta<Boolean> correo = emailService.registro( new String[]{usuarioPublico.getCorreo()} ,null , null , "Bienvenido", usuarioPublico, stegeriluminacionRegistro );
-			
+
+			Respuesta<Boolean> correo = emailService.registro(new String[] { usuarioPublico.getCorreo() }, null, null,
+					"Bienvenido", usuarioPublico, stegeriluminacionRegistro);
+
 			if (correo.getCodigoHttp() == 200) {
 				respuesta.setCodigo(200);
 				respuesta.setCodigoHttp(200);
@@ -77,11 +77,11 @@ public class RegistroService implements IRegistroService {
 				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 				return ErrorInternoControlado.error(Translator.toLocale("error.correo.envio"));
 			}
-		} catch (Exception ex ) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
-			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly(); 
-			if(ex instanceof ConstraintViolationException) { 
-		        throw ex;
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			if (ex instanceof ConstraintViolationException) {
+				throw ex;
 			}
 			return ErrorInternoControlado.error(ex.getMessage());
 		}
@@ -91,35 +91,28 @@ public class RegistroService implements IRegistroService {
 	@Override
 	public Respuesta<String> activarUsuario(String token) {
 		try {
-			Respuesta<String> respuesta = new Respuesta<String>(); 
+			Respuesta<String> respuesta = new Respuesta<String>();
 			ResetTokenPublico rt = resetTokenPublicoDao.findByToken(token);
 			if (rt != null) {
 				if (!rt.isExpirado()) {
-
- 					
-					UsuarioPublico usuarioPublico = usuariosPublicoDao.buscarPorUsuario(rt.getUsuarioPublico().getUsername());
-				
+					UsuarioPublico usuarioPublico = usuariosPublicoDao .buscarPorUsuario(rt.getUsuarioPublico().getUsername());
 					usuarioPublico.setEnabled(true);
 					usuarioPublico = usuariosPublicoDao.saveAndFlush(usuarioPublico);
 					resetTokenPublicoDao.delete(rt);
-
-					Context context = new Context(); 
+					Context context = new Context();
 					String html = templateEngine.process("usuarios/usuario_activado", context);
-
 					respuesta.setCodigo(200);
 					respuesta.setCodigoHttp(200);
 					respuesta.setCuerpo(html);
 					respuesta.setEstado(true);
 					respuesta.setMensaje(Translator.toLocale("usuarios.activado"));
- 
 					return respuesta;
-
 				} else {
 					return ErrorInternoControlado.tokenExpirado(Translator.toLocale("token.expirado"));
 				}
 			} else {
 				return ErrorInternoControlado.tokenNoExiste(Translator.toLocale("token.noexiste"));
-			} 
+			}
 		} catch (Exception ex) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			return ErrorInternoControlado.error(ex.getMessage());

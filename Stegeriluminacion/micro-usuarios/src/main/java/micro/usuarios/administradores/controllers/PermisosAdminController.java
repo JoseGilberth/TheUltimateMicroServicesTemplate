@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import abstracts.ACRUDEndPoints;
+import abstracts.ACrud;
 import dto.main.Respuesta;
-import interfaces.ACRUDEndPoints;
 import micro.usuarios.administradores.services.PermisosAdminService;
 import modelo.auth.usuarios.administradores.PermisoAdministrador;
 
@@ -25,10 +26,13 @@ public class PermisosAdminController extends ACRUDEndPoints<PermisosAdminControl
 	@Autowired
 	PermisosAdminService permisosAdminService;
 
+	@Autowired
+	ACrud<PermisoAdministrador, Long> aCrud;
+
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<Respuesta<List<PermisoAdministrador>>> listAll() {
 		Respuesta<List<PermisoAdministrador>> respuesta = null;
-		respuesta = permisosAdminService.obtenerTodos();
+		respuesta = aCrud.obtenerTodos();
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 

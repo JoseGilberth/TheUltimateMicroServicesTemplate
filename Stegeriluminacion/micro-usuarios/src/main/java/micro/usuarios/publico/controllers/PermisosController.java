@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import abstracts.ACRUDEndPoints;
+import abstracts.ACrud;
 import dto.main.Respuesta;
-import interfaces.ACRUDEndPoints;
 import micro.usuarios.publico.services.PermisosPublicosService;
 import modelo.auth.usuarios.publicos.PermisoPublico;
 
@@ -25,10 +26,13 @@ public class PermisosController extends ACRUDEndPoints<PermisosController> {
 	@Autowired
 	PermisosPublicosService permisosPublicosService;
 
+	@Autowired
+	ACrud<PermisoPublico, Long> aCrud;
+	 
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<Respuesta<List<PermisoPublico>>> listAll() {
 		Respuesta<List<PermisoPublico>> respuesta = null;
-		respuesta = permisosPublicosService.obtenerTodos();
+		respuesta = aCrud.obtenerTodos();
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 

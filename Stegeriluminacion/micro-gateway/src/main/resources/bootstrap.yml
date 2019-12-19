@@ -5,6 +5,7 @@ spring:
     default-domain: stegeriluminacion-gateway 
 
 server:
+  address: 0.0.0.0
   port: 8601
   servlet:
     context-path: /stegeriluminacion # El Context Path debe ser igual al nombre del War generado, al momento de subirse a un servidor
