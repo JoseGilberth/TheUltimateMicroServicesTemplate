@@ -51,22 +51,14 @@ public class EmailService implements IEmailService {
 			token.setToken(usuario.getUsername() + UUID.randomUUID().toString());
 			token.setUsuarioPublico(usuario);
 			token.setExpiracionInMinutes(1440);
-			resetTokenPublicoDao.save(token);
-
+			resetTokenPublicoDao.save(token); 
+			
 			Map<String, Object> variables = new HashMap<>();
 			String url = urlToSend + token.getToken();
 			variables.put("user", token.getUsuarioPublico().getUsername());
 			variables.put("resetUrl", url);
-			mail.setVariables(variables);
-			
-			Respuesta<Boolean> respuesta = iEmailExternalService.registro(mail); 
-			
-			//respuesta.setCodigo(200);
-			//respuesta.setCodigoHttp(200);
-			//respuesta.setCuerpo(true);
-			//respuesta.setEstado(true);
-			//respuesta.setMensaje(Translator.toLocale("usuarios.creado"));
-			System.out.println(" entro aqui <---------------->");
+			mail.setVariables(variables); 
+			Respuesta<Boolean> respuesta = iEmailExternalService.registro(mail);  
 			return respuesta;
 			
 		}catch( Exception ex) {

@@ -4,16 +4,16 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Component;
 
-@Component(value = "TranslatorMicroCorreos")
+@Component(value = "TranslatorMicroUsuarios")
 public class Translator {
 
-	private static ReloadableResourceBundleMessageSource messageSource;
+	private static ResourceBundleMessageSource messageSource;
 
 	@Autowired
-	Translator(ReloadableResourceBundleMessageSource messageSource) {
+	Translator(ResourceBundleMessageSource messageSource) {
 		Translator.messageSource = messageSource;
 	}
 

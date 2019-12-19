@@ -71,9 +71,7 @@ public class UsuarioController extends ACRUDEndPoints<UsuarioController> {
 	public ResponseEntity<Respuesta<UsuarioPublico>> actualizarPorAdministrador(@PathVariable("id") Long id,
 			@Validated(OnUpdate.class) @RequestBody UsuarioPublico usuarioPublico) {
 		Respuesta<UsuarioPublico> respuesta = null;
-		respuesta = usuarioService.actualizar(id, usuarioPublico);
-		logger.info("respuesta: " + respuesta);
-
+		respuesta = usuarioService.actualizar(id, usuarioPublico); 
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
 

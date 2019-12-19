@@ -103,7 +103,7 @@ public class UsuarioAdminService extends ACrud<UsuarioAdministrador, Long> imple
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(datos);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("proveedor.obtenido"));
+		respuesta.setMensaje(Translator.toLocale("usuarios.obtenido"));
 		return respuesta;
 	}
 

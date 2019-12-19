@@ -30,18 +30,16 @@ import modelo.auth.usuarios.Usuario;
 		@Index(columnList = "correo", name = "index_correo") },
 	uniqueConstraints={
 		@UniqueConstraint(columnNames={"username"} , name = "unique_username"),
-		@UniqueConstraint(columnNames={"correo"} , name = "unique_correo"),
-		@UniqueConstraint(columnNames={"telefonoCelular"} , name = "unique_telefonoCelular")
+		@UniqueConstraint(columnNames={"correo"} , name = "unique_correo")
 	}
 )
 @Data
 public class UsuarioPublico extends Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@NotNull(message = "{usuario.publico.telefonoCelular.notnull}")
+ 
 	@Length(min = 10, max = 10, message = "{usuario.publico.telefonoCelular.lenght}")	
-	@Column(name = "telefonoCelular", unique = true, nullable = false, length = 10)
+	@Column(name = "telefonoCelular", nullable = true, length = 10)
 	private String telefonoCelular;
 
 	@ManyToMany(fetch = FetchType.EAGER)

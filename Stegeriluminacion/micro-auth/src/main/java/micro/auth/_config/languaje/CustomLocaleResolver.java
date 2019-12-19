@@ -19,7 +19,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomi
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
@@ -43,7 +43,7 @@ public class CustomLocaleResolver extends AcceptHeaderLocaleResolver implements 
 
 	@Value("${languaje.config.validation.base-name}")
 	private String validationBaseName;
-
+ 
 	@Override
 	public Locale resolveLocale(HttpServletRequest request) {
 		String headerLang = request.getHeader(header);
@@ -69,8 +69,8 @@ public class CustomLocaleResolver extends AcceptHeaderLocaleResolver implements 
 	}
 
 	@Bean
-	public ReloadableResourceBundleMessageSource messageSource() {
-		ReloadableResourceBundleMessageSource rs = new ReloadableResourceBundleMessageSource();
+	public ResourceBundleMessageSource messageSource() {
+		ResourceBundleMessageSource  rs = new ResourceBundleMessageSource ();
 		rs.setBasenames(baseName);
 		rs.setDefaultEncoding(encoding);
 		rs.setUseCodeAsDefaultMessage(true);

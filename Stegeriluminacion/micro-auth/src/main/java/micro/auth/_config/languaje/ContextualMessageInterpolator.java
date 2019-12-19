@@ -18,7 +18,7 @@ public class ContextualMessageInterpolator implements MessageInterpolator {
 		Locale locale = LocaleContextHolder.getLocale();
 		return this.delegate.interpolate(message, context, locale);
 	}
-
+                                                                                
 	@Override
 	public String interpolate(String message, Context context, Locale locale) {
 		return this.delegate.interpolate(message, context, locale);

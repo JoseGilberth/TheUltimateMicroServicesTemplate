@@ -88,7 +88,7 @@ public class UsuarioService extends ACrud<UsuarioPublico, Long> implements IUsua
 			respuesta.setCuerpo(usuarioPublic);
 			respuesta.setEstado(true);
 			respuesta.setMensaje(Translator.toLocale("usuarios.creado"));
-			return respuesta;
+			return respuesta; 
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -158,7 +158,7 @@ public class UsuarioService extends ACrud<UsuarioPublico, Long> implements IUsua
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(datos);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("proveedor.obtenido"));
+		respuesta.setMensaje(Translator.toLocale("usuarios.obtenido"));
 		return respuesta;
 	}
 
