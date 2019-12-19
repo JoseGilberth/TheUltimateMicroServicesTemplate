@@ -18,17 +18,16 @@ import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.stereotype.Service;
 
+import abstracts.ACrud;
 import dao.auth.oauth.OauthClientDetailsDao;
 import dto.main.Respuesta;
 import dto.micro.auth.FiltroOauthClientDetailsDTO;
 import micro.auth._config.languaje.Translator;
-import micro.auth.services.interfaces.ACrud;
-import micro.auth.services.interfaces.IOauthClientDetails;
+ import micro.auth.services.interfaces.IOauthClientDetails;
 import modelo.auth.oauth2.OauthClientDetails;
 
 @Service("cliente")
-public class OauthClientDetailsService extends ACrud<OauthClientDetails>
-		implements IOauthClientDetails, ClientDetailsService {
+public class OauthClientDetailsService extends ACrud<OauthClientDetails,String> implements IOauthClientDetails, ClientDetailsService {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 

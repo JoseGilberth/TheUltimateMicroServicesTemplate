@@ -36,13 +36,12 @@ public class CustomDaoAuthenticationProvider implements AuthenticationProvider  
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
-	
-	
+	 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 	
-		String username = authentication.getPrincipal() + "";
-		String password = authentication.getCredentials() + "";
+		String username = authentication.getPrincipal().toString();
+		String password = authentication.getCredentials().toString();
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		
 		UsuarioAdministrador usuarioAdministrador = usuarioAdministradorDao.buscarPorUsuario(username);

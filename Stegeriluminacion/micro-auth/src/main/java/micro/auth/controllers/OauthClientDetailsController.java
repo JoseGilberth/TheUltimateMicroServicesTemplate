@@ -9,9 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,14 +36,7 @@ public class OauthClientDetailsController  {
 		respuesta = oauthClientTokenService.filtrar(pageable, filtroOauthClientDetailsDTO);
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
- 
-	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<Respuesta<OauthClientDetails>> obtener(Long id) {
-		Respuesta<OauthClientDetails> respuesta = oauthClientTokenService.obtener(id);
-		respuesta = oauthClientTokenService.obtener(id);
-		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
-	}
- 
+  
 	@GetMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<Respuesta<List<OauthClientDetails>>> obtenerTodos() {
 		Respuesta<List<OauthClientDetails>> respuesta = oauthClientTokenService.obtenerTodos();
@@ -68,13 +59,6 @@ public class OauthClientDetailsController  {
 		respuesta = oauthClientTokenService.actualizar(t);
 		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
 	}
- 
-	@DeleteMapping(value = "/{id}", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
-			MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<Respuesta<Boolean>> borrar(@PathVariable("id") Long id) {
-		Respuesta<Boolean> respuesta = oauthClientTokenService.eliminar(id);
-		respuesta = oauthClientTokenService.eliminar(id);
-		return ResponseEntity.status(respuesta.getCodigoHttp()).body(respuesta);
-	}
+  
 
 }

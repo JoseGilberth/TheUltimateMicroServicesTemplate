@@ -7,16 +7,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import abstracts.ACrud;
 import dao.auth.oauth.OauthClientTokenDao;
 import dto.main.Respuesta;
 import dto.micro.auth.FiltroOauthClientTokenDTO;
 import micro.auth._config.languaje.Translator;
-import micro.auth.services.interfaces.ACrud;
-import micro.auth.services.interfaces.IOauthClientToken;
+ import micro.auth.services.interfaces.IOauthClientToken;
 import modelo.auth.oauth2.OauthClientToken;
 
 @Service
-public class OauthClientTokenService extends ACrud<OauthClientToken> implements IOauthClientToken {
+public class OauthClientTokenService extends ACrud<OauthClientToken, String> implements IOauthClientToken {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 

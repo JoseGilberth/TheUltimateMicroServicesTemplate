@@ -7,16 +7,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import abstracts.ACrud;
 import dao.auth.LogDao;
 import dto.main.Respuesta;
 import dto.micro.auth.FiltroLogDTO;
 import micro.auth._config.languaje.Translator;
-import micro.auth.services.interfaces.ACrud;
-import micro.auth.services.interfaces.ILog;
+ import micro.auth.services.interfaces.ILog;
 import modelo.auth.log.Log;
 
 @Service
-public class LogService extends ACrud<Log> implements ILog {
+public class LogService extends ACrud<Log,Long> implements ILog {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 

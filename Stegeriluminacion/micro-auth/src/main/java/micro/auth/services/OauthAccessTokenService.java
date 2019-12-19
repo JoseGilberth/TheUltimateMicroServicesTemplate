@@ -16,17 +16,17 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.stereotype.Service;
 
+import abstracts.ACrud;
 import dao.auth.oauth.OauthAccessTokenDao;
 import dto.main.Respuesta;
 import dto.micro.auth.FiltroOauthAccessTokenDTO;
 import dto.micro.auth.OauthAccessTokenDTO;
 import micro.auth._config.languaje.Translator;
-import micro.auth.services.interfaces.ACrud;
-import micro.auth.services.interfaces.IOauthAccessToken;
+ import micro.auth.services.interfaces.IOauthAccessToken;
 import modelo.auth.oauth2.OauthAccessToken;
 
 @Service
-public class OauthAccessTokenService extends ACrud<OauthAccessToken> implements IOauthAccessToken {
+public class OauthAccessTokenService extends ACrud<OauthAccessToken , String> implements IOauthAccessToken {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
