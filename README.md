@@ -69,9 +69,7 @@ mvn clean install
 ```
 Para compilarlo y haga una descarga de todas las librerias del mismo.
 
-Cabe mencionar que el proyecto es una leve **implementación de una tienda en linea** , pero pueden eliminarse elementos que no necesite.
- 
-Todos los microservicios a excepcion de eureka y zipkin , apuntan al microservicio de 
+Todos los microservicios a excepcion de zipkin , apuntan al microservicio de 
 autorización y al micro servicio de eureka
 
  
@@ -117,7 +115,7 @@ autorización y al micro servicio de eureka
   ```
  - paso 3: Crea una base de datos en MYSQL , llamada "stegeriluminacion" , con codificación UTF-8 y utf8_general_ci
  
- - paso 4: Por default si inicias el proyecto tomara el perfil "dev" el cual ya tiene configurado un usuario y un password "root" - "<sin contraseña>" asi que iniciara la creacion de las tablas en la base de datos
+ - paso 4: Por default si inicias el proyecto tomara el perfil "dev" el cual ya tiene configurado un usuario y un password "root" - "G1lb3rt0." asi que iniciara la creacion de las tablas en la base de datos
 
 
 ## Puertos usados en microservicios
@@ -127,7 +125,6 @@ autorización y al micro servicio de eureka
 - http://localhost:8602/micro-auth/actuator  -- Micro servicio de autenticación
 - http://localhost:8603/micro-correos/actuator -- Micro servicio de correos
 - http://localhost:8604/micro-usuarios/actuator -- Micro servicio de usuarios
-- http://localhost:8605/micro-administracion/actuator -- Micro servicio de administracion 
  
 | Micro servicio | Puerto |
 | ------------- | ------------- |
@@ -136,7 +133,6 @@ autorización y al micro servicio de eureka
 | micro-auth | 8602  |  
 | micro-correos  |  8603  |  
 | micro-usuarios | 8604  |  
-| micro-administracion  |  8605  | 
 
 ## Caracteristicas especiales de esta plantilla
 
@@ -356,8 +352,8 @@ cambien el idioma en automatico
 
   
 	@Bean
-	public ReloadableResourceBundleMessageSource messageSource() {
-		ReloadableResourceBundleMessageSource rs = new ReloadableResourceBundleMessageSource();
+	public ResourceBundleMessageSource messageSource() {
+		ResourceBundleMessageSource  rs = new ResourceBundleMessageSource ();
 		rs.setBasenames(baseName);
 		rs.setDefaultEncoding(encoding);
 		rs.setUseCodeAsDefaultMessage(true);
@@ -446,13 +442,11 @@ Las siguientes url de monitoreo serviran para acceder a algunas caracteristicas 
   - http://localhost:8602/micro-auth/actuator 
   - http://localhost:8603/micro-correos/actuator 
   - http://localhost:8604/micro-usuarios/actuator 
-  - http://localhost:8605/micro-administracion/actuator  
 
   - http://localhost:8601/stegeriluminacion/uaa/actuator
   - http://localhost:8601/stegeriluminacion/micro-auth/actuator
   - http://localhost:8601/stegeriluminacion/micro-correos/actuator
   - http://localhost:8601/stegeriluminacion/micro-usuarios/actuator
-  - http://localhost:8601/stegeriluminacion/micro-administracion/actuator 
 
 - SWAGGER 
   - http://localhost:8601/stegeriluminacion/swagger-ui.html
@@ -472,9 +466,6 @@ Las siguientes url de monitoreo serviran para acceder a algunas caracteristicas 
 
   - http://localhost:8604/micro-usuarios/hystrix
   - http://localhost:8604/micro-usuarios/actuator/hystrix.stream
-
-  - http://localhost:8605/micro-administracion/hystrix
-  - http://localhost:8605/micro-administracion/actuator/hystrix.stream
  
 - SPRING BOOT ADMIN
   - http://localhost:8600/discovery-server/admin
