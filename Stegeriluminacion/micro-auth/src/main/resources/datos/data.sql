@@ -14,6 +14,10 @@ INSERT INTO usuario_administrador (id,apellido1,apellido2,correo,enabled,fecha_a
 INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove) VALUES 
 ('stegerilumination', 'stegerilumination_resource', '$2a$10$u/tfnwocKdzo8jplduK3BeWJcQ6rINhjnXLSomFWMX6KiltJqr3tO', 'read,write', 'password', 'http://localhost', NULL, 6000 , 0, NULL, 'false');
  
+ INSERT INTO oauth_client_details (client_id, resource_ids, client_secret, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove) VALUES 
+('stegerilumination_publico', 'stegerilumination_publico_resource', '$2a$10$u/tfnwocKdzo8jplduK3BeWJcQ6rINhjnXLSomFWMX6KiltJqr3tO', 'read,write', 'password', 'http://localhost', NULL, 6000 , 0, NULL, 'false');
+ 
+ 
 DELETE FROM usuario_administrador_permiso;
 DELETE FROM permiso_administrador; 
 
