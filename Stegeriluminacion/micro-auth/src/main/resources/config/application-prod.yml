@@ -2,7 +2,7 @@ spring:
   profiles: ## SIRVEN PARA SEPARAR LAS DIREFENTES CONFIGURACIONES DEL SISTEMA
     active: '@activatedProperties@' ## NOMBRE DEL PERFIL
   banner:
-    location: classpath:/banners/banner-gilberto.txt
+    location: classpath:/banners/banner-prod.txt
   main:
     allow-bean-definition-overriding: true ## SOBRE ESCRIBE BEAN (OBJETOS) REPETIDOS ENTRE PROYECTO
   jackson: # JACKSON - ES USADA POR SPRING WEB, ES UNA LIBRERIA DE TRANSFORMACIÓN DE OBJETOS

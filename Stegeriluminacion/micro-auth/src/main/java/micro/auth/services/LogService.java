@@ -31,7 +31,7 @@ public class LogService extends ACrud<Log,Long> implements ILog {
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(sesiones);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("proveedor.obtenido"));
+		respuesta.setMensaje(Translator.toLocale("log.obtenido"));
 		return respuesta;
 	}
 

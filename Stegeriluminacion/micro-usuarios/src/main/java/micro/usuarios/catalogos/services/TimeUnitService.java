@@ -33,7 +33,7 @@ public class TimeUnitService {
 			respuesta.setCodigoHttp(200);
 			respuesta.setCuerpo(lista);
 			respuesta.setEstado(true);
-			respuesta.setMensaje(Translator.toLocale("usuarios.creado"));
+			respuesta.setMensaje(Translator.toLocale("catalogo.obtenido.correctamente"));
 			return respuesta;
 
 		} catch (Exception ex) {

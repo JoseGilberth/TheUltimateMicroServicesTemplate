@@ -2,7 +2,7 @@ spring:
   profiles: ## SIRVEN PARA SEPARAR LAS DIREFENTES CONFIGURACIONES DEL SISTEMA
     active: '@activatedProperties@' ## NOMBRE DEL PERFIL
   banner:
-    location: classpath:/banners/banner-dev.txt 
+    location: classpath:/banners/banner-prod.txt 
   main:
     allow-bean-definition-overriding: true
   jackson:

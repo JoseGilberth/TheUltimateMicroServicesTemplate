@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import dto.main.Respuesta;
 import dto.micro.correo.Mail;
 import micro.correos.services.interfaces.ICorreoService;
+import micro.correos.services.interfaces.IEmailService;
 
 @Service
 public class CorreoService implements ICorreoService {
@@ -18,12 +19,12 @@ public class CorreoService implements ICorreoService {
 	Logger logger = LoggerFactory.getLogger(CorreoService.class);
 
 	@Autowired
-	SendEmailService sendEmailService;
+	IEmailService iEmailService;
 
 	@Async
 	public Respuesta<Boolean> registro(Mail mail) throws MessagingException {
 		try {
-			return sendEmailService.sendEmail(mail, "email/registro");
+			return iEmailService.sendEmail(mail, "email/registro");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
@@ -33,7 +34,7 @@ public class CorreoService implements ICorreoService {
 	@Async
 	public Respuesta<Boolean> cambiarPassword(Mail mail) throws MessagingException {
 		try {
-			return sendEmailService.sendEmail(mail, "email/cambio_password");
+			return iEmailService.sendEmail(mail, "email/cambio_password");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

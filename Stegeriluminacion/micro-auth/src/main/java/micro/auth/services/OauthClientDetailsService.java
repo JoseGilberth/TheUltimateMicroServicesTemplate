@@ -42,7 +42,7 @@ public class OauthClientDetailsService extends ACrud<OauthClientDetails,String> 
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(sesiones);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("proveedor.obtenido"));
+		respuesta.setMensaje(Translator.toLocale("clientes.obtenidos"));
 		return respuesta;
 	}
 

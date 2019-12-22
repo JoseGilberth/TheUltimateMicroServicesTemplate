@@ -21,7 +21,7 @@ public class AccessDeniedHandlerException implements AccessDeniedHandler {
                        HttpServletResponse res,
                        AccessDeniedException accessDeniedException) throws IOException, ServletException {
 
-		final Map<String, Object> mapException = NoAutorizado.accedoDenegadoMap();
+		final Map<String, Object> mapException = NoAutorizado.accesoDenegadoMap();
 		res.setContentType("application/json");
 		res.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		final ObjectMapper mapper = new ObjectMapper();

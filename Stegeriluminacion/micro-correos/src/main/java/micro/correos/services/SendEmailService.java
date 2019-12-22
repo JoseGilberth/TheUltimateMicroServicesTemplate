@@ -16,9 +16,10 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import dto.main.Respuesta;
 import dto.micro.correo.Mail;
 import micro.correos._config.languaje.Translator;
+import micro.correos.services.interfaces.IEmailService;
 
 @Component
-public class SendEmailService {
+public class SendEmailService implements IEmailService {
 	
 	@Autowired
 	private JavaMailSender emailSender;
@@ -26,6 +27,7 @@ public class SendEmailService {
 	@Autowired
 	private SpringTemplateEngine templateEngine;
   
+	@Override
 	public Respuesta<Boolean> sendEmail(Mail mail, String template) throws MessagingException { 
 		Respuesta<Boolean> respuesta = new Respuesta<Boolean>(200, 200, true, Translator.toLocale("correo.enviado"), true); 
 		

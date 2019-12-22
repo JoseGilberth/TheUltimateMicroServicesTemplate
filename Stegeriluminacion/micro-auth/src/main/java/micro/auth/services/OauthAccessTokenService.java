@@ -83,7 +83,7 @@ public class OauthAccessTokenService extends ACrud<OauthAccessToken , String> im
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(page);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("proveedor.obtenido"));
+		respuesta.setMensaje(Translator.toLocale("token.obtenido"));
 		return respuesta;
 	}
 
@@ -96,7 +96,7 @@ public class OauthAccessTokenService extends ACrud<OauthAccessToken , String> im
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(true);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("proveedor.obtenido"));
+		respuesta.setMensaje(Translator.toLocale("token.removido"));
 		return respuesta;
 	}
 	
@@ -109,7 +109,7 @@ public class OauthAccessTokenService extends ACrud<OauthAccessToken , String> im
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(true);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("proveedor.obtenido"));
+		respuesta.setMensaje(Translator.toLocale("token.removido"));
 		return respuesta;
 	}
 

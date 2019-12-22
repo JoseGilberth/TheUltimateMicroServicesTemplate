@@ -54,8 +54,8 @@ public class RegistroService implements IRegistroService {
 		try {
 			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
 
-			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(),
-					usuarioPublico.getCorreo());
+			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(), usuarioPublico.getCorreo());
+			
 			if (usuario != null) {// EXISTE EN LA BASE DE DATOS
 				return ErrorInternoControlado.usuarioDuplicado(null);
 			}
@@ -63,8 +63,7 @@ public class RegistroService implements IRegistroService {
 
 			UsuarioPublico usuarioPublic = usuariosPublicoDao.saveAndFlush(usuarioPublico);
 
-			Respuesta<Boolean> correo = emailService.registro(new String[] { usuarioPublico.getCorreo() }, null, null,
-					"Bienvenido", usuarioPublico, stegeriluminacionRegistro);
+			Respuesta<Boolean> correo = emailService.registro(new String[] { usuarioPublico.getCorreo() }, null, null, "Bienvenido", usuarioPublico, stegeriluminacionRegistro);
 
 			if (correo.getCodigoHttp() == 200) {
 				respuesta.setCodigo(200);
@@ -75,7 +74,7 @@ public class RegistroService implements IRegistroService {
 				return respuesta;
 			} else {
 				TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-				return ErrorInternoControlado.error(Translator.toLocale("error.correo.envio"));
+				return ErrorInternoControlado.errorAlEnviarElCorreo(null);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -108,10 +107,10 @@ public class RegistroService implements IRegistroService {
 					respuesta.setMensaje(Translator.toLocale("usuarios.activado"));
 					return respuesta;
 				} else {
-					return ErrorInternoControlado.tokenExpirado(Translator.toLocale("token.expirado"));
+					return ErrorInternoControlado.tokenExpirado(null);
 				}
 			} else {
-				return ErrorInternoControlado.tokenNoExiste(Translator.toLocale("token.noexiste"));
+				return ErrorInternoControlado.tokenNoExiste(null);
 			}
 		} catch (Exception ex) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
