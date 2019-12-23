@@ -33,7 +33,7 @@ public class ErrorFilter extends ZuulFilter {
 	public Object run() {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
-		log.info(String.format("%s   %s request to %s", "ERROR:  " , request.getMethod(), request.getRequestURL().toString()));
+		//log.info(String.format("%s   %s request to %s", "ERROR:  " , request.getMethod(), request.getRequestURL().toString()));
 		return null;
 	}
 

@@ -44,7 +44,7 @@ public class RateLimitingInterceptor extends HandlerInterceptorAdapter {
         response.addHeader("X-RateLimit-Limit", String.valueOf(hourlyLimit));
         
         */
-    	logger.info("RateLimitingInterceptor - preHandle");
+    	//logger.info("RateLimitingInterceptor - preHandle");
         return true;
     }
      

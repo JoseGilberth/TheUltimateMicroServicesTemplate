@@ -25,7 +25,7 @@ public class PreFilter extends ZuulFilter {
 
 	@Autowired
 	CustomThrottling customThrottling;
-
+ 
 	@Override
 	public String filterType() {
 		return "pre";
@@ -47,14 +47,17 @@ public class PreFilter extends ZuulFilter {
 		HttpServletRequest request = context.getRequest();
 		HttpServletResponse response = context.getResponse();
 		Enumeration<?> headerNames = request.getHeaderNames();
+		/*
 		log.info(String.format("%s   %s request to %s", "PRE:  ", request.getMethod(), request.getRequestURL().toString()));
 		while (headerNames.hasMoreElements()) {
 			String key = (String) headerNames.nextElement();
 			String value = request.getHeader(key);
 			log.info(String.format("HEADERS to %s : %s %s", "PRE:  ", key, value));
 		}
+		*/
 		boolean hasTooManyRequest = customThrottling.apply(context, request, response);
-		log.info("hasTooManyRequest: " + hasTooManyRequest);
+		//log.info("hasTooManyRequest: " + hasTooManyRequest);
+		
 		if( hasTooManyRequest ) {
 			context.setResponseStatusCode(HttpStatus.TOO_MANY_REQUESTS.value());
 			throw new ZuulRuntimeException(new ZuulException("GATEWAY NO AUTH", HttpStatus.TOO_MANY_REQUESTS.value(), "GATEWAY CustomRateLimiter NO ATUTORIZADO"));

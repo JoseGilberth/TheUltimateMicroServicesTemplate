@@ -49,8 +49,11 @@
                   <th>Id</th>
                   <th>Usuario</th>
                   <th>Tipo</th>
-                  <th>Apartado</th>
-                  <th>Acción</th>
+                  <th>Tamaño</th>
+                  <th>Content Type</th>
+                  <th>Path</th>
+                  <th>Headers</th>
+                  <th>Status Code</th>
                   <th>Fecha Alta</th>
                 </tr>
               </thead>
@@ -59,9 +62,17 @@
                   <td>{{ log.id }}</td>
                   <td>{{ log.usuario }}</td>
                   <td>{{ log.tipoUsuario }}</td>
-                  <td>{{ log.apartado }}</td>
-                  <td>{{ log.accion }}</td>
-                  <td>{{ log.fechaAlta }}</td> 
+                  <td>{{ log.contentLengthLong }}</td>
+                  <td>{{ log.contentType }}</td>
+                  <td>{{ log.servletPath }}</td>
+                  <td>
+                    <span *ngFor="let header of log.headerNames.split('||')" >
+                      {{ header }}
+                    <br>
+                    </span>
+                  </td>
+                  <td>{{ log.statusCode }}</td>
+                  <td>{{ log.fechaAlta }}</td>
                 </tr>
               </tbody>
               <!-- SIN DATOS -->

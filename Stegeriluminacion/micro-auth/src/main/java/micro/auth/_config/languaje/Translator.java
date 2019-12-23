@@ -7,7 +7,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Component;
 
-@Component(value = "TranslatorMicroUsuarios")
+@Component(value = "TranslatorMicroAuth")
 public class Translator {
 
 	private static ResourceBundleMessageSource messageSource;

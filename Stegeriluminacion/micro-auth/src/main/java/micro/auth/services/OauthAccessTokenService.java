@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.util.SerializationUtils;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -22,7 +23,7 @@ import dto.main.Respuesta;
 import dto.micro.auth.FiltroOauthAccessTokenDTO;
 import dto.micro.auth.OauthAccessTokenDTO;
 import micro.auth._config.languaje.Translator;
- import micro.auth.services.interfaces.IOauthAccessToken;
+import micro.auth.services.interfaces.IOauthAccessToken;
 import modelo.auth.oauth2.OauthAccessToken;
 
 @Service
@@ -96,20 +97,22 @@ public class OauthAccessTokenService extends ACrud<OauthAccessToken , String> im
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(true);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("token.removido"));
+		respuesta.setMensaje(Translator.toLocale("token.removido")); 
 		return respuesta;
 	}
 	
 	
 	@Override
-	public Respuesta<Boolean> revocar(String token) {
+	public Respuesta<Boolean> revocar(String tokenId) {
 		Respuesta<Boolean> respuesta = new Respuesta<Boolean>();
- 		tokenServices.revokeToken(token);
+		 
+		//oauthAccessTokenDao.
+		 
 		respuesta.setCodigo(200);
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(true);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("token.removido"));
+		respuesta.setMensaje(Translator.toLocale("token.removido")); 
 		return respuesta;
 	}
 

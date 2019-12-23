@@ -37,6 +37,7 @@ public class CustomDaoAuthenticationProvider implements AuthenticationProvider  
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	 
+	  
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 	
@@ -80,6 +81,7 @@ public class CustomDaoAuthenticationProvider implements AuthenticationProvider  
 				authorities.add(new SimpleGrantedAuthority(permiso.getEtiqueta()));
 			});
 		}
+		 
 		
 		Authentication auth = new UsernamePasswordAuthenticationToken(username, password, authorities);
 		return auth;

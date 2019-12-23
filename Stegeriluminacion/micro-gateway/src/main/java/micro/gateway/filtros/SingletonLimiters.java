@@ -1,9 +1,7 @@
-package micro.gateway;
+package micro.gateway.filtros;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import micro.gateway.filtros.CustomRateLimiter;
 
 
 public class SingletonLimiters {

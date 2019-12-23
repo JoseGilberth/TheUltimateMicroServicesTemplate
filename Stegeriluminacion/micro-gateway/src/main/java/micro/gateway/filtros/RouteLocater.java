@@ -15,7 +15,7 @@ public class RouteLocater extends SimpleRouteLocator {
 	@Override
 	protected ZuulProperties.ZuulRoute getZuulRoute(String adjustedPath) {
 		ZuulProperties.ZuulRoute zuulRoute = super.getZuulRoute(adjustedPath);
-		logger.info(">>>>>>>" + zuulRoute.toString());
+		//logger.info(">>>>>>>" + zuulRoute.toString());
 		return zuulRoute;
 	}
 }

@@ -17,8 +17,8 @@ import com.google.gson.Gson;
 import com.netflix.zuul.context.RequestContext;
 
 import dao.auth.usuarios.publicos.UsuarioPublicoDao;
-import micro.gateway.SingletonLimiters;
 import micro.gateway.filtros.CustomRateLimiter;
+import micro.gateway.filtros.SingletonLimiters;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
 
 @Component
