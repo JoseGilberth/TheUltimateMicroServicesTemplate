@@ -37,7 +37,7 @@ export const navItems: INavData[] = [
   {
     name: 'Sesiones Activas',
     url: '/sesiones',
-    icon: 'icon-graph'
+    icon: 'icon-screen-desktop'
   }/*,
   {
     title: true,

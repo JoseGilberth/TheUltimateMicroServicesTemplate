@@ -6,7 +6,7 @@
 export const environment = {
 
   production: false,
-  host: 'http://192.168.100.139:8601/stegeriluminacion',
+  host: 'http://192.168.100.83:8601/stegeriluminacion',
 
   // MICRO_AUTH
   micro_auth: {
@@ -18,6 +18,7 @@ export const environment = {
       iniciarSesion: "oauth/token",
       obtenerLogFiltro: "log/filtro",
       obtenerSesionesFiltro: "sesiones/filtro",
+      obtenerTrackerFiltro: "tracker/filtro",
       eliminarToken: "sesiones/token",
     }
   },

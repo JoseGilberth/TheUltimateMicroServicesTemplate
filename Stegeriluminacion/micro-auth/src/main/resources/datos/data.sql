@@ -42,6 +42,10 @@ insert into permiso_administrador values (12,'Muestra el log del sistema' , 'web
 insert into permiso_administrador values (13,'Muestra las sesiones activas' , 'web:administracion:sesiones:mostrar');
 insert into permiso_administrador values (14,'Cierra la sesion de un usuario' , 'web:administracion:sesiones:cerrar');
 
+insert into permiso_administrador values (15,'Muestra el trackeo de acciones de usuarios del sistema' , 'web:administracion:tracker:mostrar');
+
+
+
 
 insert into usuario_administrador_permiso values (1,1);
 insert into usuario_administrador_permiso values (1,2);
@@ -57,6 +61,7 @@ insert into usuario_administrador_permiso values (1,11);
 insert into usuario_administrador_permiso values (1,12);
 insert into usuario_administrador_permiso values (1,13);
 insert into usuario_administrador_permiso values (1,14);
+insert into usuario_administrador_permiso values (1,15);
 
 -- LOGGER
 INSERT INTO log (id,accion,apartado,fecha_alta,tipo_usuario,usuario) VALUES (1,'Alta de la plantilla','Sistema',now(),'publico','gilbertoAdmin');

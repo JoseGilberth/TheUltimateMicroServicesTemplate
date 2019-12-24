@@ -14,19 +14,19 @@
       <!-- ID -->
       <div class="form-group">
         <label class="form-col-form-label" for="id">Id</label>
-        <input type="number" class="form-control" id="id" [(ngModel)]="logFiltroDTO.id">
+        <input type="number" class="form-control" id="id" [(ngModel)]="trackerFiltroDTO.id">
       </div>
 
       <!-- USUARIO -->
       <div class="form-group">
         <label class="form-col-form-label" for="usuario">Usuario</label>
-        <input type="text" class="form-control" id="usuario" [(ngModel)]="logFiltroDTO.usuario">
+        <input type="text" class="form-control" id="usuario" [(ngModel)]="trackerFiltroDTO.usuario">
       </div>
 
       <!-- TIPO DE USUARIO -->
       <div class="form-group">
         <label class="form-col-form-label" for="tipoUsuario">Tipo de Usuario</label>
-        <input type="text" class="form-control" id="tipoUsuario" [(ngModel)]="logFiltroDTO.tipoUsuario">
+        <input type="text" class="form-control" id="tipoUsuario" [(ngModel)]="trackerFiltroDTO.tipoUsuario">
       </div>
 
 
@@ -38,32 +38,31 @@
       <!-- APARTADO -->
       <div class="form-group">
         <label class="form-col-form-label" for="apartado">Apartado</label>
-        <input type="text" class="form-control" id="apartado" [(ngModel)]="logFiltroDTO.apartado">
+        <input type="text" class="form-control" id="apartado" [(ngModel)]="trackerFiltroDTO.apartado">
       </div>
 
       <!-- ACCION -->
       <div class="form-group">
         <label class="form-col-form-label" for="accion">Acción</label>
-        <input type="text" class="form-control" id="accion" [(ngModel)]="logFiltroDTO.accion">
+        <input type="text" class="form-control" id="accion" [(ngModel)]="trackerFiltroDTO.accion">
       </div>
+
+      <!-- FECHA DE ALTA  -->
+      <div class="form-group row">
+        <div class="col-6">
+          <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date"
+            [(ngModel)]="trackerFiltroDTO.fechaAltaInicial">
+        </div>
+        <div class="col-6">
+          <input class="form-control" id="date-input" type="date" name="date-input2" placeholder="date"
+            [(ngModel)]="trackerFiltroDTO.fechaAltaFinal">
+        </div>
+      </div>
+
+
     </div><!-- 2DA MITAD -->
 
   </div>
-
-  <!-- FECHA DE ALTA  -->
-  <label class="form-col-form-label">Fecha</label>
-  <div class="form-group row">
-    <div class="col-6">
-      <input class="form-control" id="date-input" type="datetime-local" name="date-input" placeholder="date"
-        [(ngModel)]="logFiltroDTO.fechaAltaInicial">
-    </div>
-    <div class="col-6">
-      <input class="form-control" id="date-input" type="datetime-local" name="date-input2" placeholder="date"
-        [(ngModel)]="logFiltroDTO.fechaAltaFinal">
-    </div>
-  </div>
-
-
 </div>
 <div class="modal-footer">
   <button type="reset" class="btn btn-sm btn-danger" (click)="limpiarBusqueda()"><i class="fa fa-ban"></i> Reiniciar
