@@ -19,8 +19,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -28,7 +26,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
@@ -52,6 +49,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private AuthenticationManager authenticationManager;
 
 	@Autowired
+	private WebResponseExceptionTranslator<OAuth2Exception> oauth2ResponseExceptionTranslator;
+
+	@Autowired
 	private JwtAccessTokenConverter accessTokenConverter;
 
 	@Override
@@ -65,8 +65,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		enhancerChain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
 		enhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
 
-		endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore).accessTokenConverter(accessTokenConverter).tokenEnhancer(enhancerChain)
-		.exceptionTranslator(loggingExceptionTranslator());
+		endpoints.authenticationManager(authenticationManager).tokenStore(tokenStore)
+				.accessTokenConverter(accessTokenConverter).tokenEnhancer(enhancerChain)
+				.exceptionTranslator(oauth2ResponseExceptionTranslator);
 	}
 
 	@Bean
@@ -148,21 +149,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		}
 		converter.setVerifierKey(publicKey);
 		return converter;
-	}
-
-	@Bean
-	public WebResponseExceptionTranslator<OAuth2Exception> loggingExceptionTranslator() {
-		return new DefaultWebResponseExceptionTranslator() {
-			@Override
-			public ResponseEntity<OAuth2Exception> translate(Exception e) throws Exception {
-				e.printStackTrace();
-				ResponseEntity<OAuth2Exception> responseEntity = super.translate(e);
-				HttpHeaders headers = new HttpHeaders();
-				headers.setAll(responseEntity.getHeaders().toSingleValueMap());
-				OAuth2Exception excBody = responseEntity.getBody();
-				return new ResponseEntity<>(excBody, headers, responseEntity.getStatusCode());
-			}
-		};
 	}
 
 }

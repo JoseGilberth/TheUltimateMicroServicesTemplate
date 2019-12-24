@@ -9,6 +9,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+
+import steger.excepciones.auth.AccessDeniedHandlerException;
+import steger.excepciones.auth.AuthException;
  
 @Configuration
 @EnableResourceServer
@@ -30,7 +33,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 
-		http.exceptionHandling().and().sessionManagement()
+		http.exceptionHandling()
+				.accessDeniedHandler(new AccessDeniedHandlerException())
+				.authenticationEntryPoint(new AuthException())
+				.and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable()
 				.requestMatchers().and()
 				.authorizeRequests()

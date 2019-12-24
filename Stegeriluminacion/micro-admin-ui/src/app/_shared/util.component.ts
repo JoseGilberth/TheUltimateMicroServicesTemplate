@@ -18,8 +18,8 @@ declare const $: any;
 })
 export class UtilComponent implements OnInit {
 
-    loading: boolean = false; 
-    
+    loading: boolean = false;
+
     constructor(private toastr: ToastrService) {
     }
 
@@ -34,9 +34,11 @@ export class UtilComponent implements OnInit {
         let decodedToken = <TokenDecoded>helper.decodeToken(token);
         //const expirationDate = helper.getTokenExpirationDate(token);
         //const isExpired = helper.isTokenExpired(token);
-        let indice = decodedToken.authorities.findIndex(authority => authority == authorityToValidate);
-        if (indice != -1) {
-            valido = true;
+        if(decodedToken.authorities != null ){
+          let indice = decodedToken.authorities.findIndex(authority => authority == authorityToValidate);
+          if (indice != -1) {
+              valido = true;
+          }
         }
         return valido;
     }
