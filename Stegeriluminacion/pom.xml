@@ -34,6 +34,7 @@
 		<module>micro-auth</module>
 		<module>micro-zipkin</module>
 		<module>micro-admin-ui</module>
+    <module>micro-websocket</module>
   </modules>
 
 	<properties>

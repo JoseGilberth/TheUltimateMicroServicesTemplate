@@ -6,7 +6,7 @@
 export const environment = {
 
   production: false,
-  host: 'http://192.168.100.83:8601/stegeriluminacion',
+  host: 'http://192.168.100.107:8601/stegeriluminacion',
 
   // MICRO_AUTH
   micro_auth: {
