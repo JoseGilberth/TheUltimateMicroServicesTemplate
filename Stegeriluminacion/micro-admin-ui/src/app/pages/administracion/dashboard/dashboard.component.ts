@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import { WebSocketAPI } from '../../../_shared/websocketapi.component';
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -8,6 +9,8 @@ import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 export class DashboardComponent implements OnInit {
 
   radioModel: string = 'Month';
+
+   constructor(private webSocketAPI: WebSocketAPI) { }
 
   // lineChart1
   public lineChart1Data: Array<any> = [
@@ -384,5 +387,6 @@ export class DashboardComponent implements OnInit {
       this.mainChartData2.push(this.random(80, 100));
       this.mainChartData3.push(65);
     }
+    this.webSocketAPI._connect();
   }
 }

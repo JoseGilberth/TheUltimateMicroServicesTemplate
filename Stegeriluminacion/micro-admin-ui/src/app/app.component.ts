@@ -8,12 +8,7 @@ import { WebSocketAPI } from './_shared/websocketapi.component';
   template: '<router-outlet></router-outlet>'
 })
 export class AppComponent implements OnInit {
-
-  webSocketAPI: WebSocketAPI;
-  greeting: any;
-  name: string;
-
-
+ 
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -23,24 +18,7 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0);
     });
-    this.webSocketAPI = new WebSocketAPI(new AppComponent(this.router));
-    this.connect();
   }
-
-  connect() {
-    this.webSocketAPI._connect();
-  }
-
-  disconnect() {
-    this.webSocketAPI._disconnect();
-  }
-
-  sendMessage() {
-    this.webSocketAPI._send(this.name);
-  }
-
-  handleMessage(message) {
-    this.greeting = message;
-  }
+ 
 
 }

@@ -1,30 +1,48 @@
-import * as SockJS from 'sockjs-client';
+import { Injectable } from '@angular/core';
 import { Stomp } from '@stomp/stompjs';
+import * as SockJS from 'sockjs-client';
+import { MessageWebSocket } from '../_dto/_main/MessageWebSocket.Dto';
+import { UtilComponent } from '../_shared/util.component';
 
-import { AppComponent } from '../app.component';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class WebSocketAPI {
-  webSocketEndPoint: string = 'http://localhost:8080/ws';
+  webSocketEndPoint: string = 'http://localhost:8606/micro-websocket/ws';
   topic: string = "/topic/greetings";
   stompClient: any;
-  appComponent: AppComponent;
-  constructor(appComponent: AppComponent) {
-    this.appComponent = appComponent;
+
+  constructor(private utilComponent: UtilComponent) {
   }
+
   _connect() {
     console.log("Initialize WebSocket Connection");
     let ws = new SockJS(this.webSocketEndPoint);
     this.stompClient = Stomp.over(ws);
 
-
     const _this = this;
     _this.stompClient.connect({}, function (frame) {
+
       _this.stompClient.subscribe(_this.topic, function (sdkEvent) {
         _this.onMessageReceived(sdkEvent);
       });
-      //_this.stompClient.reconnect_delay = 2000;
+
+      console.log("Enviando mensaje 1: ");
+      let messageWebSocket = new MessageWebSocket();
+      messageWebSocket.from = "frommme";
+      messageWebSocket.text = "roer";
+      _this._send(messageWebSocket);
+
+      console.log("Enviando mensaje 2: ");
+      messageWebSocket.from = "frommme";
+      messageWebSocket.text = "roer";
+      _this._send(messageWebSocket);
+
+      _this.stompClient.reconnect_delay = 5000;
     }, this.errorCallBack);
   };
+
 
   _disconnect() {
     if (this.stompClient !== null) {
@@ -45,13 +63,12 @@ export class WebSocketAPI {
    * Send message to sever via web socket
    * @param {*} message
    */
-  _send(message) {
-    console.log("calling logout api via web socket");
+  _send(message) { 
     this.stompClient.send("/app/hello", {}, JSON.stringify(message));
   }
 
   onMessageReceived(message) {
-    console.log("Message Recieved from Server :: " + message);
-    this.appComponent.handleMessage(JSON.stringify(message.body));
+    this.utilComponent.presentToasterInfo(message.body);
+    console.log("Message Recieved from Server :: " + message.body); 
   }
 }

@@ -50,22 +50,15 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-websocket</artifactId>
-			<version>4.2.4.RELEASE</version>
-		</dependency> 
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-messaging</artifactId>
-			<version>4.2.4.RELEASE</version>
 		</dependency>
 
 		<!-- ________ OTROS MODULOS ________ -->
-		<dependency>
-			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>modelo-auth</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
 			<artifactId>interfaces</artifactId>
@@ -74,16 +67,6 @@
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
 			<artifactId>excepciones</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>dao-auth</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>dao</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
