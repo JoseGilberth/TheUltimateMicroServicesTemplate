@@ -54,8 +54,9 @@ public class RegistroService implements IRegistroService {
 		try {
 			Respuesta<UsuarioPublico> respuesta = new Respuesta<UsuarioPublico>();
 
-			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(), usuarioPublico.getCorreo());
-			
+			UsuarioPublico usuario = usuariosPublicoDao.buscarPorUsuarioOCorreo(usuarioPublico.getUsername(),
+					usuarioPublico.getCorreo());
+
 			if (usuario != null) {// EXISTE EN LA BASE DE DATOS
 				return ErrorInternoControlado.usuarioDuplicado(null);
 			}
@@ -63,7 +64,8 @@ public class RegistroService implements IRegistroService {
 
 			UsuarioPublico usuarioPublic = usuariosPublicoDao.saveAndFlush(usuarioPublico);
 
-			Respuesta<Boolean> correo = emailService.registro(new String[] { usuarioPublico.getCorreo() }, null, null, "Bienvenido", usuarioPublico, stegeriluminacionRegistro);
+			Respuesta<Boolean> correo = emailService.registro(new String[] { usuarioPublico.getCorreo() }, null, null,
+					"Bienvenido", usuarioPublico, stegeriluminacionRegistro);
 
 			if (correo.getCodigoHttp() == 200) {
 				respuesta.setCodigo(200);
@@ -94,7 +96,8 @@ public class RegistroService implements IRegistroService {
 			ResetTokenPublico rt = resetTokenPublicoDao.findByToken(token);
 			if (rt != null) {
 				if (!rt.isExpirado()) {
-					UsuarioPublico usuarioPublico = usuariosPublicoDao .buscarPorUsuario(rt.getUsuarioPublico().getUsername());
+					UsuarioPublico usuarioPublico = usuariosPublicoDao
+							.buscarPorUsuario(rt.getUsuarioPublico().getUsername());
 					usuarioPublico.setEnabled(true);
 					usuarioPublico = usuariosPublicoDao.saveAndFlush(usuarioPublico);
 					resetTokenPublicoDao.delete(rt);

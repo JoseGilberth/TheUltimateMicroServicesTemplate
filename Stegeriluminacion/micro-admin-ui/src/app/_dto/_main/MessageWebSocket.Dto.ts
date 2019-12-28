@@ -1,5 +1,6 @@
 
 export class MessageWebSocket {
-    from: string; 
-    text: string;  
+    accion: string;
+    mensaje: string;
+    usuario: string;
 }

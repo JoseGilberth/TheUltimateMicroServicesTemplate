@@ -14,35 +14,37 @@ import modelo.auth.log.Log;
 @Service
 public class RequestLog {
 
- 
 	@Autowired
 	LogDao logDao;
 
+	@Autowired
+	Utils utils;
+
 	public void deleteLog(RequestContext ctx) {
 		HttpServletRequest request = ctx.getRequest();
-		Log log = Utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", "") , true); 
+		Log log = utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true);
+		utils.notifyAdmin(ctx, log);
 		log.setAccion("BORRADO");
 		log.setApartado("PostFilter");
 		logDao.saveAndFlush(log);
 	}
-	 
+
 	public void updateLog(RequestContext ctx) {
 		HttpServletRequest request = ctx.getRequest();
-		Log log = Utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true); 
+		Log log = utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true);
+		utils.notifyAdmin(ctx, log);
 		log.setAccion("ACTUALIZADO");
 		log.setApartado("PostFilter");
 		logDao.saveAndFlush(log);
 	}
-	 
+
 	public void postLog(RequestContext ctx) {
 		HttpServletRequest request = ctx.getRequest();
-		Log log = Utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true); 
+		Log log = utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true);
+		utils.notifyAdmin(ctx, log);
 		log.setAccion("POST");
 		log.setApartado("PostFilter");
 		logDao.saveAndFlush(log);
 	}
-	
-
-	
 
 }

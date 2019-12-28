@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 import { WebSocketAPI } from '../../../_shared/websocketapi.component';
+import { MessageWebSocket } from '../../../_dto/_main/MessageWebSocket.Dto';
 
 @Component({
   templateUrl: 'dashboard.component.html'
@@ -10,7 +11,16 @@ export class DashboardComponent implements OnInit {
 
   radioModel: string = 'Month';
 
-   constructor(private webSocketAPI: WebSocketAPI) { }
+  constructor(private webSocketAPI: WebSocketAPI) { }
+
+  send() {
+    let messageWebSocket = new MessageWebSocket();
+    messageWebSocket.accion = "frommme";
+    messageWebSocket.mensaje = "roer";
+    messageWebSocket.usuario = "roer";
+    //this.webSocketAPI._send(messageWebSocket);
+  }
+
 
   // lineChart1
   public lineChart1Data: Array<any> = [
@@ -244,7 +254,7 @@ export class DashboardComponent implements OnInit {
       mode: 'index',
       position: 'nearest',
       callbacks: {
-        labelColor: function(tooltipItem, chart) {
+        labelColor: function (tooltipItem, chart) {
           return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor };
         }
       }
@@ -257,7 +267,7 @@ export class DashboardComponent implements OnInit {
           drawOnChartArea: false,
         },
         ticks: {
-          callback: function(value: any) {
+          callback: function (value: any) {
             return value.charAt(0);
           }
         }

@@ -4,6 +4,7 @@ import { LoginService } from '../../../_servicios/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UtilComponent } from '../../../_shared/util.component';
 import { Router } from '@angular/router';
+import { WebSocketAPI } from '../../../_shared/websocketapi.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,8 @@ export class DefaultLayoutComponent {
 
   constructor(private loginService: LoginService
     , private utilComponent: UtilComponent
-    , public router: Router) {
+    , public router: Router
+    , private webSocketAPI: WebSocketAPI) {
 
   }
 
@@ -25,6 +27,7 @@ export class DefaultLayoutComponent {
   }
 
   cerrarSesion() {
+    this.webSocketAPI._disconnect();
     this.utilComponent.showSweetAlertLoading("Cerrar Sesión", "Cerrando sesion");
     this.loginService.cerrarSesion()
       .subscribe(resp => {

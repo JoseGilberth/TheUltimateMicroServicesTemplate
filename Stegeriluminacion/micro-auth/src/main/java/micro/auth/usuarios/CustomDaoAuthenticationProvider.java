@@ -20,11 +20,12 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 
 import dao.auth.usuarios.administradores.UsuarioAdministradorDao;
 import dao.auth.usuarios.publicos.UsuarioPublicoDao;
+import dto.main.MessageWebsocket;
+import micro.auth.services.WebSocketService;
 import modelo.auth.usuarios.administradores.UsuarioAdministrador;
 import modelo.auth.usuarios.publicos.UsuarioPublico;
- 
 
-public class CustomDaoAuthenticationProvider implements AuthenticationProvider  {
+public class CustomDaoAuthenticationProvider implements AuthenticationProvider {
 
 	Logger logger = LoggerFactory.getLogger(CustomDaoAuthenticationProvider.class);
 
@@ -33,67 +34,70 @@ public class CustomDaoAuthenticationProvider implements AuthenticationProvider  
 
 	@Autowired
 	public UsuarioPublicoDao usuarioPublicoDao;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
-	 
-	  
+
+	@Autowired
+	WebSocketService webSocketService;
+
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-	
+
 		String username = authentication.getPrincipal().toString();
 		String password = authentication.getCredentials().toString();
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		
+
 		UsuarioAdministrador usuarioAdministrador = usuarioAdministradorDao.buscarPorUsuario(username);
 		UsuarioPublico usuarioPublico = usuarioPublicoDao.buscarPorUsuario(username);
-		
-		if( usuarioPublico == null && usuarioAdministrador == null ) {
+
+		if (usuarioPublico == null && usuarioAdministrador == null) {
 			throw new UsernameNotFoundException(String.format("Usuario no existe", username));
-		} 
-		
-		if( usuarioPublico != null && usuarioAdministrador != null ) {
-			throw new SessionAuthenticationException(String.format("Whoops tenemos problemas con tu usario - Usuario repetido como administrador", username));
-		} 
+		}
+
+		if (usuarioPublico != null && usuarioAdministrador != null) {
+			throw new SessionAuthenticationException(String
+					.format("Whoops tenemos problemas con tu usario - Usuario repetido como administrador", username));
+		}
 
 		// VALIDACION DE USUARIOS ADMINISTRADORES
-		if( usuarioAdministrador != null ) {
-			if ( !usuarioAdministrador.isEnabled() ) {
+		if (usuarioAdministrador != null) {
+			if (!usuarioAdministrador.isEnabled()) {
 				throw new DisabledException("El usuario se encuentra deshabilitado");
 			}
-			if ( !bcrypt.matches(password, usuarioAdministrador.getPassword())) {
+			if (!bcrypt.matches(password, usuarioAdministrador.getPassword())) {
 				throw new BadCredentialsException("Password incorrecto");
 			}
 			usuarioAdministrador.getPermisos().forEach(permiso -> {
 				authorities.add(new SimpleGrantedAuthority(permiso.getEtiqueta()));
 			});
 		}
-		
-		//VALIDACION DE USUARIOS PUBLICOS
-		if( usuarioPublico != null ) {
-			if ( !usuarioPublico.isEnabled() ) {
+
+		// VALIDACION DE USUARIOS PUBLICOS
+		if (usuarioPublico != null) {
+			if (!usuarioPublico.isEnabled()) {
 				throw new DisabledException("El usuario se encuentra deshabilitado");
 			}
-			if ( !bcrypt.matches(password, usuarioPublico.getPassword())) { 
+			if (!bcrypt.matches(password, usuarioPublico.getPassword())) {
 				throw new BadCredentialsException("Password incorrecto");
 			}
 			usuarioPublico.getPermisos().forEach(permiso -> {
 				authorities.add(new SimpleGrantedAuthority(permiso.getEtiqueta()));
 			});
 		}
-		 
-		
+
+		try {
+			webSocketService.sendMessage( new MessageWebsocket(username, "El usuario " + username + " ha iniciado sesión", "Login"));
+		} catch (Exception e) {
+		}
+
 		Authentication auth = new UsernamePasswordAuthenticationToken(username, password, authorities);
 		return auth;
 	}
 
-	
-	
 	@Override
 	public boolean supports(Class<?> authentication) {
-        return authentication.equals(UsernamePasswordAuthenticationToken.class);
+		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
-	
 
-	
 }

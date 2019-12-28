@@ -16,15 +16,12 @@ import javax.persistence.Table;
 import lombok.Data;
 import modelo.auth.usuarios.Usuario;
 
-@Data
 @Entity
 @Table(indexes = { @Index(columnList = "username", name = "index_ua_usuario"),
 		@Index(columnList = "correo", name = "index_ua_correo") })
+@Data
 public class UsuarioAdministrador extends Usuario implements Serializable {
-
-	/**
-	 * 
-	 */
+ 
 	private static final long serialVersionUID = -7055491564629324679L;
 
 	@ManyToMany(fetch = FetchType.EAGER)

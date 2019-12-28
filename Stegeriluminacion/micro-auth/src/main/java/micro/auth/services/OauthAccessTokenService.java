@@ -10,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.util.SerializationUtils;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
@@ -19,15 +18,17 @@ import org.springframework.stereotype.Service;
 
 import abstracts.ACrud;
 import dao.auth.oauth.OauthAccessTokenDao;
+import dto.main.MessageWebsocket;
 import dto.main.Respuesta;
 import dto.micro.auth.FiltroOauthAccessTokenDTO;
 import dto.micro.auth.OauthAccessTokenDTO;
 import micro.auth._config.languaje.Translator;
 import micro.auth.services.interfaces.IOauthAccessToken;
 import modelo.auth.oauth2.OauthAccessToken;
+import utils.Token;
 
 @Service
-public class OauthAccessTokenService extends ACrud<OauthAccessToken , String> implements IOauthAccessToken {
+public class OauthAccessTokenService extends ACrud<OauthAccessToken, String> implements IOauthAccessToken {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -39,6 +40,9 @@ public class OauthAccessTokenService extends ACrud<OauthAccessToken , String> im
 
 	@Autowired
 	private TokenStore tokenStore;
+
+	@Autowired
+	WebSocketService webSocketService;
 
 	/*
 	 * DefaultOAuth2AccessToken token =
@@ -92,29 +96,33 @@ public class OauthAccessTokenService extends ACrud<OauthAccessToken , String> im
 	public Respuesta<Boolean> revocar(OAuth2Authentication auth) {
 		Respuesta<Boolean> respuesta = new Respuesta<Boolean>();
 		final String token = tokenStore.getAccessToken(auth).getValue();
+		List<String> usuarioTipo = Token.getUsuarioYTipo(token);
+		try {
+			webSocketService.sendMessage(new MessageWebsocket(usuarioTipo.get(0),
+					"El usuario " + usuarioTipo.get(0) + " ha cerrado sesión", "Login"));
+		} catch (Exception e) {
+		}
 		tokenServices.revokeToken(token);
 		respuesta.setCodigo(200);
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(true);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("token.removido")); 
+		respuesta.setMensaje(Translator.toLocale("token.removido"));
 		return respuesta;
 	}
-	
-	
+
 	@Override
 	public Respuesta<Boolean> revocar(String tokenId) {
 		Respuesta<Boolean> respuesta = new Respuesta<Boolean>();
-		 
-		//oauthAccessTokenDao.
-		 
+
+		// oauthAccessTokenDao.
+
 		respuesta.setCodigo(200);
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(true);
 		respuesta.setEstado(true);
-		respuesta.setMensaje(Translator.toLocale("token.removido")); 
+		respuesta.setMensaje(Translator.toLocale("token.removido"));
 		return respuesta;
 	}
-
 
 }

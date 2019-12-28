@@ -1,13 +1,14 @@
 
 
 export const configuraciones = {
-    
+
     intentosError: 2,
     static: {
         token: "TOKEN",
         usuario: "USUARIO",
         roles: "ROLES",
-        permisos: "PERMISOS"
+        permisos: "PERMISOS",
+        isConnectedToWebSocket: "false"
     },
     botones: {
         boton_resumen: "fa fa-list-alt",

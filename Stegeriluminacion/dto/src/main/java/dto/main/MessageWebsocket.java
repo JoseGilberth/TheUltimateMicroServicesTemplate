@@ -1,9 +1,16 @@
 package dto.main;
 
 import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-@Data
+@Data 
+@RequiredArgsConstructor
 public class MessageWebsocket {
-	private String from;
-	private String text;
+
+	@NonNull private String usuario;
+	@NonNull private String mensaje;
+	@NonNull private String accion;
+	
+	
 }

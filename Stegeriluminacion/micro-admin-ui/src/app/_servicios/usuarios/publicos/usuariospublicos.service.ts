@@ -29,15 +29,15 @@ export class UsuariosPublicosService {
   }
 
   crear(usuariosPublicosDTO: UsuariosPublicosDTO): Observable<Respuesta> {
-    return this.http.post<Respuesta>(`${this.crearUrl}`, usuariosPublicosDTO);
+    return this.http.post<Respuesta>(`${this.crearUrl}`, usuariosPublicosDTO, { headers: { "accion": "ha creado al usuario " + usuariosPublicosDTO.username } });
   }
 
   actualizar(id: number, usuariosPublicosDTO: UsuariosPublicosDTO): Observable<Respuesta> {
-    return this.http.put<Respuesta>(`${this.actualizarUrl}/${id}`, usuariosPublicosDTO);
+    return this.http.put<Respuesta>(`${this.actualizarUrl}/${id}`, usuariosPublicosDTO, { headers: { "accion": "ha actualizado al usuario " + usuariosPublicosDTO.username } });
   }
 
   borrar(id: number): Observable<Respuesta> {
-    return this.http.delete<Respuesta>(`${this.borrarUrl}/${id}`);
+    return this.http.delete<Respuesta>(`${this.borrarUrl}/${id}`, { headers: { "accion": "ha borrado al usuario " + id } } );
   }
 
 

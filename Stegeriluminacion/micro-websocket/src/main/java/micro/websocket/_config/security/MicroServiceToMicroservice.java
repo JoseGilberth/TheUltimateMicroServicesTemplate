@@ -11,7 +11,6 @@ import feign.RequestInterceptor;
 
 @Configuration
 public class MicroServiceToMicroservice {
- 
 
 	/*
 	 * AYUDA A FEIGN PARA PONER EL JWT AUTOMATICAMENTE Y SE ENVIE ENTRE

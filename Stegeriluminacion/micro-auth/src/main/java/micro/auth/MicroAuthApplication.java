@@ -10,6 +10,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableHystrixDashboard
 @EnableEurekaClient
 @SpringBootApplication
+@EnableFeignClients()
 @EntityScan({ "modelo", "modelo.auth" })
 @ComponentScan({ "micro.auth", "steger.excepciones" })
 @EnableJpaRepositories({ "dao", "dao.auth" })

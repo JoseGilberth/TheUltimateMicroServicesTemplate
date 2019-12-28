@@ -10,6 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 @EnableHystrix
 @EnableHystrixDashboard
 @EnableCircuitBreaker 
+@EnableFeignClients
 @SpringBootApplication
 @EntityScan({"modelo","modelo.auth" })
 @ComponentScan({"micro.gateway" , "steger.excepciones"})

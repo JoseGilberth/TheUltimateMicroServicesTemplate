@@ -29,6 +29,9 @@ public class Login implements ILogin {
 
 	@Autowired
 	LogDao logDao;
+	
+	@Autowired
+	Utils utils;
 
 	@Override
 	public boolean logSession(RequestContext ctx) { 
@@ -39,7 +42,7 @@ public class Login implements ILogin {
 			JSONParser parser = new JSONParser();
 			JSONObject json = (JSONObject) parser.parse(responseData);
 			String accessTokenValue = json.get("access_token").toString();
-			Log log = Utils.fillLog(ctx, accessTokenValue, false); 
+			Log log = utils.fillLog(ctx, accessTokenValue, false); 
 			log.setAccion("Inicio sesión");
 			log.setApartado("PostFilter");
 			logDao.saveAndFlush(log);
@@ -55,7 +58,7 @@ public class Login implements ILogin {
 	@Override
 	public boolean logCerrarSesion(RequestContext ctx) {
 		HttpServletRequest request = ctx.getRequest();
-		Log log = Utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true); 
+		Log log = utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true); 
 		log.setAccion("Cerro sesión");
 		log.setApartado("PostFilter");
 		logDao.saveAndFlush(log);

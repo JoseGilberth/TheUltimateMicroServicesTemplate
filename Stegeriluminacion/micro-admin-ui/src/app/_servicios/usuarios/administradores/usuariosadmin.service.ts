@@ -27,15 +27,15 @@ export class UsuariosAdminService {
   }
 
   crear(usuariosAdminDTO: UsuariosAdminDTO): Observable<Respuesta> {
-    return this.http.post<Respuesta>(`${this.crearUrl}`, usuariosAdminDTO);
+    return this.http.post<Respuesta>(`${this.crearUrl}`, usuariosAdminDTO, { headers: { "accion": "ha creado al usuario " + usuariosAdminDTO.username } });
   }
 
   actualizar(id: number, usuariosAdminDTO: UsuariosAdminDTO): Observable<Respuesta> {
-    return this.http.put<Respuesta>(`${this.actualizarUrl}/${id}`, usuariosAdminDTO);
+    return this.http.put<Respuesta>(`${this.actualizarUrl}/${id}`, usuariosAdminDTO, { headers: { "accion": "ha actualizado al usuario " + usuariosAdminDTO.username } });
   }
 
   borrar(id: number): Observable<Respuesta> {
-    return this.http.delete<Respuesta>(`${this.borrarUrl}/${id}`);
+    return this.http.delete<Respuesta>(`${this.borrarUrl}/${id}`, { headers: { "accion": "ha eliminado al usuario " + id } });
   }
 
 

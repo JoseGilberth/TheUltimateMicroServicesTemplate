@@ -1,11 +1,8 @@
 package micro.gateway;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -15,21 +12,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.google.common.io.CharStreams;
 import com.netflix.zuul.context.RequestContext;
 
+import dto.main.MessageWebsocket;
+import micro.gateway.services.WebSocketService;
 import modelo.auth.log.Log;
+import utils.Content;
+import utils.Token;
 
+@Component
 public class Utils {
 
-	public static Log fillLog(RequestContext ctx, String token, boolean responseData) {
+	static Logger logger = LoggerFactory.getLogger(Utils.class);
+
+	@Autowired
+	WebSocketService webSocketService;
+
+	public Log fillLog(RequestContext ctx, String token, boolean responseData) {
 
 		final HttpServletRequest request = ctx.getRequest();
 		final HttpServletResponse response = ctx.getResponse();
-
-		final List<String> data = decodeToken(token);
+		final List<String> data = Token.getUsuarioYTipo(token);
 		final Log log = new Log();
 		final String usuario = data.get(0);
 		final String tipoUsuario = data.get(1);
@@ -46,12 +55,12 @@ public class Utils {
 		log.setRequestURI(request.getRequestURI());
 		log.setServletPath(request.getServletPath());
 
-		log.setStatusCode( response.getStatus() );
-		
-		if( responseData ) {
-			// RESPONSE DATA 
+		log.setStatusCode(response.getStatus());
+
+		if (responseData) {
+			// RESPONSE DATA
 			try (final InputStream responseDataStream = ctx.getResponseDataStream()) {
-				final String datas  = CharStreams.toString(new InputStreamReader(responseDataStream, "UTF-8"));
+				final String datas = CharStreams.toString(new InputStreamReader(responseDataStream, "UTF-8"));
 				ctx.setResponseBody(datas);
 				log.setResponse(datas);
 			} catch (Exception e) {
@@ -62,19 +71,18 @@ public class Utils {
 		// REQUEST DATA
 		String payloadRequest = "";
 		try {
-			payloadRequest = getBody(request);
-		} catch (Exception e) { 
+			payloadRequest = Content.getBody(request);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		log.setRequest(payloadRequest);
 
-		
 		String headers = "";
 		final Enumeration<?> headerNames = request.getHeaderNames();
 		while (headerNames.hasMoreElements()) {
 			String key = (String) headerNames.nextElement();
 			String value = request.getHeader(key);
-			if( key.equals("authorization")) {
+			if (key.equals("authorization")) {
 				value = "<DATO OCULTO>";
 			}
 			headers += String.format("%s: %s||", key, value);
@@ -84,8 +92,7 @@ public class Utils {
 		final Cookie[] s = request.getCookies();
 		if (s != null) {
 			for (Cookie cookie : s) {
-				cookies += cookie + "||"
-						+ "";
+				cookies += cookie + "||" + "";
 			}
 		}
 
@@ -102,7 +109,8 @@ public class Utils {
 		log.setParameterNames(parameters);
 
 		log.setDispatcherType(request.getDispatcherType() == null ? "" : request.getDispatcherType().name());
-		log.setHttpServletMapping( request.getHttpServletMapping() == null ? "" : request.getHttpServletMapping().getServletName());
+		log.setHttpServletMapping(
+				request.getHttpServletMapping() == null ? "" : request.getHttpServletMapping().getServletName());
 		log.setLocalAddr(request.getLocalAddr() == null ? "" : request.getLocalAddr());
 		log.setLocale(request.getLocale() == null ? "" : request.getLocale().getCountry());
 		log.setLocalName(request.getLocalName() == null ? "" : request.getLocalName());
@@ -112,66 +120,41 @@ public class Utils {
 		log.setRemoteUser(request.getRemoteUser() == null ? "" : request.getRemoteUser());
 		log.setRequestedSessionId(request.getRequestedSessionId() == null ? "" : request.getRequestedSessionId());
 		log.setScheme(request.getScheme() == null ? "" : request.getScheme());
- 		return log;
+		return log;
 	}
 
-	
- 
-	
-	
-	
-	private static List<String> decodeToken(String jwtToken) {
-		final List<String> data = new ArrayList<String>();
-		final java.util.Base64.Decoder decoder = java.util.Base64.getUrlDecoder();
-		final String[] parts = jwtToken.split("\\.");
-		final String payloadJson = new String(decoder.decode(parts[1]));
-		final JSONParser parser = new JSONParser();
-		JSONObject json = null;
+	public void notifyAdmin(RequestContext ctx, Log log) {
+		HttpServletRequest request = ctx.getRequest();
+
+		String token = request.getHeader("Authorization").replace("Bearer ", "");
+
+		final List<String> data = Token.getUsuarioYTipo(token);
+		String mensaje = null;
+
 		try {
-			json = (JSONObject) parser.parse(payloadJson);
-			data.add(json.get("user_name").toString());
-			data.add(json.get("TipoUsuario").toString());
-			return data;
-		} catch (ParseException e) {
+			mensaje = request.getHeader("accion");
+		} catch (Exception e) {
+			mensaje = null;
+		}
+
+		try {
+			if (mensaje == null) {
+				final JSONParser parser = new JSONParser();
+				JSONObject json = null;
+				json = (JSONObject) parser.parse(log.getResponse());
+				mensaje = json.get("mensaje").toString();
+			}
+		} catch (Exception ex) {
+			mensaje = "Error";
+		}
+
+		try {
+			webSocketService.sendMessage(new MessageWebsocket(data.get(0),
+					"El usuario " + data.get(0) + " -> '" + mensaje + "' ", request.getMethod()));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+
 	}
-
-	
-	public static String getBody(HttpServletRequest request) throws IOException {
-
-	    String body = null;
-	    final StringBuilder stringBuilder = new StringBuilder();
-	    BufferedReader bufferedReader = null;
-
-	    try {
-	    	final InputStream inputStream = request.getInputStream();
-	        if (inputStream != null) {
-	            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-	            final char[] charBuffer = new char[128];
-	            int bytesRead = -1;
-	            while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
-	                stringBuilder.append(charBuffer, 0, bytesRead);
-	            }
-	        } else {
-	            stringBuilder.append("");
-	        }
-	    } catch (IOException ex) {
-	        throw ex;
-	    } finally {
-	        if (bufferedReader != null) {
-	            try {
-	                bufferedReader.close();
-	            } catch (IOException ex) {
-	                throw ex;
-	            }
-	        }
-	    } 
-	    body = stringBuilder.toString();
-	    return body;
-	}
-	
-	
 
 }

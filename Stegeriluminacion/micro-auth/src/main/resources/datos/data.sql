@@ -23,26 +23,27 @@ DELETE FROM permiso_administrador;
 
  
 -- PERMISOS -- AUTORITIES
-insert into permiso_administrador values (1,'Permite ver el contenido de swagger' , 'web:administracion:mantenimiento:swagger');
+insert into permiso_administrador values (1,'Permite recibir las notificaciones de todo movimiento dentro de la aplicación' , 'web:administracion:notificacion:master');
+insert into permiso_administrador values (2,'Permite ver el contenido de swagger' , 'web:administracion:mantenimiento:swagger');
 
-insert into permiso_administrador values (2,'Muestra a los permisos publicos'   , 'web:administracion:permisos:publicos:mostrar');
-insert into permiso_administrador values (3,'Muestra a los usuarios publicos'   , 'web:administracion:usuarios:publicos:mostrar');
-insert into permiso_administrador values (4,'Crea un usuario público'   , 'web:administracion:usuarios:publicos:crear');
-insert into permiso_administrador values (5,'Edita un usuario público'  , 'web:administracion:usuarios:publicos:actualizar');
-insert into permiso_administrador values (6,'Borrar un usuario público' , 'web:administracion:usuarios:publicos:borrar');
+insert into permiso_administrador values (3,'Muestra a los permisos publicos'   , 'web:administracion:permisos:publicos:mostrar');
+insert into permiso_administrador values (4,'Muestra a los usuarios publicos'   , 'web:administracion:usuarios:publicos:mostrar');
+insert into permiso_administrador values (5,'Crea un usuario público'   , 'web:administracion:usuarios:publicos:crear');
+insert into permiso_administrador values (6,'Edita un usuario público'  , 'web:administracion:usuarios:publicos:actualizar');
+insert into permiso_administrador values (7,'Borrar un usuario público' , 'web:administracion:usuarios:publicos:borrar');
 
-insert into permiso_administrador values (7,'Muestra a los permisos administradores'   , 'web:administracion:permisos:admin:mostrar');
-insert into permiso_administrador values (8,'Muestra a los usuarios administradores'   , 'web:administracion:usuarios:admin:mostrar');
-insert into permiso_administrador values (9,'Crea un usuario administradores'   , 'web:administracion:usuarios:admin:crear');
-insert into permiso_administrador values (10,'Edita un usuario administradores'  , 'web:administracion:usuarios:admin:actualizar');
-insert into permiso_administrador values (11,'Borrar un usuario administradores' , 'web:administracion:usuarios:admin:borrar');
+insert into permiso_administrador values (8,'Muestra a los permisos administradores'   , 'web:administracion:permisos:admin:mostrar');
+insert into permiso_administrador values (9,'Muestra a los usuarios administradores'   , 'web:administracion:usuarios:admin:mostrar');
+insert into permiso_administrador values (10,'Crea un usuario administradores'   , 'web:administracion:usuarios:admin:crear');
+insert into permiso_administrador values (11,'Edita un usuario administradores'  , 'web:administracion:usuarios:admin:actualizar');
+insert into permiso_administrador values (12,'Borrar un usuario administradores' , 'web:administracion:usuarios:admin:borrar');
 
-insert into permiso_administrador values (12,'Muestra el log del sistema' , 'web:administracion:log:mostrar');
+insert into permiso_administrador values (13,'Muestra el log del sistema' , 'web:administracion:log:mostrar');
 
-insert into permiso_administrador values (13,'Muestra las sesiones activas' , 'web:administracion:sesiones:mostrar');
-insert into permiso_administrador values (14,'Cierra la sesion de un usuario' , 'web:administracion:sesiones:cerrar');
+insert into permiso_administrador values (14,'Muestra las sesiones activas' , 'web:administracion:sesiones:mostrar');
+insert into permiso_administrador values (15,'Cierra la sesion de un usuario' , 'web:administracion:sesiones:cerrar');
 
-insert into permiso_administrador values (15,'Muestra el trackeo de acciones de usuarios del sistema' , 'web:administracion:tracker:mostrar');
+insert into permiso_administrador values (16,'Muestra el trackeo de acciones de usuarios del sistema' , 'web:administracion:tracker:mostrar');
 
 
 
@@ -62,6 +63,7 @@ insert into usuario_administrador_permiso values (1,12);
 insert into usuario_administrador_permiso values (1,13);
 insert into usuario_administrador_permiso values (1,14);
 insert into usuario_administrador_permiso values (1,15);
+insert into usuario_administrador_permiso values (1,16);
 
 -- LOGGER
 INSERT INTO log (id,accion,apartado,fecha_alta,tipo_usuario,usuario) VALUES (1,'Alta de la plantilla','Sistema',now(),'publico','gilbertoAdmin');
