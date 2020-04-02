@@ -20,10 +20,15 @@ public class RequestLog {
 	@Autowired
 	Utils utils;
 
+
 	public void deleteLog(RequestContext ctx) {
 		HttpServletRequest request = ctx.getRequest();
-		Log log = utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true);
-		utils.notifyAdmin(ctx, log);
+		String token = request.getHeader("Authorization") ;
+		if( token != null ) {
+			token = request.getHeader("Authorization").replace("Bearer ", "");
+		}  
+		Log log = utils.fillLog(ctx, token , true);
+		utils.notifyAdmin(ctx , token , log);
 		log.setAccion("BORRADO");
 		log.setApartado("PostFilter");
 		logDao.saveAndFlush(log);
@@ -31,8 +36,12 @@ public class RequestLog {
 
 	public void updateLog(RequestContext ctx) {
 		HttpServletRequest request = ctx.getRequest();
-		Log log = utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true);
-		utils.notifyAdmin(ctx, log);
+		String token = request.getHeader("Authorization") ;
+		if( token != null ) {
+			token = request.getHeader("Authorization").replace("Bearer ", "");
+		}  
+		Log log = utils.fillLog(ctx, token , true);
+		utils.notifyAdmin(ctx , token , log);
 		log.setAccion("ACTUALIZADO");
 		log.setApartado("PostFilter");
 		logDao.saveAndFlush(log);
@@ -40,8 +49,12 @@ public class RequestLog {
 
 	public void postLog(RequestContext ctx) {
 		HttpServletRequest request = ctx.getRequest();
-		Log log = utils.fillLog(ctx, request.getHeader("Authorization").replace("Bearer ", ""), true);
-		utils.notifyAdmin(ctx, log);
+		String token = request.getHeader("Authorization") ;
+		if( token != null ) {
+			token = request.getHeader("Authorization").replace("Bearer ", "");
+		}  
+		Log log = utils.fillLog(ctx, token , true);
+		utils.notifyAdmin(ctx , token , log);
 		log.setAccion("POST");
 		log.setApartado("PostFilter");
 		logDao.saveAndFlush(log);

@@ -122,21 +122,17 @@ public class Utils {
 		log.setScheme(request.getScheme() == null ? "" : request.getScheme());
 		return log;
 	}
-
-	public void notifyAdmin(RequestContext ctx, Log log) {
+	
+	
+	public void notifyAdmin(RequestContext ctx, String token, Log log) {
 		HttpServletRequest request = ctx.getRequest();
-
-		String token = request.getHeader("Authorization").replace("Bearer ", "");
-
 		final List<String> data = Token.getUsuarioYTipo(token);
 		String mensaje = null;
-
 		try {
 			mensaje = request.getHeader("accion");
 		} catch (Exception e) {
 			mensaje = null;
 		}
-
 		try {
 			if (mensaje == null) {
 				final JSONParser parser = new JSONParser();
@@ -147,14 +143,12 @@ public class Utils {
 		} catch (Exception ex) {
 			mensaje = "Error";
 		}
-
 		try {
-			webSocketService.sendMessage(new MessageWebsocket(data.get(0),
-					"El usuario " + data.get(0) + " -> '" + mensaje + "' ", request.getMethod()));
+			webSocketService.sendMessage(new MessageWebsocket(data.get(0), "El usuario " + data.get(0) + " -> '" + mensaje + "' ", request.getMethod()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
+	
+	
 }
