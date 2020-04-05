@@ -33,7 +33,7 @@
 		<!-- ________ OTROS MODULOS ________ -->
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>modelo-auth</artifactId>
+			<artifactId>utils</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>

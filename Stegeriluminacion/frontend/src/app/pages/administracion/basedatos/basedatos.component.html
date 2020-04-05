@@ -1,0 +1,193 @@
+<div class="animated fadeIn">
+
+  <div class="row">
+    <!--
+          NUMERO DE CONEXIONES
+     -->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-info">
+        <div class="card-body pb-0">
+          <button type="button" class="btn btn-transparent p-0 float-right">
+            <i class="icon-location-pin"></i>
+          </button>
+          <div class="text-value">9.823</div>
+          <div>Conexiones activas</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+          <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels"
+            [options]="lineChart2Options" [colors]="lineChart2Colours" [legend]="lineChart2Legend"
+            [chartType]="lineChart2Type"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-primary">
+        <div class="card-body pb-0">
+          <div class="btn-group float-right" dropdown>
+            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
+              <i class="icon-settings"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+              <a class="dropdown-item" href="#" (click)="send()">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+          <div class="text-value">9.823</div>
+          <div>Members online</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+          <canvas baseChart class="chart" [datasets]="lineChart1Data" [labels]="lineChart1Labels"
+            [options]="lineChart1Options" [colors]="lineChart1Colours" [legend]="lineChart1Legend"
+            [chartType]="lineChart1Type"></canvas>
+        </div>
+      </div>
+    </div>
+
+
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-warning">
+        <div class="card-body pb-0">
+          <div class="btn-group float-right" dropdown>
+            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
+              <i class="icon-settings"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+          <div class="text-value">9.823</div>
+          <div>Members online</div>
+        </div>
+        <div class="chart-wrapper mt-3" style="height:70px;">
+          <canvas baseChart class="chart" [datasets]="lineChart3Data" [labels]="lineChart3Labels"
+            [options]="lineChart3Options" [colors]="lineChart3Colours" [legend]="lineChart3Legend"
+            [chartType]="lineChart3Type"></canvas>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-danger">
+        <div class="card-body pb-0">
+          <div class="btn-group float-right" dropdown>
+            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
+              <i class="icon-settings"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+          <div class="text-value">9.823</div>
+          <div>Members online</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+          <canvas baseChart class="chart" [datasets]="barChart1Data" [labels]="barChart1Labels"
+            [options]="barChart1Options" [colors]="barChart1Colours" [legend]="barChart1Legend"
+            [chartType]="barChart1Type"></canvas>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+
+
+
+
+  <div class="row">
+    <!--
+          NUMERO DE CONEXIONES
+     -->
+    <div class="col-sm-6 col-lg-6">
+      <div class="card">
+        <div class="card-body pb-0">
+
+          Catalog Separator:  <span>{{ metricsDTO.catalogSeparator }}</span><br>
+          <span>Catalog Term: {{ metricsDTO.catalogTerm }}</span><br>
+          <span>DatabaseMajorVersion: {{ metricsDTO.databaseMajorVersion }}</span><br>
+          <span>DatabaseMinorVersion: {{ metricsDTO.databaseMinorVersion }}</span><br>
+          <span>DatabaseProductName: {{ metricsDTO.databaseProductName }}</span><br>
+          <span>DatabaseProductVersion: {{ metricsDTO.databaseProductVersion }}</span><br>
+          <span>DefaultTransactionIsolation: {{ metricsDTO.defaultTransactionIsolation }}</span><br>
+          <span>DriverMajorVersion: {{ metricsDTO.driverMajorVersion }}</span><br>
+          <span>DriverMinorVersion: {{ metricsDTO.driverMinorVersion }}</span><br>
+          <span>DriverName: {{ metricsDTO.driverName }}</span><br>
+          <span>DriverVersion: {{ metricsDTO.driverVersion }}</span><br>
+          <span>ExtraNameCharacters: {{ metricsDTO.extraNameCharacters }}</span><br>
+          <span>IdentifierQuoteString: {{ metricsDTO.identifierQuoteString }}</span><br>
+          <span>JDBCMajorVersion: {{ metricsDTO.jDBCMajorVersion }}</span><br>
+          <span>JDBCMinorVersion: {{ metricsDTO.jDBCMinorVersion }}</span><br>
+          <span>MaxBinaryLiteralLength: {{ metricsDTO.maxBinaryLiteralLength }}</span><br>
+          <span>MaxCatalogNameLength: {{ metricsDTO.maxCatalogNameLength }}</span><br>
+          <span>MaxCharLiteralLength: {{ metricsDTO.maxCharLiteralLength }}</span><br>
+          <span>MaxColumnNameLength: {{ metricsDTO.maxColumnNameLength }}</span><br>
+          <span>MaxColumnsInGroupBy: {{ metricsDTO.maxColumnsInGroupBy }}</span><br>
+          <span>MaxColumnsInIndex: {{ metricsDTO.maxColumnsInIndex }}</span><br>
+          <span>MaxColumnsInOrderBy: {{ metricsDTO.maxColumnsInOrderBy }}</span><br>
+          <span>MaxColumnsInSelect: {{ metricsDTO.maxColumnsInSelect }}</span><br>
+          <span>MaxColumnsInTable: {{ metricsDTO.maxColumnsInTable }}</span><br>
+          <span>MaxConnections: {{ metricsDTO.maxConnections }}</span><br>
+          <span>MaxCursorNameLength: {{ metricsDTO.maxCursorNameLength }}</span><br>
+          <span>MaxIndexLength: {{ metricsDTO.maxIndexLength }}</span><br>
+          <span>MaxLogicalLobSize: {{ metricsDTO.maxLogicalLobSize }}</span><br>
+          <span>MaxProcedureNameLength: {{ metricsDTO.maxProcedureNameLength }}</span><br>
+          <span>MaxRowSize: {{ metricsDTO.maxRowSize }}</span><br>
+          <span>MaxSchemaNameLength: {{ metricsDTO.maxSchemaNameLength }}</span><br>
+          <span>MaxStatementLength: {{ metricsDTO.maxStatementLength }}</span><br>
+          <span>MaxStatements: {{ metricsDTO.maxStatements }}</span><br>
+          <span>MaxTableNameLength: {{ metricsDTO.maxTableNameLength }}</span><br>
+          <span>MaxTablesInSelect: {{ metricsDTO.maxTablesInSelect }}</span><br>
+          <span>MaxUserNameLength: {{ metricsDTO.maxUserNameLength }}</span><br>
+          <span>NumericFunctions: {{ metricsDTO.numericFunctions }}</span><br>
+          <span>ProcedureTerm: {{ metricsDTO.procedureTerm }}</span><br>
+          <span>ResultSetHoldability: {{ metricsDTO.resultSetHoldability }}</span><br>
+          <span>SchemaTerm: {{ metricsDTO.schemaTerm }}</span><br>
+          <span>SearchStringEscape: {{ metricsDTO.searchStringEscape }}</span><br>
+          <span>SQLKeywords: {{ metricsDTO.sQLKeywords }}</span><br>
+          <span>SQLStateType: {{ metricsDTO.sQLStateType }}</span><br>
+          <span>StringFunctions: {{ metricsDTO.stringFunctions }}</span><br>
+          <span>SystemFunctions: {{ metricsDTO.systemFunctions }}</span><br>
+          <span>TimeDateFunctions: {{ metricsDTO.timeDateFunctions }}</span><br>
+          <span>URL: {{ metricsDTO.uRL }}</span><br>
+          <span>UserName: {{ metricsDTO.userName }}</span><br>
+          <span>Catalogs: {{ metricsDTO.catalogs }}</span><br>
+          <span>ClientInfoProperties: {{ metricsDTO.clientInfoProperties }}</span><br>
+          <span>RowIdLifetime: {{ metricsDTO.rowIdLifetime }}</span><br>
+          <span>Schemas: {{ metricsDTO.schemas }}</span><br>
+          <span>TableTypes: {{ metricsDTO.tableTypes }}</span><br>
+          <span>TypeInfo: {{ metricsDTO.typeInfo }}</span><br>
+          <span>SupportsGetGeneratedKeys: {{ metricsDTO.supportsGetGeneratedKeys }}</span><br>
+          <span>LoginTimeout: {{ metricsDTO.loginTimeout }}</span><br>
+          <span>ClientInfo: {{ metricsDTO.clientInfo }}</span><br>
+          <span>NetworkTimeout: {{ metricsDTO.networkTimeout }}</span><br>
+          <span>AutoCommit: {{ metricsDTO.autoCommit }}</span><br>
+          <span>Warnings: {{ metricsDTO.warnings }}</span><br>
+          <span>QueryTimeout: {{ metricsDTO.queryTimeout }}</span><br>
+          <span>Schema: {{ metricsDTO.schema }}</span><br>
+
+        </div>
+      </div>
+    </div>
+
+    <!--/.col-->
+    <div class="col-sm-6 col-lg-6">
+      <div class="card text-white">
+        <div class="card-body pb-0">
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!--/.row-->
+</div>

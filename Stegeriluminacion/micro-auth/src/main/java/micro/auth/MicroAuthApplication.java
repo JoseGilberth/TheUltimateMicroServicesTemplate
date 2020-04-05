@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableHystrixDashboard
 @EnableEurekaClient
 @SpringBootApplication
-@EnableFeignClients()
-@EntityScan({ "modelo", "modelo.auth" })
+@EnableFeignClients
+@EntityScan({ "modelo" })
 @ComponentScan({ "micro.auth", "steger.excepciones" })
-@EnableJpaRepositories({ "dao", "dao.auth" })
+@EnableJpaRepositories({ "dao" })
 public class MicroAuthApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

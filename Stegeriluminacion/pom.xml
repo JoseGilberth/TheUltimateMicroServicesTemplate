@@ -24,8 +24,6 @@
 		<module>dto</module>
 		<module>excepciones</module>
 		<module>interfaces</module>
-		<module>modelo-auth</module>
-		<module>dao-auth</module>
 		<module>utils</module> 
 		<module>micro-eureka</module>
 		<module>micro-gateway</module>
@@ -34,7 +32,7 @@
 		<module>micro-auth</module>
 		<module>micro-zipkin</module>
 		<module>micro-admin-ui</module>
-    <module>micro-websocket</module>
+    	<module>micro-websocket</module>
   </modules>
 
 	<properties>

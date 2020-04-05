@@ -32,7 +32,8 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler  {
  
 		logger.error("EL ERROR manejarTodasExcepciones: " + ex.getMessage() );
 		logger.error("EL ERROR: " + ex.getClass().getName() );
-
+		ex.printStackTrace();
+		
 		Errores errores = new Errores();
 		LinkedHashMap<String,String> listaErrores = new LinkedHashMap<String,String>();
 		

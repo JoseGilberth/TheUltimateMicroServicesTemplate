@@ -106,12 +106,12 @@
 		<!-- ________ OTROS MODULOS ________ -->
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>modelo-auth</artifactId>
+			<artifactId>modelo</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>dao-auth</artifactId>
+			<artifactId>dao</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>

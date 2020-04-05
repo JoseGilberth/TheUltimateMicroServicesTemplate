@@ -55,12 +55,7 @@
 		</dependency>
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>dao-auth</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>modelo</artifactId>
+			<artifactId>dao</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 	</dependencies>
