@@ -113,10 +113,8 @@ public class OauthAccessTokenService extends ACrud<OauthAccessToken, String> imp
 
 	@Override
 	public Respuesta<Boolean> revocar(String tokenId) {
-		Respuesta<Boolean> respuesta = new Respuesta<Boolean>();
-
-		// oauthAccessTokenDao.
-
+		Respuesta<Boolean> respuesta = new Respuesta<Boolean>(); 
+		tokenServices.revokeToken(tokenId);
 		respuesta.setCodigo(200);
 		respuesta.setCodigoHttp(200);
 		respuesta.setCuerpo(true);

@@ -8,7 +8,7 @@ spring:
   boot: 
     admin:
       context-path: /admin  #A different context path for Spring boot admin server has been provided avoiding conflict with eureka       instance-proxy:
-        ignored-headers: Authorization, Cookie, Set-Cookie      monitor:        status-interval: 300000 # 5 minutos        status-lifetime: 300000 # 5 minutos 
+        ignored-headers: Authorization, Cookie, Set-Cookie      monitor:        status-interval: 1800000000 # microsegundos : 30 minutos        status-lifetime: 1800000000 # microsegundos : 30 minutos
   autoconfigure:
     exclude:
     - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
@@ -17,20 +17,22 @@ spring:
 # EUREKA
 eureka: 
   datacenter: Main
-  environment: prod
+  environment: Dev
   region: default
   instance:
-    hostname: localhost      lease-renewal-interval-in-seconds: 300000 # 5 minutos
-    lease-expiration-duration-in-seconds: 300000 # 5 minutos
+    prefer-ip-address: true 
+    hostname: localhost      lease-renewal-interval-in-seconds:  1800 # segundos : 30 minutos
+    lease-expiration-duration-in-seconds:  1800 # segundos : 30 minutos
   server:
     wait-time-in-ms-when-sync-empty: 0
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    fetchRegistry: true
+    register-with-eureka: true
     serviceUrl:
       defaultZone: http://localhost:8600/discovery-server/eureka
-    eureka-server-read-timeout-seconds: 180000 # 3 minutos
-    eureka-server-connect-timeout-seconds: 180000 # 3 minutos    registry-fetch-interval-seconds:  300000 # 5 minutos
+    eureka-server-read-timeout-seconds: 60 # segundos : 30 minutos
+    eureka-server-connect-timeout-seconds:  60 # segundos : 30 minutos    registry-fetch-interval-seconds:  1800 # segundos : 30 minutos
+    
   # ZIPKIN
   zipkin:
     base-url: http://localhost:8609/micro-zipkin/

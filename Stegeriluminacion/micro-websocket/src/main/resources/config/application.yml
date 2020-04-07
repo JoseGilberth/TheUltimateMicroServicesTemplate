@@ -57,7 +57,7 @@ spring:
         url: http://localhost:8600/discovery-server/admin  
         instance:
           service-base-url: http://localhost:8604  
-        period: 300000 # 5 minutos
+        period: 1800000000 # microsegundos : 30 minutos
       
 
 # SECURITY
@@ -70,25 +70,32 @@ security:
       user-info-uri:  http://localhost:8602/micro-auth/usuario 
       preferTokenInfo: true
 
+# EUREKA
+eureka:
+  instance:
+    prefer-ip-address: true 
+    hostname: localhost
+    lease-renewal-interval-in-seconds:  1800 # segundos : 30 minutos
+    lease-expiration-duration-in-seconds:  1800 # segundos : 30 minutos
+  client:
+    fetchRegistry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8600/discovery-server/eureka
+    eureka-server-read-timeout-seconds: 60 # 1 minuto
+    eureka-server-connect-timeout-seconds: 60 # 1 minuto
+    registry-fetch-interval-seconds:  1800 # segundos : 30 minutos
 
 management:
   metrics:
     web:
       server:
         auto-time-requests: false
-        
+
 zipkin: 
   ui:
     basepath: /micro-zipkin/zipkin
-    
-# EUREKA
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8600/discovery-server/eureka
+
 
 # LOGGER
 logging:

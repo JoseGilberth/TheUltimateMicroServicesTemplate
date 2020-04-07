@@ -10,7 +10,22 @@ spring:
     time-zone: America/Mexico_City
     joda-date-time-format: yyyy-MM-dd HH:MM:SS
     locale: es_MX
-    
+ 
+# EUREKA
+eureka:
+  instance:
+    prefer-ip-address: true 
+    hostname: localhost
+    lease-renewal-interval-in-seconds:  1800 # segundos : 30 minutos
+    lease-expiration-duration-in-seconds:  1800 # segundos : 30 minutos
+  client:
+    fetchRegistry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8600/discovery-server/eureka
+    eureka-server-read-timeout-seconds: 60 # 1 minuto
+    eureka-server-connect-timeout-seconds: 60 # 1 minuto
+    registry-fetch-interval-seconds:  1800 # segundos : 30 minutos
 
 management:
   metrics:
@@ -22,15 +37,6 @@ zipkin:
   ui:
     basepath: /micro-zipkin/zipkin
     
-# EUREKA
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8600/discovery-server/eureka
-
 # LOGGER
 logging:
   level:
