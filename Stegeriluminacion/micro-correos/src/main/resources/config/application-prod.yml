@@ -108,7 +108,7 @@ swagger:
     resource-id: stegerilumination_resource
     base-package: micro.correos
     variables:  
-      resource-owner-password-credentials-grant: http://localhost:8601/stegeriluminacion/uaa/oauth/token
+      resource-owner-password-credentials-grant: http://localhost:8443/stegeriluminacion/uaa/oauth/token
       client-id: stegerilumination
       client-secret: 123
       app-name: Micro-Correos

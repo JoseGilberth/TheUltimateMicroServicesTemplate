@@ -42,8 +42,7 @@ public class GatewayApp extends SpringBootServletInitializer {
 		return application.sources(GatewayApp.class);
 	}
 
-	@GetMapping("/heartbit")
-    @HystrixCommand(fallbackMethod = "defaultHeartbit") 
+	@GetMapping("/heartbeat") 
 	public ResponseEntity<String> heartbit() {
 		return new ResponseEntity<String>("IM OK", HttpStatus.OK);
 	}

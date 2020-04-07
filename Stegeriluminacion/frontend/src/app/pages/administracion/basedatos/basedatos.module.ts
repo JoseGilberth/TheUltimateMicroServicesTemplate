@@ -6,9 +6,11 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { BaseDatosComponent } from './basedatos.component';
 import { BaseDatosRoutingModule } from './basedatos-routing.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
+    CommonModule,
     FormsModule,
     BaseDatosRoutingModule,
     ChartsModule,

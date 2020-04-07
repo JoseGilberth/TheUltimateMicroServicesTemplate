@@ -6,8 +6,8 @@
 export const environment = {
 
     production: true,
-    host: 'http://localhost:8601/stegeriluminacion',
-  
+    host: 'https://localhost:8443/stegeriluminacion',
+
     // MICRO_AUTH
     micro_auth: {
       base: "uaa",
@@ -21,7 +21,7 @@ export const environment = {
         eliminarToken: "sesiones/token",
       }
     },
-  
+
     // MICRO USUARIOS
     micro_usuarios: {
       base: "micro-usuarios",
@@ -49,6 +49,5 @@ export const environment = {
         borrarUsuarioAdmin: "usuarios/admin"
       }
     }
-  
+
   };
-  

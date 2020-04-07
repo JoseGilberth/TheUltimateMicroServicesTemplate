@@ -17,7 +17,8 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     data: classpath:/datos/data.sql
     continue-on-error: true
-    hikari:      connection-timeout: 20000 #(20 segundos) maximum number of milliseconds that a client will wait for a connection
+    hikari:
+      connection-timeout: 20000 #(20 segundos) maximum number of milliseconds that a client will wait for a connection
       minimum-idle: 10 #minimum number of idle connections maintained by HikariCP in a connection pool
       maximum-pool-size: 10 #maximum pool size
       idle-timeout: 10000 #(10 segundos)maximum idle time for connection
@@ -58,8 +59,7 @@ spring:
         instance:
           service-base-url: http://localhost:8602
         period: 300000 # 5 minutos
-        
-
+         
 # EUREKA  
 eureka:
   instance:
@@ -101,7 +101,7 @@ swagger:
     resource-id: stegerilumination_resource
     base-package: micro.auth
     variables:  
-      resource-owner-password-credentials-grant: http://localhost:8601/stegeriluminacion/uaa/oauth/token
+      resource-owner-password-credentials-grant: http://localhost:8443/stegeriluminacion/uaa/oauth/token
       client-id: stegerilumination
       client-secret: 123
       app-name: Micro-Auth

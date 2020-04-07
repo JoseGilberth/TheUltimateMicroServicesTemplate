@@ -27,8 +27,7 @@ public class MessageService implements IMessageService {
 
 	@Autowired
 	UsuarioAdministradorDao usuarioAdministradorDao;
-
- 	
+ 
 	@Override
 	public Respuesta<Boolean> sendMessage(MessageWebsocket messageWebsocket) {
 		Respuesta<Boolean> respuesta = new Respuesta<Boolean>();

@@ -86,38 +86,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		return new CustomTokenEnhancer();
 	}
 
-	/*
-	 * -- ELIMINA JKS DE CERTIFICADOS SI YA EXISTEN keytool -delete -alias
-	 * stegerilumination -keystore
-	 * "C:/Users/joseg/Documents/Personal/ProyectoInventario/steger-backend-microservicios/Stegeriluminacion/micro-auth/src/main/resources/auth/stegerilumination.jks"
-	 * -storepass G1lb3rt0. -keypass gilberto keytool -delete -alias
-	 * stegerilumination -v -trustcacerts -keystore cacerts.jks -storepass G1lb3rt0.
-	 * -keypass gilberto
-	 * 
-	 * -- GENERAR JKS keytool -genkey -alias stegerilumination -keyalg RSA -keypass
-	 * gilberto -storepass G1lb3rt0. -keystore
-	 * "C:/Users/joseg/Documents/Personal/ProyectoInventario/steger-backend-microservicios/Stegeriluminacion/micro-auth/src/main/resources/auth/stegerilumination.jks"
-	 * 
-	 * -- PUBLIC - PEM , CER , TEXT keytool -export -alias stegerilumination
-	 * -keystore
-	 * "C:/Users/joseg/Documents/Personal/ProyectoInventario/steger-backend-microservicios/Stegeriluminacion/micro-auth/src/main/resources/auth/stegerilumination.jks"
-	 * -file
-	 * "C:/Users/joseg/Documents/Personal/ProyectoInventario/steger-backend-microservicios/Stegeriluminacion/micro-auth/src/main/resources/auth/stegerilumination-public-key.pem"
-	 * -storepass G1lb3rt0. -keypass gilberto keytool -export -alias
-	 * stegerilumination -keystore
-	 * "C:/Users/joseg/Documents/Personal/ProyectoInventario/steger-backend-microservicios/Stegeriluminacion/micro-auth/src/main/resources/auth/stegerilumination.jks"
-	 * -file
-	 * "C:/Users/joseg/Documents/Personal/ProyectoInventario/steger-backend-microservicios/Stegeriluminacion/micro-auth/src/main/resources/auth/stegerilumination-public-key.cer"
-	 * -storepass G1lb3rt0. -keypass gilberto keytool -list -alias stegerilumination
-	 * -rfc -keystore
-	 * "C:/Users/joseg/Documents/Personal/ProyectoInventario/steger-backend-microservicios/Stegeriluminacion/micro-auth/src/main/resources/auth/stegerilumination.jks"
-	 * -storepass G1lb3rt0. -keypass gilberto
-	 * 
-	 * -- IMPORT JKS A CERTIFICADOS DE CONFIANZA keytool -import -alias
-	 * stegerilumination -v -trustcacerts -file
-	 * "C:/Users/joseg/Documents/Personal/ProyectoInventario/steger-backend-microservicios/Stegeriluminacion/micro-auth/src/main/resources/auth/stegerilumination-public-key.cer"
-	 * -keystore cacerts.jks -keypass gilberto -storepass G1lb3rt0.
-	 */
+	
+	  //-- ELIMINA JKS DE CERTIFICADOS SI YA EXISTEN 
+    
+    //keytool -delete -alias stegerilumination -keystore "stegerilumination.jks" -storepass G1lb3rt0. -keypass gilberto 
+    //keytool -delete -alias stegerilumination -v -trustcacerts -keystore cacerts.jks -storepass G1lb3rt0. -keypass gilberto
+	  
+	//-- GENERAR JKS 
+    //keytool -genkey -alias stegerilumination -keyalg RSA -keypass gilberto -storepass G1lb3rt0. -keystore "stegerilumination.jks"
+	  
+	//-- PUBLIC - PEM , CER , TEXT 
+    //keytool -export -alias stegerilumination -keystore "stegerilumination.jks" -file "stegerilumination-public-key.pem" -storepass G1lb3rt0. -keypass gilberto 
+    //keytool -export -alias stegerilumination -keystore "stegerilumination.jks" -file "stegerilumination-public-key.cer" -storepass G1lb3rt0. -keypass gilberto 
+    //keytool -list -alias stegerilumination -rfc -keystore "stegerilumination.jks" -storepass G1lb3rt0. -keypass gilberto
+	  
+	//-- IMPORT JKS A CERTIFICADOS DE CONFIANZA 
+    //keytool -import -alias stegerilumination -v -trustcacerts -file "stegerilumination-public-key.cer" -keystore cacerts.jks -keypass gilberto -storepass G1lb3rt0.
+	 
 
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {

@@ -62,7 +62,7 @@ spring:
       
 # CORREO    
 correo:   
-  registro: http://localhost:8601/stegeriluminacion/micro-usuarios/usuarios/publico/registro/activar/
+  registro: http://localhost:8443/stegeriluminacion/micro-usuarios/usuarios/publico/registro/activar/
   stegeriluminacion: pruebita201910@gmail.com
   soporte:  pruebita201910@gmail.com
   
@@ -70,7 +70,8 @@ correo:
 # EUREKA
 eureka: 
   instance:
-    hostname: localhost    lease-renewal-interval-in-seconds: 300000 # 5 minutos
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 300000 # 5 minutos
   client:
     register-with-eureka: true
     service-url:
@@ -104,7 +105,7 @@ swagger:
     resource-id: stegerilumination_resource
     base-package: micro.usuarios
     variables:  
-      resource-owner-password-credentials-grant: http://localhost:8601/stegeriluminacion/uaa/oauth/token
+      resource-owner-password-credentials-grant: http://localhost:8443/stegeriluminacion/uaa/oauth/token
       client-id: stegerilumination
       client-secret: 123
       app-name: Micro-Usuarios

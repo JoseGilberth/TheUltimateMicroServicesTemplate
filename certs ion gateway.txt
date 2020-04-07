@@ -1,0 +1,89 @@
+
+https://blog.codecentric.de/en/2018/08/x-509-client-certificates-with-spring-security/
+https://github.com/jonashackt/spring-boot-rest-clientcertificate
+https://medium.com/@rubenvermeulen/running-angular-cli-over-https-with-a-trusted-certificate-4a0d5f92747a
+
+
+-- SERVIDOR ---- SERVIDOR ---- SERVIDOR ---- SERVIDOR ---- SERVIDOR --
+-- SERVIDOR ---- SERVIDOR ---- SERVIDOR ---- SERVIDOR ---- SERVIDOR --
+-- SERVIDOR ---- SERVIDOR ---- SERVIDOR ---- SERVIDOR ---- SERVIDOR --
+-- SERVIDOR ---- SERVIDOR ---- SERVIDOR ---- SERVIDOR ---- SERVIDOR --
+ 
+openssl genrsa -des3 -out serverPrivateKey.key 1024
+R: G1lb3rt0.
+
+openssl req -new -key serverPrivateKey.key -out server.csr
+
+Mx
+Mexico
+Nezahualcoyotl
+Pasion Programada
+Dgtic
+localhost
+jose.gilberto.colin@outlook.com
+
+openssl x509 -req -days 3650 -in server.csr -signkey serverPrivateKey.key -out server.crt
+R: G1lb3rt0.
+
+keytool -import -file server.crt -alias serverCA -keystore serverTruststore.jks
+R: G1lb3rt0.
+
+openssl pkcs12 -export -in server.crt -inkey serverPrivateKey.key -certfile server.crt -name "server" -out serverKeystore.p12
+R: G1lb3rt0.
+    
+keytool -importkeystore -srckeystore serverKeystore.p12 -srcstoretype pkcs12 -destkeystore serverKeystore.jks -deststoretype JKS
+R: G1lb3rt0.
+  
+-- CLIENTE ---- CLIENTE ---- CLIENTE ---- CLIENTE ---- CLIENTE --
+-- CLIENTE ---- CLIENTE ---- CLIENTE ---- CLIENTE ---- CLIENTE --
+-- CLIENTE ---- CLIENTE ---- CLIENTE ---- CLIENTE ---- CLIENTE --
+ 
+openssl genrsa -aes256 -out clientprivate.key 2048
+R: client
+
+openssl req -new -key clientprivate.key -out client.csr
+
+Mx
+Mexico
+Nezahualcoyotl
+Pasion Programada
+Dgtic
+localhost
+jose.gilberto.colin@outlook.com
+ 
+openssl x509 -req -in client.csr -CA server.crt -CAkey serverPrivateKey.key -CAcreateserial -out client.crt -days 365 -sha256
+R: G1lb3rt0.
+  
+keytool -import -file client.crt -alias clientCA -keystore clientTruststore.jks
+R: client
+
+openssl pkcs12 -export -in client.crt -inkey clientprivate.key -certfile client.crt -name "client" -out clientKeystore.p12 
+R: client
+R: client
+R: client
+
+keytool -importkeystore -srckeystore clientKeystore.p12 -srcstoretype pkcs12 -destkeystore clientKeystore.jks -deststoretype JKS
+R: client
+R: client
+R: client
+
+# remueve la contraseña de una llave privada
+openssl rsa -in clientprivate.key -out decryptedclientprivate.key
+R: client
+  
+-- REQUEST ---- REQUEST ---- REQUEST ---- REQUEST ---- REQUEST --
+-- REQUEST ---- REQUEST ---- REQUEST ---- REQUEST ---- REQUEST --
+-- REQUEST ---- REQUEST ---- REQUEST ---- REQUEST ---- REQUEST -- 
+  
+curl -ik --cert client.crt --key clientprivate.key "https://localhost:8443/stegeriluminacion/heartbeat"
+ 
+
+ng serve --ssl true --ssl-cert "C:\Users\joseg\Documents\Personal\Plantillas\TheUltimateMicroServicesTemplate\Stegeriluminacion\micro-gateway\src\main\resources\auth\client.crt" --ssl-key "C:\Users\joseg\Documents\Personal\Plantillas\TheUltimateMicroServicesTemplate\Stegeriluminacion\micro-gateway\src\main\resources\auth\decryptedclientprivate.key"
+ 
+
+
+
+
+
+
+ 

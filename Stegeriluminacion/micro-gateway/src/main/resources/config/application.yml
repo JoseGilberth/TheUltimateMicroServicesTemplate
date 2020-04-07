@@ -56,13 +56,13 @@ spring:
         enabled: true
         url: http://localhost:8600/discovery-server/admin
         instance:
-          service-base-url: http://localhost:8601
+          service-base-url: http://localhost:8443
         period: 300000 # 5 minutos
        
 # CONFIGURACION PARA TODOS LOS ENDPOINTS
 management: 
   server:
-    port: 8601
+    port: 8443
   endpoint:
     metrics: 
       enabled: true
@@ -133,7 +133,7 @@ swagger:
     resource-id: stegerilumination_resource
     base-package: micro.gateway
     variables:  
-      resource-owner-password-credentials-grant: http://localhost:8601/stegeriluminacion/uaa/oauth/token
+      resource-owner-password-credentials-grant: http://localhost:8443/stegeriluminacion/uaa/oauth/token
       client-id: stegerilumination
       client-secret: 123
       app-name: Micro-Gateway
@@ -187,7 +187,7 @@ eureka:
   instance:
     prefer-ip-address: true
     metadataMap:
-      management.port: 8601
+      management.port: 8443
   client:
     fetchRegistry: true
     register-with-eureka: true

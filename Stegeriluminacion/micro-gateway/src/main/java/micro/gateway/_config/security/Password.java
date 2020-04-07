@@ -12,18 +12,19 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 @Configuration
 public class Password {
 
+	@Autowired
+	private DataSource dataSource;
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
 	}
 
-	@Autowired
-	private DataSource dataSource;
-
+	
 	@Bean
 	public TokenStore tokenStore() {
 		return new JdbcTokenStore(this.dataSource);
 	}
-
+	
 }

@@ -6,11 +6,20 @@ spring:
 
 server:
   address: 0.0.0.0
-  port: 8601
+  port: 8443
+  ssl: 
+    enabled: true 
+    key-alias: stegerilumination
+    key-password: gilberto
+    key-store: classpath:stegerilumination.jks
+    key-store-password: G1lb3rt0.
+    key-store-provider: SUN
+    key-store-type: JKS
+    trust-store-password: G1lb3rt0. 
   servlet:
     context-path: /stegeriluminacion # El Context Path debe ser igual al nombre del War generado, al momento de subirse a un servidor
     session:
-      cookie: 
+      cookie:
         name: cookie-micro-gateway # This is to prevent cookie clash with other service as they run on the same host and context path
   
   

@@ -2,192 +2,387 @@
 
   <div class="row">
     <!--
+          NUMERO DE CONEXIONES MAXIMA
+     -->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.maxConnections[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.maxConnections[0][0] }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!--
           NUMERO DE CONEXIONES
      -->
     <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-info">
-        <div class="card-body pb-0">
-          <button type="button" class="btn btn-transparent p-0 float-right">
-            <i class="icon-location-pin"></i>
-          </button>
-          <div class="text-value">9.823</div>
-          <div>Conexiones activas</div>
-        </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
-          <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels"
-            [options]="lineChart2Options" [colors]="lineChart2Colours" [legend]="lineChart2Legend"
-            [chartType]="lineChart2Type"></canvas>
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.maxUsedConnections[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.maxUsedConnections[0][0] }}
+          </div>
         </div>
       </div>
     </div>
 
-    <!--/.col-->
+    <!--
+          SLOW QUERYS
+     -->
     <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-primary">
-        <div class="card-body pb-0">
-          <div class="btn-group float-right" dropdown>
-            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
-              <i class="icon-settings"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-              <a class="dropdown-item" href="#" (click)="send()">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
-          <div class="text-value">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
-          <canvas baseChart class="chart" [datasets]="lineChart1Data" [labels]="lineChart1Labels"
-            [options]="lineChart1Options" [colors]="lineChart1Colours" [legend]="lineChart1Legend"
-            [chartType]="lineChart1Type"></canvas>
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.slowQueries[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.slowQueries[0][0] }}</div>
         </div>
       </div>
     </div>
 
+    <!--
+          THREADS RUNNING
+     -->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.threadsRunning[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.threadsRunning[0][0] }}</div>
+        </div>
+      </div>
+    </div>
 
-    <!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-warning">
-        <div class="card-body pb-0">
-          <div class="btn-group float-right" dropdown>
-            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
-              <i class="icon-settings"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
-          <div class="text-value">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="chart-wrapper mt-3" style="height:70px;">
-          <canvas baseChart class="chart" [datasets]="lineChart3Data" [labels]="lineChart3Labels"
-            [options]="lineChart3Options" [colors]="lineChart3Colours" [legend]="lineChart3Legend"
-            [chartType]="lineChart3Type"></canvas>
-        </div>
-      </div>
-    </div>
-    <!--/.col-->
-    <div class="col-sm-6 col-lg-3">
-      <div class="card text-white bg-danger">
-        <div class="card-body pb-0">
-          <div class="btn-group float-right" dropdown>
-            <button type="button" class="btn btn-transparent dropdown-toggle p-0" dropdownToggle>
-              <i class="icon-settings"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu>
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div>
-          <div class="text-value">9.823</div>
-          <div>Members online</div>
-        </div>
-        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
-          <canvas baseChart class="chart" [datasets]="barChart1Data" [labels]="barChart1Labels"
-            [options]="barChart1Options" [colors]="barChart1Colours" [legend]="barChart1Legend"
-            [chartType]="barChart1Type"></canvas>
-        </div>
-      </div>
-    </div>
-    <!--/.col-->
   </div>
-
+  <!--/.row-->
 
 
 
   <div class="row">
     <!--
-          NUMERO DE CONEXIONES
+        threads Connected
      -->
-    <div class="col-sm-6 col-lg-6">
+    <div class="col-sm-6 col-lg-3">
       <div class="card">
-        <div class="card-body pb-0">
-
-          Catalog Separator:  <span>{{ metricsDTO.catalogSeparator }}</span><br>
-          <span>Catalog Term: {{ metricsDTO.catalogTerm }}</span><br>
-          <span>DatabaseMajorVersion: {{ metricsDTO.databaseMajorVersion }}</span><br>
-          <span>DatabaseMinorVersion: {{ metricsDTO.databaseMinorVersion }}</span><br>
-          <span>DatabaseProductName: {{ metricsDTO.databaseProductName }}</span><br>
-          <span>DatabaseProductVersion: {{ metricsDTO.databaseProductVersion }}</span><br>
-          <span>DefaultTransactionIsolation: {{ metricsDTO.defaultTransactionIsolation }}</span><br>
-          <span>DriverMajorVersion: {{ metricsDTO.driverMajorVersion }}</span><br>
-          <span>DriverMinorVersion: {{ metricsDTO.driverMinorVersion }}</span><br>
-          <span>DriverName: {{ metricsDTO.driverName }}</span><br>
-          <span>DriverVersion: {{ metricsDTO.driverVersion }}</span><br>
-          <span>ExtraNameCharacters: {{ metricsDTO.extraNameCharacters }}</span><br>
-          <span>IdentifierQuoteString: {{ metricsDTO.identifierQuoteString }}</span><br>
-          <span>JDBCMajorVersion: {{ metricsDTO.jDBCMajorVersion }}</span><br>
-          <span>JDBCMinorVersion: {{ metricsDTO.jDBCMinorVersion }}</span><br>
-          <span>MaxBinaryLiteralLength: {{ metricsDTO.maxBinaryLiteralLength }}</span><br>
-          <span>MaxCatalogNameLength: {{ metricsDTO.maxCatalogNameLength }}</span><br>
-          <span>MaxCharLiteralLength: {{ metricsDTO.maxCharLiteralLength }}</span><br>
-          <span>MaxColumnNameLength: {{ metricsDTO.maxColumnNameLength }}</span><br>
-          <span>MaxColumnsInGroupBy: {{ metricsDTO.maxColumnsInGroupBy }}</span><br>
-          <span>MaxColumnsInIndex: {{ metricsDTO.maxColumnsInIndex }}</span><br>
-          <span>MaxColumnsInOrderBy: {{ metricsDTO.maxColumnsInOrderBy }}</span><br>
-          <span>MaxColumnsInSelect: {{ metricsDTO.maxColumnsInSelect }}</span><br>
-          <span>MaxColumnsInTable: {{ metricsDTO.maxColumnsInTable }}</span><br>
-          <span>MaxConnections: {{ metricsDTO.maxConnections }}</span><br>
-          <span>MaxCursorNameLength: {{ metricsDTO.maxCursorNameLength }}</span><br>
-          <span>MaxIndexLength: {{ metricsDTO.maxIndexLength }}</span><br>
-          <span>MaxLogicalLobSize: {{ metricsDTO.maxLogicalLobSize }}</span><br>
-          <span>MaxProcedureNameLength: {{ metricsDTO.maxProcedureNameLength }}</span><br>
-          <span>MaxRowSize: {{ metricsDTO.maxRowSize }}</span><br>
-          <span>MaxSchemaNameLength: {{ metricsDTO.maxSchemaNameLength }}</span><br>
-          <span>MaxStatementLength: {{ metricsDTO.maxStatementLength }}</span><br>
-          <span>MaxStatements: {{ metricsDTO.maxStatements }}</span><br>
-          <span>MaxTableNameLength: {{ metricsDTO.maxTableNameLength }}</span><br>
-          <span>MaxTablesInSelect: {{ metricsDTO.maxTablesInSelect }}</span><br>
-          <span>MaxUserNameLength: {{ metricsDTO.maxUserNameLength }}</span><br>
-          <span>NumericFunctions: {{ metricsDTO.numericFunctions }}</span><br>
-          <span>ProcedureTerm: {{ metricsDTO.procedureTerm }}</span><br>
-          <span>ResultSetHoldability: {{ metricsDTO.resultSetHoldability }}</span><br>
-          <span>SchemaTerm: {{ metricsDTO.schemaTerm }}</span><br>
-          <span>SearchStringEscape: {{ metricsDTO.searchStringEscape }}</span><br>
-          <span>SQLKeywords: {{ metricsDTO.sQLKeywords }}</span><br>
-          <span>SQLStateType: {{ metricsDTO.sQLStateType }}</span><br>
-          <span>StringFunctions: {{ metricsDTO.stringFunctions }}</span><br>
-          <span>SystemFunctions: {{ metricsDTO.systemFunctions }}</span><br>
-          <span>TimeDateFunctions: {{ metricsDTO.timeDateFunctions }}</span><br>
-          <span>URL: {{ metricsDTO.uRL }}</span><br>
-          <span>UserName: {{ metricsDTO.userName }}</span><br>
-          <span>Catalogs: {{ metricsDTO.catalogs }}</span><br>
-          <span>ClientInfoProperties: {{ metricsDTO.clientInfoProperties }}</span><br>
-          <span>RowIdLifetime: {{ metricsDTO.rowIdLifetime }}</span><br>
-          <span>Schemas: {{ metricsDTO.schemas }}</span><br>
-          <span>TableTypes: {{ metricsDTO.tableTypes }}</span><br>
-          <span>TypeInfo: {{ metricsDTO.typeInfo }}</span><br>
-          <span>SupportsGetGeneratedKeys: {{ metricsDTO.supportsGetGeneratedKeys }}</span><br>
-          <span>LoginTimeout: {{ metricsDTO.loginTimeout }}</span><br>
-          <span>ClientInfo: {{ metricsDTO.clientInfo }}</span><br>
-          <span>NetworkTimeout: {{ metricsDTO.networkTimeout }}</span><br>
-          <span>AutoCommit: {{ metricsDTO.autoCommit }}</span><br>
-          <span>Warnings: {{ metricsDTO.warnings }}</span><br>
-          <span>QueryTimeout: {{ metricsDTO.queryTimeout }}</span><br>
-          <span>Schema: {{ metricsDTO.schema }}</span><br>
-
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.threadsConnected[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.threadsConnected[0][0] }}</div>
         </div>
       </div>
     </div>
 
-    <!--/.col-->
-    <div class="col-sm-6 col-lg-6">
-      <div class="card text-white">
-        <div class="card-body pb-0">
-
+    <!--
+        wait Timeout
+     -->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card">
+        <div class="card-body p-0 clearfix">
+          <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.waitTimeout[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.waitTimeout[0][0] }}
+          </div>
         </div>
       </div>
     </div>
-
 
   </div>
-
   <!--/.row-->
+
+
+
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-users"></i>Statements With Runtimes In 95th Percentile
+        </div>
+        <div class="card-body">
+
+          <!-- TABLE -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover table-sm table-fixed">
+              <caption>Statements With Runtimes In 95th Percentile</caption>
+              <thead>
+                <tr>
+                  <th>Query</th>
+                  <th>DB</th>
+                  <th>Full scan</th>
+                  <th>Exec count</th>
+                  <th>Error count</th>
+                  <th>Warn count</th>
+                  <th>Total latency</th>
+                  <th>Max latency</th>
+                  <th>Avg latency</th>
+                  <th>Rows Sent</th>
+                  <th>Rows Sent Avg</th>
+                  <th>Rows Examined</th>
+                  <th>First Seen</th>
+                  <th>Last Seen</th>
+                  <th>Digest</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="metricsDTO?.statementsWithRuntimesIn95thPercentile?.length != 0">
+                <tr
+                  *ngFor="let statementsWithRuntimesIn95thPercentile of metricsDTO.statementsWithRuntimesIn95thPercentile">
+                  <td>{{ statementsWithRuntimesIn95thPercentile[0] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[1] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[2] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[3] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[4] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[5] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[6] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[7] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[8] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[9] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[10] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[11] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[12] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[13] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[14] }}</td>
+                </tr>
+              </tbody>
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.statementsWithRuntimesIn95thPercentile?.length <= 0">
+                <tr>
+                  <td colspan="11" class="no-data-available">No hay Datos</td>
+                </tr>
+              </tbody>
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.statementsWithRuntimesIn95thPercentile?.length <= 0 && isLoading">
+                <tr>
+                  <td colspan="11" class="no-data-available"><img src="assets/img/loading/loading.gif"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-users"></i>Statements With Errors Or Warnings
+        </div>
+        <div class="card-body">
+
+          <!-- TABLE -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover table-sm table-fixed">
+              <caption>Statements With Errors Or Warnings</caption>
+              <thead>
+                <tr>
+                  <th>Query</th>
+                  <th>DB</th>
+                  <th>Exec count</th>
+                  <th>Errors</th>
+                  <th>Error pct</th>
+                  <th>Warnings</th>
+                  <th>Warning pct</th>
+                  <th>First Seen</th>
+                  <th>Last Seen</th>
+                  <th>Digest</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="metricsDTO?.statementsWithRuntimesIn95thPercentile?.length != 0">
+                <tr
+                  *ngFor="let statementsWithRuntimesIn95thPercentile of metricsDTO.statementsWithRuntimesIn95thPercentile">
+                  <td>{{ statementsWithRuntimesIn95thPercentile[0] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[1] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[2] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[3] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[4] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[5] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[6] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[7] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[8] }}</td>
+                  <td>{{ statementsWithRuntimesIn95thPercentile[9] }}</td>
+                </tr>
+              </tbody>
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.statementsWithRuntimesIn95thPercentile?.length <= 0">
+                <tr>
+                  <td colspan="11" class="no-data-available">No hay Datos</td>
+                </tr>
+              </tbody>
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.statementsWithRuntimesIn95thPercentile?.length <= 0 && isLoading">
+                <tr>
+                  <td colspan="11" class="no-data-available"><img src="assets/img/loading/loading.gif"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!--/.row-->
+
+
+
+  <div class="row">
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-users"></i>Lista de procesos
+        </div>
+        <div class="card-body">
+
+          <!-- TABLE -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover table-sm table-fixed">
+              <caption>Lista de procesos</caption>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>User</th>
+                  <th>Host</th>
+                  <th>DB</th>
+                  <th>Command</th>
+                  <th>Time</th>
+                  <th>State</th>
+                  <th>Info</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="metricsDTO?.processList?.length != 0">
+                <tr *ngFor="let processList of metricsDTO.processList">
+                  <td>{{ processList[0] }}</td>
+                  <td>{{ processList[1] }}</td>
+                  <td>{{ processList[2] }}</td>
+                  <td>{{ processList[3] }}</td>
+                  <td>{{ processList[4] }}</td>
+                  <td>{{ processList[5] }}</td>
+                  <td>{{ processList[6] }}</td>
+                  <td>{{ processList[7] }}</td>
+                </tr>
+              </tbody>
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.processList?.length <= 0">
+                <tr>
+                  <td colspan="11" class="no-data-available">No hay Datos</td>
+                </tr>
+              </tbody>
+
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.processList?.length <= 0 && isLoading">
+                <tr>
+                  <td colspan="11" class="no-data-available"><img src="assets/img/loading/loading.gif"></td>
+                </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-users"></i>Top 10 Statements By Longest Average RunTime
+        </div>
+        <div class="card-body">
+
+          <!-- TABLE -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover table-sm table-fixed">
+              <caption>Lista de procesos</caption>
+              <thead>
+                <tr>
+                  <th>Query</th>
+                  <th>Conteo</th>
+                  <th>Promedio</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="metricsDTO?.top10StatementsByLongestAverageRunTime?.length != 0">
+                <tr
+                  *ngFor="let top10StatementsByLongestAverageRunTime of metricsDTO.top10StatementsByLongestAverageRunTime">
+                  <td>{{ top10StatementsByLongestAverageRunTime[0] }}</td>
+                  <td>{{ top10StatementsByLongestAverageRunTime[1] }}</td>
+                  <td>{{ top10StatementsByLongestAverageRunTime[2] }}</td>
+                </tr>
+              </tbody>
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.top10StatementsByLongestAverageRunTime?.length <= 0">
+                <tr>
+                  <td colspan="11" class="no-data-available">No hay Datos</td>
+                </tr>
+              </tbody>
+
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.top10StatementsByLongestAverageRunTime?.length <= 0 && isLoading">
+                <tr>
+                  <td colspan="11" class="no-data-available"><img src="assets/img/loading/loading.gif"></td>
+                </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-lg-3">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-users"></i>Performance Schemas
+        </div>
+        <div class="card-body">
+
+          <!-- TABLE -->
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover table-sm table-fixed">
+              <caption>Performance Schemas</caption>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Conteo</th>
+                  <th>Promedio (Segundos)</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="metricsDTO?.performanceSchemas?.length != 0">
+                <tr *ngFor="let performanceSchemas of metricsDTO.performanceSchemas">
+                  <td>{{ performanceSchemas[0] }}</td>
+                  <td>{{ performanceSchemas[1] }}</td>
+                  <td>{{ performanceSchemas[2] }}</td>
+                </tr>
+              </tbody>
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.performanceSchemas?.length <= 0">
+                <tr>
+                  <td colspan="11" class="no-data-available">No hay Datos</td>
+                </tr>
+              </tbody>
+
+              <!-- SIN DATOS -->
+              <tbody *ngIf="metricsDTO?.performanceSchemas?.length <= 0 && isLoading">
+                <tr>
+                  <td colspan="11" class="no-data-available"><img src="assets/img/loading/loading.gif"></td>
+                </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!--/.row-->
+
+
+
+
 </div>

@@ -3,7 +3,7 @@ info:
     name: Spring Boot Actuator Demo
     web: https://danielme.com/spring/
   hello: Hi there!!!
-
+  
 spring:
   application:
     name: micro-auth
