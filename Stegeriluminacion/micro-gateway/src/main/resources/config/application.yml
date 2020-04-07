@@ -2,20 +2,20 @@ spring:
   profiles: ## SIRVEN PARA SEPARAR LAS DIREFENTES CONFIGURACIONES DEL SISTEMA
     active: '@activatedProperties@' ## NOMBRE DEL PERFIL
   banner:
-    location: classpath:/banners/banner-dev.txt 
+    location: classpath:/banners/banner-dev.txt
   main:
     allow-bean-definition-overriding: true
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: America/Mexico_City
     joda-date-time-format: yyyy-MM-dd HH:MM:SS
-    locale: es_MX 
+    locale: es_MX
   datasource: # CONFIGURACIONES DE CONEXION
     url: jdbc:mysql://localhost/stegeriluminacion?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=America/Mexico_City
     username: root
     password: G1lb3rt0.
     driver-class-name: com.mysql.jdbc.Driver
-    continue-on-error: true 
+    continue-on-error: true
     hikari:
       connection-timeout: 20000 #(20 segundos) maximum number of milliseconds that a client will wait for a connection
       minimum-idle: 10 #minimum number of idle connections maintained by HikariCP in a connection pool
@@ -49,35 +49,45 @@ spring:
     enabled: true
     sampler:
       probability: 1
-  # BOOT ADMIN  
+  # BOOT ADMIN
   boot:
-    admin:  
-      client: 
+    admin:
+      client:
         enabled: true
         url: http://localhost:8600/discovery-server/admin
         instance:
-          service-base-url: http://localhost:8443
-        period: 1800000000 # microsegundos : 30 minutos
-        
+          service-base-url: https://localhost:8443
+        period: 3600000 # milisegundos : 30 minutos  Interval for repeating the registration
+      
 # EUREKA
 eureka:
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false 
     hostname: localhost
-    lease-renewal-interval-in-seconds:  1800 # segundos : 30 minutos
-    lease-expiration-duration-in-seconds:  1800 # segundos : 30 minutos
+    #Indicates the time in seconds that the eureka server waits since it received the last heartbeat before it can remove this instance from its 
+    #view and there by disallowing traffic to this instance.
+    #Setting this value too long could mean that the traffic could be routed to the instance even though the instance is not alive. 
+    #Setting this value too small could mean, the instance may be taken out of traffic because of temporary network glitches.
+    #This value to be set to atleast higher than the value specified in leaseRenewalIntervalInSeconds.
+    lease-expiration-duration-in-seconds:  1800 # 30 minutos
+    #Indicates how often (in seconds) the eureka client needs to send heartbeats to eureka server to indicate that it is still alive. 
+    #If the heartbeats are not received for the period specified in leaseExpirationDurationInSeconds, 
+    # eureka server will remove the instance from its view, there by disallowing traffic to this instance.
+    #Note that the instance could still not take traffic if it implements HealthCheckCallback and then decides to make itself unavailable
+    lease-renewal-interval-in-seconds:  1200 # 20 minutos
   client:
-    fetchRegistry: true
+    #fetchRegistry: true
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8600/discovery-server/eureka
     eureka-server-read-timeout-seconds: 60 # 1 minuto
     eureka-server-connect-timeout-seconds: 60 # 1 minuto
-    registry-fetch-interval-seconds:  1800 # segundos : 30 minutos
+    registry-fetch-interval-seconds:  1800 #  30 minutos Indicates how often(in seconds) to fetch the registry information from the eureka server.
+
     
     
-# CONFIGURACION PARA TODOS LOS ENDPOINTS
-management: 
+# METRICAS CON PROMETHEUS Y GRAFANA
+management:
   server:
     port: 8443
   endpoint:
@@ -87,18 +97,18 @@ management:
       enabled: true
     health:
       show-details: always 
-      enabled: true
     prometheus:
       enabled: true
   endpoints:
-    web:
+    web: 
       exposure:
         include: "*"
   metrics:
+    enable:
+      root: true
     export:
       prometheus:
-        enabled: true 
-
+        enabled: true  
   
 # ZUUL
 zuul:
