@@ -13,4 +13,18 @@ export class MetricsDTO {
   statementsWithErrorsOrWarnings: Array<String[]>;
   maxConnections: Array<String[]>;
 
+  constructor() {
+    this.processList = [[]];
+    this.maxUsedConnections = [[]];
+    this.waitTimeout = [[]];
+    this.threadsConnected = [[]];
+    this.threadsRunning = [[]];
+    this.slowQueries = [[]];
+    this.top10StatementsByLongestAverageRunTime = [[]];
+    this.performanceSchemas = [[]];
+    this.statementsWithRuntimesIn95thPercentile = [[]];
+    this.statementsWithErrorsOrWarnings = [[]];
+    this.maxConnections = [[]];
+  }
+
 }

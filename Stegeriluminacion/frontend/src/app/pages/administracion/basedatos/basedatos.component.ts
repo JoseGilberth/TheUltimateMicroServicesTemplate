@@ -18,10 +18,6 @@ export class BaseDatosComponent implements OnInit {
     this.databaseMetricsService.dataBaseMetrics()
       .subscribe(resp => {
         this.metricsDTO = resp.cuerpo;
-        this.metricsDTO.processList.forEach(processList => {
-          console.log("METRICAS: " + JSON.stringify(processList));
-        });
-
       }, (error: HttpErrorResponse) => {
       });
   }

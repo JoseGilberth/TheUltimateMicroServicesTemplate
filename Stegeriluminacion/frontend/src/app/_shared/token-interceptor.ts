@@ -25,10 +25,10 @@ export class TokenInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let token = <Token>JSON.parse(localStorage.getItem(configuraciones.static.token));
-        
-        console.log("request.url.includes('oauth/token') :" + request.url.includes("oauth/token"));
-        console.log("request.url :" + JSON.stringify(request.url));
-        
+
+        //console.log("request.url.includes('oauth/token') :" + request.url.includes("oauth/token"));
+        //console.log("request.url :" + JSON.stringify(request.url));
+
         if (token != null && !request.url.includes("oauth/token")) {
             request = request.clone({
                 headers: request.headers.set('Authorization', "Bearer " + token.access_token)

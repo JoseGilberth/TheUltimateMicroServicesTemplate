@@ -8,8 +8,8 @@
       <div class="card">
         <div class="card-body p-0 clearfix">
           <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
-          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.maxConnections[0][1] }}</div>
-          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.maxConnections[0][0] }}</div>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO?.maxConnections[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO?.maxConnections[0][0] }}</div>
         </div>
       </div>
     </div>
@@ -21,8 +21,8 @@
       <div class="card">
         <div class="card-body p-0 clearfix">
           <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
-          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.maxUsedConnections[0][1] }}</div>
-          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.maxUsedConnections[0][0] }}
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO?.maxUsedConnections[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO?.maxUsedConnections[0][0] }}
           </div>
         </div>
       </div>
@@ -35,8 +35,8 @@
       <div class="card">
         <div class="card-body p-0 clearfix">
           <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
-          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.slowQueries[0][1] }}</div>
-          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.slowQueries[0][0] }}</div>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO?.slowQueries[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO?.slowQueries[0][0] }}</div>
         </div>
       </div>
     </div>
@@ -48,8 +48,8 @@
       <div class="card">
         <div class="card-body p-0 clearfix">
           <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
-          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.threadsRunning[0][1] }}</div>
-          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.threadsRunning[0][0] }}</div>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO?.threadsRunning[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO?.threadsRunning[0][0] }}</div>
         </div>
       </div>
     </div>
@@ -67,8 +67,8 @@
       <div class="card">
         <div class="card-body p-0 clearfix">
           <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
-          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.threadsConnected[0][1] }}</div>
-          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.threadsConnected[0][0] }}</div>
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO?.threadsConnected[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO?.threadsConnected[0][0] }}</div>
         </div>
       </div>
     </div>
@@ -80,8 +80,8 @@
       <div class="card">
         <div class="card-body p-0 clearfix">
           <i class="fa fa-bell bg-danger p-4 px-5 font-2xl mr-3 float-left"></i>
-          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO.waitTimeout[0][1] }}</div>
-          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO.waitTimeout[0][0] }}
+          <div class="h5 text-danger mb-0 pt-3">{{ metricsDTO?.waitTimeout[0][1] }}</div>
+          <div class="text-muted text-uppercase font-weight-bold font-xs">{{ metricsDTO?.waitTimeout[0][0] }}
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
               </thead>
               <tbody *ngIf="metricsDTO?.statementsWithRuntimesIn95thPercentile?.length != 0">
                 <tr
-                  *ngFor="let statementsWithRuntimesIn95thPercentile of metricsDTO.statementsWithRuntimesIn95thPercentile">
+                  *ngFor="let statementsWithRuntimesIn95thPercentile of metricsDTO?.statementsWithRuntimesIn95thPercentile">
                   <td>{{ statementsWithRuntimesIn95thPercentile[0] }}</td>
                   <td>{{ statementsWithRuntimesIn95thPercentile[1] }}</td>
                   <td>{{ statementsWithRuntimesIn95thPercentile[2] }}</td>
@@ -191,7 +191,7 @@
               </thead>
               <tbody *ngIf="metricsDTO?.statementsWithRuntimesIn95thPercentile?.length != 0">
                 <tr
-                  *ngFor="let statementsWithRuntimesIn95thPercentile of metricsDTO.statementsWithRuntimesIn95thPercentile">
+                  *ngFor="let statementsWithRuntimesIn95thPercentile of metricsDTO?.statementsWithRuntimesIn95thPercentile">
                   <td>{{ statementsWithRuntimesIn95thPercentile[0] }}</td>
                   <td>{{ statementsWithRuntimesIn95thPercentile[1] }}</td>
                   <td>{{ statementsWithRuntimesIn95thPercentile[2] }}</td>
@@ -253,7 +253,7 @@
                 </tr>
               </thead>
               <tbody *ngIf="metricsDTO?.processList?.length != 0">
-                <tr *ngFor="let processList of metricsDTO.processList">
+                <tr *ngFor="let processList of metricsDTO?.processList">
                   <td>{{ processList[0] }}</td>
                   <td>{{ processList[1] }}</td>
                   <td>{{ processList[2] }}</td>
@@ -305,7 +305,7 @@
               </thead>
               <tbody *ngIf="metricsDTO?.top10StatementsByLongestAverageRunTime?.length != 0">
                 <tr
-                  *ngFor="let top10StatementsByLongestAverageRunTime of metricsDTO.top10StatementsByLongestAverageRunTime">
+                  *ngFor="let top10StatementsByLongestAverageRunTime of metricsDTO?.top10StatementsByLongestAverageRunTime">
                   <td>{{ top10StatementsByLongestAverageRunTime[0] }}</td>
                   <td>{{ top10StatementsByLongestAverageRunTime[1] }}</td>
                   <td>{{ top10StatementsByLongestAverageRunTime[2] }}</td>
@@ -352,7 +352,7 @@
                 </tr>
               </thead>
               <tbody *ngIf="metricsDTO?.performanceSchemas?.length != 0">
-                <tr *ngFor="let performanceSchemas of metricsDTO.performanceSchemas">
+                <tr *ngFor="let performanceSchemas of metricsDTO?.performanceSchemas">
                   <td>{{ performanceSchemas[0] }}</td>
                   <td>{{ performanceSchemas[1] }}</td>
                   <td>{{ performanceSchemas[2] }}</td>

@@ -17,7 +17,6 @@ export class ValidacionesComponent {
         var pattern = new RegExp(patron, 'g');
 
         if (!pattern.test(inputChar) || value.length >= max) {
-            console.log('no');
             event.stopPropagation();
             event.preventDefault(); // invalid character, prevent input
         }
