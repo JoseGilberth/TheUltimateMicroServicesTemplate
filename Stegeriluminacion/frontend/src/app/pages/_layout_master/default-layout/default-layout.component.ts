@@ -18,7 +18,7 @@ export class DefaultLayoutComponent {
   constructor(private loginService: LoginService
     , private utilComponent: UtilComponent
     , public router: Router
-    , private webSocketAPI: WebSocketAPI) {
+    , public webSocketAPI: WebSocketAPI) {
 
   }
 
@@ -26,11 +26,19 @@ export class DefaultLayoutComponent {
     this.sidebarMinimized = e;
   }
 
-  cerrarSesion() {
+  desconectar() {
     this.webSocketAPI._disconnect();
+  }
+
+  conectar() {
+    this.webSocketAPI.connect();
+  }
+
+  cerrarSesion() {
     this.utilComponent.showSweetAlertLoading("Cerrar Sesión", "Cerrando sesion");
     this.loginService.cerrarSesion()
       .subscribe(resp => {
+        this.webSocketAPI._disconnect();
         localStorage.clear();
         this.utilComponent.showSweetAlert("Ok", "Sesión cerrada", "success");
         this.router.navigate(['login']);

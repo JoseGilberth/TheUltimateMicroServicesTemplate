@@ -13,8 +13,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private webSocketAPI: WebSocketAPI) { }
 
-  send() {
-  }
 
   ngOnInit(): void {
 
