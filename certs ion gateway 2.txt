@@ -1,0 +1,93 @@
+https://medium.com/@niral22/2-way-ssl-with-spring-boot-microservices-2c97c974e83
+
+keytool -genkeypair -alias nt-gateway -keyalg RSA -keysize 2048 -storetype JKS -keystore nt-gateway.jks -validity 3650 -ext SAN=dns:localhost,ip:127.0.0.1
+Introduzca la contrasea del almacn de claves: Gilberto0.
+Volver a escribir la contrasea nueva: Gilberto0.
+Cules son su nombre y su apellido?
+  [Unknown]:  Jose Gilberto Colin velasco
+Cul es el nombre de su unidad de organizacin?
+  [Unknown]:  Dgtic
+Cul es el nombre de su organizacin?
+  [Unknown]:  Pasion Programada
+Cul es el nombre de su ciudad o localidad?
+  [Unknown]:  Nezahualcoyotl
+Cul es el nombre de su estado o provincia?
+  [Unknown]:  Mexico
+Cul es el cdigo de pas de dos letras de la unidad?
+  [Unknown]:  MX
+Es correcto CN=Jose Gilberto Colin velasco, OU=Dgtic, O=Pasion Programada, L=Nezahualcoyotl, ST=Mexico, C=MX?
+  [no]:  si
+  
+
+keytool -genkeypair -alias nt-ms -keyalg RSA -keysize 2048 -storetype JKS -keystore nt-ms.jks -validity 3650 -ext SAN=dns:localhost,ip:127.0.0.1
+ 
+ 
+Introduzca la contrasea del almacn de claves: G1lb3rt0.2
+Volver a escribir la contrasea nueva: G1lb3rt0.2
+Cules son su nombre y su apellido?
+  [Unknown]:  Jose Gilberto Colin
+Cul es el nombre de su unidad de organizacin?
+  [Unknown]:  Dgtic
+Cul es el nombre de su organizacin?
+  [Unknown]:  Pasion Programada
+Cul es el nombre de su ciudad o localidad?
+  [Unknown]:  Nezahualcoyotl
+Cul es el nombre de su estado o provincia?
+  [Unknown]:  Mexico
+Cul es el cdigo de pas de dos letras de la unidad?
+  [Unknown]:  MX
+Es correcto CN=Jose Gilberto Colin, OU=Dgtic, O=Pasion Programada, L=Nezahualcoyotl, ST=Mexico, C=MX?
+  [no]:  si
+
+
+Create public certificate file from client cert:
+
+keytool -export -alias nt-gateway -file nt-gateway.crt -keystore nt-gateway.jks
+Gilberto0.
+  
+  
+Create Public Certificate File From Server Cert:
+
+keytool -export -alias nt-ms -file nt-ms.crt -keystore nt-ms.jks
+G1lb3rt0.2
+
+Import Client Cert to Server jks File:
+
+keytool -import -alias nt-gateway -file nt-gateway.crt -keystore nt-ms.jks
+G1lb3rt0.2
+
+Import Server Cert to Client jks File:
+
+keytool -import -alias nt-ms -file nt-ms.crt -keystore nt-gateway.jks
+G1lb3rt0.
+
+
+
+keytool -importkeystore -srckeystore nt-gateway.jks -destkeystore nt-gateway-keystore.p12 -deststoretype PKCS12
+G1lb3rt0.
+G1lb3rt0.
+G1lb3rt0.
+
+openssl pkcs12 -in nt-gateway-keystore.p12 -nokeys -out nt-gateway-client.crt
+G1lb3rt0.
+
+openssl pkcs12 -in nt-gateway-keystore.p12 -nocerts -nodes -out nt-gateway-client.key
+G1lb3rt0.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

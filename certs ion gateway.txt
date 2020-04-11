@@ -78,12 +78,12 @@ R: client
 curl -ik --cert client.crt --key clientprivate.key "https://localhost:8443/stegeriluminacion/heartbeat"
  
 
-ng serve --ssl true --ssl-cert "C:\Users\joseg\Documents\Personal\Plantillas\TheUltimateMicroServicesTemplate\Stegeriluminacion\micro-gateway\src\main\resources\auth\client.crt" --ssl-key "C:\Users\joseg\Documents\Personal\Plantillas\TheUltimateMicroServicesTemplate\Stegeriluminacion\micro-gateway\src\main\resources\auth\decryptedclientprivate.key"
+ng serve --ssl true --ssl-cert "C:\Users\joseg\Documents\Personal\Plantillas\TheUltimateMicroServicesTemplate\Stegeriluminacion\micro-gateway\src\main\resources\auth\nt-gateway-client.crt" --ssl-key "C:\Users\joseg\Documents\Personal\Plantillas\TheUltimateMicroServicesTemplate\Stegeriluminacion\micro-gateway\src\main\resources\auth\nt-gateway-client.key"
  
 
 
 
 
-
+T3cn0c0m2016Git
 
  

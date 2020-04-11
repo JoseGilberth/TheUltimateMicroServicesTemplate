@@ -7,7 +7,7 @@ spring:
 server:
   address: 0.0.0.0
   port: 8443
-  ssl: 
+  ssl:
     enabled: true 
     key-alias: stegerilumination
     key-password: gilberto
@@ -15,7 +15,19 @@ server:
     key-store-password: G1lb3rt0.
     key-store-provider: SUN
     key-store-type: JKS
-    trust-store-password: G1lb3rt0. 
+    trust-store-password: G1lb3rt0.  
+    #enabled: true 
+    #client-auth: need
+    #key-store: classpath:nt-ms.jks
+    #key-password: G1lb3rt0.2
+    #key-alias: nt-ms
+    #key-store-password: G1lb3rt0.2
+    #key-store-provider: SUN
+    #key-store-type: JKS
+    #trust-store: classpath:nt-ms.jks
+    #trust-store-password: G1lb3rt0.2
+    #trust-store-type: JKS
+    #trust-store-provider: SUN
   servlet:
     context-path: /stegeriluminacion # El Context Path debe ser igual al nombre del War generado, al momento de subirse a un servidor
     session:
