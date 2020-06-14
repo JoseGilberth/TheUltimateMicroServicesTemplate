@@ -4,49 +4,26 @@
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-
-	<!-- PADRE -->
 	<parent>
 		<groupId>mx.com.pasionprogramada</groupId>
-		<artifactId>Stegeriluminacion</artifactId>
+		<artifactId>template-micro-servicios</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>micro-gateway</artifactId>
-	<name>micro-gateway</name>
+	<artifactId>micro-correos</artifactId>
+	<name>micro-correos</name>
 	<url>http://maven.apache.org</url>
 	<packaging>war</packaging>
 
-	<!-- PROPERTIES -->
 	<properties>
-		<start-class>micro.gateway.App</start-class>
-		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<start-class>micro.correos.MicroCorreosApplication</start-class>
 		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<!-- BUILD -->
 	<build>
-		<finalName>stegeriluminacion</finalName>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-				<excludes>
-					<exclude>**/*.jks</exclude>
-					<exclude>**/*.p12</exclude>
-				</excludes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-				<includes>
-					<include>**/*.jks</include>
-					<include>**/*.p12</include>
-				</includes>
-			</resource>
-		</resources>
+		<finalName>micro-correos</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -55,32 +32,12 @@
 		</plugins>
 	</build>
 
-
-	<!-- DEPENDENCIAS -->
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
-
-	<!-- DEPENDENCIAS -->
 	<dependencies>
-		<!-- ====================================================== SPRING =========================================================== -->
+		<!--========================================= SPRING ============================================= -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-		</dependency>
+		</dependency>  
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
@@ -98,7 +55,7 @@
 		<!-- ________ SEGURIDAD ________ -->
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth2</artifactId>
+			<artifactId>spring-security-oauth2</artifactId> 
   			<version>2.3.5.RELEASE</version>
 		</dependency>
 		<dependency>
@@ -109,18 +66,34 @@
 			<groupId>org.springframework.security.oauth.boot</groupId>
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 		</dependency>
-		<!-- GSON -->
+		<!-- ________ JPA ________ -->
+		<!--Added HikariCP -->
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+		</dependency> 
+		<!--Excluded Tomcat-jbc -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>tomcat-jdbc</artifactId>
+					<groupId>org.apache.tomcat</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency> 
+		<!-- ________ CORREO ________ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-
+		<!-- ________ THYMELEAF ________ -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency> 
 		<!-- ________ OTROS MODULOS ________ -->
-		<dependency>
-			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>modelo</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
 			<artifactId>dao</artifactId>
@@ -128,11 +101,26 @@
 		</dependency>
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>modelo</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>dto</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
 			<artifactId>excepciones</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>interfaces</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
-
 
 	<!-- PERFILES -->
 	<profiles>
@@ -164,6 +152,4 @@
 			</properties>
 		</profile>
 	</profiles>
-
-
 </project>

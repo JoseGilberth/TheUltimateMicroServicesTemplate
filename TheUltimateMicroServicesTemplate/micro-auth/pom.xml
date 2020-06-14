@@ -3,23 +3,56 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>mx.com.pasionprogramada</groupId>
-		<artifactId>Stegeriluminacion</artifactId>
+		<artifactId>template-micro-servicios</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>micro-usuarios</artifactId>
-	<name>micro-usuarios</name>
+	<artifactId>micro-auth</artifactId>
+	<name>micro-auth</name>
 	<url>http://maven.apache.org</url>
 	<packaging>war</packaging>
 
 	<properties>
-		<start-class>micro.usuarios.MicroUsuariosApplication</start-class>
+		<start-class>micro.auth.MicroAuthApplication</start-class>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+
+	<build>
+		<finalName>auth</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<exclude>**/*.jks</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*.jks</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<addResources>true</addResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 
 	<dependencies>
 		<!--========================================= SPRING ============================================= -->
@@ -41,17 +74,13 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
 		</dependency>
-		<!-- ________ THYMELEAF ________ -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
 		<!-- ________ SEGURIDAD ________ -->
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
   			<version>2.3.5.RELEASE</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -59,6 +88,12 @@
 		<dependency>
 			<groupId>org.springframework.security.oauth.boot</groupId>
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.cloudfoundry</groupId>
+			<artifactId>cloudfoundry-client-lib</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 		<!-- ________ JPA ________ -->
 		<!--Added HikariCP -->
@@ -77,15 +112,10 @@
 				</exclusion>
 			</exclusions>
 		</dependency> 
-		<!-- ________ OTROS MODULOS ________ -->
+		<!-- ________ DEPENDENCIA DE OTROS MODULOS ________ -->
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>modelo</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>interfaces</artifactId>
+			<artifactId>dao</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		<dependency>
@@ -95,51 +125,17 @@
 		</dependency>
 		<dependency>
 			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>dao</artifactId>
+			<artifactId>interfaces</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mx.com.pasionprogramada</groupId>
+			<artifactId>utils</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 
-	</dependencies>
 
-	<build>
-		<finalName>micro-usuarios</finalName>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-			<resource>
-				<directory>static</directory>
-				<targetPath>static</targetPath>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${build.directory}/classes/static/</outputDirectory>
-							<resources>
-								<resource>
-									<directory>../micro-admin-ui/dist</directory>
-                        			<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+	</dependencies>
 
 
 	<!-- PERFILES -->

@@ -7,51 +7,40 @@
 
 	<parent>
 		<groupId>mx.com.pasionprogramada</groupId>
-		<artifactId>Stegeriluminacion</artifactId>
+		<artifactId>template-micro-servicios</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>excepciones</artifactId>
-	<name>excepciones</name>
+	<artifactId>utils</artifactId>
+	<name>utils</name>
 	<url>http://maven.apache.org</url>
 	<packaging>jar</packaging>
 
-	<!-- PROPIEDADES -->
 	<properties>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
 	</properties>
-
-	<!-- DEPENDENCIAS -->
-	<dependencies>
-
-		<!-- ________ SEGURIDAD ________ -->
+ 
+	<dependencies> 
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-security</artifactId>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.6</version>
 		</dependency>
-		<!-- ________ JPA ________ -->
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
 		</dependency>
-		<!-- ________ DEPENDENCIA DE OTROS MODULOS ________ -->
-		<dependency>
-			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>dto</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>mx.com.pasionprogramada</groupId>
-			<artifactId>modelo</artifactId>
-			<version>1.0.0</version>
-		</dependency>
+		
+		
 	</dependencies>
 
-	<!-- BUILD -->
+	<!-- BUILD (NECESARIO PARA PROYECTOS MULTIMODULE) -->
 	<build>
-		<finalName>excepciones</finalName>
+		<finalName>utils</finalName>
 		<!-- https://stackoverflow.com/questions/41740349/maven-multi-module-dependency-package-not-found -->
 		<plugins>
 			<plugin>
@@ -68,7 +57,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 
 </project>

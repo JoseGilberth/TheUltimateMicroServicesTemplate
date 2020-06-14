@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>mx.com.pasionprogramada</groupId>
-	<artifactId>Stegeriluminacion</artifactId>
+	<artifactId>template-micro-servicios</artifactId>
 	<version>1.0.0</version>
-	<name>Stegeriluminacion</name>
-	<description>Sistema de inventario</description>
+	<name>Template-Micro-Servicio</name>
+	<description>Plantilla con microservicios</description>
 	<packaging>pom</packaging>
 
 
