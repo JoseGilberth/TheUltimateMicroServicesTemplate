@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: micro-catalogos
+  jmx:
+    default-domain: micro-catalogos
+    
+server:
+  port: 8607  servlet:    context-path: /micro-catalogos # El Context Path debe ser igual al nombre del War generado, al momento de subirse a un servidor servidor    session:      cookie:        name: cookie-micro-catalogos # This is to prevent cookie clash with other service as they run on the same host and context path
+ 

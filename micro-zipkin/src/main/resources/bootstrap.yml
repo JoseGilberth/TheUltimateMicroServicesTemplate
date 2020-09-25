@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: micro-zipkin
+  jmx:
+    default-domain: micro-zipkin
+
+server:
+  port: 8609  servlet:    context-path: /micro-zipkin # El Context Path debe ser igual al nombre del War generado, al momento de subirse a un servidor servidor    session:      cookie:        name: cookie-micro-zipkin # This is to prevent cookie clash with other service as they run on the same host and context path

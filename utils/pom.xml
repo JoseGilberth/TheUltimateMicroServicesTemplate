@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>mx.smartdevelop</groupId>
+		<artifactId>Microservice-Template</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>utils</artifactId>
+	<packaging>jar</packaging>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.6</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<!-- ________ UAREU ________ -->
+		<dependency>
+			<groupId>com.digitalpersona</groupId>
+			<artifactId>uareu</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<!-- ________ TESSERACT ________ -->
+		<dependency>
+			<groupId>net.sourceforge.tess4j</groupId>
+			<artifactId>tess4j</artifactId>
+			<version>4.4.1</version>
+		</dependency>
+
+	</dependencies>
+
+	<!-- BUILD (NECESARIO PARA PROYECTOS MULTIMODULE) -->
+	<build>
+		<finalName>utils</finalName>
+		<!-- https://stackoverflow.com/questions/41740349/maven-multi-module-dependency-package-not-found -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>repackage</id>
+						<configuration>
+							<classifier>task</classifier>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin> 
+		</plugins>
+	</build>
+
+
+
+
+</project>

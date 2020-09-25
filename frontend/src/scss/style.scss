@@ -1,0 +1,30 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+ .is-row-valid {
+    background-color: rgba(0, 200, 0, 0.05) !important;
+  }
+  .is-row-invalid {
+    background-color: rgba(200, 0, 0, 0.05) !important;
+  }
+  .invalid {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #f86c6b;
+  }
+  .switch-3d.switch-lg {
+    width: 80px !important;
+  }
+  .switch-primary .switch-input:checked + .switch-slider {
+    width: 80px !important;
+  }
+  .switch-3d.switch-lg .switch-input:checked ~ .switch-slider::before {
+    transform: translateX(50px) !important;
+  }
+  

@@ -1,0 +1,265 @@
+host: 
+  bd: jdbc:postgresql://localhost:5433
+  local: http://localhost:8443
+  front-end: http://localhost:4200
+  eureka: http://localhost:8600
+  websocket: http://localhost:8601
+  security: http://localhost:8602
+  correo: http://localhost:8603
+  usuarios: http://localhost:8604
+  admin: http://localhost:8605
+  publico: http://localhost:8606
+  catalogos: http://localhost:8607 
+  zipkin: http://127.0.0.1:9411
+
+spring:
+  profiles: ## SIRVEN PARA SEPARAR LAS DIREFENTES CONFIGURACIONES DEL SISTEMA
+    active: '@activatedProperties@' ## NOMBRE DEL PERFIL
+  banner:
+    location: classpath:/banners/banner-dev.txt
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: America/Mexico_City
+    locale: es_MX
+  datasource: # CONFIGURACIONES DE CONEXION
+    url: ${host.bd}/template
+    username: template
+    password: sql2016r2
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    continue-on-error: true
+    hikari:
+      connection-timeout: 20000 #(20 segundos) maximum number of milliseconds that a client will wait for a connection
+      minimum-idle: 10 #minimum number of idle connections maintained by HikariCP in a connection pool
+      maximum-pool-size: 10 #maximum pool size
+      idle-timeout: 10000 #(10 segundos)maximum idle time for connection
+      max-lifetime: 1000 #(1 segundo) maximum lifetime in milliseconds of a connection in the pool after it is closed.
+      auto-commit: true #default auto-commit behavior.
+  jpa:  ## DIRECTIVA Y CONFIGURACIONES DEL FRAMEWORK JPA
+    show-sql : true # Muestra o pinta lo que hace pda los queryes
+    database: postgresql # lenguaje de los querys es mysql
+    hibernate:
+      ddl-auto: update # quieres actualizar la tabla cada vezx que se conecte
+    properties:
+      hibernate:
+        generate_statistics: false
+        order_inserts: true
+        jdbc:
+          batch_size: 100
+        format_sql: true # le da formato a los query
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect 
+  # ZIPKIN
+  zipkin:
+    enabled: true
+    discovery-client-enabled: true
+  # SLEUTH
+  sleuth: 
+    enabled: true
+    feign:
+      enabled: true
+    http:
+      enabled: true
+    zuul:
+      enabled: true   
+    sampler:
+      probability: 1 
+  # BOOT ADMIN
+  boot:
+    admin:
+      client:
+        enabled: true
+        url: ${host.eureka}/discovery-server/admin
+        instance:
+          service-base-url: ${host.local}
+        period: 3600000 # milisegundos : 30 minutos  Interval for repeating the registration
+
+
+# EUREKA
+eureka:
+  instance:
+    prefer-ip-address: false 
+    hostname: localhost
+    #Indicates the time in seconds that the eureka server waits since it received the last heartbeat before it can remove this instance from its 
+    #view and there by disallowing traffic to this instance.
+    #Setting this value too long could mean that the traffic could be routed to the instance even though the instance is not alive. 
+    #Setting this value too small could mean, the instance may be taken out of traffic because of temporary network glitches.
+    #This value to be set to atleast higher than the value specified in leaseRenewalIntervalInSeconds.
+    lease-expiration-duration-in-seconds:  1800 # 30 minutos
+    #Indicates how often (in seconds) the eureka client needs to send heartbeats to eureka server to indicate that it is still alive. 
+    #If the heartbeats are not received for the period specified in leaseExpirationDurationInSeconds, 
+    # eureka server will remove the instance from its view, there by disallowing traffic to this instance.
+    #Note that the instance could still not take traffic if it implements HealthCheckCallback and then decides to make itself unavailable
+    lease-renewal-interval-in-seconds:  1200 # 20 minutos
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${host.eureka}/discovery-server/eureka
+    eureka-server-read-timeout-seconds: 60 # 1 minuto
+    eureka-server-connect-timeout-seconds: 60 # 1 minuto
+    registry-fetch-interval-seconds:  1800 #  30 minutos Indicates how often(in seconds) to fetch the registry information from the eureka server.
+
+# METRICAS CON PROMETHEUS Y GRAFANA
+management:
+  server:
+    port: 8443
+  endpoint:
+    metrics: 
+      enabled: true
+    shutdown:
+      enabled: true
+    health:
+      show-details: always 
+    prometheus:
+      enabled: true
+  endpoints:
+    web: 
+      exposure:
+        include: "*" # TEMA DE SEGURIDAD EN PRODUCCION
+  metrics:
+    enable:
+      root: true
+    export:
+      prometheus:
+        enabled: true
+
+# SWAGGER
+swagger:
+  config:
+    resource-id: template_resource
+    base-package: micro.gateway
+    variables:  
+      app-name: Micro-Gateway
+      resource-owner-password-credentials-grant: ${host.security}/oauth/token
+      client-id: template
+      client-secret: 123
+      scope-separator: ","
+      oauth-builder: spring_oauth
+      secured-paths: /jwt.* , /log.* , /sesiones.*, /cliente/detalle.*, /cliente/token.*
+      
+# SECURITY
+security:
+  jwt: 
+    resource-id: template_resource
+  oauth2:
+    resource:
+      user-info-uri:  ${host.security}/micro-auth/usuario 
+      preferTokenInfo: true
+    ignored-paths: /heartbeat
+    unprotected-paths: /**
+    swagger-paths: /v2/api-docs, /configuration/ui, /swagger-resources/**, /configuration/security, /swagger-ui.html, /webjars/**
+    
+# ZUUL
+zuul:
+  retryable: true # "Intentable" Por si falla algun servicio
+  host:
+    connect-timeout-millis: 60000 # 1 minuto
+    socket-timeout-millis: 60000 # 1 minuto
+  routes:
+    micro-eureka: # -----------------------------------------------MICRO EUREKA
+      retryable: true
+      path: /micro-eureka/**
+      sensitive-headers:
+      url: ${host.eureka}/discovery-server
+    uaa: # ------------------------------------------------------- MICRO AUTH
+      path: /micro-auth/**
+      sensitive-headers:
+      url: ${host.security}/micro-auth
+      #service-id: 
+    correo: # ---------------------------------------------------- MICRO CORREO
+      retryable: true
+      path: /micro-correo/**
+      sensitive-headers:
+      url: ${host.correo}/micro-correo
+    publico-usuarios: # ------------------------------------------ MICRO USUARIOS
+      retryable: true
+      path: /micro-usuarios/**
+      sensitive-headers:
+      url: ${host.usuarios}/micro-usuarios
+      #service-id: Micro-Usuarios
+    administracion: # -------------------------------------------- MICRO ADMINISTRACION
+      retryable: true
+      path: /micro-admin/**
+      sensitive-headers:
+      url: ${host.admin}/micro-admin
+    publico: # --------------------------------------------------- MICRO PUBLICO
+      retryable: true
+      path: /micro-publico/**
+      sensitive-headers:
+      url: ${host.publico}/micro-publico
+    catalogos: # ------------------------------------------------- MICRO CATALOGOS
+      retryable: true
+      path: /micro-catalogos/**
+      sensitive-headers:
+      url: ${host.catalogos}/micro-catalogos
+
+
+# CONFIGURACION DE BALANCE DE CARGA PARA LOS MICROSERVICIOS DE USUARIOS - NO USADO PERO ANOTADO
+Micro-Usuarios:
+  ribbon:
+    ReadTimeout: 60000 # 1 minuto
+    ConnectTimeout: 60000 # 1 minuto
+    retryableStatusCodes: 404,502,500 # Intenta conexion solo en status code de 500
+    MaxAutoRetries: 2 # Maximo 2 intentos 
+    MaxAutoRetriesNextServer: 2  # Maximo numero de intentos en el siguiente servidor 
+    OkToRetryOnAllOperations: true # Hacer un retry en cualquier operacion
+    #MaxTotalHttpConnections: 500 # Maxino numero de conexiones en cada microservicio
+    MaxConnectionsPerHost: 1000 # Maxino numero de conexiones por cada microservicio de balance de carga
+    eureka:
+      enabled: false # Necesario para el balance de carga
+  listOfServers: http://localhost:8085 # the listOfServers property only supports host and port, not path.
+  ServerListRefreshInterval: 1800000 # 30 minutos 
+
+# WEBSOCKET    
+websocket:
+  stomp:
+    endpoints: /websocket
+  topics:
+    admin: /notify/admin
+    log: /notify/logger
+
+
+# CORS   
+cors:
+  Access-Control-Allow-Origin: ${host.front-end}
+  Access-Control-Allow-Methods: 'DELETE, GET, OPTIONS, PATCH, POST, PUT'
+  Access-Control-Max-Age: '3600'
+  Access-Control-Allow-Headers: 'x-requested-with, accion , authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN'
+  Access-Control-Allow-Credentials: 'true'
+       
+# Increase the Hystrix timeout to 60s (globally)
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000 # 1 minuto, No puede ser menor que la suma de ready connect time los micro servicios con balances de carga
+
+
+# RIBBON CONEXION DE LOS MICROSERVICIOS Y EUREKA
+ribbon:
+  ReadTimeout: 60000 # 1 minuto
+  ConnectTimeout: 60000 # 1 minuto
+  http:
+    client:
+      enabled: true
+  restclient:
+    enabled: true
+  eureka:
+    enabled: false
+
+
+# LOGGER
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: TRACE
+      hibernate: 
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE # IMPRIME LOS DATOS ENTRANTES A HIBERNATE

@@ -1,0 +1,139 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Busqueda</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div class="row">
+
+    <!-- 1RA MITAD -->
+    <div class="col-6">
+
+      <!-- ID -->
+      <div class="form-group">
+        <label class="form-col-form-label" for="id">Id</label>
+        <input type="number" class="form-control" id="id" [(ngModel)]="usuariosPublicosFiltroDTO.id">
+      </div>
+
+      <!-- CORREO -->
+      <div class="form-group">
+        <label class="form-col-form-label" for="correo">Correo</label>
+        <input type="text" class="form-control" id="correo" [(ngModel)]="usuariosPublicosFiltroDTO.correo">
+      </div>
+
+      <!-- NOMBRE -->
+      <div class="form-group">
+        <label class="form-col-form-label" for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="usuariosPublicosFiltroDTO.nombre">
+      </div>
+
+      <!-- APELLIDO 1 -->
+      <div class="form-group">
+        <label class="form-col-form-label" for="apellido1">Apellido 1</label>
+        <input type="text" class="form-control" id="apellido1" [(ngModel)]="usuariosPublicosFiltroDTO.apellido1">
+      </div>
+
+      <!-- APELLIDO 2 -->
+      <div class="form-group">
+        <label class="form-col-form-label" for="apellido2">Apellido 2</label>
+        <input type="text" class="form-control" id="apellido2" [(ngModel)]="usuariosPublicosFiltroDTO.apellido2">
+      </div>
+
+
+      <!-- USUARIO -->
+      <div class="form-group">
+        <label class="form-col-form-label" for="usuario">Usuario</label>
+        <input type="text" class="form-control" id="usuario" [(ngModel)]="usuariosPublicosFiltroDTO.username">
+      </div>
+
+    </div><!-- 1RA MITAD -->
+
+    <!-- 2DA MITAD -->
+    <div class="col-6">
+
+      <!-- Télefono Celular  -->
+      <div class="form-group">
+        <label class="form-col-form-label" for="telefonoCelular">Télefono Celular</label>
+        <input type="text" class="form-control" id="telefonoCelular"
+          [(ngModel)]="usuariosPublicosFiltroDTO.telefonoCelular">
+      </div>
+
+      <!-- Peticiones MINIMAS  -->
+      <div class="form-group row">
+        <div class="col-6">
+          <input type="text" class="form-control" placeholder="Peticiones minimas"
+            [(ngModel)]="usuariosPublicosFiltroDTO.limitRequestInicial">
+        </div>
+        <div class="col-6">
+          <input type="text" class="form-control" placeholder="Peticiones máximas"
+            [(ngModel)]="usuariosPublicosFiltroDTO.limitRequestFinal">
+        </div>
+      </div> 
+
+      <!-- UNIDAD DE TIEMPO  DE TOKEN-->
+      <div class="form-group">
+        <label for="ccmonth">Unidad de tiempo de token</label>
+        <select class="form-control" id="ccmonth" [(ngModel)]="usuariosPublicosFiltroDTO.timeUnitToken">
+          <option *ngFor="let timeUnit of timeUnitsDto" [value]="timeUnit">{{ timeUnit }}</option>
+        </select>
+      </div>
+
+      <!-- UNIDAD DE TIEMPO DE REQUEST -->
+      <div class="form-group">
+        <label for="ccmonth">Unidad de tiempo de las peticiones</label>
+        <select class="form-control" id="ccmonth" [(ngModel)]="usuariosPublicosFiltroDTO.timeUnitRequest">
+          <option *ngFor="let timeUnit of timeUnitsDto" [value]="timeUnit">{{ timeUnit }}</option>
+        </select>
+      </div>
+
+      <!-- PEPIRACION DE TOKEN -->
+      <div class="form-group row">
+        <div class="col-6">
+          <input type="text" class="form-control" placeholder="Expiración de token minimas"
+            [(ngModel)]="usuariosPublicosFiltroDTO.tokenExpirationInicial">
+        </div>
+        <div class="col-6">
+          <input type="text" class="form-control" placeholder="Expiracón de token  máximas"
+            [(ngModel)]="usuariosPublicosFiltroDTO.tokenExpirationFinal">
+        </div>
+      </div>
+
+      <!-- FECHA DE ALTA  -->
+      <div class="form-group row">
+        <div class="col-6">
+          <input class="form-control" id="date-input" type="date" name="date-input" placeholder="date"
+            [(ngModel)]="usuariosPublicosFiltroDTO.fechaAltaInicial">
+        </div>
+        <div class="col-6">
+          <input class="form-control" id="date-input" type="date" name="date-input2" placeholder="date"
+            [(ngModel)]="usuariosPublicosFiltroDTO.fechaAltaFinal">
+        </div>
+      </div>
+
+      <!-- ESTATUS  -->
+      <div class="form-group row">
+        <div class="col-3">
+          Estatus:
+        </div>
+        <div class="col-9">
+          <label class="switch switch-label switch-lg switch-3d switch-pill switch-primary">
+            <input type="checkbox" class="switch-input" [(ngModel)]="!usuariosPublicosFiltroDTO.enabled">
+            <span class="switch-slider" data-checked="✓" data-unchecked="✕"></span>
+          </label>
+        </div>
+      </div>
+
+    </div><!-- 2DA MITAD -->
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="reset" class="btn btn-sm btn-danger" (click)="limpiarBusqueda()"><i class="fa fa-ban"></i> Reiniciar
+    valores</button>
+  <button type="button" class="btn btn-sm btn-danger" (click)="onCancel()"><i class="fa fa-close"></i>
+    Cerrar</button>
+  <button type="submit" class="btn btn-sm btn-primary" (click)="onConfirm()"><i class="fa fa-search"></i>
+    Buscar</button>
+</div>

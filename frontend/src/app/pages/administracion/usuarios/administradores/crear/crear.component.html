@@ -1,0 +1,185 @@
+<div class="animated fadeIn">
+
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" autocomplete="off">
+
+    <!-- INFORMACION BASICA -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <!-- TITULO -->
+          <div class="card-header">
+            <strong>Información básica</strong>
+            <small>Usuarios Administradores</small>
+          </div>
+          <!-- CONTENIDO -->
+          <div class="card-body">
+            <div class="row">
+
+              <!--========================================
+                                 PARTE 1
+              ========================================-->
+              <div class="col-6">
+
+                <!-- USUARIO -->
+                <div class="form-group">
+                  <label class="form-col-form-label" for="username">Usuario</label>
+                  <input type="text" formControlName="username" class="form-control" placeholder="Usuario"
+                    [ngClass]="{ 'is-invalid': f.username.errors , 'is-valid': !f.username.errors}" />
+                  <div *ngIf="f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">El usuario es requerido.</div>
+                    <div *ngIf="f.username.errors.minlength">El usuario debe tener al menos
+                      {{f.username.errors.minlength.requiredLength}} caracteres</div>
+                  </div>
+                </div>
+
+                <!-- NOMBRE -->
+                <div class="form-group">
+                  <label class="form-col-form-label" for="nombre">Nombre</label>
+                  <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre"
+                    [ngClass]="{ 'is-invalid': f.nombre.errors , 'is-valid': !f.nombre.errors}" />
+                  <div *ngIf="f.nombre.errors" class="invalid-feedback">
+                    <div *ngIf="f.nombre.errors.required">El nombre es requerido.</div>
+                    <div *ngIf="f.nombre.errors.minlength">El nombre debe tener al menos
+                      {{f.nombre.errors.minlength.requiredLength}} caracteres</div>
+                  </div>
+                </div>
+
+
+                <!-- APELLIDO 1 -->
+                <div class="form-group">
+                  <label class="form-col-form-label" for="apellido 1">Apellido 1</label>
+                  <input type="text" formControlName="apellido1" class="form-control" placeholder="Apellido 1"
+                    [ngClass]="{ 'is-invalid': f.apellido1.errors , 'is-valid': !f.apellido1.errors}" />
+                  <div *ngIf="f.apellido1.errors" class="invalid-feedback">
+                    <div *ngIf="f.apellido1.errors.required">El apellido 1 es requerido.</div>
+                    <div *ngIf="f.apellido1.errors.minlength">El apellido 1 debe tener al menos
+                      {{f.apellido1.errors.minlength.requiredLength}} caracteres</div>
+                  </div>
+                </div>
+
+                <!-- APELLIDO 2 -->
+                <div class="form-group">
+                  <label class="form-col-form-label" for="apellido2">Apellido 2</label>
+                  <input type="text" formControlName="apellido2" class="form-control" placeholder="Apellido 2"
+                    [ngClass]="{ 'is-invalid': f.apellido2.errors , 'is-valid': !f.apellido2.errors}" />
+                  <div *ngIf="f.apellido2.errors" class="invalid-feedback">
+                    <div *ngIf="f.apellido2.errors.required">El apellido 2 es requerido.</div>
+                    <div *ngIf="f.apellido2.errors.minlength">El apellido 2 debe tener al menos
+                      {{f.apellido2.errors.minlength.requiredLength}} caracteres</div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!--========================================
+                                 PARTE 2
+            ========================================-->
+              <div class="col-6">
+
+                <!-- CORREO -->
+                <div class="form-group">
+                  <label class="form-col-form-label" for="correo">Correo</label>
+                  <input type="email" formControlName="correo" class="form-control" placeholder="Correo"
+                    [ngClass]="{ 'is-invalid': f.correo.errors , 'is-valid': !f.correo.errors}" />
+                  <div *ngIf="f.correo.errors" class="invalid-feedback">
+                    <div *ngIf="f.correo.errors.required">El correo es requerido.</div>
+                    <div *ngIf="f.correo.errors.email">Debe ingresar un correo valido.</div>
+                    <div *ngIf="f.correo.errors.minlength">El correo debe tener al menos
+                      {{f.correo.errors.minlength.requiredLength}} caracteres</div>
+                  </div>
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="form-group">
+                  <label class="form-col-form-label" for="password">Password</label>
+                  <div class="input-group mb-3 border">
+
+                    <input type="{{!showPassword ? 'password': 'text'}}" class="form-control border-0"
+                      placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"
+                      formControlName="password" autocomplete="off" autocomplete="new-password"
+                      [ngClass]="{ 'is-invalid': f.password.errors , 'is-valid': !f.password.errors}">
+                    <div class="input-group-append" (click)="showPassword ? showPassword = false: showPassword = true">
+                      <span class="input-group-text"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                    </div>
+
+                    <div *ngIf="f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">El password es requerido.</div>
+                      <div *ngIf="f.password.errors.hasNumber">El password debe tener al menos un número.</div>
+                      <div *ngIf="f.password.errors.hasCapitalCase">El password debe tener al menos una letra mayuscula.
+                      </div>
+                      <div *ngIf="f.password.errors.hasSmallCase">El password debe tener al menos una letra minuscula.
+                      </div>
+                      <div *ngIf="f.password.errors.hasSpecialCharacters">El password debe tener al menos 1 caracter
+                        especial.</div>
+                      <div *ngIf="f.password.errors.minlength">El password debe tener al menos
+                        {{f.password.errors.minlength.requiredLength}} caracteres</div>
+                      <div *ngIf="f.repetirPassword.errors.mustMatch">Los password deben coincidir</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- REPETIR PASSWORD -->
+                <div class="form-group">
+                  <label class="form-col-form-label" for="repetirPassword">Repetir Password</label>
+                  <input type="password" formControlName="repetirPassword" class="form-control"
+                    placeholder="Repetir Password"
+                    [ngClass]="{ 'is-invalid': f.repetirPassword.errors , 'is-valid': !f.repetirPassword.errors}" />
+                  <div *ngIf="f.repetirPassword.errors" class="invalid-feedback">
+                    <div *ngIf="f.repetirPassword.errors.required">Repetir el password es requerido.</div>
+                    <div *ngIf="f.repetirPassword.errors.minlength">El password debe tener al menos
+                      {{f.repetirPassword.errors.minlength.requiredLength}} caracteres</div>
+                    <div *ngIf="f.repetirPassword.errors.mustMatch">Los password deben coincidir</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <fingerprint-usuario [usuariosDTO]="usuariosAdminDTO"></fingerprint-usuario>
+
+
+    <!-- ROLES Y PERMISOS -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <!-- TITULO -->
+          <div class="card-header">
+            <strong>Permisos en el sistema</strong>
+            <small>usuarios publicos</small>
+          </div>
+          <!-- CONTENIDO -->
+          <div class="card-body">
+            <div class="row">
+              
+              <div class="col-12"> 
+                <ngx-treeview [items]="permisos" (selectedChange)="onSelectedChange($event)">
+                </ngx-treeview> 
+              </div>
+              <div *ngIf="f.permisos.errors" class="invalid">
+                <div *ngIf="f.permisos.errors.required">Debes elegir al menos un permiso.</div>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-sm btn-success float-right btn-footer"><i class="fa fa-user"></i>
+              Crear</button>
+            <button type="reset" class="btn btn-sm btn-danger float-right btn-footer" (click)="reiniciarValores()"><i
+                class="fa fa-ban"></i> Reiniciar
+              valores</button>
+            <button type="button" class="btn btn-sm btn-primary float-right btn-footer" (click)="regresar()"><i
+                class="fa fa-chevron-left"></i>
+              regresar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+</div>

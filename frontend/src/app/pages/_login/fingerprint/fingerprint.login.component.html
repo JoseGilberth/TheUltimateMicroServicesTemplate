@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Iniciar Sesión</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <h1>Login</h1>
+  <p class="text-muted">Coloca tu usuario y luego tu huella</p>
+  <button type="button" class="btn btn-botonera btn-primary btn-sm float-right" (click)="onLoad()">
+    <i class="fa fa-refresh"></i> Conectar huellero
+  </button>
+
+  <!-- INPUT USUARIO -->
+  <div class="input-group mb-3 border">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="icon-user"></i></span>
+    </div>
+    <input type="text" class="form-control border-0" placeholder="Usuario" aria-label="Usuario" aria-describedby="basic-addon1" [(ngModel)]="loginDTO.username" required>
+    <div class="input-group-append bg-transparent">
+      <span class="input-group-text bg-transparent  border-0" id="basic-addon1">
+        <img *ngIf="loginDTO.username == ''" src="assets/img/huella-dactilar-red.png" style="width: 18px; height: 18px;" />
+        <img *ngIf="loginDTO.username != ''" src="assets/img/huella-dactilar-green.png" style="width: 18px; height: 18px;" /> 
+      </span>
+    </div>
+  </div> 
+  <small [ngStyle]="{'color': isLoadingHuellero ? 'red' : 'green' }">{{ statusHuellero }}</small>
+
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-sm btn-danger" (click)="onCancel()"><i class="fa fa-close"></i>
+    Cerrar</button>
+</div>

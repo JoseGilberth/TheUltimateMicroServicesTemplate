@@ -1,0 +1,35 @@
+/*
+.video-container {
+  position: relative;
+  width: 80%;
+  height: 400px;
+  overflow: hidden;
+}
+.video-container video { 
+  min-width: 100%;
+  min-height: 100%; 
+  width: auto;
+  height: auto; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.canvas-container {
+  position: relative;
+  width: 80%;
+  height: 400px;
+  overflow: hidden;
+}
+.canvas-container canvas { 
+  min-width: 100%;
+  min-height: 100%; 
+  width: auto;
+  height: auto; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+*/

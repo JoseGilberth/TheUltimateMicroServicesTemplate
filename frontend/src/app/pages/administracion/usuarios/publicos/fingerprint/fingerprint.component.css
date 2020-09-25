@@ -1,0 +1,28 @@
+.switch-3d.switch-lg {
+  width: 80px !important;
+}
+.switch-primary .switch-input:checked + .switch-slider {
+  width: 80px !important;
+}
+.switch-3d.switch-lg .switch-input:checked ~ .switch-slider::before {
+  transform: translateX(50px) !important;
+}
+
+.invalid {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #f86c6b;
+}
+.is-permiso-invalid{
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 100%;
+  color: #f86c6b;
+}
+.is-permiso-valid{
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 100%;
+  color: #438a35;
+}

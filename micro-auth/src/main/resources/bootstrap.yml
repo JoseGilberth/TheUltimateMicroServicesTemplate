@@ -1,0 +1,19 @@
+info:
+  app:
+    name: Spring Boot Auth
+    web: https://smart-develop.mx
+  hello: Hola
+  
+spring:
+  application:
+    name: micro-auth
+  jmx:
+    default-domain: micro-auth
+
+server:
+  port: 8602
+  servlet:
+    context-path: /micro-auth # El Context Path debe ser igual al nombre del War generado, al momento de subirse a un servidor servidor
+    session:
+      cookie:
+        name: cookie-micro-auth # This is to prevent cookie clash with other service as they run on the same host and context path

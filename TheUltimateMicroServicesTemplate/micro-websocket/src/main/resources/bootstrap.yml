@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: micro-websocket
-  jmx:
-    default-domain: micro-websocket
-    
-server:
-  port: 8606  servlet:    context-path: /micro-websocket # El Context Path debe ser igual al nombre del War generado, al momento de subirse a un servidor servidor    session:      cookie:        name: cookie-micro-websocket # This is to prevent cookie clash with other service as they run on the same host and context path
- 
